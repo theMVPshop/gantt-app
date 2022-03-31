@@ -1,5 +1,25 @@
-.window{
-  border: 1px solid black;
-  height: 50px;
-  width: 70px;
+.edit-form{
+  border: 5px solid black;
+  width: 25%;
+}
+
+h3{
+display: flex;
+justify-content: center;
+}
+
+.insert{
+  margin:30px;
+}
+
+.info{
+  margin-left:10px;
+}
+
+.start{
+  margin-left:35px;
+}
+
+.end{
+  margin-left:40px;
 }
