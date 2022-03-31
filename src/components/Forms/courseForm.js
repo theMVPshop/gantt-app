@@ -71,6 +71,7 @@ const CourseForm = () => {
           <input type="number" name="studentNumEnd" />
         </label>
         <label class="switch">
+          Active Status
           <input type="checkbox" />
           <span class="slider round"></span>
         </label>
