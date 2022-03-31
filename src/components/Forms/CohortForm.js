@@ -1,18 +1,32 @@
 import React from "react";
+import "./Forms.css"
 
 
 
 const CohortForm = () => {
 
   return (
-  <div className="window">
-    <h4>Cohort Name:</h4>
-    <input type="text" className="info"></input>
-    <h4>Start Date:</h4>
-    <input type="text" className="info"></input>
-    <h4>End Date:</h4>
-    <input type="text" className="info"></input>
-  </div>
+
+  <form className="edit-form">
+
+    <h3>Edit</h3>
+    
+   <div className="insert">
+    <label for="cohortName">Cohort Name:</label>
+    <input type="text" className="info" name="cohortName"></input>
+   </div>
+    
+   <div className="insert">
+    <label for="startDate">Start Date:</label>
+    <input type="text" className="start" name="startDate"></input>
+    </div>
+
+    <div className="insert">
+    <label for="endDate">End Date:</label>
+    <input type="text" className="end" name="endDate"></input>
+    </div>
+
+  </form>
   )
 }
 
