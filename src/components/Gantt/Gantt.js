@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
+import CourseForm from "../Forms/CourseForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 
@@ -111,8 +112,8 @@ const Gantt = (props) => {
 
   return (
     <div>
-      <div id="testModalCont">
-        <div id="testModal"></div>
+      <div id="formCont">
+        <CourseForm id="courseFormModal" />
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>
