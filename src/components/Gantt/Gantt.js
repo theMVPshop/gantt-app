@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import CourseForm from "../Forms/CourseForm.js";
+import CohortForm from "../Forms/CohortForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 
 const Gantt = (props) => {
   const { tasks } = props;
   const containerRef = useRef(null);
+
+  const [courseFormDisplay, setCourseFormDisplay] = useState(false);
 
   // useEffect(() => {
 
@@ -100,7 +103,7 @@ const Gantt = (props) => {
             console.log(id);
             break;
           case "add":
-            console.log(id);
+            setCourseFormDisplay(true);
             break;
           case "delete":
             console.log(id);
@@ -113,7 +116,7 @@ const Gantt = (props) => {
   return (
     <div>
       <div id="formCont">
-        <CourseForm id="courseFormModal" />
+        <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>

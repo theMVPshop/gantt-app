@@ -1,10 +1,13 @@
 import React from "react";
 import "./Forms.css";
 
-const CourseForm = () => {
+const CourseForm = (props) => {
   return (
     <div>
-      <form className="courseForm">
+      <form
+        className="courseForm"
+        style={props.courseDisplay ? { display: "flex" } : { display: "none" }}
+      >
         <label>
           Course Number
           <input type="text" name="courseNum" />
