@@ -1,9 +1,10 @@
 import React from "react";
+import "./Forms.css";
 
 const CourseForm = () => {
   return (
     <div>
-      <form>
+      <form className="courseForm">
         <label>
           Course Number
           <input type="text" name="courseNum" />
@@ -53,9 +54,28 @@ const CourseForm = () => {
             <option value="inPerson">In-Person</option>
           </select>
         </label>
-        {/* still needs: */}
-        {/* start date, end date, # students start, # students end, active toggle, save button */}
-        {/* calendar input for dates */}
+        <label>
+          Start Date
+          <input type="date" name="startDate" />
+        </label>
+        <label>
+          End Date
+          <input type="date" name="endDate" />
+        </label>
+        <label>
+          Number of Students Starting
+          <input type="number" name="studentNumStart" />
+        </label>
+        <label>
+          Number of Students Ending
+          <input type="number" name="studentNumEnd" />
+        </label>
+        <label class="switch">
+          Active Status
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <input type="submit" id="submit" value="Save" />
       </form>
     </div>
   );
