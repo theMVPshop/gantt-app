@@ -54,9 +54,53 @@ body,
 .courseForm {
   width: 700px;
   height: 500px;
-  background-color: grey;
+  background-color: skyblue;
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: column;
+}
+
+.courseContainer{
+  width: 500px;
+  height: 600px;
+  background-color: maroon;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+}
+
+.labels{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+}
+
+#label{
+  margin:5px;
+  width:150px;
+  padding: 0;
+  margin-right: 0;
+  margin-left:100px;
+}
+
+#input{
+  margin:7px;
+  margin-right:50px;
+  
+}
+
+#submit{
+  position: relative;
+  z-index:10;
+  justify-content: end;
+  width:5rem;
+  margin-top:35rem;
+  margin-left:19rem;
 }
