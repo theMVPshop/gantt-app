@@ -1,85 +1,65 @@
 import React from "react";
-import "./Forms.css";
 
 const CourseForm = (props) => {
   return (
     <div>
-      <form
-        className="courseForm"
-        style={props.courseDisplay ? { display: "flex" } : { display: "none" }}
-      >
-        <label>
-          Course Number
-          <input type="text" name="courseNum" />
-        </label>
-        <label>
-          Course Link
-          <input type="text" name="courseLink" />
-        </label>
-        <label>
-          Hubspot Ticket
-          <input type="text" name="hubspotTicket" />
-        </label>
-        <label>
-          Rocket Chat
-          <input type="text" name="rocketChat" />
-        </label>
-        <label>
-          Instructor
-          <input type="text" name="instructor" />
-        </label>
-        <label>
-          Teacher Assistant
-          <input type="text" name="teacherAssistant" />
-        </label>
-        <label>
-          Location
-          <select>
+      <form className="courseForm">
+      <dic className="courseContainer">
+
+      <div className="labels">
+          <label id="label">Course Number</label>
+          <label id="label">Course Link</label>
+          <label id="label">Hubspot Ticket</label>
+          <label id="label">Rocket Chat</label>
+          <label id="label">Instructor</label>
+          <label id="label">Teacher Assistant</label>
+          <label id="label">Location</label>
+          <label id="label">Days</label>
+          <label id="label">Mode</label>
+          <label id="label">Start Date</label>
+          <label id="label">End Date</label>
+          <label id="label">Number of Students Starting</label>
+          <label id="label">Number of Students Ending</label>
+          <label className="switch" id="label">Active Status</label>
+        </div>
+
+        <div className="inputs">
+          <input type="text" name="courseNum" id="input" />
+          <input type="text" name="courseLink" id="input" />
+          <input type="text" name="hubspotTicket" id="input" />
+          <input type="text" name="rocketChat"  id="input"/>
+          <input type="text" name="instructor" id="input"/>
+          <input type="text" name="teacherAssistant" id="input" />
+          <select id="input">
             <option value="acaStEdwards">ACA - St. Edwards</option>
             <option value="lca">LCA</option>
             <option value="acaOnlineNorth">ACA - Online-North</option>
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select>
-        </label>
-        <label>
-          Days
-          <select>
+          <select id="input">
             <option value="partTimeMonWed">Mon/Wed</option>
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select>
-        </label>
-        <label>
-          Mode
-          <select>
+          <select id="input">
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select>
-        </label>
-        <label>
-          Start Date
-          <input type="date" name="startDate" />
-        </label>
-        <label>
-          End Date
-          <input type="date" name="endDate" />
-        </label>
-        <label>
-          Number of Students Starting
-          <input type="number" name="studentNumStart" />
-        </label>
-        <label>
-          Number of Students Ending
-          <input type="number" name="studentNumEnd" />
-        </label>
-        <label className="switch">
-          Active Status
-          <input type="checkbox" />
+          <input type="date" name="startDate" id="input"/>
+          <input type="date" name="endDate" id="input" />
+          <input type="number" name="studentNumStart" id="input" />
+          <input type="number" name="studentNumEnd" id="input" />
+          <input type="checkbox" id="input" />
           <span className="slider round"></span>
-        </label>
+        </div>
+
+      </dic>
+        
+
         <input type="submit" id="submit" value="Save" />
-      </form>
+
+      </form> 
     </div>
   );
 };
