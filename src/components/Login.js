@@ -1,54 +1,70 @@
 import * as React from "react"
-import { useState } from 'react';
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
 
-
 const Login = () => {
-  const [username, setUsername] = useState([])
-  const [password, setPassword] = useState([])
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
 
-  //These two lines are to test require attribute
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => console.log(data);
+  const handleLogin = (data) => {
 
-  const handleLogin = (e) => {
-    e.preventDefault();
     console.log("hey, you clicked login")
-    console.log("and here's the username in handleLogin after clicking: ", username)
+
+    //GET RID OF THIS CONSOLE LOG. IT SAVES PASSWORD DATA
+    console.log("these data were passed into handleLogin(): ", data)
+    console.log("data.email: ", data.email)
     //make a post call to our backend here:
 
+    //SAVE URL HERE:
+
+    //EXAMPLE TO MAKE AXIOS CALL:
+    //axios post call including user name and password
+    //to be checked by backend and return token
+    // axios.post(url + `/login`, {
+    //   email: 
+    //   password: password
+    // })
+    // .then((res)=> {
+    //   //set isSignedIn to true so components rendered on login will render
+    //   setIsSignedIn(true)
+    //   //set token so other axios calls can use it to access data
+    //   setToken(res.data.accessToken)
+    //   // set userId so correct data are gathered in axios calls
+    //   setUserId(res.data.userId)
+    // })
+  // }
+
   }
-  const handleChange = (e) => {
-    e.preventDefault();
-    //store the input data in state
-    //based on which input has data
-    if (e.target.name === "username") {
-      console.log("the input is username")
-      setUsername(e.target.value)
-      console.log("username after serUsername: ", username)
-    } else if (e.target.name === "password") {
-      console.log("entering a password")
-      setPassword(e.target.value)
-    }
+
+  const handleError = (errors) => {};
+
+  const loginOptions = {
+    email: { required: "Email is required" },
+    password: { required: "Password is required"}
   }
+
   return (
     <div className="login-window-container">
       <div className="login-window">
         <h1>Login</h1>
-        <form className="login-form">
+        <form 
+          className="login-form"
+          onSubmit={handleSubmit(handleLogin)}
+          >
           <div className="input-group">
-            <label for="username">Username:  </label>
+            <label for="email">Email:  </label>
             <input 
-              type="text" 
-              className="username" 
-              name="username"
-              onChange={handleChange}
-              required>
-            </input>
+              type="email" 
+              className="email" 
+              name="email"
+              {...register('email', loginOptions.email )}
+            />
           </div>
+            <small className="text-danger">
+                  {errors?.email && errors.email.message}
+            </small>
           <br/>
           <div className="input-group">
             <label for="password">Password: </label>
@@ -56,32 +72,18 @@ const Login = () => {
               type="password" 
               className="password" 
               name="password"
-              onChange={handleChange}
-              >
-            </input>
+              {...register('password', loginOptions.password )}
+            />
           </div>
+          <small className="text-danger">
+                  {errors?.password && errors.password.message}
+            </small>
           <br/>
           <button
             type="submit"
-            onClick={(e)=> handleLogin(e)}
           >Log In</button>
           <Link to="/dashboard">Dashboard</Link>
         </form>
-      </div>
-
-    {/* This is code to try to create a required field */}
-      <div className="App">
-        THIS IS A PRACTICE FORM
-        <form>
-          <input name="requiredField" />
-        </form>
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          <input name="requiredField" ref={register({ required: true })} />
-          <br />
-          {errors.requiredField && <span>This field is required</span>}
-          <br />
-          <input type="submit" />
-        </form> */}
       </div>
     </div>
   )

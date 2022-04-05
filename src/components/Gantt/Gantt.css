@@ -51,6 +51,15 @@ body,
   justify-content: center;
 }
 
+#cohortForm {
+  width: 500px;
+  height: 600px;
+  background-color: aliceblue;
+  position: relative;
+  z-index: 10;
+  flex-direction: column;
+}
+
 .courseForm {
   width: 700px;
   height:auto;
@@ -62,7 +71,7 @@ body,
   margin: 0;
 }
 
-.courseContainer{
+.courseContainer {
   width: 500px;
   height: auto;
   background-color: lightcoral;
@@ -73,50 +82,52 @@ body,
   margin: 0;
 }
 
-.labels{
-  height: 100%;
+.labels {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  justify-content: start;
 }
 
-.inputs{
-  height: 100%;
+.inputs {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.label-1{
-  margin-bottom:15px;
-  width:150px;
-}
-
-.label-2{
-  margin-bottom:15px;
-  width:150px;
-}
-
-.text-input{
-  margin:7px;
-  margin-right:40px;
-}
-
-.select-input{
+.label-1 {
   margin: 5px;
-  margin-right:40px;
-  margin-top:10px;
+  width: 150px;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 60px;
 }
 
-.last-input{
-  margin: 20px;
-  margin-right:40px;
+.label-2 {
+  margin: 5px;
+  width: 150px;
+  margin-left: 60px;
 }
 
-#submit{
-  height:50px;
-  width: 100px;
-  z-index:10;
-  margin-top:39rem;
-  margin-left:19rem;
+.text-input {
+  margin: 7px;
+  margin-right: 40px;
+}
+
+.select-input {
+  margin: 7px;
+  margin-right: 40px;
+}
+
+.last-input {
+  margin: 7px;
+  margin-right: 40px;
+}
+
+#submit {
+  position: relative;
+  z-index: 10;
+  justify-content: end;
+  width: 5rem;
+  margin-top: 35rem;
+  margin-left: 19rem;
 }

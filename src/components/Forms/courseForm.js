@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const CourseForm = (props) => {
+  // useEffect(() => {
+  //   console.log(props.courseDisplay.id);
+  // }, [props.courseDisplay.id]);
+
   return (
     <div>
       <form className="courseForm">
@@ -88,8 +92,7 @@ const CourseForm = (props) => {
         </div>
 
         <input type="submit" id="submit" value="Save" />
-
-      </form> 
+      </form>
     </div>
   );
 };
