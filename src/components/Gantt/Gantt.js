@@ -8,7 +8,15 @@ import "./Gantt.css";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [courseFormDisplay, setCourseFormDisplay] = useState(false);
+  const [courseFormDisplay, setCourseFormDisplay] = useState({
+    display: false,
+    id: 0,
+  });
+
+  const [cohortFormDisplay, setCohortFormDisplay] = useState({
+    display: false,
+    id: 0,
+  });
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -49,6 +57,14 @@ const Gantt = () => {
       },
     ],
     links: [{ id: 1, source: 1, target: 2, type: "0" }],
+  });
+
+  const [newTask, setNewTask] = useState({
+    id: 0,
+    text: "",
+    start_date: "",
+    duration: 0,
+    progress: 0,
   });
 
   //monitors data and re-renders gantt chart if change detected
@@ -139,7 +155,8 @@ const Gantt = () => {
             console.log(id);
             break;
           case "add":
-            setCourseFormDisplay(true);
+            console.log(id);
+            setCohortFormDisplay({ display: true, id: id });
             break;
           case "delete":
             console.log(id);
@@ -152,7 +169,8 @@ const Gantt = () => {
   return (
     <div>
       <div id="formCont">
-        <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
+        {/* <CourseForm courseDisplay={courseFormDisplay}></CourseForm> */}
+        <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>

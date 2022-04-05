@@ -51,6 +51,15 @@ body,
   justify-content: center;
 }
 
+#cohortForm {
+  width: 500px;
+  height: 600px;
+  background-color: aliceblue;
+  position: relative;
+  z-index: 10;
+  flex-direction: column;
+}
+
 .courseForm {
   width: 700px;
   height: 500px;
@@ -61,7 +70,7 @@ body,
   flex-direction: column;
 }
 
-.courseContainer{
+.courseContainer {
   width: 500px;
   height: 600px;
   background-color: lightcoral;
@@ -71,53 +80,52 @@ body,
   flex-direction: row;
 }
 
-.labels{
+.labels {
   display: flex;
   flex-direction: column;
-  justify-content: start; 
+  justify-content: start;
 }
 
-.inputs{
+.inputs {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.label-1{
-  margin:5px;
-  width:150px;
+.label-1 {
+  margin: 5px;
+  width: 150px;
   padding: 0;
   margin-right: 0;
-  margin-left:60px;
-
+  margin-left: 60px;
 }
 
-.label-2{
-  margin:5px;
-  width:150px;
-  margin-left:60px;
+.label-2 {
+  margin: 5px;
+  width: 150px;
+  margin-left: 60px;
 }
 
-.text-input{
-  margin:7px;
-  margin-right:40px;
-}
-
-.select-input{
+.text-input {
   margin: 7px;
-  margin-right:40px;
+  margin-right: 40px;
 }
 
-.last-input{
+.select-input {
   margin: 7px;
-  margin-right:40px;
+  margin-right: 40px;
 }
 
-#submit{
+.last-input {
+  margin: 7px;
+  margin-right: 40px;
+}
+
+#submit {
   position: relative;
-  z-index:10;
+  z-index: 10;
   justify-content: end;
-  width:5rem;
-  margin-top:35rem;
-  margin-left:19rem;
+  width: 5rem;
+  margin-top: 35rem;
+  margin-left: 19rem;
 }
