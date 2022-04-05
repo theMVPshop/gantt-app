@@ -53,49 +53,48 @@ body,
 
 .courseForm {
   width: 700px;
-  height: 500px;
+  height:auto;
   background-color: skyblue;
   position: absolute;
   z-index: 10;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 0;
 }
 
 .courseContainer{
   width: 500px;
-  height: 600px;
+  height: auto;
   background-color: lightcoral;
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: row;
+  margin: 0;
 }
 
 .labels{
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: start; 
+  margin: 0;
 }
 
 .inputs{
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .label-1{
-  margin:5px;
+  margin-bottom:15px;
   width:150px;
-  padding: 0;
-  margin-right: 0;
-  margin-left:60px;
-
 }
 
 .label-2{
-  margin:5px;
+  margin-bottom:15px;
   width:150px;
-  margin-left:60px;
 }
 
 .text-input{
@@ -104,20 +103,20 @@ body,
 }
 
 .select-input{
-  margin: 7px;
+  margin: 5px;
   margin-right:40px;
+  margin-top:10px;
 }
 
 .last-input{
-  margin: 7px;
+  margin: 20px;
   margin-right:40px;
 }
 
 #submit{
-  position: relative;
+  height:50px;
+  width: 100px;
   z-index:10;
-  justify-content: end;
-  width:5rem;
-  margin-top:35rem;
+  margin-top:39rem;
   margin-left:19rem;
 }
