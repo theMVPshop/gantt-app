@@ -11,44 +11,98 @@ const Login = () => {
   const [password, setPassword] = useState([])
 
   //These two lines are to test require attribute
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => console.log(data);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = (data) => {
+
     console.log("hey, you clicked login")
-    console.log("and here's the username in handleLogin after clicking: ", username)
+
+    //GET RID OF THIS CONSOLE LOG. IT SAVES PASSWORD DATA
+    console.log("these data were passed into handleLogin(): ", data)
     //make a post call to our backend here:
 
   }
-  const handleChange = (e) => {
-    e.preventDefault();
-    //store the input data in state
-    //based on which input has data
-    if (e.target.name === "username") {
-      console.log("the input is username")
-      setUsername(e.target.value)
-      console.log("username after serUsername: ", username)
-    } else if (e.target.name === "password") {
-      console.log("entering a password")
-      setPassword(e.target.value)
-    }
-  }
+
+  const handleError = (errors) => {};
+
+   const loginOptions = {
+      username: { required: "Username is required" },
+      password: { required: "Password is required"}
+   }
+
+  //EXAMPLE:
+  // const RegisterForm = () => {
+  //   const { register, handleSubmit, formState: { errors } } = useForm();
+  //   const handleRegistration = (data) => console.log(data);
+  //   const handleError = (errors) => {};
+
+    // const registerOptions = {
+    //   name: { required: "Name is required" },
+    //   email: { required: "Email is required" },
+    //   password: {
+    //     required: "Password is required",
+    //     minLength: {
+    //       value: 8,
+    //       message: "Password must have at least 8 characters"
+    //     }
+    //   }
+    // };
+  
+    // return (
+    //   <form onSubmit={handleSubmit(handleRegistration, handleError)}>
+    //     <div>
+    //       <label>Name</label>
+    //       <input name="name" type="text" {...register('name', registerOptions.name) }/>
+    //       <small className="text-danger">
+    //         {errors?.name && errors.name.message}
+    //       </small>
+    //     </div>
+    //     <div>
+    //       <label>Email</label>
+    //       <input
+    //         type="email"
+    //         name="email"
+    //         {...register('email', registerOptions.email)}
+    //       />
+    //       <small className="text-danger">
+    //         {errors?.email && errors.email.message}
+    //       </small>
+    //     </div>
+    //     <div>
+    //       <label>Password</label>
+    //       <input
+    //         type="password"
+    //         name="password"
+    //         {...register('password', registerOptions.password)}
+    //       />
+    //       <small className="text-danger">
+    //         {errors?.password && errors.password.message}
+    //       </small>
+    //     </div>
+    //     <button>Submit</button>
+    //   </form>
+ 
   return (
     <div className="login-window-container">
       <div className="login-window">
         <h1>Login</h1>
-        <form className="login-form">
+        <form 
+          className="login-form"
+          onSubmit={handleSubmit(handleLogin)}
+          >
           <div className="input-group">
             <label for="username">Username:  </label>
             <input 
               type="text" 
               className="username" 
               name="username"
-              onChange={handleChange}
-              required>
-            </input>
+              {...register('username', loginOptions.username )}
+            />
           </div>
+            <small className="text-danger">
+                  {errors?.username && errors.username.message}
+            </small>
           <br/>
           <div className="input-group">
             <label for="password">Password: </label>
@@ -56,32 +110,18 @@ const Login = () => {
               type="password" 
               className="password" 
               name="password"
-              onChange={handleChange}
-              >
-            </input>
+              {...register('password', loginOptions.password )}
+            />
           </div>
+          <small className="text-danger">
+                  {errors?.password && errors.password.message}
+            </small>
           <br/>
           <button
             type="submit"
-            onClick={(e)=> handleLogin(e)}
           >Log In</button>
           <Link to="/dashboard">Dashboard</Link>
         </form>
-      </div>
-
-    {/* This is code to try to create a required field */}
-      <div className="App">
-        THIS IS A PRACTICE FORM
-        <form>
-          <input name="requiredField" />
-        </form>
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          <input name="requiredField" ref={register({ required: true })} />
-          <br />
-          {errors.requiredField && <span>This field is required</span>}
-          <br />
-          <input type="submit" />
-        </form> */}
       </div>
     </div>
   )
