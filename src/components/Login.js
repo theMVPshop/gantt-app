@@ -9,19 +9,39 @@ const Login = () => {
   
 
   const handleLogin = (data) => {
+
     console.log("hey, you clicked login")
 
     //GET RID OF THIS CONSOLE LOG. IT SAVES PASSWORD DATA
     console.log("these data were passed into handleLogin(): ", data)
-
+    console.log("data.email: ", data.email)
     //make a post call to our backend here:
+
+    //SAVE URL HERE:
+
+    //EXAMPLE TO MAKE AXIOS CALL:
+    //axios post call including user name and password
+    //to be checked by backend and return token
+    // axios.post(url + `/login`, {
+    //   email: 
+    //   password: password
+    // })
+    // .then((res)=> {
+    //   //set isSignedIn to true so components rendered on login will render
+    //   setIsSignedIn(true)
+    //   //set token so other axios calls can use it to access data
+    //   setToken(res.data.accessToken)
+    //   // set userId so correct data are gathered in axios calls
+    //   setUserId(res.data.userId)
+    // })
+  // }
 
   }
 
   const handleError = (errors) => {};
 
   const loginOptions = {
-    username: { required: "Username is required" },
+    email: { required: "Email is required" },
     password: { required: "Password is required"}
   }
 
@@ -34,16 +54,16 @@ const Login = () => {
           onSubmit={handleSubmit(handleLogin)}
           >
           <div className="input-group">
-            <label for="username">Username:  </label>
+            <label for="email">Email:  </label>
             <input 
-              type="text" 
-              className="username" 
-              name="username"
-              {...register('username', loginOptions.username )}
+              type="email" 
+              className="email" 
+              name="email"
+              {...register('email', loginOptions.email )}
             />
           </div>
             <small className="text-danger">
-                  {errors?.username && errors.username.message}
+                  {errors?.email && errors.email.message}
             </small>
           <br/>
           <div className="input-group">
