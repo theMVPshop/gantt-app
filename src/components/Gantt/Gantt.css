@@ -62,22 +62,24 @@ body,
 
 .courseForm {
   width: 700px;
-  height: 500px;
+  height:auto;
   background-color: skyblue;
   position: absolute;
   z-index: 10;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 0;
 }
 
 .courseContainer {
   width: 500px;
-  height: 600px;
+  height: auto;
   background-color: lightcoral;
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: row;
+  margin: 0;
 }
 
 .labels {

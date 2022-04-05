@@ -19,22 +19,25 @@ const Login = () => {
 
     //SAVE URL HERE:
 
-    //EXAMPLE TO MAKE AXIOS CALL:
-    //axios post call including user name and password
+    
+    //axios post call including email and password
     //to be checked by backend and return token
-    // axios.post(url + `/login`, {
-    //   email: 
-    //   password: password
-    // })
-    // .then((res)=> {
-    //   //set isSignedIn to true so components rendered on login will render
-    //   setIsSignedIn(true)
-    //   //set token so other axios calls can use it to access data
-    //   setToken(res.data.accessToken)
-    //   // set userId so correct data are gathered in axios calls
-    //   setUserId(res.data.userId)
-    // })
-  // }
+    axios.post(url + `/login`, {
+      email: data.email,
+      password: data.password
+    })
+    .then((res)=> {
+      console.log("res.data in login post request: ", res.data)
+      //-------------from Pamela's capstone for reference:-----------
+      //set isSignedIn to true so components rendered on login will render
+      // setIsSignedIn(true)
+      // //set token so other axios calls can use it to access data
+      // setToken(res.data.accessToken)
+      // // set userId so correct data are gathered in axios calls
+      // setUserId(res.data.userId)
+      //-------------------------end sample for reference ------------
+    })
+  }
 
   }
 
