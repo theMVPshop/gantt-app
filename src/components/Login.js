@@ -23,22 +23,22 @@ const Login = () => {
 
     //axios post call including email and password
     //to be checked by backend and return token
-    // axios
-    //   .post(url + `/login`, {
-    //     email: data.email,
-    //     password: data.password,
-    //   })
-    //   .then((res) => {
+    axios
+      .post(url + `/login`, {
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
     //     console.log("res.data in login post request: ", res.data);
-    //-------------from Pamela's capstone for reference:-----------
-    //set isSignedIn to true so components rendered on login will render
+    // -------------from Pamela's capstone for reference:-----------
+    // set isSignedIn to true so components rendered on login will render
     // setIsSignedIn(true)
     // //set token so other axios calls can use it to access data
     // setToken(res.data.accessToken)
     // // set userId so correct data are gathered in axios calls
     // setUserId(res.data.userId)
-    //-------------------------end sample for reference ------------
-    // });
+    // -------------------------end sample for reference ------------
+    });
   };
 
   const handleError = (errors) => {};
