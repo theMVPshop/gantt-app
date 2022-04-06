@@ -98,7 +98,7 @@ const CourseForm = (props) => {
           <span className="slider round"></span>
         </div>
 
-        <input type="submit" id="submit" value="Save" />
+        <input type="submit" className="submit" value="Save" />
       </form>
     </div>
   );
