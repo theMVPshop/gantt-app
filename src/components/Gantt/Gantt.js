@@ -169,8 +169,15 @@ const Gantt = () => {
   return (
     <div>
       <div id="formCont">
-        {/* <CourseForm courseDisplay={courseFormDisplay}></CourseForm> */}
+        <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
         <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
+        <button
+          onClick={() => {
+            setCourseFormDisplay({ display: true });
+          }}
+        >
+          ShowCourseForm
+        </button>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>

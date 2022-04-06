@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 
 const CohortForm = (props) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    console.log("test");
+  };
 
   return (
     <form

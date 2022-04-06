@@ -7,7 +7,14 @@ const CourseForm = (props) => {
 
   return (
     <div>
-      <form className="courseForm">
+      <form
+        className="courseForm"
+        style={
+          props.courseDisplay.display
+            ? { display: "flex" }
+            : { display: "none" }
+        }
+      >
         <div className="info">
           <label className="label">Course Number</label>
           <input type="text" name="courseNum" className="input" />
@@ -25,12 +32,12 @@ const CourseForm = (props) => {
 
         <div className="info">
           <label className="label">Rocket Chat</label>
-          <input type="text" name="rocketChat"  className="input"/>
+          <input type="text" name="rocketChat" className="input" />
         </div>
 
         <div className="info">
           <label className="label">Instructor</label>
-          <input type="text" name="instructor" className="input"/>
+          <input type="text" name="instructor" className="input" />
         </div>
         <div className="info">
           <label className="label">Teacher Assistant</label>
@@ -67,7 +74,7 @@ const CourseForm = (props) => {
 
         <div className="info">
           <label className="label">Start Date</label>
-          <input type="date" name="startDate" className="input"/>
+          <input type="date" name="startDate" className="input" />
         </div>
 
         <div className="info">
@@ -86,12 +93,12 @@ const CourseForm = (props) => {
         </div>
 
         <div className="info">
-          <label className="label" >Active Status</label>
+          <label className="label">Active Status</label>
           <input type="checkbox" className="input" />
           <span className="slider round"></span>
         </div>
 
-        <input type="submit" id="submit" value="Save" />
+        <input type="submit" className="submit" value="Save" />
       </form>
     </div>
   );

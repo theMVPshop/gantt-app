@@ -57,8 +57,8 @@ const Login = () => {
 
   const loginOptions = {
     email: { required: "Email is required" },
-    password: { required: "Password is required"}
-  }
+    password: { required: "Password is required" },
+  };
 
   return (
     <div className="login-window-container">
@@ -69,39 +69,37 @@ const Login = () => {
           // onSubmit={handleSubmit(handleLogin)}
           >
           <div className="input-group">
-            <label for="email">Email:  </label>
-            <input 
-              type="email" 
-              className="email" 
+            <label for="email">Email: </label>
+            <input
+              type="email"
+              className="email"
               name="email"
-              {...register('email', loginOptions.email )}
-            />
-          </div>
-            <small className="text-danger">
-                  {errors?.email && errors.email.message}
-            </small>
-          <br/>
-          <div className="input-group">
-            <label for="password">Password: </label>
-            <input 
-              type="password" 
-              className="password" 
-              name="password"
-              {...register('password', loginOptions.password )}
+              {...register("email", loginOptions.email)}
             />
           </div>
           <small className="text-danger">
-                  {errors?.password && errors.password.message}
-            </small>
-          <br/>
-          <button
-            type="submit"
-          >Log In</button>
+            {errors?.email && errors.email.message}
+          </small>
+          <br />
+          <div className="input-group">
+            <label for="password">Password: </label>
+            <input
+              type="password"
+              className="password"
+              name="password"
+              {...register("password", loginOptions.password)}
+            />
+          </div>
+          <small className="text-danger">
+            {errors?.password && errors.password.message}
+          </small>
+          <br />
+          <button type="submit">Log In</button>
           <Link to="/dashboard">Dashboard</Link>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
