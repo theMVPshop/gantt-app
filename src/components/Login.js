@@ -1,45 +1,57 @@
-import * as React from "react"
+import React, { useEffect } from "react"
+
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
+import axios from "axios";
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
 
-  const handleLogin = (data) => {
+  useEffect(() => {
+    // console.log("please please please")
+    // Simple GET request using axios
+    axios.get('http://localhost:4000/users')
+    .then((res)=> {
+          console.log("Are these the users?: ", res)
+        })
+  }, [] )
 
-    console.log("hey, you clicked login")
 
-    //GET RID OF THIS CONSOLE LOG. IT SAVES PASSWORD DATA
-    console.log("these data were passed into handleLogin(): ", data)
-    console.log("data.email: ", data.email)
-    //make a post call to our backend here:
+  // const handleLogin = (data) => {
 
-    //SAVE URL HERE:
+  //   console.log("hey, you clicked login")
+  //   //tried with a get; didn't work:
+  //   axios.get("http://127.0.0.1:4000/users")
+  //   .then((res)=> {
+  //     console.log("Are these the users?: ", res.data)
+  //   })
+  //   //make a post call to our backend here:
+
+  //    //SAVE URL HERE:
+
+  //   //axios post call including email and password
+  //   // axios.post("http://localhost:4000/users/login", {
+  //   //   email: data.email,
+  //   //   password: data.password
+  //   // })
+  //   // .then((res)=> {
+  //   //   console.log("res.data in login post request: ", res)
+  //   //   //-------------from Pamela's capstone for reference:-----------
+  //   //   //set isSignedIn to true so components rendered on login will render
+  //   //   // setIsSignedIn(true)
+  //   //   // //set token so other axios calls can use it to access data
+  //   //   // setToken(res.data.accessToken)
+  //   //   // // set userId so correct data are gathered in axios calls
+  //   //   // setUserId(res.data.userId)
+  //   //   //-------------------------end sample for reference ------------
+  //   // })
 
     
-    //axios post call including email and password
-    //to be checked by backend and return token
-    axios.post(url + `/login`, {
-      email: data.email,
-      password: data.password
-    })
-    .then((res)=> {
-      console.log("res.data in login post request: ", res.data)
-      //-------------from Pamela's capstone for reference:-----------
-      //set isSignedIn to true so components rendered on login will render
-      // setIsSignedIn(true)
-      // //set token so other axios calls can use it to access data
-      // setToken(res.data.accessToken)
-      // // set userId so correct data are gathered in axios calls
-      // setUserId(res.data.userId)
-      //-------------------------end sample for reference ------------
-    })
-  }
+  // }
 
-  }
+  
 
   const handleError = (errors) => {};
 
@@ -54,7 +66,7 @@ const Login = () => {
         <h1>Login</h1>
         <form 
           className="login-form"
-          onSubmit={handleSubmit(handleLogin)}
+          // onSubmit={handleSubmit(handleLogin)}
           >
           <div className="input-group">
             <label for="email">Email:  </label>
