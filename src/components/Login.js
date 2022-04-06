@@ -1,23 +1,25 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
 import axios from "axios";
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     // console.log("please please please")
     // Simple GET request using axios
-    axios.get('http://localhost:4000/users')
-    .then((res)=> {
-          console.log("Are these the users?: ", res)
-        })
-  }, [] )
-
+    axios.get("http://localhost:4000/users").then((res) => {
+      console.log("Are these the users?: ", res);
+    });
+  }, []);
 
   // const handleLogin = (data) => {
 
@@ -48,10 +50,7 @@ const Login = () => {
   //   //   //-------------------------end sample for reference ------------
   //   // })
 
-    
   // }
-
-  
 
   const handleError = (errors) => {};
 
@@ -64,10 +63,10 @@ const Login = () => {
     <div className="login-window-container">
       <div className="login-window">
         <h1>Login</h1>
-        <form 
+        <form
           className="login-form"
           // onSubmit={handleSubmit(handleLogin)}
-          >
+        >
           <div className="input-group">
             <label for="email">Email: </label>
             <input
