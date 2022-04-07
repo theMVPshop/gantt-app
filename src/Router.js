@@ -1,11 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import cookie from "cookie";
 
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login/Login.js";
 import Signup from "./components/Signup/Signup.js";
 
 import CohortForm from "./components/Forms/CohortForm";
+
+export const checkAuth = () => {
+  const cookies = cookie.parse(document.cookie);
+  console.log("cookies", cookies);
+
+  return cookies["loggedIn"] ? true : false;
+};
 
 const Router = () => {
   return (
