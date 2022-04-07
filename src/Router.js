@@ -10,7 +10,7 @@ import CohortForm from "./components/Forms/CohortForm";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       {/* Dashboard renders the Gantt chart with data */}
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/signup" element={<Signup />} />
