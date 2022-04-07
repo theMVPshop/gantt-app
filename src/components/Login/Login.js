@@ -29,10 +29,9 @@ const Login = () => {
       console.log("res.data in login post request: ", res.data)
 
       // store the logged-in user's information 
+      localStorage.setItem("token", res.data.accessToken)
       localStorage.setItem("user_name", res.data.first_name)
       localStorage.setItem("user_id", res.data.id)
-      let userToken = res.data.accessToken      
-      console.log("stored token", userToken)
 
       // set logged-in cookie to true and display the user's dashboard
       document.cookie = "loggedIn=true;"
