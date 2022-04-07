@@ -9,16 +9,6 @@ import axios from "axios";
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  // useEffect(() => {
-  //   // console.log("please please please")
-  //   // Simple GET request using axios
-  //   axios.get('http://localhost:4000/users')
-  //   .then((res)=> {
-  //         console.log("Are these the users?: ", res)
-  //       })
-  // }, [] )
-
-
   const handleLogin = (data) => {
 
     console.log("hey, you clicked login")
@@ -31,16 +21,22 @@ const Login = () => {
       email: data.email,
       password: data.password
     })
-    .then((res)=> {
-      console.log("res.data in login post request: ", res)
-      //-------------from Pamela's capstone for reference:-----------
-      //set isSignedIn to true so components rendered on login will render
-      // setIsSignedIn(true)
-      // //set token so other axios calls can use it to access data
-      // setToken(res.data.accessToken)
-      // // set userId so correct data are gathered in axios calls
-      // setUserId(res.data.userId)
-      //-------------------------end sample for reference ------------
+    .then((res) => {
+      console.log("res.data in login post request: ", res.data)
+
+      // store the logged-in user's information 
+      localStorage.setItem("user_name", res.data.first_name)
+      localStorage.setItem("user_id", res.data.id)
+      let userToken = res.data.accessToken      
+      console.log("stored token", userToken)
+
+      // set logged-in cookie to true and display the user's dashboard
+      document.cookie = "loggedIn=true;"
+      window.location.replace("/dashboard")
+    })
+    .catch((error) => {
+      console.log("Error Occurred:", error)
+      alert("Login failed. Email and/or password are incorrect.")
     })
   }
 
