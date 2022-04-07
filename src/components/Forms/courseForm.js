@@ -6,21 +6,53 @@ const CourseForm = (props) => {
   // }, [props.courseDisplay.id]);
 
   const [formData, setFormData] = useState({
-    courseNum: 0,
-    courseLink: 0,
-    hubSpotTicket: 0,
-    rocketChat: 0,
-    instructor: 0,
-    teacherAssistant: 0,
-    location: 0,
-    days: 0,
-    mode: 0,
+    courseNum: "",
+    courseLink: "",
+    hubSpotTicket: "",
+    rocketChat: "",
+    instructor: "",
+    teacherAssistant: "",
+    location: "",
+    days: "",
+    mode: "",
     startDate: 0,
     endDate: 0,
     startStudents: 0,
     endStudents: 0,
-    activeStatus: 0,
+    activeStatus: false,
   });
+
+  //function that resets formData back to default
+  const resetForm = () => {
+    setFormData({
+      courseNum: "",
+      courseLink: "",
+      hubSpotTicket: "",
+      rocketChat: "",
+      instructor: "",
+      teacherAssistant: "",
+      location: "",
+      days: "",
+      mode: "",
+      start_date: "2022-07-05",
+      end_date: "2022-07-05",
+      startStudents: 0,
+      endStudents: 0,
+      activeStatus: false,
+    });
+  };
+
+  const pushFormData = () => {
+    console.log(props.courseDisplay.id);
+    props.setData((prevState) => {
+      let prev = { ...prevState };
+      const found = prev.data.find(
+        (element) => element.id === props.courseDisplay.id
+      );
+      console.log(found);
+      return prev;
+    });
+  };
 
   return (
     <div>
@@ -36,6 +68,7 @@ const CourseForm = (props) => {
           <label className="label">Course Number</label>
           <input
             type="text"
+            value={formData.courseNum}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -54,6 +87,7 @@ const CourseForm = (props) => {
             type="text"
             name="courseLink"
             className="input"
+            value={formData.courseLink}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -70,6 +104,7 @@ const CourseForm = (props) => {
             type="text"
             name="hubSpotTicket"
             className="input"
+            value={formData.hubSpotTicket}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -86,6 +121,7 @@ const CourseForm = (props) => {
             type="text"
             name="rocketChat"
             className="input"
+            value={formData.rocketChat}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -102,6 +138,7 @@ const CourseForm = (props) => {
             type="text"
             name="instructor"
             className="input"
+            value={formData.instructor}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -117,6 +154,7 @@ const CourseForm = (props) => {
             type="text"
             name="teacherAssistant"
             className="input"
+            value={formData.teacherAssistant}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -131,6 +169,7 @@ const CourseForm = (props) => {
           <label className="label">Location</label>
           <select
             className="input"
+            value={formData.location}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -151,6 +190,7 @@ const CourseForm = (props) => {
           <label className="label">Days</label>
           <select
             className="input"
+            value={formData.days}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -169,6 +209,7 @@ const CourseForm = (props) => {
           <label className="label">Mode</label>
           <select
             className="input"
+            value={formData.mode}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -188,10 +229,11 @@ const CourseForm = (props) => {
             type="date"
             name="startDate"
             className="input"
+            value={formData.startDate}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
-                prev.startDate = e.target.value;
+                prev.start_date = e.target.value;
                 return prev;
               });
             }}
@@ -204,10 +246,11 @@ const CourseForm = (props) => {
             type="date"
             name="endDate"
             className="input"
+            value={formData.endDate}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
-                prev.endDate = e.target.value;
+                prev.end_date = e.target.value;
                 return prev;
               });
             }}
@@ -216,21 +259,56 @@ const CourseForm = (props) => {
 
         <div className="info">
           <label className="label">Number of Students Starting</label>
-          <input type="number" name="studentNumStart" className="input" />
+          <input
+            type="number"
+            name="studentNumStart"
+            className="input"
+            value={formData.startStudents}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.startStudents = e.target.value;
+                return prev;
+              });
+            }}
+          />
         </div>
 
         <div className="info">
           <label className="label">Number of Students Ending</label>
-          <input type="number" name="studentNumEnd" className="input" />
+          <input
+            type="number"
+            name="studentNumEnd"
+            className="input"
+            value={formData.endStudents}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.endStudents = e.target.value;
+                return prev;
+              });
+            }}
+          />
         </div>
 
         <div className="info">
           <label className="label">Active Status</label>
-          <input type="checkbox" className="input" />
+          <input
+            type="checkbox"
+            className="input"
+            value={formData.activeStatus}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.activeStatus = e.target.value;
+                return prev;
+              });
+            }}
+          />
           <span className="slider round"></span>
         </div>
 
-        <input type="submit" className="submit" value="Save" />
+        <input className="submit" value="Save" onClick={pushFormData} />
       </form>
     </div>
   );

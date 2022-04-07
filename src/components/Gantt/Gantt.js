@@ -36,21 +36,21 @@ const Gantt = () => {
     data: [
       {
         id: 1,
-        text: "Task #1",
+        text: "Cohort #1",
         start_date: "2019-04-15",
         duration: 3,
         progress: 0.6,
       },
       {
         id: 2,
-        text: "Task #2",
+        text: "Cohort #2",
         start_date: "2019-04-18",
         duration: 3,
         progress: 0.4,
       },
       {
         id: 3,
-        text: "Task #3",
+        text: "Cohort #3",
         start_date: "2019-04-18",
         duration: 3,
         progress: 0.4,
@@ -170,7 +170,11 @@ const Gantt = () => {
   return (
     <div>
       <div id="formCont">
-        <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
+        <CourseForm
+          courseDisplay={courseFormDisplay}
+          setData={setData}
+          data={data}
+        ></CourseForm>
         <button
           onClick={() => {
             setCourseFormDisplay({ display: true });

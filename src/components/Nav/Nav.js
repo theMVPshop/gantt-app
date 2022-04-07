@@ -11,17 +11,20 @@ const Nav = () => {
   return (
     <nav className="nav-bar">
       <p>Welcome, {localStorage.getItem("user_name")}</p>
-      <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
       <button className="nav-link">
-        <Link to="/" className="link" onClick={() => {
-          document.cookie = "loggedIn="
-          localStorage.clear()
-        }}>
+        <Link
+          to="/"
+          className="link"
+          onClick={() => {
+            document.cookie = "loggedIn=";
+            localStorage.clear();
+          }}
+        >
           Logout
         </Link>
       </button>
       <button className="nav-link">
-        <Link to="/signup">Sign Up</Link> 
+        <Link to="/signup">Sign Up</Link>
       </button>
     </nav>
   );
