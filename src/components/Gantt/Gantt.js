@@ -69,12 +69,37 @@ const Gantt = () => {
 
   //monitors data and re-renders gantt chart if change detected
   useEffect(() => {
-    gantt.parse(data);
+    gantt.clearAll();
+    gantt.parse({
+      data: [
+        { id: 1, text: "Project #2", start_date: "01-04-2013", duration: 18 },
+        {
+          id: 2,
+          text: "Task #1",
+          start_date: "02-04-2013",
+          duration: 8,
+          progress: 0.6,
+          parent: 1,
+        },
+        {
+          id: 3,
+          text: "Task #2",
+          start_date: "11-04-2013",
+          duration: 8,
+          progress: 0.6,
+          parent: 1,
+        },
+      ],
+      links: [
+        { id: 1, source: 1, target: 2, type: 1 },
+        { id: 2, source: 2, target: 3, type: 0 },
+      ],
+    });
   }, [data]);
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-    gantt.config.date_format = "%d-%m-%y";
+    gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.init(containerRef.current);
 
     //onclick function for plus icon in header
@@ -170,7 +195,6 @@ const Gantt = () => {
     <div>
       <div id="formCont">
         <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
-        <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
         <button
           onClick={() => {
             setCourseFormDisplay({ display: true });

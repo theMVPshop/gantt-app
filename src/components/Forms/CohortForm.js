@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const CohortForm = (props) => {
+  const onSubmit = (data) => console.log(data);
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("test");
+  const formState = () => {};
+
+  const testFunction = (data) => {
+    console.log(data);
   };
 
   return (
