@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react"
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -13,46 +13,40 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    // console.log("please please please")
-    // Simple GET request using axios
-    axios.get("http://localhost:4000/users").then((res) => {
-      console.log("Are these the users?: ", res);
-    });
-  }, []);
+  const handleLogin = (data) => {
 
-  // const handleLogin = (data) => {
+    console.log("hey, you clicked login")
+    //make a post call to our backend here:
 
-  //   console.log("hey, you clicked login")
-  //   //tried with a get; didn't work:
-  //   axios.get("http://127.0.0.1:4000/users")
-  //   .then((res)=> {
-  //     console.log("Are these the users?: ", res.data)
-  //   })
-  //   //make a post call to our backend here:
+     //SAVE URL HERE:
 
-  //    //SAVE URL HERE:
+    //axios post call including email and password
+    axios.post("http://localhost:4000/users/login", {
+      email: data.email,
+      password: data.password
+    })
+    .then((res) => {
+      console.log("res.data in login post request: ", res.data)
 
-  //   //axios post call including email and password
-  //   // axios.post("http://localhost:4000/users/login", {
-  //   //   email: data.email,
-  //   //   password: data.password
-  //   // })
-  //   // .then((res)=> {
-  //   //   console.log("res.data in login post request: ", res)
-  //   //   //-------------from Pamela's capstone for reference:-----------
-  //   //   //set isSignedIn to true so components rendered on login will render
-  //   //   // setIsSignedIn(true)
-  //   //   // //set token so other axios calls can use it to access data
-  //   //   // setToken(res.data.accessToken)
-  //   //   // // set userId so correct data are gathered in axios calls
-  //   //   // setUserId(res.data.userId)
-  //   //   //-------------------------end sample for reference ------------
-  //   // })
+      // store the logged-in user's information 
+      localStorage.setItem("user_name", res.data.first_name)
+      localStorage.setItem("user_id", res.data.id)
+      let userToken = res.data.accessToken      
+      console.log("stored token", userToken)
 
-  // }
+      // set logged-in cookie to true and display the user's dashboard
+      document.cookie = "loggedIn=true;"
+      window.location.replace("/dashboard")
+    })
+    .catch((error) => {
+      console.log("Error Occurred:", error)
+      alert("Login failed. Email and/or password are incorrect.")
+    })
+  }
 
-  const handleError = (errors) => {};
+  
+
+  // const handleError = (errors) => {};
 
   const loginOptions = {
     email: { required: "Email is required" },
@@ -65,8 +59,8 @@ const Login = () => {
         <h1>Login</h1>
         <form
           className="login-form"
-          // onSubmit={handleSubmit(handleLogin)}
-        >
+          onSubmit={handleSubmit(handleLogin)}
+          >
           <div className="input-group">
             <label for="email">Email: </label>
             <input
