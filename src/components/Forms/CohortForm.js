@@ -9,47 +9,24 @@ const CohortForm = (props) => {
   };
 
   return (
-    <form
-      className="edit-form"
-      onSubmit={handleSubmit(onSubmit)}
-      style={
-        /*checks whether modal should display or not*/
-        props.cohortDisplay.display ? { display: "flex" } : { display: "none" }
-      }
-      id="cohortForm"
-    >
-      <h3>Edit</h3>
+    <form className="cohortForm">
 
-      <div className="insert">
-        <label htmlFor="cohortName">Cohort Name:</label>
-        <input
-          type="text"
-          className="info"
-          name="cohortName"
-          {...register("cohortName")}
-        ></input>
-      </div>
+        <div className="info">
+          <label className="label">Cohort Name</label>
+          <input type="text" name="cohortName" className="input" />
+        </div>
 
-      <div className="insert">
-        <label htmlFor="startDate">Start Date:</label>
-        <input
-          type="text"
-          className="start"
-          name="startDate"
-          {...register("startDate")}
-        ></input>
-      </div>
+        <div className="info">
+          <label className="label">Start Date</label>
+          <input type="date" name="startDate" className="input" />
+        </div>
 
-      <div className="insert">
-        <label htmlFor="endDate">End Date:</label>
-        <input
-          type="text"
-          className="end"
-          name="endDate"
-          {...register("endDate")}
-        ></input>
-      </div>
-      <button type="submit">Submit</button>
+        <div className="info">
+          <label className="label">Graduation Date</label>
+          <input type="date" name="graduationDate" className="input" />
+        </div>
+
+      <input type="submit" className="submit" value="Save" />
     </form>
   );
 };
