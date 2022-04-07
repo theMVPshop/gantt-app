@@ -170,7 +170,6 @@ const Gantt = () => {
     <div>
       <div id="formCont">
         <CourseForm courseDisplay={courseFormDisplay}></CourseForm>
-        <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
         <button
           onClick={() => {
             setCourseFormDisplay({ display: true });

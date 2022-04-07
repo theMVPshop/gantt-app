@@ -1,13 +1,17 @@
 import React from "react"
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
 import axios from "axios";
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const handleLogin = (data) => {
 
@@ -53,7 +57,7 @@ const Login = () => {
     <div className="login-window-container">
       <div className="login-window">
         <h1>Login</h1>
-        <form 
+        <form
           className="login-form"
           onSubmit={handleSubmit(handleLogin)}
           >
