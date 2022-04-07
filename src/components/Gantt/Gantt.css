@@ -51,6 +51,7 @@ body,
   justify-content: center;
 }
 
+/* *****LoginForm***** */
 
 
 /* ******CourseForm Styles***** */
@@ -108,7 +109,7 @@ body,
   font-weight: 800;
   color: oldlace; 
 }
-/* ******CourseForm Styles***** */
+/* ******CourseForm Styles End***** */
 
 
 /* *****CohortForm Styles***** */
@@ -124,6 +125,5 @@ body,
   border-radius: 20px;
   position: relative;
   z-index: 10;
-  
-  
 }
+/* *****CohortForm Styles End***** */
