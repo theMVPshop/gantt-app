@@ -1,32 +1,89 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useEffect } from "react";
+
 
 const CohortForm = (props) => {
-  const onSubmit = (data) => console.log(data);
-  const { register, handleSubmit } = useForm();
+  
+  const [formData, setFormData] = useState({
+    cohortName: "",
+    startDate: "",
+    graduationDate: ""
 
-  const formState = () => {};
+  })
 
-  const testFunction = (data) => {
-    console.log(data);
+  const resetForm = () => {
+    setFormData({
+      cohortName: "",
+      startDate: "",
+      endDate: ""
+    })
+  }
+
+  const pushFormData = () => {
+    console.log(props.cohortDisplay.id);
+    props.setData((prevState) => {
+      let prev = { ...prevState };
+      const found = prev.data.find(
+        (element) => element.id === props.cohortDisplay.id
+      );
+      console.log(found);
+      return prev;
+    });
   };
 
   return (
-    <form className="cohortForm">
+    <form className="cohortForm" 
+          style={
+            props.cohortDisplay.display
+              ? { display: "flex" }
+              : { display: "none" }
+      }
+    >
 
         <div className="info">
           <label className="label">Cohort Name</label>
-          <input type="text" name="cohortName" className="input" />
+          <input 
+          type="text" 
+          value={formData.cohortName}
+          onChange={(e) => {
+            setFormData((prevState) => {
+              let prev = { ...prevState }
+              prev.cohortName = e.target.value;
+              return prev;
+            });
+          }}
+          name="cohortName" 
+          className="input" />
         </div>
 
         <div className="info">
           <label className="label">Start Date</label>
-          <input type="date" name="startDate" className="input" />
+          <input type="date"
+          value={formData.startDate}
+          onChange={(e) => {
+            setFormData((prevState) => {
+              let prev = { ...prevState }
+              prev.startDate = e.target.value;
+              return prev;
+            });
+          }} 
+          name="startDate" 
+          className="input" />
         </div>
 
         <div className="info">
           <label className="label">Graduation Date</label>
-          <input type="date" name="graduationDate" className="input" />
+          <input 
+          type="date"
+          value={formData.graduationDate}
+          onChange={(e) => {
+            setFormData((prevState) => {
+              let prev = { ...prevState }
+              prev.graduationDate = e.target.value;
+              return prev;
+            });
+          }}  
+          name="graduationDate" 
+          className="input" />
         </div>
 
       <input type="submit" className="submit" value="Save" />
