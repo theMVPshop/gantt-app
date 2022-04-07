@@ -13,7 +13,7 @@ const Nav = () => {
       <p>Welcome, {localStorage.getItem("user_name")}</p>
       <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
       <button className="nav-link">
-        <Link to="/login" className="link" onClick={() => {
+        <Link to="/" className="link" onClick={() => {
           document.cookie = "loggedIn="
           localStorage.clear()
         }}>
