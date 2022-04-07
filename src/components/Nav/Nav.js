@@ -10,7 +10,7 @@ const Nav = () => {
 
   return (
     <nav className="nav-bar">
-      <p>Welcome, Username</p>
+      <p>Welcome, {localStorage.getItem("user_name")}</p>
       <CohortForm cohortDisplay={cohortFormDisplay}></CohortForm>
       <button className="nav-link">
         <Link to="/login" className="link">
