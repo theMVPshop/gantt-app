@@ -17,6 +17,9 @@ const Nav = () => {
           Logout
         </Link>
       </button>
+      <button className="nav-link">
+        <Link to="/signup">Sign Up</Link> 
+      </button>
     </nav>
   );
 };
