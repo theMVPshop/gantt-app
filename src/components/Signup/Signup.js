@@ -42,6 +42,10 @@ const Signup = () => {
       // // set userId so correct data are gathered in axios calls
       // setUserId(res.data.userId)
       //-------------------------end sample for reference ------------
+    }).catch((error) => {
+      console.log("Error Occurred:", error)
+
+      alert("Signup Failed")
     })
 
     
