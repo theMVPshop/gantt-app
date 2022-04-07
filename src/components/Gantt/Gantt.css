@@ -51,26 +51,20 @@ body,
   justify-content: center;
 }
 
-#cohortForm {
-  width: 500px;
-  height: 600px;
-  background-color: aliceblue;
-  position: relative;
-  z-index: 10;
-  flex-direction: column;
-}
 
+
+/* ******CourseForm Styles***** */
 .courseForm {
   width: 600px;
   height: 850px;
-  background-color: #fbf5df;
+  background-color: #faf6eb;
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: column;
   margin: 0;
   padding-top:30px;
-  border: 3px solid red;
+  border: 3px solid #c64c04;
   border-radius: 20px;
   margin-bottom: 10px;
 }
@@ -95,7 +89,7 @@ body,
   height: 18px;
   width:40%;
   margin-right: 70px;
-  border:2px solid red;
+  border:2px solid #c64c04;
   border-radius:20px;
 }
 
@@ -107,11 +101,29 @@ body,
   margin-top: 40px;
   margin-bottom: 45px;
   align-self: center;
-  border: 2px solid red;
+  border: 2px solid #c64c04;
   border-radius: 20px;
   font-size: 15px;
-  background-color: lightcoral;
+  background-color: #eb7d3d;
   font-weight: 800;
-  color: oldlace;
+  color: oldlace; 
+}
+/* ******CourseForm Styles***** */
+
+
+/* *****CohortForm Styles***** */
+.cohortForm {
+  width: 480px;
+  height: 260px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fbf5df;
+  border: 3px solid #c64c04;
+  border-radius: 20px;
+  position: relative;
+  z-index: 10;
+  
   
 }

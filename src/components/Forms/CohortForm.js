@@ -12,15 +12,24 @@ const CohortForm = (props) => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log("test");
-      }}
-    >
-      <input id="firstName" />
+    <form className="cohortForm">
 
-      <input type="submit" />
+        <div className="info">
+          <label className="label">Cohort Name</label>
+          <input type="text" name="cohortName" className="input" />
+        </div>
+
+        <div className="info">
+          <label className="label">Start Date</label>
+          <input type="date" name="startDate" className="input" />
+        </div>
+
+        <div className="info">
+          <label className="label">Graduation Date</label>
+          <input type="date" name="graduationDate" className="input" />
+        </div>
+
+      <input type="submit" className="submit" value="Save" />
     </form>
   );
 };
