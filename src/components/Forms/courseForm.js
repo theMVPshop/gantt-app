@@ -1,3 +1,4 @@
+import { gantt } from "dhtmlx-gantt";
 import React, { useEffect, useState } from "react";
 
 const CourseForm = (props) => {
@@ -6,6 +7,7 @@ const CourseForm = (props) => {
   // }, [props.courseDisplay.id]);
 
   const [formData, setFormData] = useState({
+    text: "",
     courseNum: "",
     courseLink: "",
     hubSpotTicket: "",
@@ -15,16 +17,19 @@ const CourseForm = (props) => {
     location: "",
     days: "",
     mode: "",
-    startDate: 0,
-    endDate: 0,
+    startDate: "yyyy-MM-dd",
+    endDate: "YYYY-MM-DD",
     startStudents: 0,
     endStudents: 0,
     activeStatus: false,
+    id: 0,
+    parent: 0,
   });
 
   //function that resets formData back to default
   const resetForm = () => {
     setFormData({
+      text: "",
       courseNum: "",
       courseLink: "",
       hubSpotTicket: "",
@@ -39,19 +44,33 @@ const CourseForm = (props) => {
       startStudents: 0,
       endStudents: 0,
       activeStatus: false,
+      id: 0,
+      parent: 0,
     });
   };
 
   const pushFormData = () => {
     console.log(props.courseDisplay.id);
-    props.setData((prevState) => {
-      let prev = { ...prevState };
-      const found = prev.data.find(
-        (element) => element.id === props.courseDisplay.id
-      );
-      console.log(found);
-      return prev;
-    });
+    formData.id = 5;
+    formData.parent = props.courseDisplay.id;
+    gantt.addTask(formData);
+    // props.setData((prevState) => {
+    //   let prev = { ...prevState };
+    //   const idx = prev.data.findIndex(
+    //     (element) => element.id == props.courseDisplay.id
+    //   );
+    //   if (idx > 0) {
+    //     prev.data.splice(idx, 0, formData);
+    //   }
+    //   // const found = prev.data.find(
+    //   //   (element) => element.id == props.courseDisplay.id
+    //   // );
+
+    //   return prev;
+    // });
+    gantt.parse(props.data);
+    gantt.open(props.courseDisplay.id);
+    props.setCourseDisplay({ display: false, id: 0 });
   };
 
   return (
@@ -64,6 +83,23 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
+        <div className="info">
+          <label className="label">Task Name</label>
+          <input
+            type="text"
+            value={formData.text}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.text = e.target.value;
+                return prev;
+              });
+            }}
+            name="courseNum"
+            className="input"
+          />
+        </div>
+
         <div className="info">
           <label className="label">Course Number</label>
           <input
@@ -229,7 +265,7 @@ const CourseForm = (props) => {
             type="date"
             name="startDate"
             className="input"
-            value={formData.startDate}
+            value={formData.start_date}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };

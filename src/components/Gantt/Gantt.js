@@ -42,14 +42,21 @@ const Gantt = () => {
         progress: 0.6,
       },
       {
-        id: 2,
+        id: 1,
+        text: "Cohort #1",
+        start_date: "2019-04-15",
+        duration: 3,
+        progress: 0.6,
+      },
+      {
+        id: 3,
         text: "Cohort #2",
         start_date: "2019-04-18",
         duration: 3,
         progress: 0.4,
       },
       {
-        id: 3,
+        id: 4,
         text: "Cohort #3",
         start_date: "2019-04-18",
         duration: 3,
@@ -70,6 +77,7 @@ const Gantt = () => {
   //monitors data and re-renders gantt chart if change detected
   useEffect(() => {
     gantt.parse(data);
+    console.log(data);
   }, [data]);
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -171,6 +179,7 @@ const Gantt = () => {
     <div>
       <div id="formCont">
         <CourseForm
+          setCourseDisplay={setCourseFormDisplay}
           courseDisplay={courseFormDisplay}
           setData={setData}
           data={data}
