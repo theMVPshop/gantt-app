@@ -13,8 +13,8 @@ const CohortForm = (props) => {
   const resetForm = () => {
     setFormData({
       cohortName: "",
-      startDate: "",
-      endDate: ""
+      startDate: "yyyy-mm-dd",
+      graduationDate: "yyyy-mm-dd"
     })
   }
 
@@ -33,7 +33,7 @@ const CohortForm = (props) => {
   return (
     <form className="cohortForm" 
           style={
-            props.cohortDisplay.display
+            props.cohortFormDisplay.display
               ? { display: "flex" }
               : { display: "none" }
       }

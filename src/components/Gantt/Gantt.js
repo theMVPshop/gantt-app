@@ -175,12 +175,24 @@ const Gantt = () => {
           setData={setData}
           data={data}
         ></CourseForm>
+        <CohortForm
+          cohortFormDisplay={cohortFormDisplay}
+          setData={setData}
+          data={data}
+        ></CohortForm>
         <button
           onClick={() => {
-            setCourseFormDisplay({ display: true });
+            setCourseFormDisplay({ display: !courseFormDisplay.display });
           }}
         >
           ShowCourseForm
+        </button>
+        <button
+          onClick={() => {
+            setCohortFormDisplay({ display: !cohortFormDisplay.display });
+          }}
+        >
+          ShowCohortForm
         </button>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
