@@ -5,8 +5,8 @@ const CohortForm = (props) => {
   
   const [formData, setFormData] = useState({
     cohortName: "",
-    startDate: "",
-    graduationDate: ""
+    startDate: "yyyy-mm-dd",
+    graduationDate: "yyyy-mm-dd"
 
   })
 
