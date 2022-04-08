@@ -1,10 +1,12 @@
 import React from "react"
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
-import axios from "axios";
+
+
 
 const Login = () => {
   const {
@@ -42,8 +44,6 @@ const Login = () => {
       alert("Login failed. Email and/or password are incorrect.")
     })
   }
-
-  
 
   // const handleError = (errors) => {};
 
