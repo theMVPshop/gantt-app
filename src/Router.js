@@ -8,6 +8,8 @@ import Signup from "./components/Signup/Signup.js";
 
 import CohortForm from "./components/Forms/CohortForm";
 import CohortDisplay from "./components/Displays/CohortDisplay.js"
+import CourseDisplay from "./components/Displays/CourseDisplay.js"
+
 
 export const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
@@ -26,6 +28,8 @@ const Router = () => {
       For testing purposes, this route displays the CohortForm
       <Route path="/cohortForm" element={<CohortForm />} />
       <Route path="/cohortdisplay" element={<CohortDisplay />} />
+      <Route path="/coursedisplay" element={<CourseDisplay />} />
+
     </Routes>
   );
 };
