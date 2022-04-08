@@ -54,16 +54,17 @@ const Login = () => {
 
   return (
     <div className="login-window-container">
-      <div className="login-window">
-        <h1>Login</h1>
         <form
           className="login-form"
           onSubmit={handleSubmit(handleLogin)}
           >
+            <h1>Login</h1>
+            <p>Enter your email and password!</p>
           <div className="input-group">
-            <label for="email">Email: </label>
             <input
               type="email"
+              id="inputID" 
+              placeholder="Email"
               className="email"
               name="email"
               {...register("email", loginOptions.email)}
@@ -74,9 +75,10 @@ const Login = () => {
           </small>
           <br />
           <div className="input-group">
-            <label for="password">Password: </label>
             <input
               type="password"
+              id="inputID" 
+              placeholder="Password"
               className="password"
               name="password"
               {...register("password", loginOptions.password)}
@@ -89,7 +91,6 @@ const Login = () => {
           <button type="submit">Log In</button>
           <Link to="/dashboard">Dashboard</Link>
         </form>
-      </div>
     </div>
   );
 };
