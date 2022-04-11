@@ -17,10 +17,10 @@ const CourseForm = (props) => {
     location: "",
     days: "",
     mode: "",
-    startDate: "yyyy-MM-dd",
-    endDate: "YYYY-MM-DD",
+    start_date: "yyyy-MM-dd",
+    end_date: "YYYY-MM-DD",
     startStudents: 0,
-    endStudents: 0,
+    endtudents: 0,
     activeStatus: false,
     id: 0,
     parent: 0,
@@ -43,7 +43,7 @@ const CourseForm = (props) => {
       end_date: "2022-07-05",
       startStudents: 0,
       endStudents: 0,
-      activeStatus: false,
+      activeStatus: "",
       id: 0,
       parent: 0,
     });
@@ -53,7 +53,13 @@ const CourseForm = (props) => {
     console.log(props.courseDisplay.id);
     formData.id = 5;
     formData.parent = props.courseDisplay.id;
-    gantt.addTask(formData);
+    gantt.addTask({
+      id: 5.1,
+      text: "test",
+      start_date: "2019-04-15",
+      end_date: "2019-04-20",
+      parent: props.courseDisplay.id,
+    });
     // props.setData((prevState) => {
     //   let prev = { ...prevState };
     //   const idx = prev.data.findIndex(
@@ -282,7 +288,7 @@ const CourseForm = (props) => {
             type="date"
             name="endDate"
             className="input"
-            value={formData.endDate}
+            value={formData.end_date}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };

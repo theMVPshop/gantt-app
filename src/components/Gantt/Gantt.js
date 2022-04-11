@@ -38,29 +38,19 @@ const Gantt = () => {
         id: 1,
         text: "Cohort #1",
         start_date: "2019-04-15",
-        duration: 3,
-        progress: 0.6,
-      },
-      {
-        id: 1,
-        text: "Cohort #1",
-        start_date: "2019-04-15",
-        duration: 3,
-        progress: 0.6,
+        end_date: "2019-04-19",
       },
       {
         id: 3,
         text: "Cohort #2",
         start_date: "2019-04-18",
-        duration: 3,
-        progress: 0.4,
+        end_date: "2019-04-19",
       },
       {
         id: 4,
         text: "Cohort #3",
         start_date: "2019-04-18",
-        duration: 3,
-        progress: 0.4,
+        end_date: "2019-04-21",
       },
     ],
     links: [{ id: 1, source: 1, target: 2, type: "0" }],
@@ -78,7 +68,7 @@ const Gantt = () => {
   useEffect(() => {
     gantt.parse(data);
     console.log(data);
-  }, [data]);
+  }, []);
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
@@ -121,9 +111,10 @@ const Gantt = () => {
       },
       {
         name: "end_date",
-        label: "End Date",
+        label: "Finish",
+        width: 80,
         align: "center",
-        width: 100,
+        resize: true,
       },
       {
         name: "add_custom",
