@@ -14,7 +14,7 @@ const CourseDisplay = (props) => {
   let courseLink= "fakeCourseLink";
   let hubSpotTicket= "fakeHubSpot";
   let rocketChat= "fakeRocketChat";
-  let instructor= "fakeInstructore";
+  let instructor= "fakeInstructor";
   let teacherAssistant= "fakeTA";
   let location= "fakeLocation";
   let days= "fakeDays";
@@ -89,7 +89,11 @@ const CourseDisplay = (props) => {
                 return prev;
               });
             }}
+            
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -107,6 +111,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {rocketChat}
+          </div>
         </div>
 
         <div className="info">
@@ -124,6 +131,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
         <div className="info">
           <label className="label display-label">Teacher Assistant</label>
@@ -140,6 +150,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -161,6 +174,9 @@ const CourseDisplay = (props) => {
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -180,6 +196,9 @@ const CourseDisplay = (props) => {
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -198,6 +217,9 @@ const CourseDisplay = (props) => {
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -215,6 +237,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -232,6 +257,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -249,6 +277,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -266,6 +297,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
 
         <div className="info">
@@ -281,10 +315,13 @@ const CourseDisplay = (props) => {
                 return prev;
               });
             }}
+            
           />
           <span className="slider round"></span> */}
+          <div className="input display-input">
+            {hubSpotTicket}
+          </div>
         </div>
-
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
       </form>
     </div> 

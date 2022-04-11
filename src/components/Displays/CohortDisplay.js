@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import "./Displays.css"
 
 const CohortDisplay = (props) => {
-  let fakeCohortName = "FakeCohortName"
-  let fakeStartDate = "FakeStartDate"
-  let fakeGraduationDate = "FakeStartDate"
-
+  let CohortName = "FakeCohortName"
+  let StartDate = "FakeStartDate"
+  let GraduationDate = "FakeStartDate"
 
   return (
     <form className="cohortForm">
@@ -18,7 +17,7 @@ const CohortDisplay = (props) => {
 
           <div className="input display">
             {/* grab correct data from state from props */}
-            {fakeCohortName}
+            {CohortName}
           </div>
 
         </div>
@@ -27,7 +26,7 @@ const CohortDisplay = (props) => {
           <label className="label display-label">Start Date</label>
           <div className="input display">
             {/* grab correct data from state from props */}
-            {fakeStartDate}
+            {StartDate}
           </div>
         </div>
 
@@ -35,7 +34,7 @@ const CohortDisplay = (props) => {
           <label className="label display-label">Graduation Date</label>
           <div className="input display">
             {/* grab correct data from state from props */}
-            {fakeGraduationDate}
+            {GraduationDate}
           </div>
         </div>
 
