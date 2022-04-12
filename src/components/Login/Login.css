@@ -1,5 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+ background: ;
+ color: ;
+ -webkit-font-smoothing: antialiased;
+}
+
+body, input, button {
+ font-size: ;
+ font-family: ;
+}
+
+button {
+ cursor: pointer;
+}
+
 .login-window-container{
-  border: 5px solid purple;
+  background-color: #ECEEFF;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,49 +32,78 @@
 }
 
 h1{
-  font-size:42px;
+  font-family: 'Podkova', serif;
+  font-size:50px;
+  font-weight: 100;
   margin-bottom:50px;
 }
 
 p{
+  font-family: 'Lexend Deca', sans-serif;
   font-size: 16px;
   margin-bottom: 30px;
 }
 
 .login-form{
-  border: 5px solid red;
   height:500px;
-  width:1000px;
+  width:1500px;
   margin-top:100px;
   display: flex;
   flex-direction: column; 
   align-items: center;
+  display: flex;
+  flex-direction: column;
   
 }
 
 .email{
-  border-radius: 1px;
+  font-family: 'Lexend Deca', sans-serif;
+  border-radius: 5px;
+  border-color: transparent;
   background-color: #079043;
   opacity: 60%;
-  height: 25px;
-  width:700px;
+  padding: 15px;
+  height: 50px;
+  width:100%;
+  margin:0;
 }
 
 .password{
-  border-radius: 1px;
+  font-family: 'Lexend Deca', sans-serif;
+  border-radius: 5px;
+  border-color: transparent;
   background-color: #079043;
   opacity: 60%;
-  height: 25px;
-  width: 700px;
+  margin-top: 10px;
+  padding: 15px;
+  height: 50px;
+  width: 500px !important;
 }
 
 #inputID::placeholder {
-  color: black;
+  color: white;
   opacity: 100%;
 }
 
+.login{
+  font-family: 'Lexend Deca', sans-serif;
+  background-color: #079043;
+  border-color: transparent;
+  border-radius: 10px;
+  color:#ECEEFF;
+  width: 500px;
+  height:40px;
+  margin-top:50px;
+}
+
+.vector{
+  width: 100%;
+  margin-top:30px;
+  margin-bottom:-20px;
+}
+
 .input-group{
-  width: 240px;
+  width: 500px;
   display: flex;
   justify-content: space-between;
 }

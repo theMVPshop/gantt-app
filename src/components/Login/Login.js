@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
+import {ReactComponent as Vector} from "../../images/Vectors.svg"
 
 
 
@@ -58,8 +59,8 @@ const Login = () => {
           className="login-form"
           onSubmit={handleSubmit(handleLogin)}
           >
-            <h1>Login</h1>
-            <p>Enter your email and password!</p>
+            <h1>Sign in</h1>
+            <p>Enter your email and password below</p>
           <div className="input-group">
             <input
               type="email"
@@ -88,9 +89,10 @@ const Login = () => {
             {errors?.password && errors.password.message}
           </small>
           <br />
-          <button type="submit">Log In</button>
+          <button type="submit" className="login">Log In</button>
           <Link to="/dashboard">Dashboard</Link>
         </form>
+        <Vector className="vector"></Vector>
     </div>
   );
 };
