@@ -4,9 +4,15 @@ import { useForm } from "react-hook-form";
 import "./Displays.css"
 
 const CohortDisplay = (props) => {
-  let CohortName = "FakeCohortName"
+  let CohortName = props.cohortDisplay
   let StartDate = "FakeStartDate"
   let GraduationDate = "FakeStartDate"
+
+  useEffect((props) => {
+    console.log("props", props)
+
+    // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
+  }, [])
 
   return (
     <form className="cohortForm">

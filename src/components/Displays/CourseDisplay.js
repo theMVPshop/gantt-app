@@ -18,22 +18,27 @@ const CourseDisplay = (props) => {
   let teacherAssistant= "fakeTA";
   let location= "fakeLocation";
   let days= "fakeDays";
-  let mode= "fakeMode";
+  let mode= "telegraph";
   let startDate= "09/08/1970";
   let endDate= "06/26/1988";
   let startStudents= 4502;
   let endStudents= 4501;
   let activeStatus= false;
 
+  const editForm = () => {
+    console.log("This will eventually make the display go away and the form appear")
+    //dynamically render the form here
+  }
   return (
     <div>
       <form
         className="courseForm"
-        // style={
-        //   props.courseDisplay.display
-        //     ? { display: "flex" }
-        //     : { display: "none" }
-        // }
+        //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
+        style={
+          props.courseDisplay.display
+            ? { display: "flex" }
+            : { display: "none" }
+        }
       >
         <div className="info">
           <label className="label display-label">Course Number</label>
@@ -132,7 +137,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {instructor}
           </div>
         </div>
         <div className="info">
@@ -151,7 +156,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {teacherAssistant}
           </div>
         </div>
 
@@ -175,7 +180,7 @@ const CourseDisplay = (props) => {
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {location}
           </div>
         </div>
 
@@ -197,7 +202,7 @@ const CourseDisplay = (props) => {
             <option value="fullTime">Full Time</option>
           </select> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {days}
           </div>
         </div>
 
@@ -218,7 +223,7 @@ const CourseDisplay = (props) => {
             <option value="inPerson">In-Person</option>
           </select> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {mode}
           </div>
         </div>
 
@@ -238,7 +243,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {startDate}
           </div>
         </div>
 
@@ -258,7 +263,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {endDate}
           </div>
         </div>
 
@@ -278,7 +283,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {startStudents}
           </div>
         </div>
 
@@ -298,7 +303,7 @@ const CourseDisplay = (props) => {
             }}
           /> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {endStudents}
           </div>
         </div>
 
@@ -315,14 +320,19 @@ const CourseDisplay = (props) => {
                 return prev;
               });
             }}
+           
+            
             
           />
           <span className="slider round"></span> */}
           <div className="input display-input">
-            {hubSpotTicket}
+            {activeStatus}
           </div>
         </div>
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
+        <button
+          onClick={editForm}
+        >Edit</button>
       </form>
     </div> 
   );
