@@ -59,6 +59,8 @@ const CourseForm = (props) => {
       start_date: "2019-04-15",
       end_date: "2019-04-20",
       parent: props.courseDisplay.id,
+      progress: 1,
+      duration: 3,
     });
     // props.setData((prevState) => {
     //   let prev = { ...prevState };
@@ -74,9 +76,8 @@ const CourseForm = (props) => {
 
     //   return prev;
     // });
-    gantt.parse(props.data);
-    gantt.open(props.courseDisplay.id);
-    props.setCourseDisplay({ display: false, id: 0 });
+    // gantt.parse(props.data);
+    // props.setCourseDisplay({ display: false, id: 0 });
   };
 
   return (
