@@ -80,7 +80,12 @@ p{
   width: 500px !important;
 }
 
-#inputID::placeholder {
+#inputID1::placeholder {
+  color: white;
+  opacity: 100%;
+}
+
+#inputID2::placeholder {
   color: white;
   opacity: 100%;
 }

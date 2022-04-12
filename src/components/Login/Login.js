@@ -64,7 +64,7 @@ const Login = () => {
           <div className="input-group">
             <input
               type="email"
-              id="inputID" 
+              id="inputID1" 
               placeholder="Email"
               className="email"
               name="email"
@@ -78,7 +78,7 @@ const Login = () => {
           <div className="input-group">
             <input
               type="password"
-              id="inputID" 
+              id="inputID2" 
               placeholder="Password"
               className="password"
               name="password"
