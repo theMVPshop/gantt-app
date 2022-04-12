@@ -1,33 +1,36 @@
+import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 
 
 const CohortForm = (props) => {
   
   const [formData, setFormData] = useState({
-    cohortName: "",
-    startDate: "yyyy-mm-dd",
-    graduationDate: "yyyy-mm-dd"
+    id: 0,
+    text: "",
+    start_date: "yyyy-mm-dd",
+    end_date: "yyyy-mm-dd"
 
   })
 
   const resetForm = () => {
     setFormData({
-      cohortName: "",
-      startDate: "yyyy-mm-dd",
-      graduationDate: "yyyy-mm-dd"
+      text: "",
+      start_date: "yyyy-mm-dd",
+      end_date: "yyyy-mm-dd"
     })
   }
 
   const pushFormData = () => {
-    console.log(props.cohortDisplay.id);
-    props.setData((prevState) => {
-      let prev = { ...prevState };
-      const found = prev.data.find(
-        (element) => element.id === props.cohortDisplay.id
-      );
-      console.log(found);
-      return prev;
-    });
+    formData.id = 6
+    gantt.addTask(formData)
+    // props.setData((prevState) => {
+    //   let prev = { ...prevState };
+    //   const found = prev.data.find(
+    //     (element) => element.id === props.cohortDisplay.id
+    //   );
+    //   console.log(found);
+    //   return prev;
+    // });
   };
 
   return (
@@ -43,30 +46,30 @@ const CohortForm = (props) => {
           <label className="label">Cohort Name</label>
           <input 
           type="text" 
-          value={formData.cohortName}
+          value={formData.text}
           onChange={(e) => {
             setFormData((prevState) => {
               let prev = { ...prevState }
-              prev.cohortName = e.target.value;
+              prev.text = e.target.value;
               return prev;
             });
           }}
-          name="cohortName" 
+          name="text" 
           className="input" />
         </div>
 
         <div className="info">
           <label className="label">Start Date</label>
           <input type="date"
-          value={formData.startDate}
+          value={formData.start_date}
           onChange={(e) => {
             setFormData((prevState) => {
               let prev = { ...prevState }
-              prev.startDate = e.target.value;
+              prev.start_date = e.target.value;
               return prev;
             });
           }} 
-          name="startDate" 
+          name="start_date" 
           className="input" />
         </div>
 
@@ -74,19 +77,20 @@ const CohortForm = (props) => {
           <label className="label">Graduation Date</label>
           <input 
           type="date"
-          value={formData.graduationDate}
+          value={formData.end_date}
           onChange={(e) => {
             setFormData((prevState) => {
               let prev = { ...prevState }
-              prev.graduationDate = e.target.value;
+              prev.end_date = e.target.value;
               return prev;
             });
           }}  
-          name="graduationDate" 
+          name="end_date" 
           className="input" />
         </div>
 
-      <input type="submit" className="submit" value="Save" />
+      <input type="submit" className="submit" value="Save"
+      onClick = {pushFormData} />
     </form>
   );
 };
