@@ -46,6 +46,7 @@ const CohortForm = (props) => {
           <label className="label">Cohort Name</label>
           <input 
           type="text" 
+          placeholder="Name"
           value={formData.text}
           onChange={(e) => {
             setFormData((prevState) => {

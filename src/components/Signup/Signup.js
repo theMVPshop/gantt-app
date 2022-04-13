@@ -3,7 +3,8 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
-// import "./Signup.css";
+import "./Signup.css";
+import {ReactComponent as Vector} from "../../images/Vectors.svg"
 import axios from "axios";
 
 const Signup = () => {
@@ -62,18 +63,22 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <div className="login-window">
-        <h1>Sign Up</h1>
+    <div className="sign-up-container">
+      <div className="signUp-window">
+        <h1 className="signIn-text">Sign Up</h1>
+        <p>Create your free account!</p>
         <form 
-          className="login-form"
+          className="signUp-form"
           onSubmit={handleSubmit(handleSignup)}
           >
 
+          <div className="names">
           <div className="input-group">
-            <label for="firstName">First Name: </label>
             <input
+              className="signUp-input"
               type="text"
+              id="firt-name"
+              placeholder="First Name"
               name="firstName"
               {...register("firstName", loginOptions.firstName)}
             />
@@ -84,9 +89,11 @@ const Signup = () => {
           <br />
 
           <div className="input-group">
-            <label for="lastName">Last Name: </label>
             <input
+              className="signUp-input"
               type="text"
+              id="last-name"
+              placeholder="Last Name"
               name="lastName"
               {...register("lastName", loginOptions.lastName)}
             />
@@ -95,11 +102,13 @@ const Signup = () => {
             {errors?.email && errors.email.message}
           </small>
           <br />
+          </div>
 
           <div className="input-group">
-            <label for="email">Email: </label>
             <input
+              className="signUp-input"
               type="email"
+              placeholder="Email"
               name="email"
               {...register("email", loginOptions.email)}
             />
@@ -110,9 +119,10 @@ const Signup = () => {
           <br />
 
           <div className="input-group">
-            <label for="password">Password: </label>
             <input
+              className="signUp-input"
               type="password"
+              placeholder="Password"
               name="password"
               {...register("password", loginOptions.password)}
             />
@@ -123,9 +133,10 @@ const Signup = () => {
           <br />
 
           <div className="input-group">
-            <label for="password">Confirm Password: </label>
             <input
+              className="signUp-input"
               type="password"
+              placeholder="Confirm Password"
               name="confirmPassword"
               {...register("confirmPassword", loginOptions.consfirmPassword)}
             />
@@ -134,9 +145,10 @@ const Signup = () => {
             {errors?.password && errors.password.message}
           </small>
           <br />
-          <button type="submit">Sign Up</button>
+          <button className="login" type="submit">Sign Up</button>
         </form>
       </div>
+      <Vector className="vector"></Vector>
     </div>
   );
 };

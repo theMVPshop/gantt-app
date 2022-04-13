@@ -207,7 +207,7 @@ const Gantt = () => {
 
   return (
     <div>
-      <div id="formCont">
+      <div className="formCont" id="formCont">
         <CourseForm
           setCourseFormDisplay={setCourseFormDisplay}
           courseDisplay={courseFormDisplay}
