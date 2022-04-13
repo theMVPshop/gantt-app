@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import CourseForm from "../Forms/CourseForm.js";
 import CohortForm from "../Forms/CohortForm.js";
+import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 
@@ -10,12 +11,18 @@ const Gantt = () => {
 
   const [courseFormDisplay, setCourseFormDisplay] = useState({
     display: false,
-    id: 0,
+    id: "cohort_0",
   });
 
   const [cohortFormDisplay, setCohortFormDisplay] = useState({
     display: false,
     id: 0,
+  });
+
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState({
+    display: false,
+    id: "cohort_0",
+    text: "",
   });
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
@@ -35,38 +42,39 @@ const Gantt = () => {
   const [data, setData] = useState({
     data: [
       {
-        id: 1,
+        id: "cohort_1",
         text: "Cohort #1",
-        start_date: "2019-04-15",
-        duration: 3,
-        // end_date: "2019-04-19",
+        start_date: "2022-04-11",
+        end_date: "2022-04-15",
         open: true,
-        progress: 1,
       },
       {
-        id: 5,
+        id: "course_1",
         text: "Cohort #1",
-        start_date: "2019-04-15",
-        duration: 3,
-        progress: 1,
-        parent: 1,
+        start_date: "2022-04-11",
+        end_date: "2022-04-15",
+        parent: "cohort_1",
       },
       {
-        id: 3,
+        id: "cohort_2",
         text: "Cohort #2",
-        duration: 3,
-        start_date: "2019-04-18",
-        progress: 1,
+        start_date: "2022-04-13",
+        end_date: "2022-04-15",
       },
       {
-        id: 4,
+        id: "cohort_3",
         text: "Cohort #3",
-        duration: 3,
-        progress: 1,
-        start_date: "2019-04-18",
+        start_date: "2022-04-15",
+        end_date: "2022-04-15",
+      },
+      {
+        id: "cohort_4",
+        text: "Cohort #4",
+        start_date: "2022-04-15",
+        end_date: "2022-04-15",
       },
     ],
-    // links: [{ id: 1, source: 1, target: 2, type: "0" }],
+    links: [{ id: 1, source: 1, target: 2, type: "0" }],
   });
 
   const [newTask, setNewTask] = useState({
@@ -117,16 +125,11 @@ const Gantt = () => {
         resize: true,
       },
       {
-        name: "duration",
-        label: "Duration",
+        name: "start_date",
+        label: "Start Date",
         align: "center",
+        resize: true,
       },
-      // {
-      //   name: "start_date",
-      //   label: "Start Date",
-      //   align: "center",
-      //   resize: true,
-      // },
       {
         name: "end_date",
         label: "Finish",
@@ -173,11 +176,16 @@ const Gantt = () => {
             console.log(id);
             break;
           case "add":
-            console.log(id);
             setCourseFormDisplay({ display: true, id: id });
             break;
           case "delete":
-            console.log(id);
+            let correctTask = data.data.find((element) => element.id == id);
+            console.log(correctTask);
+            setConfirmDeleteModal({
+              display: true,
+              id: id,
+              text: correctTask.text,
+            });
             break;
         }
       }
@@ -188,7 +196,7 @@ const Gantt = () => {
     <div>
       <div id="formCont">
         <CourseForm
-          setCourseDisplay={setCourseFormDisplay}
+          setCourseFormDisplay={setCourseFormDisplay}
           courseDisplay={courseFormDisplay}
           setData={setData}
           data={data}
@@ -198,6 +206,11 @@ const Gantt = () => {
           setData={setData}
           data={data}
         ></CohortForm>
+        <ConfirmDelete
+          confirmDeleteModal={confirmDeleteModal}
+          setConfirmDeleteModal={setConfirmDeleteModal}
+          data={data}
+        ></ConfirmDelete>
         <button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });

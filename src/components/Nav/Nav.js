@@ -25,7 +25,7 @@ const Nav = () => {
           </Link>
         </button> : 
         <button className="nav-link">
-          <Link to="/signup">Sign Up</Link>
+          <Link className="link" to="/signup">Sign Up</Link>
         </button> 
       }
     </nav>

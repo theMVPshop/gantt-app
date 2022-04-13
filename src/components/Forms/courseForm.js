@@ -22,8 +22,8 @@ const CourseForm = (props) => {
     startStudents: 0,
     endtudents: 0,
     activeStatus: false,
-    id: 0,
-    parent: 0,
+    id: "course_0",
+    parent: "cohort_0",
   });
 
   //function that resets formData back to default
@@ -50,34 +50,18 @@ const CourseForm = (props) => {
   };
 
   const pushFormData = () => {
+    for (let i = 0; i < props.data.length; i++) {
+      let courseIDArray = props.data[i].id;
+      console.log(courseIDArray);
+      // if (props.data[i].id == "")
+    }
     console.log(props.courseDisplay.id);
-    formData.id = 5;
+    formData.id = "course_2";
     formData.parent = props.courseDisplay.id;
-    gantt.addTask({
-      id: 5.1,
-      text: "test",
-      start_date: "2019-04-15",
-      end_date: "2019-04-20",
-      parent: props.courseDisplay.id,
-      progress: 1,
-      duration: 3,
-    });
-    // props.setData((prevState) => {
-    //   let prev = { ...prevState };
-    //   const idx = prev.data.findIndex(
-    //     (element) => element.id == props.courseDisplay.id
-    //   );
-    //   if (idx > 0) {
-    //     prev.data.splice(idx, 0, formData);
-    //   }
-    //   // const found = prev.data.find(
-    //   //   (element) => element.id == props.courseDisplay.id
-    //   // );
-
-    //   return prev;
-    // });
-    // gantt.parse(props.data);
-    // props.setCourseDisplay({ display: false, id: 0 });
+    gantt.addTask(formData);
+    gantt.open(props.courseDisplay.id);
+    gantt.parse(props.data); //forces open the parent task
+    props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
   };
 
   return (
@@ -351,7 +335,9 @@ const CourseForm = (props) => {
           <span className="slider round"></span>
         </div>
 
-        <input className="submit" value="Save" onClick={pushFormData} />
+        <button className="submit" onClick={pushFormData}>
+          Save
+        </button>
       </form>
     </div>
   );
