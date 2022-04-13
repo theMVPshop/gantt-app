@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import CourseForm from "../Forms/CourseForm.js";
 import CohortForm from "../Forms/CohortForm.js";
-import ConfirmDelete from "../Forms/ConfirmDelete.js";
+import CourseDisplay from "../Displays/CourseDisplay.js";
+import CohortDisplay from "../Displays/CohortDisplay";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 
@@ -19,10 +20,16 @@ const Gantt = () => {
     id: 0,
   });
 
-  const [confirmDeleteModal, setConfirmDeleteModal] = useState({
+  const [cohortDisplay, setCohortDisplay] = useState({
     display: false,
-    id: "cohort_0",
-    text: "",
+    id: 0,
+    cohortName: "PropsfakeCohortName",
+  });
+
+  const [courseDisplay, setCourseDisplay] = useState({
+    display: false,
+    id: 0,
+    courseName: "PropsfakeCourseName",
   });
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
@@ -89,6 +96,12 @@ const Gantt = () => {
   useEffect(() => {
     gantt.parse(data);
     console.log(data);
+  }, []);
+
+  useEffect(() => {
+    //API call to get all the Cohort Data
+    //And all the Course Data
+    console.log("cohortDisplay.cohortName:", cohortDisplay.cohortName);
   }, []);
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -224,6 +237,28 @@ const Gantt = () => {
           }}
         >
           ShowCohortForm
+        </button>
+      </div>
+      <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
+      <div id="formCont">
+        <CourseDisplay
+          setCourseDisplay={setCourseDisplay}
+          courseDisplay={courseDisplay}
+        ></CourseDisplay>
+        <CohortDisplay cohortDisplay={cohortDisplay}></CohortDisplay>
+        <button
+          onClick={() => {
+            setCourseDisplay({ display: !courseDisplay.display });
+          }}
+        >
+          ShowCourse DISPLAY
+        </button>
+        <button
+          onClick={() => {
+            setCohortDisplay({ display: !cohortDisplay.display });
+          }}
+        >
+          ShowCohort DISPLAY
         </button>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
