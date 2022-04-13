@@ -50,17 +50,19 @@ const CourseForm = (props) => {
   };
 
   const pushFormData = () => {
-    for (let i = 0; i < props.data.length; i++) {
-      let courseIDArray = props.data[i].id;
+    var courseCounter = 1;
+    for (let i = 0; i < props.data.data.length; i++) {
+      let courseIDArray = props.data.data[i].id.split("_");
       console.log(courseIDArray);
-      // if (props.data[i].id == "")
+      if (courseIDArray[0] === "course") {
+        courseCounter++;
+      }
     }
-    console.log(props.courseDisplay.id);
-    formData.id = "course_2";
+    formData.id = `course_${courseCounter}`;
     formData.parent = props.courseDisplay.id;
     gantt.addTask(formData);
-    gantt.open(props.courseDisplay.id);
-    gantt.parse(props.data); //forces open the parent task
+    gantt.open(props.courseDisplay.id); //forces open the parent task
+    gantt.parse(props.data);
     props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
   };
 
@@ -74,7 +76,6 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
-        
         <div className="info">
           <label className="label">Task Name</label>
           <input

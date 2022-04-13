@@ -101,8 +101,7 @@ const Gantt = () => {
   //monitors data and re-renders gantt chart if change detected
   useEffect(() => {
     gantt.parse(data);
-    console.log(data);
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     //API call to get all the Cohort Data
