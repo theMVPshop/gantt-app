@@ -28,7 +28,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 732px;
+  height: 742px;
 }
 
 h1{
@@ -103,7 +103,7 @@ p{
 
 .vector{
   width: 100%;
-  margin-top:30px;
+  margin-top:32px;
   margin-bottom:-20px;
 }
 
