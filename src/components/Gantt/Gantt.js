@@ -4,6 +4,7 @@ import CourseForm from "../Forms/CourseForm.js";
 import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
 import CohortDisplay from "../Displays/CohortDisplay";
+import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 
@@ -32,6 +33,11 @@ const Gantt = () => {
     courseName: "PropsfakeCourseName",
   });
 
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState({
+    display: false,
+    id: "cohort_0",
+  });
+
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
     "<svg id='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -57,7 +63,7 @@ const Gantt = () => {
       },
       {
         id: "course_1",
-        text: "Cohort #1",
+        text: "Course #1",
         start_date: "2022-04-11",
         end_date: "2022-04-15",
         parent: "cohort_1",
@@ -224,6 +230,11 @@ const Gantt = () => {
           setConfirmDeleteModal={setConfirmDeleteModal}
           data={data}
         ></ConfirmDelete>
+        {/* <CourseDisplay
+          setCourseDisplay={setCourseDisplay}
+          courseDisplay={courseDisplay}
+        ></CourseDisplay>
+        <CohortDisplay cohortDisplay={cohortDisplay}></CohortDisplay>
         <button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
@@ -238,14 +249,6 @@ const Gantt = () => {
         >
           ShowCohortForm
         </button>
-      </div>
-      <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
-      <div id="formCont">
-        <CourseDisplay
-          setCourseDisplay={setCourseDisplay}
-          courseDisplay={courseDisplay}
-        ></CourseDisplay>
-        <CohortDisplay cohortDisplay={cohortDisplay}></CohortDisplay>
         <button
           onClick={() => {
             setCourseDisplay({ display: !courseDisplay.display });
@@ -259,7 +262,7 @@ const Gantt = () => {
           }}
         >
           ShowCohort DISPLAY
-        </button>
+        </button> */}
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>
