@@ -74,7 +74,8 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
-        
+        <div className="group-container">
+        <div className="group">
         <div className="info">
           <label className="label">Task Name</label>
           <input
@@ -213,7 +214,9 @@ const CourseForm = (props) => {
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select>
         </div>
+        </div>
 
+        <div className="group">
         <div className="info">
           <label className="label">Days</label>
           <select
@@ -286,7 +289,7 @@ const CourseForm = (props) => {
         </div>
 
         <div className="info">
-          <label className="label">Number of Students Starting</label>
+          <label className="label">Number of <br/>  Students Starting</label>
           <input
             type="number"
             name="studentNumStart"
@@ -303,7 +306,7 @@ const CourseForm = (props) => {
         </div>
 
         <div className="info">
-          <label className="label">Number of Students Ending</label>
+          <label className="label">Number of <br/> Students Ending</label>
           <input
             type="number"
             name="studentNumEnd"
@@ -335,7 +338,8 @@ const CourseForm = (props) => {
           />
           <span className="slider round"></span>
         </div>
-
+        </div>
+        </div>
         <button className="submit" onClick={pushFormData}>
           Save
         </button>
