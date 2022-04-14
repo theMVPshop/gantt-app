@@ -12,39 +12,40 @@ const CohortDisplay = (props) => {
     console.log("props", props)
 
     // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
+    //can i set this up so the dependency array fires if cohortDisply display changes? from props?
   }, [])
 
   return (
-    <form className="cohortForm">
+    <form className="cohortForm-display">
 
-        <div className="info">
-          <label className="label display-label">Cohort Name</label>
+        <div className="display-info">
+          <label className="label display-label">Cohort Name:</label>
           {/* <input type="text" name="cohortName" className="input" /> */}
 
-          <div className="input display">
+          <div className="input-display">
             {/* grab correct data from state from props */}
             {CohortName}
           </div>
 
         </div>
 
-        <div className="info">
-          <label className="label display-label">Start Date</label>
-          <div className="input display">
+        <div className="display-info">
+          <label className="label display-label">Start Date:</label>
+          <div className="input-display">
             {/* grab correct data from state from props */}
             {StartDate}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Graduation Date</label>
-          <div className="input display">
+        <div className="display-info">
+          <label className="label display-label">Graduation Date:</label>
+          <div className="input-display">
             {/* grab correct data from state from props */}
             {GraduationDate}
           </div>
         </div>
 
-      <input type="submit" className="submit" value="Save" />
+      <input type="submit" className="edit" value="Edit" />
     </form>
   );
 };

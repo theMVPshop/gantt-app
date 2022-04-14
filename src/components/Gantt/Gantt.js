@@ -3,7 +3,8 @@ import { gantt } from "dhtmlx-gantt";
 import CourseForm from "../Forms/CourseForm.js";
 import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
-import CohortDisplay from "../Displays/CohortDisplay";
+import CohortDisplay from "../Displays/CohortDisplay.js";
+import CohortEdit from "../Displays/CohortEdit.js";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
@@ -106,7 +107,7 @@ const Gantt = () => {
   useEffect(() => {
     //API call to get all the Cohort Data
     //And all the Course Data
-    console.log("cohortDisplay.cohortName:", cohortDisplay.cohortName);
+    // console.log("cohortDisplay.cohortName:");
   }, []);
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -121,6 +122,24 @@ const Gantt = () => {
       if (e.target.id === "plusIconHeader") {
         setCohortFormDisplay({ display: true });
       }
+      //double click event listener
+      //need to remove default modal pop up
+      //and add our display modal for course or cohort
+      // document.addEventListener("dblclick", (e) => {
+      //   //this preventDefault does NOT prevent the default form from popping up
+      //   e.preventDefault();
+      //   console.log("event that I double clicked on: ", e)
+    });
+
+    gantt.attachEvent("onTaskDblClick", function (id, e) {
+      console.log("onTaskDblClick clicked. id, e", id, e);
+      //decide if it's a cohort or a course
+      //likely by reading the first part of the id
+      //display a modal by setCohortDisplay display to true
+      // setCohortDisplay id to id
+      //map over data
+      //to find object where id matches id
+      //figure out the use effect in
     });
 
     //gantt custom columns
@@ -227,6 +246,7 @@ const Gantt = () => {
           setConfirmDeleteModal={setConfirmDeleteModal}
           data={data}
         ></ConfirmDelete>
+        <CohortEdit data={data}></CohortEdit>
         {/* <CourseDisplay
           setCourseDisplay={setCourseDisplay}
           courseDisplay={courseDisplay}

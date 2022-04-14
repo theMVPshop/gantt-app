@@ -6,20 +6,8 @@
   outline: 0;
   box-sizing: border-box;
 }
-
-body {
- background: ;
- color: ;
- -webkit-font-smoothing: antialiased;
-}
-
-body, input, button {
- font-size: ;
- font-family: ;
-}
-
-button {
- cursor: pointer;
+#root{
+  height:100vh;
 }
 
 .login-window-container{
@@ -28,7 +16,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 742px;
+  height: 100%;
 }
 
 h1{

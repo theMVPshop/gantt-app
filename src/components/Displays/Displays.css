@@ -1,9 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
+
+
 .display-label {
-  border: 1px solid green;
-  width: 100%;
+  font-size: 15px;
+  text-align: right;
+  padding-left: 15px;
 }
 
-.display {
-  margin-left: 10px;
-  border: none;
+
+.cohortForm-display{
+  font-family: "Lexend Deca", sans-serif;
+  padding-top: 10px;
+  background-color:  #eceeff;
+  border-radius:10px;
+  display: flex;
+  flex-direction: column;
+  height: 260px;
+  width:480px
+
 }
+
+.display-info{
+  display:flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.input-display{
+  margin-left: 15px;
+}
+
+
+.edit{
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: #079043;
+  color: #eceeff;
+  width:65%;
+  height: 40px;
+  align-self: center;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
