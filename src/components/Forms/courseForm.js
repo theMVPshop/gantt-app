@@ -7,7 +7,7 @@ const CourseForm = (props) => {
   // }, [props.courseDisplay.id]);
 
   const [formData, setFormData] = useState({
-    text: "",
+    title: "",
     courseNum: "",
     courseLink: "",
     hubSpotTicket: "",
@@ -29,7 +29,7 @@ const CourseForm = (props) => {
   //function that resets formData back to default
   const resetForm = () => {
     setFormData({
-      text: "",
+      title: "",
       courseNum: "",
       courseLink: "",
       hubSpotTicket: "",
@@ -53,16 +53,17 @@ const CourseForm = (props) => {
     var courseCounter = 1;
     for (let i = 0; i < props.data.data.length; i++) {
       let courseIDArray = props.data.data[i].id.split("_");
-      console.log(courseIDArray);
       if (courseIDArray[0] === "course") {
         courseCounter++;
+        console.log(courseCounter);
       }
     }
     formData.id = `course_${courseCounter}`;
     formData.parent = props.courseDisplay.id;
     gantt.addTask(formData);
+    // props.addNewTask(formData);
+    props.updateStateData();
     gantt.open(props.courseDisplay.id); //forces open the parent task
-    gantt.parse(props.data);
     props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
   };
 
@@ -79,12 +80,12 @@ const CourseForm = (props) => {
         <div className="info">
           <label className="label">Task Name</label>
           <input
-            type="text"
-            value={formData.text}
+            type="title"
+            value={formData.title}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
-                prev.text = e.target.value;
+                prev.title = e.target.value;
                 return prev;
               });
             }}

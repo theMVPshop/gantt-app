@@ -18,7 +18,6 @@ const Gantt = () => {
 
   const [cohortFormDisplay, setCohortFormDisplay] = useState({
     display: false,
-    id: 0,
   });
 
   const [cohortDisplay, setCohortDisplay] = useState({
@@ -56,33 +55,33 @@ const Gantt = () => {
     data: [
       {
         id: "cohort_1",
-        text: "Cohort #1",
+        title: "Cohort #1",
         start_date: "2022-04-11",
         end_date: "2022-04-15",
         open: true,
       },
       {
         id: "course_1",
-        text: "Course #1",
+        title: "Course #1",
         start_date: "2022-04-11",
         end_date: "2022-04-15",
         parent: "cohort_1",
       },
       {
         id: "cohort_2",
-        text: "Cohort #2",
+        title: "Cohort #2",
         start_date: "2022-04-13",
         end_date: "2022-04-15",
       },
       {
         id: "cohort_3",
-        text: "Cohort #3",
+        title: "Cohort #3",
         start_date: "2022-04-15",
         end_date: "2022-04-15",
       },
       {
         id: "cohort_4",
-        text: "Cohort #4",
+        title: "Cohort #4",
         start_date: "2022-04-15",
         end_date: "2022-04-15",
       },
@@ -100,6 +99,7 @@ const Gantt = () => {
 
   //monitors data and re-renders gantt chart if change detected
   useEffect(() => {
+    console.log(data);
     gantt.parse(data);
   }, [data]);
 
@@ -119,24 +119,14 @@ const Gantt = () => {
     document.addEventListener("click", (e) => {
       e.preventDefault();
       if (e.target.id === "plusIconHeader") {
-        setData((prevState) => {
-          var copy = { ...prevState };
-          copy.data.push({
-            id: 4,
-            text: "Task #4",
-            start_date: "2019-04-18",
-            duration: 2,
-            progress: 0.4,
-          });
-          return copy;
-        });
+        setCohortFormDisplay({ display: true });
       }
     });
 
     //gantt custom columns
     gantt.config.columns = [
       {
-        name: "text",
+        name: "title",
         label: "Task Name",
         width: "150",
         tree: true,
@@ -197,6 +187,7 @@ const Gantt = () => {
             setCourseFormDisplay({ display: true, id: id });
             break;
           case "delete":
+            console.log(id);
             let correctTask = data.data.find((element) => element.id == id);
             console.log(correctTask);
             setConfirmDeleteModal({
@@ -210,18 +201,25 @@ const Gantt = () => {
     });
   });
 
+  const updateStateData = () => {
+    let dataCopy = gantt.serialize();
+    setData(dataCopy);
+  };
+
   return (
     <div>
       <div className="formCont" id="formCont">
         <CourseForm
           setCourseFormDisplay={setCourseFormDisplay}
           courseDisplay={courseFormDisplay}
-          setData={setData}
+          updateStateData={updateStateData}
           data={data}
         ></CourseForm>
         <CohortForm
           cohortFormDisplay={cohortFormDisplay}
+          setCohortFormDisplay={setCohortFormDisplay}
           setData={setData}
+          updateStateData={updateStateData}
           data={data}
         ></CohortForm>
         <ConfirmDelete
@@ -262,6 +260,9 @@ const Gantt = () => {
         >
           ShowCohort DISPLAY
         </button> */}
+        <button onClick={() => console.log(gantt.serialize())}>
+          serialize
+        </button>
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>
