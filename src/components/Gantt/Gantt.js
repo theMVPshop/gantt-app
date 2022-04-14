@@ -3,7 +3,8 @@ import { gantt } from "dhtmlx-gantt";
 import CourseForm from "../Forms/CourseForm.js";
 import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
-import CohortDisplay from "../Displays/CohortDisplay";
+import CohortDisplay from "../Displays/CohortDisplay.js";
+import CohortEdit from "../Displays/CohortEdit.js";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
@@ -230,6 +231,9 @@ const Gantt = () => {
           setConfirmDeleteModal={setConfirmDeleteModal}
           data={data}
         ></ConfirmDelete>
+        <CohortEdit
+          data={data}
+        ></CohortEdit>
         {/* <CourseDisplay
           setCourseDisplay={setCourseDisplay}
           courseDisplay={courseDisplay}
