@@ -58,8 +58,8 @@ body,
 /* ******CourseForm Styles***** */
 .courseForm {
   font-family: "Lexend Deca", sans-serif;
-  width: 600px;
-  height: 900px;
+  width: 1000px;
+  height: 550px;
   background-color: #eceeff;
   position: absolute;
   z-index: 10;
@@ -72,25 +72,24 @@ body,
 }
 
 .info {
+  width:auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-top: 25px;
   margin-bottom: 0px;
+  padding: 0;
 }
 
 .label {
-  width: 40%;
+  width: 30%;
   font-size: 15px;
   font-weight: 800;
   text-align: left;
-  margin-left: 70px;
+  align-self: center;
 }
 
 .input {
   height: 25px;
   width: 40%;
-  margin-right: 70px;
   background-color: #079043;
   opacity: 60%;
   border-color: transparent;
@@ -98,6 +97,7 @@ body,
   padding-left: 10px;
   padding: 5px;
   color: #eceeff;
+  align-self: center;
 }
 
 .submit {
@@ -116,6 +116,17 @@ body,
   background-color: #079043;
   font-weight: 800;
   color: #eceeff;
+}
+
+.group{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.group-container{
+  display: flex;
+  flex-direction: row;
 }
 /* ******CourseForm Styles End***** */
 
