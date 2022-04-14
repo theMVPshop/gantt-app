@@ -107,7 +107,7 @@ const Gantt = () => {
   useEffect(() => {
     //API call to get all the Cohort Data
     //And all the Course Data
-    console.log("cohortDisplay.cohortName:", cohortDisplay.cohortName);
+    // console.log("cohortDisplay.cohortName:");
   }, []);
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -116,23 +116,27 @@ const Gantt = () => {
     gantt.init(containerRef.current);
     gantt.parse(data);
 
-    //onclick function for plus icon in header
-    document.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (e.target.id === "plusIconHeader") {
-        setData((prevState) => {
-          var copy = { ...prevState };
-          copy.data.push({
-            id: 4,
-            text: "Task #4",
-            start_date: "2019-04-18",
-            duration: 2,
-            progress: 0.4,
-          });
-          return copy;
-        });
-      }
+    //double click event listener
+    //need to remove default modal pop up
+    //and add our display modal for course or cohort
+    // document.addEventListener("dblclick", (e) => {
+    //   //this preventDefault does NOT prevent the default form from popping up
+    //   e.preventDefault();
+    //   console.log("event that I double clicked on: ", e)
+    // });
+
+    gantt.attachEvent("onTaskDblClick", function (id, e) {
+      console.log("onTaskDblClick clicked. id, e", id, e)
+      //decide if it's a cohort or a course
+        //likely by reading the first part of the id
+      //display a modal by setCohortDisplay display to true
+      // setCohortDisplay id to id
+      //map over data
+      //to find object where id matches id
+      //figure out the use effect in 
     });
+
+   
 
     //gantt custom columns
     gantt.config.columns = [
@@ -209,6 +213,8 @@ const Gantt = () => {
         }
       }
     });
+
+   
   });
 
   return (
@@ -255,14 +261,8 @@ const Gantt = () => {
           }}
         >
           ShowCourse DISPLAY
-        </button>
-        <button
-          onClick={() => {
-            setCohortDisplay({ display: !cohortDisplay.display });
-          }}
-        >
-          ShowCohort DISPLAY
-        </button> */}
+        </button>*/}
+ 
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>

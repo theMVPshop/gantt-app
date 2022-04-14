@@ -12,6 +12,7 @@ const CohortDisplay = (props) => {
     console.log("props", props)
 
     // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
+    //can i set this up so the dependency array fires if cohortDisply display changes? from props?
   }, [])
 
   return (
