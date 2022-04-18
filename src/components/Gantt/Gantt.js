@@ -94,9 +94,8 @@ const Gantt = () => {
     links: [{ id: 1, source: 1, target: 2, type: "0" }],
   }
    */
-  
-  const [data, setData] = useState({data : [], links : []});
 
+  const [data, setData] = useState({ data: [], links: [] });
 
   const [newTask, setNewTask] = useState({
     id: 0,
@@ -111,23 +110,23 @@ const Gantt = () => {
     gantt.parse(data);
     console.log(data);
   }, []);
- 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/tasks/')
-      .then(res => {
-        res.data.forEach(obj => {
-          obj.start_date = obj.start_date.slice(0,10)
-          obj.end_date = obj.end_date.slice(0,10)
-          obj.open = true
-        })
-        setData({data: res.data, links : []})
+    axios
+      .get("http://localhost:4000/tasks/")
+      .then((res) => {
+        res.data.forEach((obj) => {
+          obj.start_date = obj.start_date.slice(0, 10);
+          obj.end_date = obj.end_date.slice(0, 10);
+          obj.open = true;
+        });
+        setData({ data: res.data, links: [] });
       })
-      .catch(err => console.log("error", err))
+      .catch((err) => console.log("error", err));
   }, []);
 
   useEffect(() => {
-    console.log("DATA", data)
+    console.log("DATA", data);
     gantt.parse(data);
   }, [data]);
 
@@ -136,18 +135,18 @@ const Gantt = () => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);
-    // gantt.parse(data);
-
+    //gantt.parse(data);
 
     gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log("This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up")
-      
+      console.log(
+        "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
+      );
     });
 
     //gantt custom columns
     gantt.config.columns = [
       {
-        name: "text",
+        name: "title",
         label: "Task Name",
         width: "150",
         tree: true,
@@ -245,11 +244,10 @@ const Gantt = () => {
           // courseDisplay={courseDisplay}
           data={data}
         ></CourseDisplay> */}
-        <CohortDisplay 
+        <CohortDisplay
           // cohortDisplay={cohortDisplay}
           data={data}
-        >
-        </CohortDisplay>
+        ></CohortDisplay>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
@@ -271,7 +269,6 @@ const Gantt = () => {
         >
           ShowCourse DISPLAY
         </button>*/}
- 
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>
