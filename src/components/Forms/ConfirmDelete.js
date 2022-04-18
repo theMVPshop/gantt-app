@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const ConfirmDelete = (props) => {
   const deleteTask = () => {
+    console.log(props.confirmDeleteModal.id);
     gantt.deleteTask(props.confirmDeleteModal.id);
     resetModal();
   };
