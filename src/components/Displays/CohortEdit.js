@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 
 // copied over code from CohortForm***
 const CohortEdit = (props) => {
-  console.log("CohortEdit Props Data:", props.data.data)
+  // console.log("CohortEdit Props Data:", props.data.data)
+  console.log("props here---", props.data.data)
 
   const [editedData, setEditedData] = useState({
     id: 0,
@@ -23,22 +24,23 @@ const CohortEdit = (props) => {
 
   gantt.attachEvent("onTaskDblClick", function(id,e){
     //any custom logic here
-    console.log("double click occured! ID - ", id, "EVENT - ", e)
+    // console.log("double click occured! ID - ", id, "EVENT - ", e)
     return true;
+// gantt.attachEvent("onTaskDblClick", function(id,e){
+//     const clickedCohortID = id;
+//     const info = props.data.data.
+//     // for (let i = 0; i < props.data.data.length; i++) {
+//     //   console.log("this is i", i)
+//     // }
+//     return;
   });
 
   const pushEditedData = () => {
-    editedData.id = 6
-    // need an edit/save task instead of a new task
-    gantt.addTask(editedData)
-    // props.setData((prevState) => {
-    //   let prev = { ...prevState };
-    //   const found = prev.data.find(
-    //     (element) => element.id === props.cohortDisplay.id
-    //   );
-    //   console.log(found);
-    //   return prev;
-    // });
+  // from cohort form  ************
+  // gantt.addTask(formData);
+  // props.updateStateData();
+  // props.setCohortFormDisplay({ display: false });
+
   };
 
   return (

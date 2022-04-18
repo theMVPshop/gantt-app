@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { ReactComponent as Exit } from "../../images/cancel.svg"
 import "./Displays.css"
 
 const CourseDisplay = (props) => {
@@ -32,16 +32,14 @@ const CourseDisplay = (props) => {
   return (
     <div>
       <form
-        className="courseForm"
+        className="courseForm-display"
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
-        style={
-          props.courseDisplay.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
-        <div className="info">
-          <label className="label display-label">Course Number</label>
+        <Exit className="exit"></Exit>
+        <div className="group-container">
+        <div className="group">
+        <div className="display-info">
+          <label className="display-label">Course Number:</label>
           {/* <input
             type="text"
             value={formData.courseNum}
@@ -55,13 +53,13 @@ const CourseDisplay = (props) => {
             name="courseNum"
             className="input"
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {courseNum}
           </div>
         </div>  
 
-        <div className="info">
-          <label className="label display-label">Course Link</label>
+        <div className="display-info">
+          <label className="display-label">Course Link:</label>
           {/* <input
             type="text"
             name="courseLink"
@@ -75,13 +73,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {courseLink}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Hubspot Ticket</label>
+        <div className="display-info">
+          <label className="display-label">Hubspot Ticket:</label>
           {/* <input
             type="text"
             name="hubSpotTicket"
@@ -96,13 +94,13 @@ const CourseDisplay = (props) => {
             }}
             
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {hubSpotTicket}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Rocket Chat</label>
+        <div className="display-info">
+          <label className="display-label">Rocket Chat:</label>
           {/* <input
             type="text"
             name="rocketChat"
@@ -116,13 +114,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {rocketChat}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Instructor</label>
+        <div className="display-info">
+          <label className="display-label">Instructor:</label>
           {/* <input
             type="text"
             name="instructor"
@@ -136,12 +134,12 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {instructor}
           </div>
         </div>
-        <div className="info">
-          <label className="label display-label">Teacher Assistant</label>
+        <div className="display-info">
+          <label className="display-label">Teacher Assistant:</label>
           {/* <input
             type="text"
             name="teacherAssistant"
@@ -155,13 +153,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {teacherAssistant}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Location</label>
+        <div className="display-info">
+          <label className="display-label">Location:</label>
           {/* <select
             className="input"
             value={formData.location}
@@ -179,13 +177,15 @@ const CourseDisplay = (props) => {
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
-          <div className="input display-input">
+          <div className="display-input">
             {location}
           </div>
         </div>
+        </div>
 
-        <div className="info">
-          <label className="label display-label">Days</label>
+        <div className="group">
+        <div className="display-info">
+          <label className="display-label">Days:</label>
           {/* <select
             className="input"
             value={formData.days}
@@ -201,13 +201,13 @@ const CourseDisplay = (props) => {
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select> */}
-          <div className="input display-input">
+          <div className="display-input">
             {days}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Mode</label>
+        <div className="display-info">
+          <label className="display-label">Mode:</label>
           {/* <select
             className="input"
             value={formData.mode}
@@ -222,13 +222,13 @@ const CourseDisplay = (props) => {
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select> */}
-          <div className="input display-input">
+          <div className="display-input">
             {mode}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Start Date</label>
+        <div className="display-info">
+          <label className="display-label">Start Date:</label>
           {/* <input
             type="date"
             name="startDate"
@@ -242,13 +242,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {startDate}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">End Date</label>
+        <div className="display-info">
+          <label className="display-label">End Date:</label>
           {/* <input
             type="date"
             name="endDate"
@@ -262,13 +262,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {endDate}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Number of Students Starting</label>
+        <div className="display-info">
+          <label className="display-label">Number of Students Starting:</label>
           {/* <input
             type="number"
             name="studentNumStart"
@@ -282,13 +282,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {startStudents}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Number of Students Ending</label>
+        <div className="display-info">
+          <label className="display-label">Number of Students Ending:</label>
           {/* <input
             type="number"
             name="studentNumEnd"
@@ -302,13 +302,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="input display-input">
+          <div className="display-input">
             {endStudents}
           </div>
         </div>
 
-        <div className="info">
-          <label className="label display-label">Active Status</label>
+        <div className="display-info">
+          <label className="display-label">Active Status:</label>
           {/* <input
             type="checkbox"
             className="input"
@@ -325,14 +325,14 @@ const CourseDisplay = (props) => {
             
           />
           <span className="slider round"></span> */}
-          <div className="input display-input">
+          <div className="display-input">
             {activeStatus}
           </div>
         </div>
+        </div>
+        </div>
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
-        <button
-          onClick={editForm}
-        >Edit</button>
+        <input type="submit" className="edit-button" value="Edit" onClick={editForm}/>
       </form>
     </div> 
   );
@@ -391,3 +391,4 @@ export default CourseDisplay;
 //   endStudents: 0,
 //   activeStatus: false,
 // });
+
