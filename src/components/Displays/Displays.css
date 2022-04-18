@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
 
-
+/* ****** Cohort Display ***** */
 .display-label {
   font-size: 15px;
   text-align: right;
@@ -44,3 +44,73 @@
   font-size: 15px;
 }
 
+/* ****** Course Display ***** */
+.courseForm-display{
+  font-family: "Lexend Deca", sans-serif;
+  width: 1000px;
+  height: 550px;
+  background-color: #eceeff;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 30px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.display-info {
+  width: 100%;
+  width:auto;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+  padding: 0;
+  margin-left: 70px;
+}
+
+.group{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.group-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.display-label {
+  width: 160px;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: left;
+  align-self: center;
+  margin-right: 40px ;
+}
+
+.display-input{
+  margin-right: 70px;
+}
+
+.edit-button{
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: #079043;
+  color: #eceeff;
+  width:65%;
+  height: 40px;
+  align-self: center;
+  margin-top: 40px;
+  font-size: 15px;
+  margin-top:70px;
+}
+
+.exit{
+  height: auto;
+  width: 30px;
+  margin-left: 10px;
+  margin-top: -10px;
+  fill:firebrick;
+}
