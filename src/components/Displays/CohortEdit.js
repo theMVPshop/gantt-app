@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 // copied over code from CohortForm***
 const CohortEdit = (props) => {
-  console.log("CohortEdit Props Data:", props.data.data)
+  // console.log("CohortEdit Props Data:", props.data.data)
 
   const [editedData, setEditedData] = useState({
     id: 0,
@@ -23,7 +23,7 @@ const CohortEdit = (props) => {
 
   gantt.attachEvent("onTaskDblClick", function(id,e){
     //any custom logic here
-    console.log("double click occured! ID - ", id, "EVENT - ", e)
+    // console.log("double click occured! ID - ", id, "EVENT - ", e)
     return true;
   });
 
