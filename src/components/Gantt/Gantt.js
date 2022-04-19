@@ -13,32 +13,51 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [courseFormDisplay, setCourseFormDisplay] = useState({
-    display: false,
-    id: "cohort_0",
+  const [modalState, setModalState] = useState({
+    addCourseForm: { display: false, id: "cohort_0" },
+    addCohortForm: { display: false, id: "cohort_0" },
+    cohortDisplay: {
+      display: false,
+      id: "cohort_0",
+      cohortName: "PropsfakeCohortName",
+    },
+    cohortDisplay: {
+      display: false,
+      id: "cohort_0",
+      cohortName: "PropsfakeCohortName",
+    },
+    confirmDeleteModal: {
+      display: false,
+      id: "cohort_0",
+    },
   });
 
-  const [cohortFormDisplay, setCohortFormDisplay] = useState({
-    display: false,
-    id: 0,
-  });
+  // const [courseFormDisplay, setCourseFormDisplay] = useState({
+  //   display: false,
+  //   id: "cohort_0",
+  // });
 
-  const [cohortDisplay, setCohortDisplay] = useState({
-    display: false,
-    id: 0,
-    cohortName: "PropsfakeCohortName",
-  });
+  // const [cohortFormDisplay, setCohortFormDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  // });
 
-  const [courseDisplay, setCourseDisplay] = useState({
-    display: false,
-    id: 0,
-    courseName: "PropsfakeCourseName",
-  });
+  // const [cohortDisplay, setCohortDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  //   cohortName: "PropsfakeCohortName",
+  // });
 
-  const [confirmDeleteModal, setConfirmDeleteModal] = useState({
-    display: false,
-    id: "cohort_0",
-  });
+  // const [courseDisplay, setCourseDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  //   courseName: "PropsfakeCourseName",
+  // });
+
+  // const [confirmDeleteModal, setConfirmDeleteModal] = useState({
+  //   display: false,
+  //   id: "cohort_0",
+  // });
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -200,21 +219,23 @@ const Gantt = () => {
       var button = e.target.closest("[data-action]");
       if (button) {
         var action = button.getAttribute("data-action");
+        var copy = modalState;
         switch (action) {
           case "edit":
             console.log(id);
             break;
           case "add":
-            setCourseFormDisplay({ display: true, id: id });
+            copy.addCourseForm = { display: true, id: id };
+            setModalState(copy);
             break;
           case "delete":
             let correctTask = data.data.find((element) => element.id == id);
-            console.log(correctTask);
-            setConfirmDeleteModal({
+            copy.confirmDeleteModal = {
               display: true,
               id: id,
               text: correctTask.text,
-            });
+            };
+            setModalState(copy);
             break;
         }
       }
@@ -225,19 +246,20 @@ const Gantt = () => {
     <div>
       <div className="formCont" id="formCont">
         <CourseForm
-          setCourseFormDisplay={setCourseFormDisplay}
-          courseDisplay={courseFormDisplay}
+          modalState={modalState}
+          setModalState={setModalState}
           setData={setData}
           data={data}
         ></CourseForm>
         <CohortForm
-          cohortFormDisplay={cohortFormDisplay}
+          modalState={modalState}
+          setModalState={setModalState}
           setData={setData}
           data={data}
         ></CohortForm>
         <ConfirmDelete
-          confirmDeleteModal={confirmDeleteModal}
-          setConfirmDeleteModal={setConfirmDeleteModal}
+          modalState={modalState}
+          setModalState={setModalState}
           data={data}
         ></ConfirmDelete>
         {/* <CourseDisplay
