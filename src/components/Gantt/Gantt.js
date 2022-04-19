@@ -23,8 +23,8 @@ const Gantt = () => {
     },
     courseDisplay: {
       display: false,
-      id: "cohort_0",
-      cohortName: "PropsfakeCohortName",
+      id: "course_0",
+      courseName: "PropsfakeCourseName",
     },
     confirmDeleteModal: {
       display: false,
