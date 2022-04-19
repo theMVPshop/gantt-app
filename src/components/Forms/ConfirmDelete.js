@@ -19,13 +19,16 @@ const ConfirmDelete = (props) => {
   return (
     <div
       style={
-        props.confirmDeleteModal.display
+        props.modalState.confirmDeleteModal.display
           ? { display: "flex" }
           : { display: "none" }
       }
       id="confirmDeleteModal"
     >
-      <h1>Are you sure you want to delete {props.confirmDeleteModal.text}?</h1>
+      <h1>
+        Are you sure you want to delete{" "}
+        {props.modalState.confirmDeleteModal.text}?
+      </h1>
       <div>
         <button onClick={deleteTask}>Yes</button>
         <button onClick={resetModal}>No</button>
