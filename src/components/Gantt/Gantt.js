@@ -107,10 +107,10 @@ const Gantt = () => {
   });
 
   //monitors data and re-renders gantt chart if change detected
-  useEffect(() => {
-    gantt.parse(data);
-    console.log(data);
-  }, []);
+  // useEffect(() => {
+  //   gantt.parse(data);
+  //   console.log(data);
+  // }, []);
  
 
   useEffect(() => {
@@ -122,6 +122,7 @@ const Gantt = () => {
           obj.open = true
         })
         setData({data: res.data, links : []})
+        console.log("res.data after? forEach: ", res.data)
       })
       .catch(err => console.log("error", err))
   }, []);
