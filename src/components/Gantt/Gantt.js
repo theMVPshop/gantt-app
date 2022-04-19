@@ -21,7 +21,7 @@ const Gantt = () => {
       id: "cohort_0",
       cohortName: "PropsfakeCohortName",
     },
-    cohortDisplay: {
+    courseDisplay: {
       display: false,
       id: "cohort_0",
       cohortName: "PropsfakeCohortName",
