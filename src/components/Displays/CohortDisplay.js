@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import { useForm } from "react-hook-form";
 
-import "./Displays.css"
+import "./Displays.css";
 
 const CohortDisplay = (props) => {
   let data = props.data.data
@@ -47,51 +47,60 @@ const CohortDisplay = (props) => {
   });
 
   return (
-    <form className="cohortForm-display">
+    <div>Pamela merged incorrectly, so this div is a placeholder while she fixes her stuff on Tuesday</div>
+    // <form className="cohortForm-display">
+    //   <div className="display-info">
+    //     <label className="label display-label">Cohort Name:</label>
+    //     {/* <input type="text" name="cohortName" className="input" /> */}
 
-        <div className="display-info">
-          <label className="label display-label">Cohort Name:</label>
-          {/* <input type="text" name="cohortName" className="input" /> */}
+    //     <div className="display-info">
+    //       <label className="label display-label">Cohort Name:</label>
+    //       {/* <input type="text" name="cohortName" className="input" /> */}
 
-          <div className="input-display">
-            {/* grab correct data from state from props */}
-            {/* {need default fake data so this loads up without an error; currently, it can't read "text" of undefined} */}
-            {task.title}
-          </div>
+    //       <div className="input-display">
+    //         {/* grab correct data from state from props */}
+    //         {/* {need default fake data so this loads up without an error; currently, it can't read "text" of undefined} */}
+    //         {task.title}
+    //       </div>
 
-        </div>
+    //     <div className="input-display">
+    //       {/* grab correct data from state from props */}
+    //       {/* {task.text} */}
+    //     </div>
+    //   </div>
 
-        <div className="display-info">
-          <label className="label display-label">Start Date:</label>
-          <div className="input-display">
-            {/* grab correct data from state from props */}
-            {task.start_date}
-          </div>
-        </div>
+    //     <div className="display-info">
+    //       <label className="label display-label">Start Date:</label>
+    //       <div className="input-display">
+    //         {/* grab correct data from state from props */}
+    //         {task.start_date}
+    //       </div>
+    //     </div>
+    //   </div>
 
-        <div className="display-info">
-          <label className="label display-label">Graduation Date:</label>
-          <div className="input-display">
-            {/* grab correct data from state from props */}
-            {/* {task.end_date} */}
-          </div>
-        </div>
+    //     <div className="display-info">
+    //       <label className="label display-label">Graduation Date:</label>
+    //       <div className="input-display">
+    //         {/* grab correct data from state from props */}
+    //         {/* {task.end_date} */}
+    //       </div>
+    //     </div>
+    //   </div>
 
-      <input type="submit" className="edit" value="Edit" />
-    </form>
+    //   <input type="submit" className="edit" value="Edit" />
+    // </form>
   );
 };
 
 export default CohortDisplay;
 
 // useEffect((props) => {
-  //   console.log("props", props)
-
-  //   // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
-  //   //can i set this up so the dependency array fires if cohortDisply display changes? from props?
-  // }, [])
+//   console.log("props", props)
 
   //Don't need this?:
   //create state for the task to be displayed
 
 
+//   // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
+//   //can i set this up so the dependency array fires if cohortDisply display changes? from props?
+// }, [])
