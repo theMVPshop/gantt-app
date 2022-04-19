@@ -5,6 +5,7 @@ import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
 import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
+import CohortEdit from "../Displays/CohortEdit.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -248,6 +249,7 @@ const Gantt = () => {
           // cohortDisplay={cohortDisplay}
           data={data}
         ></CohortDisplay>
+        <CohortEdit data={data}></CohortEdit>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });

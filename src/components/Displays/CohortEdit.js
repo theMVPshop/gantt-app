@@ -24,7 +24,7 @@ const CohortEdit = (props) => {
 
   gantt.attachEvent("onTaskDblClick", function(id,e){
     //any custom logic here
-    // console.log("double click occured! ID - ", id, "EVENT - ", e)
+    console.log("double click occured! ID - ", id)
     return true;
 // gantt.attachEvent("onTaskDblClick", function(id,e){
 //     const clickedCohortID = id;
