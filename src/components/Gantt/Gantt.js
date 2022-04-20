@@ -30,6 +30,7 @@ const Gantt = () => {
       display: false,
       id: "cohort_0",
     },
+    currentTask: {}
   });
 
   // const [courseFormDisplay, setCourseFormDisplay] = useState({
@@ -236,6 +237,9 @@ const Gantt = () => {
               text: correctTask.text,
             };
             setModalState(copy);
+            break;
+          default:
+            console.log("onTaskClick default");
             break;
         }
       }
