@@ -24,7 +24,7 @@ const CohortEdit = (props) => {
 
   gantt.attachEvent("onTaskDblClick", function(id,e){
     const doubleClickedTask = id;
-    let data = props.data.data.find();
+    // let data = props.data.data.find();
 //     // for (let i = 0; i < props.data.data.length; i++) {
 //     //   console.log("this is i", i)
 //     // }
