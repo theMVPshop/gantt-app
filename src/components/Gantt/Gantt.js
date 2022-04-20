@@ -5,6 +5,7 @@ import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
 import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
+import CohortEdit from "../Displays/CohortEdit.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -22,8 +23,8 @@ const Gantt = () => {
     },
     courseDisplay: {
       display: false,
-      id: "cohort_0",
-      cohortName: "PropsfakeCohortName",
+      id: "course_0",
+      courseName: "PropsfakeCourseName",
     },
     confirmDeleteModal: {
       display: false,
@@ -158,13 +159,6 @@ const Gantt = () => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);
-    //gantt.parse(data);
-
-    gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log(
-        "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
-      );
-    });
 
     //gantt custom columns
     gantt.config.columns = [
@@ -225,7 +219,30 @@ const Gantt = () => {
         width: 40,
       },
     ];
-
+    //This runs on a double click of a task  (bar on calendar or column on left)
+    gantt.attachEvent("onTaskDblClick", function (id, e) {
+      console.log("You double clicked a task with this id: ", id);
+      console.log("data in double click: ", data.data);
+      //func to find task that matches clicked task's id
+      // function getCurrentTask() {
+      //   console.log("double click. finding current task...")
+      //   for (let i = 0; i < data.data.length; i++) {
+      //     console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
+      //     if(data.data[i].id == id ){
+      //       console.log("THEY MATCH!")
+      //       //copy current modal state
+      //       var copy = copy
+      //       //add current data object to copy
+      //       copy.currentTask = data.data[i]
+      //       //set modal state with currentTask data
+      //       setModalState(copy)
+      //       console.log("modalState after getting current task: ", modalState)
+      //       return
+      //     }
+      //   }
+      // }
+      // getCurrentTask()
+    });
     //onclick listener for custom buttons in row
     gantt.attachEvent("onTaskClick", function (id, e) {
       var button = e.target.closest("[data-action]");
@@ -263,6 +280,9 @@ const Gantt = () => {
             };
             setModalState(copy);
             break;
+          default:
+            console.log("onTaskClick default");
+            break;
         }
       }
     });
@@ -294,9 +314,19 @@ const Gantt = () => {
           data={data}
         ></CourseDisplay> */}
         <CohortDisplay
-          // cohortDisplay={cohortDisplay}
+          modalState={modalState}
+          setModalState={setModalState}
+          setData={setData}
           data={data}
         ></CohortDisplay>
+        {/* Course display form with x in top right corner */}
+        <CourseDisplay
+          modalState={modalState}
+          setModalState={setModalState}
+          setData={setData}
+          data={data}
+        ></CourseDisplay>
+        <CohortEdit data={data}></CohortEdit>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
