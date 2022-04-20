@@ -34,8 +34,20 @@ const CourseDisplay = (props) => {
       <form
         className="courseForm-display"
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
+        style={
+          props.modalState.courseDisplay.display
+            ? { display: "none" }
+            : { display: "flex" }
+        }
       >
-        <Exit className="exit"></Exit>
+        <Exit className="exit"
+        onClick={() => {
+          console.log("display",props.modalState.courseDisplay.display)
+          const copy = props.modalState
+          copy.courseDisplay.display = !copy.courseDisplay.display
+          props.setModalState(copy)
+        }}
+        ></Exit>
         <div className="group-container">
         <div className="group">
         <div className="display-info">
