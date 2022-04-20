@@ -1,5 +1,6 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useEffect, useState } from "react";
+import { ReactComponent as Exit } from "../../images/cancel.svg"
 
 const CourseForm = (props) => {
   // useEffect(() => {
@@ -77,6 +78,7 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
+        <Exit className="exit-button"></Exit>
         <div className="group-container">
           <div className="group">
             <div className="info">

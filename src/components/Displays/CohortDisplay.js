@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import { useForm } from "react-hook-form";
+import { ReactComponent as Exit } from "../../images/cancel.svg"
 
 import "./Displays.css"
 
@@ -48,14 +49,15 @@ const CohortDisplay = (props) => {
   return (
     <form className="cohortForm-display">
 
+        <Exit className="exit"></Exit>
         <div className="display-info">
           <label className="label display-label">Cohort Name:</label>
           {/* <input type="text" name="cohortName" className="input" /> */}
 
-          <div className="input-display">
+          {/* <div className="input-display"> */}
             {/* grab correct data from state from props */}
-            {task.text}
-          </div>
+            {/* {task.text} */}
+          {/* </div> */}
 
         </div>
 
