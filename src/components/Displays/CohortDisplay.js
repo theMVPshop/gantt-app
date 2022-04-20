@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import { useForm } from "react-hook-form";
+import { ReactComponent as Exit } from "../../images/cancel.svg"
 
 import "./Displays.css";
 

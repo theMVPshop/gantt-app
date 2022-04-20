@@ -294,9 +294,18 @@ const Gantt = () => {
           data={data}
         ></CourseDisplay> */}
         <CohortDisplay
-          // cohortDisplay={cohortDisplay}
-          data={data}
+           modalState={modalState}
+           setModalState={setModalState}
+           setData={setData}
+           data={data}
         ></CohortDisplay>
+        {/* Course display form with x in top right corner */}
+        <CourseDisplay
+           modalState={modalState}
+           setModalState={setModalState}
+           setData={setData}
+           data={data}
+        ></CourseDisplay>
         <CohortEdit data={data}></CohortEdit>
         {/*<button
           onClick={() => {
