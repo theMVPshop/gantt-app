@@ -73,7 +73,7 @@ const CourseForm = (props) => {
       <form
         className="courseForm"
         style={
-          props.courseDisplay.display
+          props.modalState.addCourseForm.display
             ? { display: "flex" }
             : { display: "none" }
         }

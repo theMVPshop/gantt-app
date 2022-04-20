@@ -44,7 +44,7 @@ const CohortForm = (props) => {
     <form
       className="cohortForm"
       style={
-        props.cohortFormDisplay.display
+        props.modalState.addCohortForm.display
           ? { display: "flex" }
           : { display: "none" }
       }

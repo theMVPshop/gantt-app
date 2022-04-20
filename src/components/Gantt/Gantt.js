@@ -5,6 +5,7 @@ import CohortForm from "../Forms/CohortForm.js";
 import CourseDisplay from "../Displays/CourseDisplay.js";
 import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
+import CohortEdit from "../Displays/CohortEdit.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -12,32 +13,52 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [courseFormDisplay, setCourseFormDisplay] = useState({
-    display: false,
-    id: "cohort_0",
+  const [modalState, setModalState] = useState({
+    addCourseForm: { display: false, id: "cohort_0" },
+    addCohortForm: { display: false, id: "cohort_0" },
+    cohortDisplay: {
+      display: false,
+      id: "cohort_0",
+      cohortName: "PropsfakeCohortName",
+    },
+    courseDisplay: {
+      display: false,
+      id: "course_0",
+      courseName: "PropsfakeCourseName",
+    },
+    confirmDeleteModal: {
+      display: false,
+      id: "cohort_0",
+    },
+    currentTask: {}
   });
 
-  const [cohortFormDisplay, setCohortFormDisplay] = useState({
-    display: false,
-    id: 0,
-  });
+  // const [courseFormDisplay, setCourseFormDisplay] = useState({
+  //   display: false,
+  //   id: "cohort_0",
+  // });
 
-  const [cohortDisplay, setCohortDisplay] = useState({
-    display: false,
-    id: 0,
-    cohortName: "PropsfakeCohortName",
-  });
+  // const [cohortFormDisplay, setCohortFormDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  // });
 
-  const [courseDisplay, setCourseDisplay] = useState({
-    display: false,
-    id: 0,
-    courseName: "PropsfakeCourseName",
-  });
+  // const [cohortDisplay, setCohortDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  //   cohortName: "PropsfakeCohortName",
+  // });
 
-  const [confirmDeleteModal, setConfirmDeleteModal] = useState({
-    display: false,
-    id: "cohort_0",
-  });
+  // const [courseDisplay, setCourseDisplay] = useState({
+  //   display: false,
+  //   id: 0,
+  //   courseName: "PropsfakeCourseName",
+  // });
+
+  // const [confirmDeleteModal, setConfirmDeleteModal] = useState({
+  //   display: false,
+  //   id: "cohort_0",
+  // });
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -94,9 +115,8 @@ const Gantt = () => {
     links: [{ id: 1, source: 1, target: 2, type: "0" }],
   }
    */
-  
-  const [data, setData] = useState({data : [], links : []});
 
+  const [data, setData] = useState({ data: [], links: [] });
 
   const [newTask, setNewTask] = useState({
     id: 0,
@@ -111,42 +131,43 @@ const Gantt = () => {
     gantt.parse(data);
     console.log(data);
   }, []);
- 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/tasks/')
-      .then(res => {
-        res.data.forEach(obj => {
-          obj.start_date = obj.start_date.slice(0,10)
-          obj.end_date = obj.end_date.slice(0,10)
-          obj.open = true
-        })
-        setData({data: res.data, links : []})
+    axios
+      .get("http://localhost:4000/tasks/")
+      .then((res) => {
+        res.data.forEach((obj) => {
+          obj.start_date = obj.start_date.slice(0, 10);
+          obj.end_date = obj.end_date.slice(0, 10);
+          obj.open = true;
+        });
+        setData({ data: res.data, links: [] });
       })
-      .catch(err => console.log("error", err))
+      .catch((err) => console.log("error", err));
   }, []);
 
   useEffect(() => {
-    console.log("DATA", data)
+    console.log("DATA", data);
     gantt.parse(data);
   }, [data]);
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
+    gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);
-    // gantt.parse(data);
-
+    //gantt.parse(data);
 
     gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log("This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up")
-      
+      console.log(
+        "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
+      );
     });
 
     //gantt custom columns
     gantt.config.columns = [
       {
-        name: "text",
+        name: "title",
         label: "Task Name",
         width: "150",
         tree: true,
@@ -199,21 +220,26 @@ const Gantt = () => {
       var button = e.target.closest("[data-action]");
       if (button) {
         var action = button.getAttribute("data-action");
+        var copy = modalState;
         switch (action) {
           case "edit":
             console.log(id);
             break;
           case "add":
-            setCourseFormDisplay({ display: true, id: id });
+            copy.addCourseForm = { display: true, id: id };
+            setModalState(copy);
             break;
           case "delete":
             let correctTask = data.data.find((element) => element.id == id);
-            console.log(correctTask);
-            setConfirmDeleteModal({
+            copy.confirmDeleteModal = {
               display: true,
               id: id,
               text: correctTask.text,
-            });
+            };
+            setModalState(copy);
+            break;
+          default:
+            console.log("onTaskClick default");
             break;
         }
       }
@@ -224,19 +250,20 @@ const Gantt = () => {
     <div>
       <div className="formCont" id="formCont">
         <CourseForm
-          setCourseFormDisplay={setCourseFormDisplay}
-          courseDisplay={courseFormDisplay}
+          modalState={modalState}
+          setModalState={setModalState}
           setData={setData}
           data={data}
         ></CourseForm>
         <CohortForm
-          cohortFormDisplay={cohortFormDisplay}
+          modalState={modalState}
+          setModalState={setModalState}
           setData={setData}
           data={data}
         ></CohortForm>
         <ConfirmDelete
-          confirmDeleteModal={confirmDeleteModal}
-          setConfirmDeleteModal={setConfirmDeleteModal}
+          modalState={modalState}
+          setModalState={setModalState}
           data={data}
         ></ConfirmDelete>
         {/* <CourseDisplay
@@ -244,11 +271,11 @@ const Gantt = () => {
           // courseDisplay={courseDisplay}
           data={data}
         ></CourseDisplay> */}
-        <CohortDisplay 
+        <CohortDisplay
           // cohortDisplay={cohortDisplay}
           data={data}
-        >
-        </CohortDisplay>
+        ></CohortDisplay>
+        <CohortEdit data={data}></CohortEdit>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
@@ -270,7 +297,6 @@ const Gantt = () => {
         >
           ShowCourse DISPLAY
         </button>*/}
- 
       </div>
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>

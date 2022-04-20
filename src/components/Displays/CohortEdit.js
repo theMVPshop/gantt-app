@@ -1,10 +1,10 @@
+import { click } from "@testing-library/user-event/dist/click";
 import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 
 // copied over code from CohortForm***
 const CohortEdit = (props) => {
-  // console.log("CohortEdit Props Data:", props.data.data)
-  console.log("props here---", props.data.data)
+  // console.log("props here---", props.data.data)
 
   const [editedData, setEditedData] = useState({
     id: 0,
@@ -23,12 +23,8 @@ const CohortEdit = (props) => {
   }
 
   gantt.attachEvent("onTaskDblClick", function(id,e){
-    //any custom logic here
-    // console.log("double click occured! ID - ", id, "EVENT - ", e)
-    return true;
-// gantt.attachEvent("onTaskDblClick", function(id,e){
-//     const clickedCohortID = id;
-//     const info = props.data.data.
+    const doubleClickedTask = id;
+    let data = props.data.data.find();
 //     // for (let i = 0; i < props.data.data.length; i++) {
 //     //   console.log("this is i", i)
 //     // }
