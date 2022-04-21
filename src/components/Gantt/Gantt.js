@@ -147,8 +147,8 @@ const Gantt = () => {
       .get("http://localhost:4000/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
-          obj.start_date = obj.start_date.slice(0, 19);
-          obj.end_date = obj.end_date.slice(0, 19);
+          obj.start_date = obj.start_date.slice(0, 10);
+          obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
           // console logging all objects which return date in correct string format and length
           console.log("objects", obj);
