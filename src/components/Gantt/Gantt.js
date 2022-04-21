@@ -33,6 +33,15 @@ const Gantt = () => {
     currentTask: {},
   });
 
+  //function for updating display state provided to components
+  const handleModalDisplayState = (value) => {
+    setModalState((prevState) => {
+      let stateCopy = { ...prevState };
+      stateCopy[value].display = true;
+      return stateCopy;
+    });
+  };
+
   // const [courseFormDisplay, setCourseFormDisplay] = useState({
   //   display: false,
   //   id: "cohort_0",
@@ -167,6 +176,59 @@ const Gantt = () => {
     gantt.parse(data);
   }, [data]);
 
+  gantt.attachEvent("onTaskClick", function (id, e) {
+    var button = e.target.closest("[data-action]");
+    if (button) {
+      var action = button.getAttribute("data-action");
+      var copy = modalState;
+      var correctTask = {};
+      let dataCopy = { ...data };
+      // var correctTask = data.data.find((element) => element.id == id);
+      for (let i = 0; i < dataCopy.data.length; i++) {
+        if (dataCopy.data[i].id == id) {
+          dataCopy.currentTask = dataCopy.data[i];
+          correctTask = dataCopy.currentTask;
+          setModalState(dataCopy);
+          return correctTask;
+        }
+      }
+      setModalState();
+      switch (action) {
+        case "view":
+          for (let i = 0; i < data.data.length; i++) {
+            let courseIDArray = data.data[i].id.split("_");
+            if (courseIDArray[0] === "course") {
+              copy.courseDisplay.display = "flex";
+              return copy;
+            } else if (courseIDArray[0 === "cohort"]) {
+              copy.cohortDisplay.display = "flex";
+              return copy;
+            }
+          }
+          setModalState(copy);
+          break;
+        case "edit":
+          console.log(id);
+          break;
+        case "add":
+          copy.addCourseForm = { display: true, id: id };
+          setModalState(copy);
+          break;
+        case "delete":
+          copy.confirmDeleteModal = {
+            display: true,
+            id: id,
+            text: correctTask.text,
+          };
+          setModalState(copy);
+          break;
+        default:
+          console.log("onTaskClick default");
+          break;
+      }
+    }
+  });
+
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
@@ -240,48 +302,6 @@ const Gantt = () => {
       },
     ];
     //onclick listener for custom buttons in row
-    gantt.attachEvent("onTaskClick", function (id, e) {
-      var button = e.target.closest("[data-action]");
-      if (button) {
-        var action = button.getAttribute("data-action");
-        var copy = modalState;
-        var correctTask = data.data.find((element) => element.id == id);
-        console.log(correctTask);
-        switch (action) {
-          case "view":
-            for (let i = 0; i < data.data.length; i++) {
-              let courseIDArray = data.data[i].id.split("_");
-              if (courseIDArray[0] === "course") {
-                copy.courseDisplay.display = "flex";
-              } else if (courseIDArray[0 === "cohort"]) {
-                copy.cohortDisplay.display = "flex";
-              }
-            }
-            copy.currentTask = correctTask;
-            console.log(copy);
-            setModalState(copy);
-            break;
-          case "edit":
-            console.log(id);
-            break;
-          case "add":
-            copy.addCourseForm = { display: true, id: id };
-            setModalState(copy);
-            break;
-          case "delete":
-            copy.confirmDeleteModal = {
-              display: true,
-              id: id,
-              text: correctTask.text,
-            };
-            setModalState(copy);
-            break;
-          default:
-            console.log("onTaskClick default");
-            break;
-        }
-      }
-    });
   });
 
 //This runs on a double click of a task  (bar on calendar or column on left)
@@ -343,10 +363,17 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
         {/* Course display form with x in top right corner */}
         <CourseDisplay
           modalState={modalState}
-          setModalState={setModalState}
+          handleModalDisplayState={handleModalDisplayState}
           setData={setData}
           data={data}        ></CourseDisplay>
         <CohortEdit data={data}></CohortEdit>
+        <button
+          onClick={() => {
+            setModalState();
+          }}
+        >
+          test
+        </button>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
