@@ -6,12 +6,7 @@ import { ReactComponent as Exit } from "../../images/cancel.svg"
 import "./Displays.css";
 
 const CohortDisplay = (props) => {
-  let data = props.data.data
-  // console.log("data, props.data.data", data, props.data.data)
-  const[task, setTask] = useState("")
-  const [typeOfTask, setTypeOfTask] = useState("")
-  
- 
+let task = props.modalState.currentTask
 
   return (
     <form className="cohortForm-display">
@@ -26,13 +21,13 @@ const CohortDisplay = (props) => {
       <div className="display-info">
         <label className="label display-label">Start Date:</label>
         <div className="input-display">
-            {task.start_date}
+            {/* {task.start_date} */}
         </div>
       </div>
         <div className="display-info">
           <label className="label display-label">Graduation Date:</label>
           <div className="input-display">
-            {task.end_date}
+            {/* {task.end_date} */}
           </div>
       </div>
       <input type="submit" className="edit" value="Edit" />

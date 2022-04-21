@@ -17,7 +17,7 @@ const Gantt = () => {
     addCourseForm: { display: false, id: "cohort_0" },
     addCohortForm: { display: false, id: "cohort_0" },
     cohortDisplay: {
-      display: false,
+      display: true,
       id: "cohort_0",
       cohortName: "PropsfakeCohortName",
     },
@@ -30,7 +30,10 @@ const Gantt = () => {
       display: false,
       id: "cohort_0",
     },
-    currentTask: {}
+    currentTask: {
+      title: "boo"
+
+    }
   });
 
 
@@ -209,30 +212,7 @@ const Gantt = () => {
         width: 40,
       },
     ];
-//This runs on a double click of a task  (bar on calendar or column on left)
-    gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log("You double clicked a task with this id: ", id)
-      console.log("data in double click: ", data.data)
-      //func to find task that matches clicked task's id
-      // function getCurrentTask() {
-      //   console.log("double click. finding current task...")
-      //   for (let i = 0; i < data.data.length; i++) {
-      //     console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
-      //     if(data.data[i].id == id ){
-      //       console.log("THEY MATCH!")
-      //       //copy current modal state
-      //       var copy = copy
-      //       //add current data object to copy
-      //       copy.currentTask = data.data[i]
-      //       //set modal state with currentTask data
-      //       setModalState(copy)
-      //       console.log("modalState after getting current task: ", modalState)
-      //       return 
-      //     }
-      //   }
-      // }
-      // getCurrentTask()
-    });
+
     //onclick listener for custom buttons in row
     gantt.attachEvent("onTaskClick", function (id, e) {
       var button = e.target.closest("[data-action]");
@@ -266,7 +246,30 @@ const Gantt = () => {
    
   });
 
-   
+//This runs on a double click of a task  (bar on calendar or column on left)
+gantt.attachEvent("onTaskDblClick", function (id, e) {
+  console.log("You double clicked a task with this id: ", id)
+  console.log("data in double click: ", data)
+  // func to find task that matches clicked task's id
+  function getCurrentTask() {
+    console.log("double click. finding current task...")
+    for (let i = 0; i < data.data.length; i++) {
+      console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
+      if(data.data[i].id == id ){
+        console.log("THEY MATCH!")
+        //copy current modal state
+        setModalState((prevState)=> {
+          var copy = {...prevState}
+          //add current data object to copy
+          copy.currentTask = data.data[i]
+          return copy
+        })
+        return
+      }
+    }
+  }
+  getCurrentTask()
+});
 
   return (
     <div>
