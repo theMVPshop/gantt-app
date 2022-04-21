@@ -30,12 +30,15 @@ const Gantt = () => {
       display: false,
       id: "cohort_0",
     },
+<<<<<<< HEAD
     currentTask: {
       title: "boo"
 
     }
+=======
+    currentTask: {},
+>>>>>>> 4c8ee7967b58e5cfec7a3ea884a8d89d2210cf48
   });
-
 
   // const [courseFormDisplay, setCourseFormDisplay] = useState({
   //   display: false,
@@ -76,6 +79,9 @@ const Gantt = () => {
 
   var editIcon =
     "<svg id='editIcon' data-action='edit' width='20' height='20' xmlns='http://www.w3.org/2000/svg' version='1.1' xmlnsXlink='http://www.w3.org/1999/xlink' xmlnsSvgjs='http://svgjs.com/svgjs'><defs id='SvgjsDefs1002'></defs><g id='SvgjsG1008'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20'><path d='M22,7.24a1,1,0,0,0-.29-.71L17.47,2.29A1,1,0,0,0,16.76,2a1,1,0,0,0-.71.29L13.22,5.12h0L2.29,16.05a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1H7.24A1,1,0,0,0,8,21.71L18.87,10.78h0L21.71,8a1.19,1.19,0,0,0,.22-.33,1,1,0,0,0,0-.24.7.7,0,0,0,0-.14ZM6.83,20H4V17.17l9.93-9.93,2.83,2.83ZM18.17,8.66,15.34,5.83l1.42-1.41,2.82,2.82Z' fill='#080000' class='color000 svgShape'></path></svg></g></svg>";
+
+  var viewIcon =
+    "<?xml version='1.0' ?><svg enable-background='new 0 0 32 32' height='32px' data-action='view' id='viewIcon' version='1.1' viewBox='0 0 32 32' width='32px' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:cc='http://creativecommons.org/ns#' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:inkscape='http://www.inkscape.org/namespaces/inkscape' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:sodipodi='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd' xmlns:svg='http://www.w3.org/2000/svg'><g id='background'><rect fill='none' height='32' width='32'/></g><g id='view'><circle cx='16' cy='16' r='6'/><path d='M16,6C6,6,0,15.938,0,15.938S6,26,16,26s16-10,16-10S26,6,16,6z M16,24c-8.75,0-13.5-8-13.5-8S7.25,8,16,8s13.5,8,13.5,8   S24.75,24,16,24z'/></g></svg>";
 
   //state for storing data, currently filled with dummy dat
 
@@ -160,7 +166,6 @@ const Gantt = () => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);
-    //gantt.parse(data);
 
     //gantt custom columns
     gantt.config.columns = [
@@ -194,6 +199,15 @@ const Gantt = () => {
         width: 40,
       },
       {
+        name: "view",
+        label: "view",
+        template: () => {
+          return viewIcon;
+        },
+        align: "center",
+        width: 40,
+      },
+      {
         name: "Edit",
         label: "Edit",
         align: "center",
@@ -212,14 +226,28 @@ const Gantt = () => {
         width: 40,
       },
     ];
-
     //onclick listener for custom buttons in row
     gantt.attachEvent("onTaskClick", function (id, e) {
       var button = e.target.closest("[data-action]");
       if (button) {
         var action = button.getAttribute("data-action");
         var copy = modalState;
+        var correctTask = data.data.find((element) => element.id == id);
+        console.log(correctTask);
         switch (action) {
+          case "view":
+            for (let i = 0; i < data.data.length; i++) {
+              let courseIDArray = data.data[i].id.split("_");
+              if (courseIDArray[0] === "course") {
+                copy.courseDisplay.display = "flex";
+              } else if (courseIDArray[0 === "cohort"]) {
+                copy.cohortDisplay.display = "flex";
+              }
+            }
+            copy.currentTask = correctTask;
+            console.log(copy);
+            setModalState(copy);
+            break;
           case "edit":
             console.log(id);
             break;
@@ -228,7 +256,6 @@ const Gantt = () => {
             setModalState(copy);
             break;
           case "delete":
-            let correctTask = data.data.find((element) => element.id == id);
             copy.confirmDeleteModal = {
               display: true,
               id: id,
@@ -242,8 +269,6 @@ const Gantt = () => {
         }
       }
     });
-
-   
   });
 
 //This runs on a double click of a task  (bar on calendar or column on left)
@@ -297,18 +322,17 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
           data={data}
         ></CourseDisplay> */}
         <CohortDisplay
-           modalState={modalState}
-           setModalState={setModalState}
-           setData={setData}
-           data={data}
+          modalState={modalState}
+          setModalState={setModalState}
+          setData={setData}
+          data={data}
         ></CohortDisplay>
         {/* Course display form with x in top right corner */}
         <CourseDisplay
-           modalState={modalState}
-           setModalState={setModalState}
-           setData={setData}
-           data={data}
-        ></CourseDisplay>
+          modalState={modalState}
+          setModalState={setModalState}
+          setData={setData}
+          data={data}        ></CourseDisplay>
         <CohortEdit data={data}></CohortEdit>
         {/*<button
           onClick={() => {
