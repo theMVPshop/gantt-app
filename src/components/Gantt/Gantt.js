@@ -17,7 +17,7 @@ const Gantt = () => {
     addCourseForm: { display: false, id: "cohort_0" },
     addCohortForm: { display: false, id: "cohort_0" },
     cohortDisplay: {
-      display: false,
+      display: true,
       id: "cohort_0",
       cohortName: "PropsfakeCohortName",
     },
@@ -144,15 +144,28 @@ const Gantt = () => {
     console.log(data);
   }, []);
 
+  // maybe try fetch function then call it in useEffect
+  // dateToStr function for gantt
+  // let dateToStr = gantt.data.date_to_str("%Y-%m-%d %H:%i");
+  // gantt.templates.format_date = function() {
+  //     return dateToStr ();
+  //   }
+
   useEffect(() => {
     axios
       .get("http://localhost:4000/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
-          obj.start_date = obj.start_date.slice(0, 10);
-          obj.end_date = obj.end_date.slice(0, 10);
+          obj.start_date = obj.start_date.slice(0, 19);
+          obj.end_date = obj.end_date.slice(0, 19);
           obj.open = true;
+          // console logging all objects which return date in correct string format and length
+          console.log("objects", obj);
+          // setting data here returns date in following format - '2023-02-01T06:00:00.000Z'
+          // also creates error - Invalid start_date argument for getDuration method
+          // setData({ data: res.data, links: [] });
         });
+        // here is where the dates change back to their original format
         setData({ data: res.data, links: [] });
       })
       .catch((err) => console.log("error", err));
@@ -221,6 +234,13 @@ const Gantt = () => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);
+    // gantt.parse(data);
+
+    gantt.attachEvent("onTaskDblClick", function (id, e) {
+      console.log(
+        "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
+      );
+    });
 
     //gantt custom columns
     gantt.config.columns = [
@@ -281,32 +301,33 @@ const Gantt = () => {
         width: 40,
       },
     ];
-    //This runs on a double click of a task  (bar on calendar or column on left)
-    gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log("You double clicked a task with this id: ", id);
-      console.log("data in double click: ", data.data);
-      //func to find task that matches clicked task's id
-      // function getCurrentTask() {
-      //   console.log("double click. finding current task...")
-      //   for (let i = 0; i < data.data.length; i++) {
-      //     console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
-      //     if(data.data[i].id == id ){
-      //       console.log("THEY MATCH!")
-      //       //copy current modal state
-      //       var copy = copy
-      //       //add current data object to copy
-      //       copy.currentTask = data.data[i]
-      //       //set modal state with currentTask data
-      //       setModalState(copy)
-      //       console.log("modalState after getting current task: ", modalState)
-      //       return
-      //     }
-      //   }
-      // }
-      // getCurrentTask()
-    });
     //onclick listener for custom buttons in row
   });
+
+//This runs on a double click of a task  (bar on calendar or column on left)
+gantt.attachEvent("onTaskDblClick", function (id, e) {
+  console.log("You double clicked a task with this id: ", id)
+  console.log("data in double click: ", data)
+  // func to find task that matches clicked task's id
+  function getCurrentTask() {
+    console.log("double click. finding current task...")
+    for (let i = 0; i < data.data.length; i++) {
+      console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
+      if(data.data[i].id == id ){
+        console.log("THEY MATCH!")
+        //copy current modal state
+        setModalState((prevState)=> {
+          var copy = {...prevState}
+          //add current data object to copy
+          copy.currentTask = data.data[i]
+          return copy
+        })
+        return
+      }
+    }
+  }
+  getCurrentTask()
+});
 
   return (
     <div>
@@ -344,8 +365,7 @@ const Gantt = () => {
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
-          data={data}
-        ></CourseDisplay>
+          data={data}        ></CourseDisplay>
         <CohortEdit data={data}></CohortEdit>
         <button
           onClick={() => {
