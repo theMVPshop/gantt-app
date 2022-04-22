@@ -38,7 +38,11 @@ const Gantt = () => {
   const handleModalDisplayState = (value, obj) => {
     setModalState((prevState) => {
       let stateCopy = { ...prevState };
+<<<<<<< HEAD
       stateCopy[value] = obj;
+=======
+      stateCopy[value].display = false;
+>>>>>>> 0498c2241c361b136021a6f36bf610fd7a8fb017
       return stateCopy;
     });
   };
@@ -312,33 +316,30 @@ const Gantt = () => {
     //onclick listener for custom buttons in row
   });
 
-  //This runs on a double click of a task  (bar on calendar or column on left)
-  gantt.attachEvent("onTaskDblClick", function (id, e) {
-    console.log("You double clicked a task with this id: ", id);
-    console.log("data in double click: ", data);
-    // func to find task that matches clicked task's id
-    function getCurrentTask() {
-      console.log("double click. finding current task...");
-      for (let i = 0; i < data.data.length; i++) {
-        console.log(
-          "getCurrentTask(), data[i].id in for loop: ",
-          data.data[i].id
-        );
-        if (data.data[i].id == id) {
-          console.log("THEY MATCH!");
-          //copy current modal state
-          setModalState((prevState) => {
-            var copy = { ...prevState };
-            //add current data object to copy
-            copy.currentTask = data.data[i];
-            return copy;
-          });
-          return;
-        }
+//This runs on a double click of a task  (bar on calendar or column on left)
+gantt.attachEvent("onTaskDblClick", function (id, e) {
+  console.log("You double clicked a task with this id: ", id)
+  console.log("data in double click: ", data)
+  // func to find task that matches clicked task's id
+  function getCurrentTask() {
+    console.log("double click. finding current task...")
+    for (let i = 0; i < data.data.length; i++) {
+      console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
+      if(data.data[i].id == id ){
+        console.log("THEY MATCH!")
+        //copy current modal state
+        setModalState((prevState)=> {
+          var copy = {...prevState}
+          //add current data object to copy
+          copy.currentTask = data.data[i]
+          copy.courseDisplay.display = true
+          return copy
+        })
+        return
       }
     }
     getCurrentTask();
-  });
+  }
 
   return (
     <div>
