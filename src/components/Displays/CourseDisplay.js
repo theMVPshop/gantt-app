@@ -30,6 +30,11 @@ const CourseDisplay = (props) => {
     );
     //dynamically render the form here
   };
+
+  useEffect(() => {
+    console.log(props.modalState.currentTask);
+  }, [props.modalState.currentTask]);
+
   return (
     <div>
       <form
@@ -37,14 +42,18 @@ const CourseDisplay = (props) => {
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
         style={
           props.modalState.courseDisplay.display
-            ? { display: "none" }
-            : { display: "flex" }
+            ? { display: "flex" }
+            : { display: "none" }
         }
       >
         <Exit
           className="exit"
           onClick={() => {
-            props.handleModalDisplayState("courseDisplay");
+            props.handleModalDisplayState("courseDisplay", {
+              display: false,
+              id: "course_0",
+              courseName: "PropsfakeCourseName",
+            });
           }}
         ></Exit>
         <div className="group-container">

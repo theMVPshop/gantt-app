@@ -17,7 +17,7 @@ const Gantt = () => {
     addCourseForm: { display: false, id: "cohort_0" },
     addCohortForm: { display: false, id: "cohort_0" },
     cohortDisplay: {
-      display: true,
+      display: false,
       id: "cohort_0",
       cohortName: "PropsfakeCohortName",
     },
@@ -29,15 +29,16 @@ const Gantt = () => {
     confirmDeleteModal: {
       display: false,
       id: "cohort_0",
+      title: "",
     },
     currentTask: {},
   });
 
   //function for updating display state provided to components
-  const handleModalDisplayState = (value) => {
+  const handleModalDisplayState = (value, obj) => {
     setModalState((prevState) => {
       let stateCopy = { ...prevState };
-      stateCopy[value].display = true;
+      stateCopy[value] = obj;
       return stateCopy;
     });
   };
@@ -156,11 +157,11 @@ const Gantt = () => {
       .get("http://localhost:4000/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
-          obj.start_date = obj.start_date.slice(0, 19);
-          obj.end_date = obj.end_date.slice(0, 19);
+          obj.start_date = obj.start_date.slice(0, 10);
+          obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
           // console logging all objects which return date in correct string format and length
-          console.log("objects", obj);
+          // console.log("objects", obj);
           // setting data here returns date in following format - '2023-02-01T06:00:00.000Z'
           // also creates error - Invalid start_date argument for getDuration method
           // setData({ data: res.data, links: [] });
@@ -180,32 +181,34 @@ const Gantt = () => {
     var button = e.target.closest("[data-action]");
     if (button) {
       var action = button.getAttribute("data-action");
-      var copy = modalState;
-      var correctTask = {};
-      let dataCopy = { ...data };
-      // var correctTask = data.data.find((element) => element.id == id);
-      for (let i = 0; i < dataCopy.data.length; i++) {
-        if (dataCopy.data[i].id == id) {
-          dataCopy.currentTask = dataCopy.data[i];
-          correctTask = dataCopy.currentTask;
-          setModalState(dataCopy);
-          return correctTask;
-        }
-      }
-      setModalState();
+      var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
+      var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
+      var taskIDArray = id.split("_");
       switch (action) {
         case "view":
-          for (let i = 0; i < data.data.length; i++) {
-            let courseIDArray = data.data[i].id.split("_");
-            if (courseIDArray[0] === "course") {
-              copy.courseDisplay.display = "flex";
-              return copy;
-            } else if (courseIDArray[0 === "cohort"]) {
-              copy.cohortDisplay.display = "flex";
-              return copy;
+          for (let i = 0; i < dataCopy.data.length; i++) {
+            if (taskIDArray[0] === "course") {
+              //check if clicked task is course
+              copy.courseDisplay.display = "flex"; //if true set copy of state display to flex
+              if (dataCopy.data[i].id == id) {
+                //if clicked task id is equal to the current i data id property
+                copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
+                setModalState(copy); //set modal state to copy
+                return;
+              }
+              setModalState(copy);
+            } else if (taskIDArray[0] === "cohort") {
+              //check if clicked task is cohort
+              copy.cohortDisplay.display = "flex"; //if true set copy of state display to flex
+              if (dataCopy.data[i].id == id) {
+                //if clicked task id is equal to the current i data id property
+                copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
+                setModalState(copy); //set modal state to copy
+                return;
+              }
             }
           }
-          setModalState(copy);
+          // setModalState(copy);
           break;
         case "edit":
           console.log(id);
@@ -215,12 +218,17 @@ const Gantt = () => {
           setModalState(copy);
           break;
         case "delete":
-          copy.confirmDeleteModal = {
-            display: true,
-            id: id,
-            text: correctTask.text,
-          };
-          setModalState(copy);
+          for (let i = 0; i < dataCopy.data.length; i++) {
+            if (dataCopy.data[i].id == id) {
+              copy.confirmDeleteModal = {
+                display: true,
+                id: id,
+                title: dataCopy.data[i].title,
+              };
+              setModalState(copy);
+              return;
+            }
+          }
           break;
         default:
           console.log("onTaskClick default");
@@ -304,30 +312,33 @@ const Gantt = () => {
     //onclick listener for custom buttons in row
   });
 
-//This runs on a double click of a task  (bar on calendar or column on left)
-gantt.attachEvent("onTaskDblClick", function (id, e) {
-  console.log("You double clicked a task with this id: ", id)
-  console.log("data in double click: ", data)
-  // func to find task that matches clicked task's id
-  function getCurrentTask() {
-    console.log("double click. finding current task...")
-    for (let i = 0; i < data.data.length; i++) {
-      console.log("getCurrentTask(), data[i].id in for loop: ", data.data[i].id)
-      if(data.data[i].id == id ){
-        console.log("THEY MATCH!")
-        //copy current modal state
-        setModalState((prevState)=> {
-          var copy = {...prevState}
-          //add current data object to copy
-          copy.currentTask = data.data[i]
-          return copy
-        })
-        return
+  //This runs on a double click of a task  (bar on calendar or column on left)
+  gantt.attachEvent("onTaskDblClick", function (id, e) {
+    console.log("You double clicked a task with this id: ", id);
+    console.log("data in double click: ", data);
+    // func to find task that matches clicked task's id
+    function getCurrentTask() {
+      console.log("double click. finding current task...");
+      for (let i = 0; i < data.data.length; i++) {
+        console.log(
+          "getCurrentTask(), data[i].id in for loop: ",
+          data.data[i].id
+        );
+        if (data.data[i].id == id) {
+          console.log("THEY MATCH!");
+          //copy current modal state
+          setModalState((prevState) => {
+            var copy = { ...prevState };
+            //add current data object to copy
+            copy.currentTask = data.data[i];
+            return copy;
+          });
+          return;
+        }
       }
     }
-  }
-  getCurrentTask()
-});
+    getCurrentTask();
+  });
 
   return (
     <div>
@@ -347,6 +358,7 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
         <ConfirmDelete
           modalState={modalState}
           setModalState={setModalState}
+          handleModalDisplayState={handleModalDisplayState}
           data={data}
         ></ConfirmDelete>
         {/* <CourseDisplay
@@ -357,6 +369,7 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
         <CohortDisplay
           modalState={modalState}
           setModalState={setModalState}
+          handleModalDisplayState={handleModalDisplayState}
           setData={setData}
           data={data}
         ></CohortDisplay>
@@ -365,7 +378,8 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
-          data={data}        ></CourseDisplay>
+          data={data}
+        ></CourseDisplay>
         <CohortEdit data={data}></CohortEdit>
         <button
           onClick={() => {

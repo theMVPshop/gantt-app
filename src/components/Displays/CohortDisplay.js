@@ -6,14 +6,11 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Displays.css";
 
 const CohortDisplay = (props) => {
-<<<<<<< HEAD
-  let data = props.data.data;
-  // console.log("data, props.data.data", data, props.data.data)
-  const [task, setTask] = useState("");
-  const [typeOfTask, setTypeOfTask] = useState("");
-=======
-let task = props.modalState.currentTask
->>>>>>> dba2fccde76ac79accbb66eadac9497030ccb25e
+  let task = props.modalState.currentTask;
+
+  useEffect(() => {
+    console.log(props.modalState.currentTask);
+  }, [props.modalState.currentTask]);
 
   return (
     <form
@@ -24,6 +21,16 @@ let task = props.modalState.currentTask
           : { display: "none" }
       }
     >
+      <Exit
+        className="exit"
+        onClick={() => {
+          props.handleModalDisplayState("cohortDisplay", {
+            display: false,
+            id: "cohort_0",
+            courseName: "PropsfakeCourseName",
+          });
+        }}
+      ></Exit>
       <div className="display-info">
         <label className="label display-label">Cohort Name:</label>
 
@@ -32,15 +39,11 @@ let task = props.modalState.currentTask
 
       <div className="display-info">
         <label className="label display-label">Start Date:</label>
-        <div className="input-display">
-            {/* {task.start_date} */}
-        </div>
+        <div className="input-display">{/* {task.start_date} */}</div>
       </div>
-        <div className="display-info">
-          <label className="label display-label">Graduation Date:</label>
-          <div className="input-display">
-            {/* {task.end_date} */}
-          </div>
+      <div className="display-info">
+        <label className="label display-label">Graduation Date:</label>
+        <div className="input-display">{/* {task.end_date} */}</div>
       </div>
       <input type="submit" className="edit" value="Edit" />
     </form>
