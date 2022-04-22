@@ -37,7 +37,7 @@ const Gantt = () => {
   const handleModalDisplayState = (value) => {
     setModalState((prevState) => {
       let stateCopy = { ...prevState };
-      stateCopy[value].display = true;
+      stateCopy[value].display = false;
       return stateCopy;
     });
   };
@@ -320,6 +320,7 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
           var copy = {...prevState}
           //add current data object to copy
           copy.currentTask = data.data[i]
+          copy.courseDisplay.display = true
           return copy
         })
         return
