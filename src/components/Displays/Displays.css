@@ -18,8 +18,8 @@
   display: flex;
   flex-direction: column;
   height: 260px;
-  width:480px
-
+  width:480px;
+  position: relative;
 }
 
 .display-info{
@@ -110,9 +110,14 @@
   margin-top:40px;
 }
 
-.exit{
+/* .exit {
   height: auto;
   width: 30px;
   margin-left: 10px;
   fill:firebrick;
+} */
+
+.course-display-cont {
+  position: relative;
+  width: fit-content;
 }

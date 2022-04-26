@@ -8,6 +8,10 @@ const CourseDisplay = (props) => {
   // }, [props.courseDisplay.id]);
   console.log("CourseDisplay Props", props)
 
+  const startDate = props.modalState.currentTask.start_date
+
+  console.log("start date", startDate)
+
   //changed formData & setFormData to displayData & setDisplayData
   //need to bring in data from... where?
   // let courseNum = "fakeCourseNum";
@@ -33,7 +37,7 @@ const CourseDisplay = (props) => {
   };
 
   useEffect(() => {
-    console.log(props.modalState.currentTask);
+    console.log("Current task", props.modalState.currentTask);
   }, [props.modalState.currentTask]);
 
   return (
@@ -48,7 +52,7 @@ const CourseDisplay = (props) => {
         }
       >
         <Exit
-          className="exit"
+          className="exit-button"
           onClick={() => {
             props.handleModalDisplayState("courseDisplay", {
               display: false,

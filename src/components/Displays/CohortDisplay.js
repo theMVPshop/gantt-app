@@ -22,7 +22,7 @@ const CohortDisplay = (props) => {
       }
     >
       <Exit
-        className="exit"
+        className="exit-button"
         onClick={() => {
           props.handleModalDisplayState("cohortDisplay", {
             display: false,
