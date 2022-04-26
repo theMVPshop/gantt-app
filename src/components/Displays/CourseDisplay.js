@@ -268,7 +268,7 @@ const CourseDisplay = (props) => {
           /> */}
               <div className="display-input">
               {
-              props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString() : ""
+              props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString().slice(0, 15) : ""
               }
               </div>
             </div>
@@ -290,7 +290,7 @@ const CourseDisplay = (props) => {
           /> */}
               <div className="display-input">
               {
-              props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString() : ""
+              props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString().slice(0, 15) : ""
               }
               </div>
             </div>
@@ -358,7 +358,7 @@ const CourseDisplay = (props) => {
           />
           <span className="slider round"></span> */}
               <div className="display-input">
-                {props.modalState.currentTask.active_status}
+                {props.modalState.currentTask.active_status ? "active" : "inactive"}
               </div>
             </div>
           </div>
