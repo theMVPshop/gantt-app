@@ -14,7 +14,7 @@ const Gantt = () => {
   const containerRef = useRef(null);
 
   const [modalState, setModalState] = useState({
-    addCourseForm: { display: false, id: "cohort_0" },
+    addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
     cohortDisplay: {
       display: false,
@@ -39,7 +39,6 @@ const Gantt = () => {
     setModalState((prevState) => {
       let stateCopy = { ...prevState };
       stateCopy[value] = obj;
-      stateCopy[value].display = false;
       return stateCopy;
     });
   };
@@ -345,12 +344,14 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
       <div className="formCont" id="formCont">
         <CourseForm
           modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
           setModalState={setModalState}
           setData={setData}
           data={data}
         ></CourseForm>
         <CohortForm
           modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
           setModalState={setModalState}
           setData={setData}
           data={data}
@@ -380,7 +381,12 @@ gantt.attachEvent("onTaskDblClick", function (id, e) {
           setData={setData}
           data={data}
         ></CourseDisplay>
-        <CohortEdit data={data}></CohortEdit>
+        <CohortEdit 
+          data={data}
+          modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
+          setData={setData}
+        ></CohortEdit>
         <button
           onClick={() => {
             setModalState();

@@ -78,7 +78,16 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
-        <Exit className="exit-button"></Exit>
+        <Exit 
+            className="exit-button"
+            onClick={() => {
+              console.log("add course form state", props.modalState.addCourseForm)
+              props.handleModalDisplayState("addCourseForm", {
+                display: false,
+                id: "course_0",
+              });
+            }}
+        ></Exit>
         <div className="group-container">
           <div className="group">
             <div className="info">
