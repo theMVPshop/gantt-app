@@ -13,6 +13,7 @@ const CohortDisplay = (props) => {
   }, [props.modalState.currentTask]);
 
   return (
+    <div>
     <form
       className="cohortForm-display"
       style={
@@ -55,6 +56,7 @@ const CohortDisplay = (props) => {
       </div>
       <input type="submit" className="edit" value="Edit" />
     </form>
+    </div>
   );
 };
 

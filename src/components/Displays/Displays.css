@@ -11,14 +11,17 @@
 
 .cohortForm-display {
   font-family: "Lexend Deca", sans-serif;
-  padding-top: 10px;
+  margin: 15px;
+  padding: 10px;
   background-color: #eceeff;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   height: 260px;
   width: 480px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  z-index: 10;
 }
 
 .display-info {
@@ -41,10 +44,12 @@
   align-self: center;
   margin-top: 40px;
   font-size: 15px;
+  cursor: pointer;
 }
 
 /* ****** Course Display ***** */
 .courseForm-display {
+  box-sizing: border-box;
   font-family: "Lexend Deca", sans-serif;
   width: 950px;
   height: 450px;
@@ -53,10 +58,11 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding-top: 10px;
+  margin: 15px;
+  padding: 10px;
   border-radius: 20px;
   margin-bottom: 10px;
+  top: 0;
 }
 
 .display-info {
@@ -106,6 +112,7 @@
   margin-top: 40px;
   font-size: 15px;
   margin-top: 40px;
+  cursor: pointer;
 }
 
 /* .exit {
