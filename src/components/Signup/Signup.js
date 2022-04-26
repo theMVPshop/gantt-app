@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
 import "./Signup.css";
-import {ReactComponent as Vector} from "../../images/Vectors.svg"
+// import {ReactComponent as Vector} from "../../images/Vectors.svg"
+import vector from "../../images/Vectors.svg"
 import axios from "axios";
 
 const Signup = () => {
@@ -148,7 +149,7 @@ const Signup = () => {
           <button className="login" type="submit">Sign Up</button>
         </form>
       </div>
-      <Vector className="vector"></Vector>
+      <img style={{ objectFit: "fill"}} src={vector}  className="vector"></img>
     </div>
   );
 };

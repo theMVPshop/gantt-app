@@ -8,9 +8,6 @@ const CourseDisplay = (props) => {
   // }, [props.courseDisplay.id]);
   console.log("CourseDisplay Props", props);
 
-  const startDate = props.modalState.currentTask.start_date;
-
-  console.log("start date", startDate);
 
   //changed formData & setFormData to displayData & setDisplayData
   //need to bring in data from... where?
@@ -37,7 +34,8 @@ const CourseDisplay = (props) => {
   };
 
   useEffect(() => {
-    console.log("Current task", props.modalState.currentTask);
+    console.log("Current task", props.modalState.currentTask)
+    props.modalState.currentTask.start_date ? console.log("start date", props.modalState.currentTask.start_date.toString()) : console.log("");
   }, [props.modalState.currentTask]);
 
   return (
@@ -268,9 +266,10 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              {/* <div className="display-input">{props.modalState.currentTask.start_date}</div> */}
               <div className="display-input">
-                Real date to be rendered here once fixed.
+              {
+              props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString() : ""
+              }
               </div>
             </div>
 
@@ -289,9 +288,10 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              {/* <div className="display-input">{props.modalState.currentTask.end_date}</div> */}
               <div className="display-input">
-                Real date to be rendered here once fixed.
+              {
+              props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString() : ""
+              }
               </div>
             </div>
 

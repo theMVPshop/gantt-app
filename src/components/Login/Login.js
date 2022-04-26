@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 
 import "./Login.css";
 import { ReactComponent as Vector } from "../../images/Vectors.svg";
+import background from "./Vectors.svg"
+import vector from "../../images/Vectors.svg"
 
 const Login = () => {
   const {
@@ -53,6 +55,7 @@ const Login = () => {
 
   return (
     <div className="login-window-container">
+  
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
         <h1>Sign in</h1>
         <p>Enter your email and password below</p>
@@ -89,7 +92,11 @@ const Login = () => {
         </button>
         <Link to="/dashboard">Dashboard</Link>
       </form>
-      <Vector className="vector"></Vector>
+      {/* <div style={{ backgroundImage: `url(${background})` }}className="vector-cont"> */}
+
+        <img style={{ objectFit: "fill"}} src={vector} className="vector"></img>
+        {/* <Vector style={{ objectFit: "fill"}} className="vector" /> */}
+
     </div>
   );
 };
