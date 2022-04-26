@@ -27,6 +27,7 @@ const CohortForm = (props) => {
       }
     }
     formData.id = `cohort_${cohortCounter}`;
+    console.log(formData);
     gantt.addTask(formData);
     props.updateStateData();
     props.setCohortFormDisplay({ display: false });

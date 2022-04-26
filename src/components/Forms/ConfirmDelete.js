@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 
 const ConfirmDelete = (props) => {
   const deleteTask = () => {
-    console.log(props.modalState.confirmDeleteModal.id);
-    gantt.deleteTask(props.modalState.confirmDeleteModal.id);
+    let course = props.modalState.confirmDeleteModal.id;
+    gantt.deleteTask(course);
+    let copy = gantt.serialize();
+    console.log(copy);
     resetModal();
   };
 
