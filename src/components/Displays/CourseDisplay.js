@@ -8,6 +8,10 @@ const CourseDisplay = (props) => {
   // }, [props.courseDisplay.id]);
   console.log("CourseDisplay Props", props);
 
+  const startDate = props.modalState.currentTask.start_date;
+
+  console.log("start date", startDate);
+
   //changed formData & setFormData to displayData & setDisplayData
   //need to bring in data from... where?
   // let courseNum = "fakeCourseNum";
@@ -33,7 +37,7 @@ const CourseDisplay = (props) => {
   };
 
   useEffect(() => {
-    console.log(props.modalState.currentTask);
+    console.log("Current task", props.modalState.currentTask);
   }, [props.modalState.currentTask]);
 
   return (
@@ -47,10 +51,8 @@ const CourseDisplay = (props) => {
             : { display: "none" }
         }
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="exit"
-          viewBox="0 0 24 24"
+        <Exit
+          className="exit-button"
           onClick={() => {
             props.handleModalDisplayState("courseDisplay", {
               display: false,
@@ -59,9 +61,7 @@ const CourseDisplay = (props) => {
             });
             console.log();
           }}
-        >
-          <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z" />
-        </svg>
+        />
         <div className="group-container">
           <div className="group">
             <div className="display-info">

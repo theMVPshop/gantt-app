@@ -187,6 +187,7 @@ const Gantt = () => {
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
+      console.log("data copy", dataCopy);
       var taskIDArray = id.split("_");
       switch (action) {
         case "view":
@@ -197,9 +198,11 @@ const Gantt = () => {
               if (dataCopy.data[i].id == id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
+                console.log("copy.currentTask", copy.currentTask);
                 setModalState(copy); //set modal state to copy
                 return;
               }
+              // setModalState(copy);
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortDisplay.display = "flex"; //if true set copy of state display to flex
