@@ -44,6 +44,16 @@ const Gantt = () => {
     gantt.parse(data);
   };
 
+  const updateStateData = () => {
+    let dataCopy = gantt.serialize();
+    console.log(dataCopy);
+  };
+
+  const customDeleteTask = (task) => {
+    gantt.deleteTask(task);
+    updateStateData();
+  };
+
   // const [courseFormDisplay, setCourseFormDisplay] = useState({
   //   display: false,
   //   id: "cohort_0",
@@ -197,7 +207,6 @@ const Gantt = () => {
               if (dataCopy.data[i].id == id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
-                console.log("copy.currentTask", copy.currentTask);
                 setModalState(copy); //set modal state to copy
                 return;
               }
@@ -367,6 +376,7 @@ const Gantt = () => {
           setModalState={setModalState}
           handleModalDisplayState={handleModalDisplayState}
           data={data}
+          deleteTask={customDeleteTask}
         ></ConfirmDelete>
         {/* <CourseDisplay
           // setCourseDisplay={setCourseDisplay}
