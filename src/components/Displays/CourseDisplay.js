@@ -36,8 +36,8 @@ const CourseDisplay = (props) => {
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
         style={
           props.modalState.courseDisplay.display
-            ? { display: "none" }
-            : { display: "flex" }
+            ? { display: "flex" }
+            : { display: "none" }
         }
       >
         <Exit className="exit"

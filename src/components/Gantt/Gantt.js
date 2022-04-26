@@ -30,14 +30,10 @@ const Gantt = () => {
       display: false,
       id: "cohort_0",
     },
-<<<<<<< HEAD
     currentTask: {
       title: "boo"
 
     }
-=======
-    currentTask: {},
->>>>>>> 4c8ee7967b58e5cfec7a3ea884a8d89d2210cf48
   });
 
   // const [courseFormDisplay, setCourseFormDisplay] = useState({
