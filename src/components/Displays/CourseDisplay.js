@@ -6,7 +6,7 @@ const CourseDisplay = (props) => {
   // useEffect(() => {
   //   console.log(props.courseDisplay.id);
   // }, [props.courseDisplay.id]);
-  console.log("CourseDisplay Props", props)
+  console.log("CourseDisplay Props", props);
 
   //changed formData & setFormData to displayData & setDisplayData
   //need to bring in data from... where?
@@ -47,16 +47,21 @@ const CourseDisplay = (props) => {
             : { display: "none" }
         }
       >
-        <Exit
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
           className="exit"
+          viewBox="0 0 24 24"
           onClick={() => {
             props.handleModalDisplayState("courseDisplay", {
               display: false,
               id: "course_0",
               courseName: "PropsfakeCourseName",
             });
+            console.log();
           }}
-        ></Exit>
+        >
+          <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z" />
+        </svg>
         <div className="group-container">
           <div className="group">
             <div className="display-info">
@@ -74,7 +79,9 @@ const CourseDisplay = (props) => {
             name="courseNum"
             className="input"
           /> */}
-              <div className="display-input">{props.modalState.currentTask.title}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.title}
+              </div>
             </div>
 
             <div className="display-info">
@@ -92,7 +99,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.course_link}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.course_link}
+              </div>
             </div>
 
             <div className="display-info">
@@ -111,7 +120,9 @@ const CourseDisplay = (props) => {
             }}
             
           /> */}
-              <div className="display-input">{props.modalState.currentTask.hubspot_ticket}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.hubspot_ticket}
+              </div>
             </div>
 
             <div className="display-info">
@@ -129,7 +140,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.rocketchat}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.rocketchat}
+              </div>
             </div>
 
             <div className="display-info">
@@ -147,7 +160,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.instructor}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.instructor}
+              </div>
             </div>
             <div className="display-info">
               <label className="display-label">Teacher Assistant:</label>
@@ -164,7 +179,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.teacher_assistant}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.teacher_assistant}
+              </div>
             </div>
 
             <div className="display-info">
@@ -186,7 +203,9 @@ const CourseDisplay = (props) => {
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
-              <div className="display-input">{props.modalState.currentTask.location}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.location}
+              </div>
             </div>
           </div>
 
@@ -208,7 +227,9 @@ const CourseDisplay = (props) => {
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select> */}
-              <div className="display-input">{props.modalState.currentTask.day_of_week}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.day_of_week}
+              </div>
             </div>
 
             <div className="display-info">
@@ -227,7 +248,9 @@ const CourseDisplay = (props) => {
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select> */}
-              <div className="display-input">{props.modalState.currentTask.mode}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.mode}
+              </div>
             </div>
 
             <div className="display-info">
@@ -246,7 +269,9 @@ const CourseDisplay = (props) => {
             }}
           /> */}
               {/* <div className="display-input">{props.modalState.currentTask.start_date}</div> */}
-              <div className="display-input">Real date to be rendered here once fixed.</div>
+              <div className="display-input">
+                Real date to be rendered here once fixed.
+              </div>
             </div>
 
             <div className="display-info">
@@ -265,7 +290,9 @@ const CourseDisplay = (props) => {
             }}
           /> */}
               {/* <div className="display-input">{props.modalState.currentTask.end_date}</div> */}
-              <div className="display-input">Real date to be rendered here once fixed.</div>
+              <div className="display-input">
+                Real date to be rendered here once fixed.
+              </div>
             </div>
 
             <div className="display-info">
@@ -285,7 +312,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.student_number_start}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.student_number_start}
+              </div>
             </div>
 
             <div className="display-info">
@@ -305,7 +334,9 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-              <div className="display-input">{props.modalState.currentTask.student_number_end}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.student_number_end}
+              </div>
             </div>
 
             <div className="display-info">
@@ -326,7 +357,9 @@ const CourseDisplay = (props) => {
             
           />
           <span className="slider round"></span> */}
-              <div className="display-input">{props.modalState.currentTask.active_status}</div>
+              <div className="display-input">
+                {props.modalState.currentTask.active_status}
+              </div>
             </div>
           </div>
         </div>
