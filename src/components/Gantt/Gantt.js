@@ -60,7 +60,7 @@ const Gantt = () => {
     "<svg id='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
 
   var plusIconHeader =
-    "<svg id='plusIconHeader' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
+    "<svg id='plusIconHeader' data-action='add_custom' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
 
   var deleteIcon =
     "<svg id='deleteIcon' data-action='delete' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z'/></svg>";
@@ -124,9 +124,24 @@ const Gantt = () => {
     gantt.parse(data);
   }, [data]);
 
+  gantt.attachEvent("onGridHeaderClick", function(name, e){
+    var button = e.target.closest("[data-action]");
+    if (button) {
+      console.log("you clicked add custom");
+      setModalState((prevState) => {
+        let copy = { ...prevState };
+        copy.addCohortForm.display = true;
+        setModalState(copy);
+        return copy;
+      })
+    }
+    return true;
+  });
+
   gantt.attachEvent("onTaskClick", function (id, e) {
     var button = e.target.closest("[data-action]");
     if (button) {
+      console.log("this is the button ->", button)
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
@@ -201,7 +216,7 @@ const Gantt = () => {
     gantt.config.columns = [
       {
         name: "title",
-        label: "Task Name",
+        label: "Cohorts",
         width: "150",
         tree: true,
         resize: true,
@@ -229,8 +244,8 @@ const Gantt = () => {
         width: 40,
       },
       {
-        name: "view",
-        label: "view",
+        name: "View",
+        label: "View",
         template: () => {
           return viewIcon;
         },

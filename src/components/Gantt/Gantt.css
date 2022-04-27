@@ -75,13 +75,12 @@ body,
   height: 550px;
   background-color: #eceeff;
   position: absolute;
-  z-index: 10;
+  z-index: 101;
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding-top: 20px;
+  margin: 15px;
+  padding: 10px;
   border-radius: 20px;
-  margin-bottom: 10px;
 }
 
 .info {
@@ -148,15 +147,66 @@ body,
   font-family: "Lexend Deca", sans-serif;
   width: 480px;
   height: 260px;
-  padding-top: 10px;
+  padding: 10px;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: #eceeff;
   border-radius: 10px;
   position: absolute;
-  z-index: 10;
+  z-index: 101;
+  top: 0;
 }
+
+.info {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+  padding: 0;
+}
+
+.label {
+  width: 30%;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: left;
+  align-self: center;
+}
+
+.input {
+  height: 25px;
+  width: 40%;
+  background-color: #079043;
+  opacity: 60%;
+  border-color: transparent;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding: 5px;
+  color: #eceeff;
+  align-self: center;
+}
+
+.submit {
+  text-align: center;
+  font-family: "Lexend Deca", sans-serif;
+  position: relative;
+  z-index: 10;
+  padding: 10px;
+  width: 330px;
+  margin-top: 40px;
+  margin-bottom: 45px;
+  align-self: center;
+  border-radius: 5px;
+  border-color: transparent;
+  font-size: 15px;
+  background-color: #079043;
+  font-weight: 800;
+  color: #eceeff;
+  cursor: pointer;
+}
+/* *****CohortForm Styles End***** */
 
 /*-----Confirm Delete Modal-----*/
 
@@ -189,10 +239,11 @@ body,
   width: 50px;
   margin-left: 15px;
   fill: firebrick;
-  z-index: 11;
+  z-index: 102;
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
 .gantt_row,
