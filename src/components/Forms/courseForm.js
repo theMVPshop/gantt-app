@@ -61,9 +61,7 @@ const CourseForm = (props) => {
     }
     formData.id = `course_${courseCounter}`;
     formData.parent = props.courseDisplay.id;
-    gantt.addTask(formData);
-    // props.addNewTask(formData);
-    props.updateStateData();
+    props.addTask(formData);
     gantt.open(props.courseDisplay.id); //forces open the parent task
     props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
   };
@@ -78,15 +76,18 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
-        <Exit 
-            className="exit-button"
-            onClick={() => {
-              console.log("add course form state", props.modalState.addCourseForm)
-              props.handleModalDisplayState("addCourseForm", {
-                display: false,
-                id: "course_0",
-              });
-            }}
+        <Exit
+          className="exit-button"
+          onClick={() => {
+            console.log(
+              "add course form state",
+              props.modalState.addCourseForm
+            );
+            props.handleModalDisplayState("addCourseForm", {
+              display: false,
+              id: "course_0",
+            });
+          }}
         ></Exit>
         <div className="group-container">
           <div className="group">

@@ -44,42 +44,16 @@ const Gantt = () => {
     gantt.parse(data);
   };
 
-  const updateStateData = () => {
-    let dataCopy = gantt.serialize();
-    console.log(dataCopy);
-  };
-
   const customDeleteTask = (task) => {
     gantt.deleteTask(task);
-    updateStateData();
+    setData(gantt.serialize());
   };
 
-  // const [courseFormDisplay, setCourseFormDisplay] = useState({
-  //   display: false,
-  //   id: "cohort_0",
-  // });
-
-  // const [cohortFormDisplay, setCohortFormDisplay] = useState({
-  //   display: false,
-  //   id: 0,
-  // });
-
-  // const [cohortDisplay, setCohortDisplay] = useState({
-  //   display: false,
-  //   id: 0,
-  //   cohortName: "PropsfakeCohortName",
-  // });
-
-  // const [courseDisplay, setCourseDisplay] = useState({
-  //   display: false,
-  //   id: 0,
-  //   courseName: "PropsfakeCourseName",
-  // });
-
-  // const [confirmDeleteModal, setConfirmDeleteModal] = useState({
-  //   display: false,
-  //   id: "cohort_0",
-  // });
+  const customAddTask = (task) => {
+    console.log(task);
+    gantt.addTask(task);
+    setData(gantt.serialize());
+  };
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -102,47 +76,6 @@ const Gantt = () => {
 
   //state for storing data, currently filled with dummy dat
 
-  /**
-   * 
-   * {
-    data: [
-      {
-        id: "cohort_1",
-        text: "Cohort #1",
-        start_date: "2022-04-11",
-        end_date: "2022-04-15",
-        open: true,
-      },
-      {
-        id: "course_1",
-        text: "Course #1",
-        start_date: "2022-04-11",
-        end_date: "2022-04-15",
-        parent: "cohort_1",
-      },
-      {
-        id: "cohort_2",
-        text: "Cohort #2",
-        start_date: "2022-04-13",
-        end_date: "2022-04-15",
-      },
-      {
-        id: "cohort_3",
-        text: "Cohort #3",
-        start_date: "2022-04-15",
-        end_date: "2022-04-15",
-      },
-      {
-        id: "cohort_4",
-        text: "Cohort #4",
-        start_date: "2022-04-15",
-        end_date: "2022-04-15",
-      }
-    ],
-    links: [{ id: 1, source: 1, target: 2, type: "0" }],
-  }
-   */
-
   const [data, setData] = useState({ data: [], links: [] });
 
   const [newTask, setNewTask] = useState({
@@ -154,9 +87,6 @@ const Gantt = () => {
   });
 
   //monitors data and re-renders gantt chart if change detected
-  useEffect(() => {
-    gantt.parse(data);
-  }, []);
 
   // maybe try fetch function then call it in useEffect
   // dateToStr function for gantt
@@ -164,6 +94,10 @@ const Gantt = () => {
   // gantt.templates.format_date = function() {
   //     return dateToStr ();
   //   }
+
+  useEffect(() => {
+    gantt.parse(data);
+  }, []);
 
   useEffect(() => {
     axios
@@ -363,6 +297,7 @@ const Gantt = () => {
           setModalState={setModalState}
           setData={setData}
           data={data}
+          adddTask={customAddTask}
         ></CourseForm>
         <CohortForm
           modalState={modalState}
@@ -370,6 +305,7 @@ const Gantt = () => {
           setModalState={setModalState}
           setData={setData}
           data={data}
+          addTask={customAddTask}
         ></CohortForm>
         <ConfirmDelete
           modalState={modalState}
