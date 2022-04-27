@@ -398,7 +398,7 @@ const Gantt = () => {
           setData={setData}
           data={data}
         ></CourseDisplay>
-        <CohortEdit 
+        <CohortEdit
           data={data}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -433,7 +433,11 @@ const Gantt = () => {
           ShowCourse DISPLAY
         </button>*/}
       </div>
-      <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
+      <div
+        ref={containerRef}
+        style={{ width: "100%", height: "100%" }}
+        id="gantt-chart-container"
+      ></div>
     </div>
   );
 };
