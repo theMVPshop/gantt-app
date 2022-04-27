@@ -5,8 +5,12 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
-  
   height: 100%;
+  color: #f5f5f5;
+}
+
+#gantt-chart-container {
+  padding-top: 50px;
 }
 
 #editIcon {
@@ -230,14 +234,53 @@ body,
   border: 5px solid blue;
 }
 
-.exit-button{
+.exit-button {
   height: auto;
   width: 50px;
   margin-left: 15px;
-  fill:firebrick;
+  fill: firebrick;
   z-index: 11;
   position: absolute;
   top: 0;
   left: 0;
-  cursor: pointer;
+}
+
+.gantt_row,
+.gantt_row.odd {
+  background: #079043;
+  color: white;
+}
+
+.gantt_tree_content {
+  color: #fff;
+}
+
+.gantt_tree_icon {
+  fill: #f5f5f5;
+  color: #f5f5f5;
+}
+
+.gantt_scale_cell {
+  background-color: #3c4a3c;
+  color: #f5f5f5 !important;
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.gantt_task_row,
+.gantt_task_row.odd {
+  background: #eceeff;
+  border: 1px solid lightgrey;
+}
+
+.gantt_grid_head_cell {
+  background-color: #3c4a3c;
+  border: 1px solid #f5f5f5;
+}
+
+.gantt_task_cell {
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  margin-top: 1px;
+  padding-bottom: -2px;
 }
