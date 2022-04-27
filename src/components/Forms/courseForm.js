@@ -91,7 +91,7 @@ const CourseForm = (props) => {
         <div className="group-container">
           <div className="group">
             <div className="info">
-              <label className="label">Task Name</label>
+              <label className="label">Course Name</label>
               <input
                 type="title"
                 value={formData.title}
