@@ -13,6 +13,7 @@ const CohortDisplay = (props) => {
   }, [props.modalState.currentTask]);
 
   return (
+    <div>
     <form
       className="cohortForm-display"
       style={
@@ -34,19 +35,28 @@ const CohortDisplay = (props) => {
       <div className="display-info">
         <label className="label display-label">Cohort Name:</label>
 
-        <div className="input-display">{task.title}</div>
+        <div className="input-display">{props.modalState.currentTask.title}</div>
       </div>
 
       <div className="display-info">
         <label className="label display-label">Start Date:</label>
-        <div className="input-display">{/* {task.start_date} */}</div>
+        <div className="input-display">              
+          {
+            props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString().slice(0, 15) : ""
+          }
+        </div>
       </div>
       <div className="display-info">
         <label className="label display-label">Graduation Date:</label>
-        <div className="input-display">{/* {task.end_date} */}</div>
+        <div className="input-display">
+          {
+            props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString().slice(0, 15) : ""
+          }
+        </div>
       </div>
       <input type="submit" className="edit" value="Edit" />
     </form>
+    </div>
   );
 };
 
