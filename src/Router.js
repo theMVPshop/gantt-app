@@ -1,14 +1,10 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import cookie from "cookie";
 
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login/Login.js";
 import Signup from "./components/Signup/Signup.js";
-
-import CohortForm from "./components/Forms/CohortForm";
-import CohortDisplay from "./components/Displays/CohortDisplay.js"
-import CourseDisplay from "./components/Displays/CourseDisplay.js"
 
 
 export const checkAuth = () => {
@@ -18,18 +14,21 @@ export const checkAuth = () => {
   return cookies["loggedIn"] ? true : false;
 };
 
+const ProtectedRoute = ({ children }) => {
+  return checkAuth() ? children : <Navigate to="/" />
+}
+
 const Router = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Login />} />
-      {/* Dashboard renders the Gantt chart with data */}
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/signup" element={<Signup />} />
-      For testing purposes, this route displays the CohortForm
-      <Route path="/cohortForm" element={<CohortForm />} />
-      <Route path="/cohortdisplay" element={<CohortDisplay />} />
-      <Route path="/coursedisplay" element={<CourseDisplay />} />
-
+      {/* Dashboard renders the Gantt chart with data */}
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };

@@ -1,6 +1,7 @@
 import { click } from "@testing-library/user-event/dist/click";
 import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
+import { ReactComponent as Exit } from "../../images/cancel.svg"
 
 // copied over code from CohortForm***
 const CohortEdit = (props) => {
@@ -40,14 +41,25 @@ const CohortEdit = (props) => {
   };
 
   return (
-    <form>
+    <form className="cohortEdit">
+      <div className="title-div">
+      <Exit className="edit-exit"
+        onClick={() => {
+          console.log("display",props.modalState.courseDisplay.display)
+          const copy = props.modalState
+          copy.courseDisplay.display = !copy.courseDisplay.display
+          props.setModalState(copy)
+        }}
+        ></Exit>
+      <h1 className="minor-title">Edit</h1>
+      </div>
       {/* className="cohortForm" 
           style={
             props.cohortFormDisplay.display
               ? { display: "flex" }
               : { display: "none" }
       } */}
-        <div className="info">
+        <div className="edit-info">
           <label className="label">Cohort Name</label>
           <input 
           type="text" 
@@ -64,7 +76,7 @@ const CohortEdit = (props) => {
           className="input" />
         </div>
 
-        <div className="info">
+        <div className="edit-info">
           <label className="label">Start Date</label>
           <input type="date"
           value={editedData.start_date}
@@ -79,7 +91,7 @@ const CohortEdit = (props) => {
           className="input" />
         </div>
 
-        <div className="info">
+        <div className="edit-info">
           <label className="label">Graduation Date</label>
           <input 
           type="date"
@@ -95,7 +107,7 @@ const CohortEdit = (props) => {
           className="input" />
         </div>
 
-      <input type="submit" className="submit" value="Save"
+      <input type="submit" className="submit" value="Confirm Changes"
       onClick = {pushEditedData} />
     </form>
   );
