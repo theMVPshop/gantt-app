@@ -12,7 +12,7 @@ const Nav = () => {
 
   return (
     <nav className="nav-bar">
-      { checkAuth() && <p>Welcome, {localStorage.getItem("user_name")}</p> }
+      { checkAuth() && <p className="name-tag">Welcome, {localStorage.getItem("user_name")}</p> }
       { checkAuth() ? 
         <button className="nav-link">
           <Link to="/" className="link"
