@@ -59,8 +59,8 @@ const CourseForm = (props) => {
         console.log(courseCounter);
       }
     }
-    formData.id = `course_50`;
-    formData.parent = props.courseDisplay.id;
+    formData.id = `course_${courseCounter}`;
+    formData.parent = props.modalState.addCohortForm.id;
     props.addTask(formData);
     gantt.open(props.courseDisplay.id); //forces open the parent task
     props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop

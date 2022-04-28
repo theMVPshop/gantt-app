@@ -246,11 +246,11 @@ const Gantt = () => {
     gantt.init(containerRef.current);
     // gantt.parse(data);
 
-    gantt.attachEvent("onTaskDblClick", function (id, e) {
-      console.log(
-        "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
-      );
-    });
+    // gantt.attachEvent("onTaskDblClick", function (id, e) {
+    //   console.log(
+    //     "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
+    //   );
+    // });
 
     //gantt custom columns
     gantt.config.columns = [
@@ -315,33 +315,38 @@ const Gantt = () => {
   });
 
   //This runs on a double click of a task  (bar on calendar or column on left)
-  gantt.attachEvent("onTaskDblClick", function (id, e) {
-    console.log("You double clicked a task with this id: ", id);
-    console.log("data in double click: ", data);
-    // func to find task that matches clicked task's id
-    function getCurrentTask() {
-      console.log("double click. finding current task...");
-      for (let i = 0; i < data.data.length; i++) {
-        console.log(
-          "getCurrentTask(), data[i].id in for loop: ",
-          data.data[i].id
-        );
-        if (data.data[i].id == id) {
-          console.log("THEY MATCH!");
-          //copy current modal state
-          setModalState((prevState) => {
-            var copy = { ...prevState };
-            //add current data object to copy
-            copy.currentTask = data.data[i];
-            copy.courseDisplay.display = true;
-            return copy;
-          });
-          return;
+  gantt.attachEvent(
+    "onTaskDblClick",
+    function (id, e) {
+      console.log("You double clicked a task with this id: ", id);
+      console.log("data in double click: ", data);
+      gantt.detachEvent("gantt-task-dbl-click");
+      // func to find task that matches clicked task's id
+      function getCurrentTask() {
+        console.log("double click. finding current task...");
+        for (let i = 0; i < data.data.length; i++) {
+          console.log(
+            "getCurrentTask(), data[i].id in for loop: ",
+            data.data[i].id
+          );
+          if (data.data[i].id == id) {
+            console.log("THEY MATCH!");
+            //copy current modal state
+            setModalState((prevState) => {
+              var copy = { ...prevState };
+              //add current data object to copy
+              copy.currentTask = data.data[i];
+              copy.courseDisplay.display = true;
+              return copy;
+            });
+            return;
+          }
         }
+        getCurrentTask();
       }
-      getCurrentTask();
-    }
-  });
+    },
+    { id: "gantt-task-dbl-click" }
+  );
 
   return (
     <div>
