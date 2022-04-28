@@ -1,30 +1,34 @@
-import { ReactComponent as Exit } from "../../images/cancel.svg"
+import { ReactComponent as Exit } from "../../images/cancel.svg";
 
-const CourseEdit= (props) => {
+const CourseEdit = (props) => {
   return (
     <div>
       <form
         className="courseForm-display"
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
         style={
-          props.modalState.courseDisplay.display
-            ? { display: "none" }
-            : { display: "flex" }
+          props.modalState.courseEditForm.display
+            ? { display: "flex" }
+            : { display: "none" }
         }
       >
-        <Exit className="exit"
-        onClick={() => {
-          console.log("display",props.modalState.courseDisplay.display)
-          const copy = props.modalState
-          copy.courseDisplay.display = !copy.courseDisplay.display
-          props.setModalState(copy)
-        }}
+        <Exit
+          className="exit"
+          onClick={() => {
+            console.log("display", props.modalState.courseDisplay.display);
+            const copy = props.modalState;
+            copy.courseDisplay.display = !copy.courseDisplay.display;
+            props.handleModalDisplayState("courseEditForm", {
+              display: "false",
+              id: "course_0",
+            });
+          }}
         ></Exit>
         <div className="group-container">
-        <div className="group">
-        <div className="display-info">
-          <label className="display-label">Course Number:</label>
-          {/* <input
+          <div className="group">
+            <div className="display-info">
+              <label className="display-label">Course Number:</label>
+              {/* <input
             type="text"
             value={formData.courseNum}
             onChange={(e) => {
@@ -37,14 +41,12 @@ const CourseEdit= (props) => {
             name="courseNum"
             className="input"
           /> */}
-          <div className="display-input">
-            {courseNum}
-          </div>
-        </div>  
+              <div className="display-input">{props.modalState.courseNum}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Course Link:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Course Link:</label>
+              {/* <input
             type="text"
             name="courseLink"
             className="input"
@@ -57,14 +59,12 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {courseLink}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.courseLink}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Hubspot Ticket:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Hubspot Ticket:</label>
+              {/* <input
             type="text"
             name="hubSpotTicket"
             className="input"
@@ -78,14 +78,14 @@ const CourseEdit= (props) => {
             }}
             
           /> */}
-          <div className="display-input">
-            {hubSpotTicket}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.hubSpotTicket}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Rocket Chat:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Rocket Chat:</label>
+              {/* <input
             type="text"
             name="rocketChat"
             className="input"
@@ -98,14 +98,12 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {rocketChat}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.rocketChat}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Instructor:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Instructor:</label>
+              {/* <input
             type="text"
             name="instructor"
             className="input"
@@ -118,13 +116,11 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {instructor}
-          </div>
-        </div>
-        <div className="display-info">
-          <label className="display-label">Teacher Assistant:</label>
-          {/* <input
+              <div className="display-input">{props.modalState.instructor}</div>
+            </div>
+            <div className="display-info">
+              <label className="display-label">Teacher Assistant:</label>
+              {/* <input
             type="text"
             name="teacherAssistant"
             className="input"
@@ -137,14 +133,14 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {teacherAssistant}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.teacherAssistant}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Location:</label>
-          {/* <select
+            <div className="display-info">
+              <label className="display-label">Location:</label>
+              {/* <select
             className="input"
             value={formData.location}
             onChange={(e) => {
@@ -161,16 +157,14 @@ const CourseEdit= (props) => {
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
-          <div className="display-input">
-            {location}
+              <div className="display-input">{props.modalState.location}</div>
+            </div>
           </div>
-        </div>
-        </div>
 
-        <div className="group">
-        <div className="display-info">
-          <label className="display-label">Days:</label>
-          {/* <select
+          <div className="group">
+            <div className="display-info">
+              <label className="display-label">Days:</label>
+              {/* <select
             className="input"
             value={formData.days}
             onChange={(e) => {
@@ -185,14 +179,12 @@ const CourseEdit= (props) => {
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select> */}
-          <div className="display-input">
-            {days}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.days}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Mode:</label>
-          {/* <select
+            <div className="display-info">
+              <label className="display-label">Mode:</label>
+              {/* <select
             className="input"
             value={formData.mode}
             onChange={(e) => {
@@ -206,14 +198,12 @@ const CourseEdit= (props) => {
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select> */}
-          <div className="display-input">
-            {mode}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.mode}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Start Date:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Start Date:</label>
+              {/* <input
             type="date"
             name="startDate"
             className="input"
@@ -226,14 +216,12 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {startDate}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.startDate}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">End Date:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">End Date:</label>
+              {/* <input
             type="date"
             name="endDate"
             className="input"
@@ -246,14 +234,14 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {endDate}
-          </div>
-        </div>
+              <div className="display-input">{props.modalState.endDate}</div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Number of Students Starting:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">
+                Number of Students Starting:
+              </label>
+              {/* <input
             type="number"
             name="studentNumStart"
             className="input"
@@ -266,14 +254,16 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {startStudents}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.startStudents}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Number of Students Ending:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">
+                Number of Students Ending:
+              </label>
+              {/* <input
             type="number"
             name="studentNumEnd"
             className="input"
@@ -286,14 +276,14 @@ const CourseEdit= (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {endStudents}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.endStudents}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Active Status:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Active Status:</label>
+              {/* <input
             type="checkbox"
             className="input"
             value={formData.activeStatus}
@@ -309,16 +299,23 @@ const CourseEdit= (props) => {
             
           />
           <span className="slider round"></span> */}
-          <div className="display-input">
-            {activeStatus}
+              <div className="display-input">
+                {props.modalState.activeStatus}
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-        </div>
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
-        <input type="submit" className="edit-button" value="Edit" onClick={editForm}/>
+        <input
+          type="submit"
+          className="edit-button"
+          value="Edit"
+          onClick={() => {
+            console.log("test");
+          }}
+        />
       </form>
-    </div> 
+    </div>
   );
 };
 

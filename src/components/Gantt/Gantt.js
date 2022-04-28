@@ -6,6 +6,7 @@ import CourseDisplay from "../Displays/CourseDisplay.js";
 import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
+import CourseEdit from "../Displays/CourseEdit.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -26,11 +27,20 @@ const Gantt = () => {
       id: "course_0",
       courseName: "PropsfakeCourseName",
     },
+    cohortEditForm: {
+      display: false,
+      id: "cohort_0",
+    },
+    courseEditForm: {
+      display: false,
+      id: "cohort_0",
+    },
     confirmDeleteModal: {
       display: false,
       id: "cohort_0",
       title: "",
     },
+
     currentTask: {},
   });
 
@@ -179,6 +189,28 @@ const Gantt = () => {
           // setModalState(copy);
           break;
         case "edit":
+          for (let i = 0; i < dataCopy.data.length; i++) {
+            if (taskIDArray[0] === "course") {
+              //check if clicked task is course
+              copy.courseEditForm.display = "flex"; //if true set copy of state display to flex
+              if (dataCopy.data[i].id == id) {
+                //if clicked task id is equal to the current i data id property
+                copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
+                setModalState(copy); //set modal state to copy
+                return;
+              }
+              // setModalState(copy);
+            } else if (taskIDArray[0] === "cohort") {
+              //check if clicked task is cohort
+              copy.cohortEditForm.display = "flex"; //if true set copy of state display to flex
+              if (dataCopy.data[i].id == id) {
+                //if clicked task id is equal to the current i data id property
+                copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
+                setModalState(copy); //set modal state to copy
+                return;
+              }
+            }
+          }
           break;
         case "add":
           copy.addCourseForm = { display: true, id: id };
@@ -337,11 +369,6 @@ const Gantt = () => {
           data={data}
           deleteTask={customDeleteTask}
         ></ConfirmDelete>
-        {/* <CourseDisplay
-          // setCourseDisplay={setCourseDisplay}
-          // courseDisplay={courseDisplay}
-          data={data}
-        ></CourseDisplay> */}
         <CohortDisplay
           modalState={modalState}
           setModalState={setModalState}
@@ -363,13 +390,12 @@ const Gantt = () => {
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
         ></CohortEdit>
-        <button
-          onClick={() => {
-            setModalState();
-          }}
-        >
-          test
-        </button>
+        <CourseEdit
+          data={data}
+          modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
+          setData={setData}
+        ></CourseEdit>
         {/*<button
           onClick={() => {
             setCourseFormDisplay({ display: !courseFormDisplay.display });
