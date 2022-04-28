@@ -116,3 +116,37 @@
   margin-left: 10px;
   fill:firebrick;
 }
+
+/* ***** Cohort Edit ***** */
+.cohortEdit {
+  font-family: "Lexend Deca", sans-serif;
+  width: 480px;
+  height: 280px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #eceeff;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 10;
+}
+
+.minor-title{
+  font-size: 32px;
+  align-self: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-info{
+  margin-top: 10px;
+}
+
+.edit-exit{
+  height: 30px;
+  fill: firebrick;
+  position: absolute;
+  margin-right: 26rem;
+  margin-top: 5px;
+}
