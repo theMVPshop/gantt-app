@@ -367,7 +367,7 @@ const Gantt = () => {
           setModalState={setModalState}
           handleModalDisplayState={handleModalDisplayState}
           data={data}
-          deleteTask={customDeleteTask}
+          customDeleteTask={customDeleteTask}
         ></ConfirmDelete>
         <CohortDisplay
           modalState={modalState}

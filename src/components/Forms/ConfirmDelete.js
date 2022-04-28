@@ -1,12 +1,16 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+const url = "http://localhost:4000/tasks"
+
 
 const ConfirmDelete = (props) => {
-  const deleteTask = () => {
-    let course = props.modalState.confirmDeleteModal.id;
-    props.deleteTask(course);
-    resetModal();
-  };
+  // const deleteTask = () => {
+  //   let course = props.modalState.confirmDeleteModal.id;
+  //   props.deleteTask(course);
+  //   resetModal();
+  // };
+  let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {
     props.handleModalDisplayState("confirmDeleteModal", {
@@ -30,7 +34,11 @@ const ConfirmDelete = (props) => {
         {props.modalState.confirmDeleteModal.title}?
       </h1>
       <div>
-        <button onClick={deleteTask}>Yes</button>
+        <button onClick={() => {
+        props.customDeleteTask(id)
+        axios.delete(`${url}/${id}`).then(res => console.log(res))
+        // put reset here and finish axios call  
+        }}>Yes</button>
         <button onClick={resetModal}>No</button>
       </div>
     </div>
