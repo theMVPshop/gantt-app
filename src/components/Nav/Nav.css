@@ -1,24 +1,26 @@
 .nav-bar {
   height: 50px;
   width: 100%;
-  background-color: #3c4a3e;;
+  background-color: #3c4a3e;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: white;
+  position: absolute;
+  z-index: 100;
 }
 
 .nav-link {
-  font-family: 'Lexend Deca', sans-serif;
-  background-color: #ECEEFF;
+  font-family: "Lexend Deca", sans-serif;
+  background-color: #eceeff;
   border-color: transparent;
   border-radius: 10px;
   color: #079043;
   width: 80px;
-  height:40px;
+  height: 40px;
 }
 
 .link {
   text-decoration: none;
-  color:#079043;
+  color: #079043;
 }

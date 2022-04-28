@@ -1,5 +1,7 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
+import { ReactComponent as Exit } from "../../images/cancel.svg";
+// import "../Gantt/Gantt.css";
 
 const CohortForm = (props) => {
   const [formData, setFormData] = useState({
@@ -27,8 +29,8 @@ const CohortForm = (props) => {
       }
     }
     formData.id = `cohort_${cohortCounter}`;
-    gantt.addTask(formData);
-    props.updateStateData();
+    console.log(formData);
+    props.addTask(formData);
     props.setCohortFormDisplay({ display: false });
     // props.setData((prevState) => {
     //   let prev = { ...prevState };
@@ -41,6 +43,7 @@ const CohortForm = (props) => {
   };
 
   return (
+    <div>
     <form
       className="cohortForm"
       style={
@@ -49,6 +52,16 @@ const CohortForm = (props) => {
           : { display: "none" }
       }
     >
+        <Exit 
+            className="exit-button"
+            onClick={() => {
+              console.log("add cohort form state", props.modalState.addCohortForm)
+              props.handleModalDisplayState("addCohortForm", {
+                display: false,
+                id: "cohort_0",
+              });
+            }}
+        ></Exit>
       <div className="info">
         <label className="label">Cohort Name</label>
         <input
@@ -108,6 +121,7 @@ const CohortForm = (props) => {
         onClick={pushFormData}
       />
     </form>
+    </div>
   );
 };
 

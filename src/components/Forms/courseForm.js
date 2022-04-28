@@ -1,6 +1,6 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Exit } from "../../images/cancel.svg"
+import { ReactComponent as Exit } from "../../images/cancel.svg";
 
 const CourseForm = (props) => {
   // useEffect(() => {
@@ -61,9 +61,7 @@ const CourseForm = (props) => {
     }
     formData.id = `course_${courseCounter}`;
     formData.parent = props.courseDisplay.id;
-    gantt.addTask(formData);
-    // props.addNewTask(formData);
-    props.updateStateData();
+    props.addTask(formData);
     gantt.open(props.courseDisplay.id); //forces open the parent task
     props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
   };
@@ -78,11 +76,23 @@ const CourseForm = (props) => {
             : { display: "none" }
         }
       >
-        <Exit className="exit-button"></Exit>
+        <Exit
+          className="exit-button"
+          onClick={() => {
+            console.log(
+              "add course form state",
+              props.modalState.addCourseForm
+            );
+            props.handleModalDisplayState("addCourseForm", {
+              display: false,
+              id: "course_0",
+            });
+          }}
+        ></Exit>
         <div className="group-container">
           <div className="group">
             <div className="info">
-              <label className="label">Task Name</label>
+              <label className="label">Course Name</label>
               <input
                 type="title"
                 value={formData.title}

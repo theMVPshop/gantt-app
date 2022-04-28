@@ -1,34 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Exit } from "../../images/cancel.svg"
-import "./Displays.css"
+import { ReactComponent as Exit } from "../../images/cancel.svg";
+import "./Displays.css";
 
 const CourseDisplay = (props) => {
   // useEffect(() => {
   //   console.log(props.courseDisplay.id);
   // }, [props.courseDisplay.id]);
+  console.log("CourseDisplay Props", props);
 
 
   //changed formData & setFormData to displayData & setDisplayData
   //need to bring in data from... where?
-  let courseNum= "fakeCourseNum";
-  let courseLink= "fakeCourseLink";
-  let hubSpotTicket= "fakeHubSpot";
-  let rocketChat= "fakeRocketChat";
-  let instructor= "fakeInstructor";
-  let teacherAssistant= "fakeTA";
-  let location= "fakeLocation";
-  let days= "fakeDays";
-  let mode= "telegraph";
-  let startDate= "09/08/1970";
-  let endDate= "06/26/1988";
-  let startStudents= 4502;
-  let endStudents= 4501;
-  let activeStatus= false;
+  // let courseNum = "fakeCourseNum";
+  // let courseLink = "fakeCourseLink";
+  // let hubSpotTicket = "fakeHubSpot";
+  // let rocketChat = "fakeRocketChat";
+  // let instructor = "fakeInstructor";
+  // let teacherAssistant = "fakeTA";
+  // let location = "fakeLocation";
+  // let days = "fakeDays";
+  // let mode = "telegraph";
+  // let startDate = "09/08/1970";
+  // let endDate = "06/26/1988";
+  // let startStudents = 4502;
+  // let endStudents = 4501;
+  // let activeStatus = false;
 
   const editForm = () => {
-    console.log("This will eventually make the display go away and the form appear")
+    console.log(
+      "This will eventually make the display go away and the form appear"
+    );
     //dynamically render the form here
-  }
+  };
+
+  useEffect(() => {
+    console.log("Current task", props.modalState.currentTask)
+    props.modalState.currentTask.start_date ? console.log("start date", props.modalState.currentTask.start_date.toString()) : console.log("");
+  }, [props.modalState.currentTask]);
+
   return (
     <div>
       <form
@@ -36,23 +45,26 @@ const CourseDisplay = (props) => {
         //may need/ want to change this, bc this is courseDisplay.display is for the courseForm
         style={
           props.modalState.courseDisplay.display
-            ? { display: "none" }
-            : { display: "flex" }
+            ? { display: "flex" }
+            : { display: "none" }
         }
       >
-        <Exit className="exit"
-        onClick={() => {
-          console.log("display",props.modalState.courseDisplay.display)
-          const copy = props.modalState
-          copy.courseDisplay.display = !copy.courseDisplay.display
-          props.setModalState(copy)
-        }}
-        ></Exit>
+        <Exit
+          className="exit-button"
+          onClick={() => {
+            props.handleModalDisplayState("courseDisplay", {
+              display: false,
+              id: "course_0",
+              courseName: "PropsfakeCourseName",
+            });
+            console.log();
+          }}
+        />
         <div className="group-container">
-        <div className="group">
-        <div className="display-info">
-          <label className="display-label">Course Number:</label>
-          {/* <input
+          <div className="group">
+            <div className="display-info">
+              <label className="display-label">Course Number:</label>
+              {/* <input
             type="text"
             value={formData.courseNum}
             onChange={(e) => {
@@ -65,14 +77,14 @@ const CourseDisplay = (props) => {
             name="courseNum"
             className="input"
           /> */}
-          <div className="display-input">
-            {courseNum}
-          </div>
-        </div>  
+              <div className="display-input">
+                {props.modalState.currentTask.title}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Course Link:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Course Link:</label>
+              {/* <input
             type="text"
             name="courseLink"
             className="input"
@@ -85,14 +97,14 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {courseLink}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.course_link}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Hubspot Ticket:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Hubspot Ticket:</label>
+              {/* <input
             type="text"
             name="hubSpotTicket"
             className="input"
@@ -106,14 +118,14 @@ const CourseDisplay = (props) => {
             }}
             
           /> */}
-          <div className="display-input">
-            {hubSpotTicket}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.hubspot_ticket}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Rocket Chat:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Rocket Chat:</label>
+              {/* <input
             type="text"
             name="rocketChat"
             className="input"
@@ -126,14 +138,14 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {rocketChat}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.rocketchat}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Instructor:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Instructor:</label>
+              {/* <input
             type="text"
             name="instructor"
             className="input"
@@ -146,13 +158,13 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {instructor}
-          </div>
-        </div>
-        <div className="display-info">
-          <label className="display-label">Teacher Assistant:</label>
-          {/* <input
+              <div className="display-input">
+                {props.modalState.currentTask.instructor}
+              </div>
+            </div>
+            <div className="display-info">
+              <label className="display-label">Teacher Assistant:</label>
+              {/* <input
             type="text"
             name="teacherAssistant"
             className="input"
@@ -165,14 +177,14 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {teacherAssistant}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.teacher_assistant}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Location:</label>
-          {/* <select
+            <div className="display-info">
+              <label className="display-label">Location:</label>
+              {/* <select
             className="input"
             value={formData.location}
             onChange={(e) => {
@@ -189,16 +201,16 @@ const CourseDisplay = (props) => {
             <option value="ttcu">TTCU</option>
             <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
           </select> */}
-          <div className="display-input">
-            {location}
+              <div className="display-input">
+                {props.modalState.currentTask.location}
+              </div>
+            </div>
           </div>
-        </div>
-        </div>
 
-        <div className="group">
-        <div className="display-info">
-          <label className="display-label">Days:</label>
-          {/* <select
+          <div className="group">
+            <div className="display-info">
+              <label className="display-label">Days:</label>
+              {/* <select
             className="input"
             value={formData.days}
             onChange={(e) => {
@@ -213,14 +225,14 @@ const CourseDisplay = (props) => {
             <option value="partTimeTuesThurs">Tues/Thurs</option>
             <option value="fullTime">Full Time</option>
           </select> */}
-          <div className="display-input">
-            {days}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.day_of_week}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Mode:</label>
-          {/* <select
+            <div className="display-info">
+              <label className="display-label">Mode:</label>
+              {/* <select
             className="input"
             value={formData.mode}
             onChange={(e) => {
@@ -234,14 +246,14 @@ const CourseDisplay = (props) => {
             <option value="online">Online</option>
             <option value="inPerson">In-Person</option>
           </select> */}
-          <div className="display-input">
-            {mode}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.mode}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Start Date:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Start Date:</label>
+              {/* <input
             type="date"
             name="startDate"
             className="input"
@@ -254,14 +266,16 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {startDate}
-          </div>
-        </div>
+              <div className="display-input">
+              {
+              props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString().slice(0, 15) : ""
+              }
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">End Date:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">End Date:</label>
+              {/* <input
             type="date"
             name="endDate"
             className="input"
@@ -274,14 +288,18 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {endDate}
-          </div>
-        </div>
+              <div className="display-input">
+              {
+              props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString().slice(0, 15) : ""
+              }
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Number of Students Starting:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">
+                Number of Students Starting:
+              </label>
+              {/* <input
             type="number"
             name="studentNumStart"
             className="input"
@@ -294,14 +312,16 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {startStudents}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.student_number_start}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Number of Students Ending:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">
+                Number of Students Ending:
+              </label>
+              {/* <input
             type="number"
             name="studentNumEnd"
             className="input"
@@ -314,14 +334,14 @@ const CourseDisplay = (props) => {
               });
             }}
           /> */}
-          <div className="display-input">
-            {endStudents}
-          </div>
-        </div>
+              <div className="display-input">
+                {props.modalState.currentTask.student_number_end}
+              </div>
+            </div>
 
-        <div className="display-info">
-          <label className="display-label">Active Status:</label>
-          {/* <input
+            <div className="display-info">
+              <label className="display-label">Active Status:</label>
+              {/* <input
             type="checkbox"
             className="input"
             value={formData.activeStatus}
@@ -337,23 +357,27 @@ const CourseDisplay = (props) => {
             
           />
           <span className="slider round"></span> */}
-          <div className="display-input">
-            {activeStatus}
+              <div className="display-input">
+                {props.modalState.currentTask.active_status ? "active" : "inactive"}
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-        </div>
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
-        <input type="submit" className="edit-button" value="Edit" onClick={editForm}/>
+        <input
+          type="submit"
+          className="edit-button"
+          value="Edit"
+          onClick={editForm}
+        />
       </form>
-    </div> 
+    </div>
   );
 };
 
 export default CourseDisplay;
 
 //pieces taken out from CourseForm
-
 
 //function that resets formData back to default
 // const resetForm = () => {
@@ -403,4 +427,3 @@ export default CourseDisplay;
 //   endStudents: 0,
 //   activeStatus: false,
 // });
-

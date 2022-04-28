@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 
 const ConfirmDelete = (props) => {
   const deleteTask = () => {
-    console.log(props.confirmDeleteModal.id);
-    gantt.deleteTask(props.confirmDeleteModal.id);
+    let course = props.modalState.confirmDeleteModal.id;
+    props.deleteTask(course);
     resetModal();
   };
 
   const resetModal = () => {
-    props.setConfirmDeleteModal({
+    props.handleModalDisplayState("confirmDeleteModal", {
       display: false,
       id: "cohort_0",
-      text: "",
+      title: "",
     });
   };
 
@@ -27,7 +27,7 @@ const ConfirmDelete = (props) => {
     >
       <h1>
         Are you sure you want to delete{" "}
-        {props.modalState.confirmDeleteModal.text}?
+        {props.modalState.confirmDeleteModal.title}?
       </h1>
       <div>
         <button onClick={deleteTask}>Yes</button>

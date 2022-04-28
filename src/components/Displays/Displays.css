@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Podkova&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
 /* ****** Cohort Display ***** */
 .display-label {
@@ -9,61 +9,65 @@
   margin-top: -15px;
 }
 
-
-.cohortForm-display{
+.cohortForm-display {
   font-family: "Lexend Deca", sans-serif;
-  padding-top: 10px;
-  background-color:  #eceeff;
-  border-radius:10px;
+  margin: 15px;
+  padding: 10px;
+  background-color: #eceeff;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   height: 260px;
-  width:480px
-
+  width: 480px;
+  position: absolute;
+  top: 0;
+  z-index: 101;
 }
 
-.display-info{
-  display:flex;
+.display-info {
+  display: flex;
   flex-direction: row;
   margin-top: 20px;
 }
 
-.input-display{
+.input-display {
   margin-left: 15px;
 }
 
-
-.edit{
+.edit {
   border-color: transparent;
   border-radius: 5px;
   background-color: #079043;
   color: #eceeff;
-  width:65%;
+  width: 65%;
   height: 40px;
   align-self: center;
   margin-top: 40px;
   font-size: 15px;
+  cursor: pointer;
 }
 
 /* ****** Course Display ***** */
-.courseForm-display{
+.courseForm-display {
+  box-sizing: border-box;
   font-family: "Lexend Deca", sans-serif;
   width: 950px;
   height: 450px;
   background-color: #eceeff;
   position: absolute;
-  z-index: 10;
+  z-index: 101;
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding-top: 10px;
+  margin: 15px;
+  padding: 10px;
   border-radius: 20px;
   margin-bottom: 10px;
+  top: 0;
 }
 
 .display-info {
   width: 100%;
-  width:auto;
+  width: auto;
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
@@ -72,13 +76,13 @@
   margin-left: 70px;
 }
 
-.group{
+.group {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
 }
 
-.group-container{
+.group-container {
   display: flex;
   flex-direction: row;
 }
@@ -89,28 +93,29 @@
   font-weight: 800;
   text-align: left;
   align-self: end;
-  margin-right: 40px ;
+  margin-right: 40px;
 }
 
-.display-input{
+.display-input {
   margin-right: 70px;
   align-self: center;
 }
 
-.edit-button{
+.edit-button {
   border-color: transparent;
   border-radius: 5px;
   background-color: #079043;
   color: #eceeff;
-  width:65%;
+  width: 65%;
   height: 40px;
   align-self: center;
   margin-top: 40px;
   font-size: 15px;
-  margin-top:40px;
+  margin-top: 40px;
+  cursor: pointer;
 }
 
-.exit{
+/* .exit {
   height: auto;
   width: 30px;
   margin-left: 10px;
