@@ -41,7 +41,6 @@ const Gantt = () => {
       stateCopy[value] = obj;
       return stateCopy;
     });
-    gantt.parse(data);
   };
 
   const customDeleteTask = (task) => {
@@ -124,29 +123,35 @@ const Gantt = () => {
     gantt.parse(data);
   }, [data]);
 
-  gantt.attachEvent("onGridHeaderClick", function(name, e){
-    var button = e.target.closest("[data-action]");
-    if (button) {
-      console.log("you clicked add custom");
-      setModalState((prevState) => {
-        let copy = { ...prevState };
-        copy.addCohortForm.display = true;
-        setModalState(copy);
-        return copy;
-      })
-    }
-    return true;
-  });
+  gantt.attachEvent(
+    "onGridHeaderClick",
+    function (name, e) {
+      var button = e.target.closest("[data-action]");
+      gantt.detachEvent("task-header-click");
+      if (button) {
+        console.log("you clicked add custom");
+        setModalState((prevState) => {
+          let copy = { ...prevState };
+          copy.addCohortForm.display = true;
+          setModalState(copy);
+          return copy;
+        });
+      }
+      return true;
+    },
+    { id: "task-header-click" }
+  );
 
-  gantt.attachEvent("onTaskClick", function (id, e) {
+  const onTaskClick = (id, e) => {
+    console.log(e);
     var button = e.target.closest("[data-action]");
     if (button) {
-      console.log("this is the button ->", button)
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
-      console.log("data copy", dataCopy);
+      // console.log("data copy", dataCopy);
       var taskIDArray = id.split("_");
+      gantt.detachEvent("task-click");
       switch (action) {
         case "view":
           for (let i = 0; i < dataCopy.data.length; i++) {
@@ -181,6 +186,7 @@ const Gantt = () => {
           break;
         case "delete":
           for (let i = 0; i < dataCopy.data.length; i++) {
+            console.log(copy);
             if (dataCopy.data[i].id == id) {
               copy.confirmDeleteModal = {
                 display: true,
@@ -197,7 +203,9 @@ const Gantt = () => {
           break;
       }
     }
-  });
+  };
+
+  gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {

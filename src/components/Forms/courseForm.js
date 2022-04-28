@@ -59,7 +59,7 @@ const CourseForm = (props) => {
         console.log(courseCounter);
       }
     }
-    formData.id = `course_${courseCounter}`;
+    formData.id = `course_50`;
     formData.parent = props.courseDisplay.id;
     props.addTask(formData);
     gantt.open(props.courseDisplay.id); //forces open the parent task
