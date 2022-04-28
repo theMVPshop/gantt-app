@@ -8,7 +8,7 @@ import Signup from "./components/Signup/Signup.js";
 
 
 export const checkAuth = () => {
-  const cookies = cookie.parse(document.cookie);
+  const cookies = cookie.parse(document.cookie, "maxAge=5");
   console.log("cookies", cookies);
 
   return cookies["loggedIn"] ? true : false;

@@ -20,7 +20,6 @@
   width: 100%;
   padding-bottom: 0;
   justify-content: space-between;
-  /* padding-top: 10%; */
 }
 
 .login-form{
@@ -92,11 +91,11 @@ p{
   width: 500px;
   height:40px;
   margin-top:50px;
+  cursor: pointer;
 }
 
 .vector{
   width: 100%;
-  /* margin-top:88px; */
 }
 
 .input-group{
