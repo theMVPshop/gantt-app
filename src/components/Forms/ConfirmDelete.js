@@ -1,8 +1,10 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const url = "http://localhost:4000/tasks"
 
+import "./Forms.css"
+
+const url = "http://localhost:4000/tasks"
 
 const ConfirmDelete = (props) => {
   // const deleteTask = () => {
@@ -21,29 +23,43 @@ const ConfirmDelete = (props) => {
   };
 
   return (
-    <div
+    <div>
+    <form
+      className="confirmDelete"
+      id="confirmDelete"
       style={
         props.modalState.confirmDeleteModal.display
           ? { display: "flex" }
-          : { display: "none" }
+          : { display: "flex" }
+          // : { display: "none" }
       }
-      id="confirmDeleteModal"
+    
+    
     >
-      <h1>
+      <h1 className="deleteQuestionText">
         Are you sure you want to delete{" "}
         {props.modalState.confirmDeleteModal.title}?
       </h1>
-      <div>
-        <button onClick={() => {
-        props.customDeleteTask(id)
-        resetModal()
-        axios.delete(`${url}/${id}`)
-        .then(res => console.log(res))
-        .catch(err => console.log("there was an error", err))
-        // put reset here and finish axios call  
-        }}>Yes</button>
-        <button onClick={resetModal}>No</button>
+      <div className="deleteButtonsCont">
+        <button 
+          className="submit deleteYesNoButtons"
+          onClick={() => {
+          props.customDeleteTask(id)
+          resetModal()
+          axios.delete(`${url}/${id}`)
+          .then(res => console.log(res))
+          .catch(err => console.log("there was an error", err))
+          // put reset here and finish axios call  
+          }}>
+          Yes
+        </button>
+        <button 
+          className="submit deleteYesNoButtons" 
+          onClick={resetModal}>
+            No
+        </button>
       </div>
+    </form>
     </div>
   );
 };
