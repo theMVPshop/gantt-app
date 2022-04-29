@@ -44,19 +44,37 @@ const CohortForm = (props) => {
             : { display: "none" }
         }
       >
-        <Exit
-          className="exit-button"
-          onClick={() => {
-            console.log(
-              "add cohort form state",
-              props.modalState.addCohortForm
-            );
-            props.handleModalDisplayState("addCohortForm", {
-              display: false,
-              id: "cohort_0",
-            });
-          }}
-        ></Exit>
+        <div className="title-div">
+          <Exit
+            className="exit-button"
+            onClick={() => {
+              console.log(
+                "add cohort form state",
+                props.modalState.addCohortForm
+              );
+              props.handleModalDisplayState("addCohortForm", {
+                display: false,
+                id: "cohort_0",
+              });
+            }}
+          ></Exit>
+          <h1 className="minor-title">Add Cohort</h1>
+        </div>
+        <div className="info">
+          <label className="label">Cohort Name</label>
+          <input
+            type="title"
+            placeholder="Name"
+            value={formData.title}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.title = e.target.value;
+                return prev;
+              });
+            }}
+          />
+        </div>
         <div className="info">
           <label className="label">Cohort Name</label>
           <input
