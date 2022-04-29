@@ -32,95 +32,90 @@ const CohortForm = (props) => {
     console.log(formData);
     props.addTask(formData);
     props.setCohortFormDisplay({ display: false });
-    // props.setData((prevState) => {
-    //   let prev = { ...prevState };
-    //   const found = prev.data.find(
-    //     (element) => element.id === props.cohortDisplay.id
-    //   );
-    //   console.log(found);
-    //   return prev;
-    // });
   };
 
   return (
     <div>
-    <form
-      className="cohortForm"
-      style={
-        props.modalState.addCohortForm.display
-          ? { display: "flex" }
-          : { display: "none" }
-      }
-    >
-        <Exit 
-            className="exit-button"
-            onClick={() => {
-              console.log("add cohort form state", props.modalState.addCohortForm)
-              props.handleModalDisplayState("addCohortForm", {
-                display: false,
-                id: "cohort_0",
+      <form
+        className="cohortForm"
+        style={
+          props.modalState.addCohortForm.display
+            ? { display: "flex" }
+            : { display: "none" }
+        }
+      >
+        <Exit
+          className="exit-button"
+          onClick={() => {
+            console.log(
+              "add cohort form state",
+              props.modalState.addCohortForm
+            );
+            props.handleModalDisplayState("addCohortForm", {
+              display: false,
+              id: "cohort_0",
+            });
+          }}
+        ></Exit>
+        <div className="info">
+          <label className="label">Cohort Name</label>
+          <input
+            type="title"
+            placeholder="Name"
+            value={formData.title}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.title = e.target.value;
+                return prev;
               });
             }}
-        ></Exit>
-      <div className="info">
-        <label className="label">Cohort Name</label>
-        <input
-          type="title"
-          placeholder="Name"
-          value={formData.title}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.title = e.target.value;
-              return prev;
-            });
-          }}
-          name="title"
-          className="input"
-        />
-      </div>
+            name="title"
+            className="input"
+          />
+        </div>
 
-      <div className="info">
-        <label className="label">Start Date</label>
-        <input
-          type="date"
-          value={formData.start_date}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.start_date = e.target.value;
-              return prev;
-            });
-          }}
-          name="start_date"
-          className="input"
-        />
-      </div>
+        <div className="info">
+          <label className="label">Start Date</label>
+          <input
+            type="date"
+            value={formData.start_date}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.start_date = e.target.value;
+                return prev;
+              });
+            }}
+            name="start_date"
+            className="input"
+          />
+        </div>
 
-      <div className="info">
-        <label className="label">Graduation Date</label>
-        <input
-          type="date"
-          value={formData.end_date}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.end_date = e.target.value;
-              return prev;
-            });
-          }}
-          name="end_date"
-          className="input"
-        />
-      </div>
+        <div className="info">
+          <label className="label">Graduation Date</label>
+          <input
+            type="date"
+            value={formData.end_date}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.end_date = e.target.value;
+                return prev;
+              });
+            }}
+            name="end_date"
+            className="input"
+          />
+        </div>
 
-      <input
-        type="submit"
-        className="submit"
-        value="Save"
-        onClick={pushFormData}
-      />
-    </form>
+        <input
+          type="submit"
+          className="submit"
+          value="Save"
+          onClick={pushFormData}
+        />
+      </form>
     </div>
   );
 };

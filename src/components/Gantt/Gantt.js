@@ -357,7 +357,7 @@ const Gantt = () => {
           setModalState={setModalState}
           setData={setData}
           data={data}
-          adddTask={customAddTask}
+          customAddTask={customAddTask}
         ></CourseForm>
         <CohortForm
           modalState={modalState}
@@ -365,7 +365,7 @@ const Gantt = () => {
           setModalState={setModalState}
           setData={setData}
           data={data}
-          addTask={customAddTask}
+          customAddTask={customAddTask}
         ></CohortForm>
         <ConfirmDelete
           modalState={modalState}
