@@ -32,6 +32,7 @@ const CohortDisplay = (props) => {
           });
         }}
       ></Exit>
+      <h1 className="minor-title">Cohort Info</h1>
       <div className="display-info">
         <label className="label display-label">Cohort Name:</label>
 
@@ -54,7 +55,7 @@ const CohortDisplay = (props) => {
           }
         </div>
       </div>
-      <input type="submit" className="edit" value="Edit" />
+      <input type="submit" className="submit" value="Edit" />
     </form>
     </div>
   );

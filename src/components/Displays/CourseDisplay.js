@@ -60,6 +60,7 @@ const CourseDisplay = (props) => {
             console.log();
           }}
         />
+        
         <div className="group-container">
           <div className="group">
             <div className="display-info">
@@ -364,12 +365,6 @@ const CourseDisplay = (props) => {
           </div>
         </div>
         {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
-        <input
-          type="submit"
-          className="edit-button"
-          value="Edit"
-          onClick={editForm}
-        />
       </form>
     </div>
   );

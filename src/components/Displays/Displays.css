@@ -7,6 +7,7 @@
   text-align: right;
   padding-left: 15px;
   margin-top: -15px;
+  margin-left: -20px;
 }
 
 .cohortForm-display {
@@ -17,11 +18,12 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 260px;
+  height: 280px;
   width: 480px;
   position: absolute;
   top: 0;
   z-index: 101;
+  box-shadow: 5px 5px 15px;
 }
 
 .display-info {
@@ -31,7 +33,8 @@
 }
 
 .input-display {
-  margin-left: 15px;
+  margin-left: -80px;
+
 }
 
 .edit {
@@ -156,4 +159,22 @@
   position: absolute;
   margin-right: 26rem;
   margin-top: 5px;
+}
+
+/* ***** Course Edit ***** */
+
+.courseEdit{
+  font-family: "Lexend Deca", sans-serif;
+  width: 1000px;
+  height: 600px;
+  background-color: #eceeff;
+  position: absolute;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  padding: 10px;
+  padding-top: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px ;
 }
