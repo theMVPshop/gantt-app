@@ -2,6 +2,8 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 // import "../Gantt/Gantt.css";
+import axios from "axios";
+const url = "http://localhost:4000/tasks";
 
 const CohortForm = (props) => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,7 @@ const CohortForm = (props) => {
       start_date: "yyyy-mm-dd",
       end_date: "yyyy-mm-dd",
     });
+    props.handleModalDisplayState("addCohortForm", { display: false, id: "cohort_0" });
   };
 
   const pushFormData = () => {
@@ -30,100 +33,103 @@ const CohortForm = (props) => {
     }
     formData.id = `cohort_${cohortCounter}`;
     console.log(formData);
-    props.addTask(formData);
-    props.setCohortFormDisplay({ display: false });
-    // props.setData((prevState) => {
-    //   let prev = { ...prevState };
-    //   const found = prev.data.find(
-    //     (element) => element.id === props.cohortDisplay.id
-    //   );
-    //   console.log(found);
-    //   return prev;
-    // });
+    axios
+      .post(url, formData)
+      .then((res) => {
+        if (res.status === 200) {
+          props.customAddTask(formData);
+          resetForm();
+        }
+      })
+      .catch((err) => console.log("there was an error", err));
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
   return (
     <div>
-    <form
-      className="cohortForm"
-      style={
-        props.modalState.addCohortForm.display
-          ? { display: "flex" }
-          : { display: "none" }
-      }
-    >
-      <div className="title-div">
-        <Exit 
+      <form
+        className="cohortForm"
+        style={
+          props.modalState.addCohortForm.display
+            ? { display: "flex" }
+            : { display: "none" }
+        }
+      >
+        <div className="title-div">
+          <Exit
             className="exit-button"
             onClick={() => {
-              console.log("add cohort form state", props.modalState.addCohortForm)
+              console.log(
+                "add cohort form state",
+                props.modalState.addCohortForm
+              );
               props.handleModalDisplayState("addCohortForm", {
                 display: false,
                 id: "cohort_0",
               });
             }}
-        ></Exit>
-        <h1 className="minor-title">Add Cohort</h1>
+          ></Exit>
+          <h1 className="minor-title">Add Cohort</h1>
         </div>
-      <div className="info">
-        <label className="label">Cohort Name</label>
-        <input
-          type="title"
-          placeholder="Name"
-          value={formData.title}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.title = e.target.value;
-              return prev;
-            });
-          }}
-          name="title"
-          className="input"
-        />
-      </div>
+        <div className="info">
+          <label className="label">Cohort Name</label>
+          <input
+            type="title"
+            placeholder="Name"
+            value={formData.title}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.title = e.target.value;
+                return prev;
+              });
+            }}
+            name="title"
+            className="input"
+          />
+        </div>
 
-      <div className="info">
-        <label className="label">Start Date</label>
-        <input
-          type="date"
-          value={formData.start_date}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.start_date = e.target.value;
-              return prev;
-            });
-          }}
-          name="start_date"
-          className="input"
-        />
-      </div>
+        <div className="info">
+          <label className="label">Start Date</label>
+          <input
+            type="date"
+            value={formData.start_date}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.start_date = e.target.value;
+                return prev;
+              });
+            }}
+            name="start_date"
+            className="input"
+          />
+        </div>
 
-      <div className="info">
-        <label className="label">Graduation Date</label>
-        <input
-          type="date"
-          value={formData.end_date}
-          onChange={(e) => {
-            setFormData((prevState) => {
-              let prev = { ...prevState };
-              prev.end_date = e.target.value;
-              return prev;
-            });
-          }}
-          name="end_date"
-          className="input"
-        />
-      </div>
+        <div className="info">
+          <label className="label">Graduation Date</label>
+          <input
+            type="date"
+            value={formData.end_date}
+            onChange={(e) => {
+              setFormData((prevState) => {
+                let prev = { ...prevState };
+                prev.end_date = e.target.value;
+                return prev;
+              });
+            }}
+            name="end_date"
+            className="input"
+          />
+        </div>
 
-      <input
-        type="submit"
-        className="submit"
-        value="Save"
-        onClick={pushFormData}
-      />
-    </form>
+        <input
+          type="submit"
+          className="submit"
+          value="Save"
+          onClick={pushFormData}
+        />
+      </form>
     </div>
   );
 };

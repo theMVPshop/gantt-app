@@ -57,7 +57,7 @@ const CourseDisplay = (props) => {
               id: "course_0",
               courseName: "PropsfakeCourseName",
             });
-            console.log();
+            props.handleModalDisplayState("currentTask", {})
           }}
         />
         

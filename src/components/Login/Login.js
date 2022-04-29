@@ -94,7 +94,7 @@ const Login = () => {
       </form>
       {/* <div style={{ backgroundImage: `url(${background})` }}className="vector-cont"> */}
 
-        <img style={{ objectFit: "fill"}} src={vector} className="vector"></img>
+        <img style={{ objectFit: "fill"}} src={vector} className="vector" alt="decorative green shape"></img>
         {/* <Vector style={{ objectFit: "fill"}} className="vector" /> */}
 
     </div>
