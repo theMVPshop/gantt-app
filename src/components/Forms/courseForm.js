@@ -89,6 +89,7 @@ const CourseForm = (props) => {
             });
           }}
         ></Exit>
+        <h1 className="minor-title">Add Course</h1>
         <div className="group-container">
           <div className="group">
             <div className="info">

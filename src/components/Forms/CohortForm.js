@@ -52,6 +52,7 @@ const CohortForm = (props) => {
           : { display: "none" }
       }
     >
+      <div className="title-div">
         <Exit 
             className="exit-button"
             onClick={() => {
@@ -62,6 +63,8 @@ const CohortForm = (props) => {
               });
             }}
         ></Exit>
+        <h1 className="minor-title">Add Cohort</h1>
+        </div>
       <div className="info">
         <label className="label">Cohort Name</label>
         <input
