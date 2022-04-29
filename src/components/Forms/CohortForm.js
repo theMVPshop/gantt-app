@@ -2,6 +2,8 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 // import "../Gantt/Gantt.css";
+import axios from "axios";
+const url = "http://localhost:4000/tasks";
 
 const CohortForm = (props) => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,7 @@ const CohortForm = (props) => {
       start_date: "yyyy-mm-dd",
       end_date: "yyyy-mm-dd",
     });
+    props.handleModalDisplayState("addCohortForm", { display: false, id: "cohort_0" });
   };
 
   const pushFormData = () => {
@@ -30,8 +33,16 @@ const CohortForm = (props) => {
     }
     formData.id = `cohort_${cohortCounter}`;
     console.log(formData);
-    props.addTask(formData);
-    props.setCohortFormDisplay({ display: false });
+    axios
+      .post(url, formData)
+      .then((res) => {
+        if (res.status === 200) {
+          props.customAddTask(formData);
+          resetForm();
+        }
+      })
+      .catch((err) => console.log("there was an error", err));
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
   return (
@@ -59,21 +70,6 @@ const CohortForm = (props) => {
             }}
           ></Exit>
           <h1 className="minor-title">Add Cohort</h1>
-        </div>
-        <div className="info">
-          <label className="label">Cohort Name</label>
-          <input
-            type="title"
-            placeholder="Name"
-            value={formData.title}
-            onChange={(e) => {
-              setFormData((prevState) => {
-                let prev = { ...prevState };
-                prev.title = e.target.value;
-                return prev;
-              });
-            }}
-          />
         </div>
         <div className="info">
           <label className="label">Cohort Name</label>
