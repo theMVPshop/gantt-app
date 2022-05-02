@@ -214,6 +214,7 @@ const Gantt = () => {
           break;
         case "add":
           copy.addCourseForm = { display: true, id: id };
+          console.log(id);
           setModalState(copy);
           break;
         case "delete":

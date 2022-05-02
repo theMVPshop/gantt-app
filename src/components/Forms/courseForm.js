@@ -24,8 +24,8 @@ const CourseForm = (props) => {
     start_number_start: 0,
     student_number_end: 0,
     active_status: false,
-    id: 0,
-    parent: 0,
+    id: "cohort_0",
+    parent: "cohort_0",
   });
 
   //function that resets formData back to default
@@ -45,8 +45,8 @@ const CourseForm = (props) => {
       start_number_start: 0,
       student_number_end: 0,
       active_status: false,
-      id: 0,
-      parent: 0,
+      id: "cohort_0",
+      parent: "cohort_0",
     });
   };
 
@@ -55,6 +55,7 @@ const CourseForm = (props) => {
     for (let i = 0; i < props.data.data.length; i++) {
       let courseIDArray = props.data.data[i].id.split("_");
       if (courseIDArray[0] === "course") {
+        console.log(props.data.data[i]);
         courseCounter++;
         console.log(courseCounter);
       }
