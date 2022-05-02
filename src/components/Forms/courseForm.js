@@ -5,6 +5,7 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseForm = (props) => {
+  console.log("COURSE FORM PROPS", props)
   // useEffect(() => {
   //   console.log(props.courseDisplay.id);
   // }, [props.courseDisplay.id]);
@@ -61,7 +62,7 @@ const CourseForm = (props) => {
       }
     }
     formData.id = `course_${courseCounter}`;
-    formData.parent = props.modalState.addCohortForm.id;
+    formData.parent = props.modalState.addCourseForm.id;
     axios
       .post(url, formData)
       .then((res) => {
@@ -72,7 +73,7 @@ const CourseForm = (props) => {
       })
       .catch((err) => console.log("there was an error", err));
     gantt.open(props.courseDisplay.id); //forces open the parent task
-    props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
+    props.handleModalDisplayState("addCourseForm", { display: false, id: "course_0" }); //turning modal display to none and resetting the parent task id passed as a prop
   };
 
   return (
