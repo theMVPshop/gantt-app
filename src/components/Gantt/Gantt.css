@@ -58,7 +58,7 @@ body,
   position: absolute;
 }
 
-#formCont {
+.formCont div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -221,9 +221,9 @@ body,
 } */
 
 .confirmDelete {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   font-family: "Lexend Deca", sans-serif;
-  width: 480px;
+  width: 465px;
   height: 260px;
   margin: 15px;
   padding: 10px;
@@ -238,16 +238,18 @@ body,
   top: 0;
 
   text-align: center;
+  box-shadow: 5px 5px 15px;
   
 
 }
 
 .deleteQuestionText{
-  border: 1px solid darkorange;
+  /* border: 1px solid darkorange; */
+  font-size: 32px;
 }
 
-.deleteButtonsCont{
-  border: 1px solid purple;
+#deleteButtonsCont{
+  /* border: 1px solid purple; */
   display: flex;
   justify-content: space-around;
 
@@ -257,15 +259,8 @@ body,
   width: 150px;
 }
 
-/* #confirmDelete {
-  width: 480px;
-  height: 260px;
-} */
 
-Confirm Delete Modal End
-
-
-
+/* Confirm Delete Modal End */
 
 
 .exit-button {
@@ -355,8 +350,3 @@ Confirm Delete Modal End
   background-color: #eceeff;
 }
 
-.newDiv{
-  border: 1px solid green;
-  display: flex;
-  justify-content: flex-start;
-}

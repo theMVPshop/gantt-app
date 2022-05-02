@@ -52,7 +52,9 @@ const ConfirmDelete = (props) => {
           Are you sure you want to delete{" "}
           {props.modalState.confirmDeleteModal.title}?
         </h1>
-        <div className="deleteButtonsCont">
+        <div 
+          className="deleteButtonsCont" 
+          id="deleteButtonsCont">
           <button 
             className="submit deleteYesNoButtons"
             onClick={() => {
@@ -71,9 +73,7 @@ const ConfirmDelete = (props) => {
               No
           </button>
         </div>
-        <div className="newDiv">
-          NEW DIV
-        </div>
+  
         {/* <div>
           <button onClick={pushFormData}>Yes</button>
           <button onClick={resetModal}>No</button>
