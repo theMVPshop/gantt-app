@@ -33,7 +33,7 @@ const Gantt = () => {
     },
     courseEditForm: {
       display: false,
-      id: "cohort_0",
+      id: "course_0",
     },
     confirmDeleteModal: {
       display: false,
