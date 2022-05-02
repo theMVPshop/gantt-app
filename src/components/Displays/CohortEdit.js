@@ -57,7 +57,7 @@ const CohortEdit = (props) => {
             props.setModalState(copy);
           }}
         ></Exit>
-        <h1 className="minor-title">Edit</h1>
+        <h1 className="minor-title">Edit Cohort Info</h1>
       </div>
       {/* className="cohortForm" 
           style={
