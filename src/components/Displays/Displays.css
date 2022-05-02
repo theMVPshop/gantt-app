@@ -63,6 +63,7 @@
   border-radius: 20px;
   margin-bottom: 10px;
   top: 0;
+  box-shadow: 5px 5px 20px;
 }
 
 .display-info {
@@ -115,9 +116,9 @@
   cursor: pointer;
 }
 
-/* .exit {
+.exit {
   height: auto;
-  width: 30px;
+  width: 35px;
   margin-left: 10px;
   fill:firebrick;
 }
@@ -135,6 +136,7 @@
   border-radius: 10px;
   position: absolute;
   z-index: 10;
+  box-shadow: 5px 5px 15px;
 }
 
 .minor-title{
@@ -149,7 +151,7 @@
 }
 
 .edit-exit{
-  height: 30px;
+  height: 35px;
   fill: firebrick;
   position: absolute;
   margin-right: 26rem;

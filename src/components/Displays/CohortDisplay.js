@@ -30,6 +30,7 @@ const CohortDisplay = (props) => {
             id: "cohort_0",
             courseName: "PropsfakeCourseName",
           });
+          props.handleModalDisplayState("currentTask", {})
         }}
       ></Exit>
       <div className="display-info">

@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { checkAuth } from "../../Router";
-import CohortForm from "../Forms/CohortForm.js";
 import "./Nav.css";
 
 const Nav = () => {
-  const [cohortFormDisplay, setCohortFormDisplay] = useState({
-    display: true,
-  });
+  const currentPath = window.location.pathname;
 
   return (
     <nav className="nav-bar">
@@ -23,10 +20,15 @@ const Nav = () => {
           >
             Logout
           </Link>
-        </button> : 
+        </button>
+        :
         <button className="nav-link">
-          <Link className="link" to="/signup">Sign Up</Link>
-        </button> 
+          { 
+            currentPath === "/" ? 
+            <Link className="link" to="/signup" onClick={() => {window.location.replace("/signup")}}>Sign Up</Link> 
+            : <Link className="link" to="/" onClick={() => {window.location.replace("/")}}>Sign In</Link> 
+          }
+        </button>  
       }
     </nav>
   );
