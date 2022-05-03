@@ -57,11 +57,8 @@ const CourseEdit = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            console.log("display", props.modalState.courseDisplay.display);
-            const copy = props.modalState;
-            copy.courseDisplay.display = !copy.courseDisplay.display;
             props.handleModalDisplayState("courseEditForm", {
-              display: "false",
+              display: false,
               id: "course_0",
             });
           }}

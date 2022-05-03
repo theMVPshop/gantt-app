@@ -177,4 +177,6 @@
   padding-top: 20px;
   border-radius: 20px;
   box-shadow: 5px 5px 20px ;
+  position: absolute;
+  top: 0;
 }
