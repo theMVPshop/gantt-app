@@ -8,24 +8,43 @@ const CourseEdit = (props) => {
 
   const [formData, setFormData] = useState({
     title: "",
-    courseNum: "",
-    courseLink: "",
-    hubSpotTicket: "",
-    rocketChat: "",
+    course_link: "",
+    hubspot_ticket: "",
+    rocketchat: "",
     instructor: "",
-    teacherAssistant: "",
+    teacher_assistant: "",
     location: "",
-    days: "",
+    day_of_week: "",
     mode: "",
-    start_date: "yyyy-MM-dd",
-    end_date: "YYYY-MM-DD",
-    startStudents: 0,
-    endtudents: 0,
-    activeStatus: false,
-    id: "course_0",
+    start_date: "2022-07-05",
+    end_date: "2022-07-05",
+    student_number_start: 0,
+    student_number_end: 0,
+    active_status: false,
+    id: "cohort_0",
     parent: "cohort_0",
   });
-
+  
+  useEffect(() => {
+    setFormData({
+      title: props.modalState.currentTask.title,
+      course_link: props.modalState.currentTask.ourse_link,
+      hubspot_ticket: props.modalState.currentTask.hubspot_ticket,
+      rocketchat: props.modalState.currentTask.rocketchat,
+      instructor: props.modalState.currentTask.instructor,
+      teacher_assistant: props.modalState.currentTask.teacher_assistant,
+      location: props.modalState.currentTask.location,
+      day_of_week: props.modalState.currentTask.day_of_week,
+      mode: props.modalState.currentTask.mode,
+      start_date: props.modalState.currentTask.start_date,
+      end_date: props.modalState.currentTask.end_date,
+      student_number_start: props.modalState.currentTask.student_number_start,
+      student_number_end: props.modalState.currentTask.student_number_end,
+      active_status: props.modalState.currentTask.active_status,
+      id: props.modalState.currentTask.id,
+      parent: props.modalState.currentTask.parent,
+    })
+  }, [])
 
   const pushFormData = () => {
     var courseCounter = 1;
