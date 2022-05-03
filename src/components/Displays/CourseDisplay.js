@@ -9,23 +9,6 @@ const CourseDisplay = (props) => {
   console.log("CourseDisplay Props", props);
 
 
-  //changed formData & setFormData to displayData & setDisplayData
-  //need to bring in data from... where?
-  // let courseNum = "fakeCourseNum";
-  // let courseLink = "fakeCourseLink";
-  // let hubSpotTicket = "fakeHubSpot";
-  // let rocketChat = "fakeRocketChat";
-  // let instructor = "fakeInstructor";
-  // let teacherAssistant = "fakeTA";
-  // let location = "fakeLocation";
-  // let days = "fakeDays";
-  // let mode = "telegraph";
-  // let startDate = "09/08/1970";
-  // let endDate = "06/26/1988";
-  // let startStudents = 4502;
-  // let endStudents = 4501;
-  // let activeStatus = false;
-
   const editForm = () => {
     console.log(
       "This will eventually make the display go away and the form appear"
