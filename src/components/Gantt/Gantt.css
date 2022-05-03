@@ -215,10 +215,6 @@ body,
 }
 /*-----Confirm Delete Modal START-----*/
 
-/* #confirmDeleteModal div {
-  display: flex;
-  flex-direction: row;
-} */
 
 .confirmDelete {
   /* border: 1px solid blue; */
@@ -244,8 +240,11 @@ body,
 }
 
 .deleteQuestionText{
-  /* border: 1px solid darkorange; */
+  border: 1px solid darkorange;
   font-size: 32px;
+  align-self: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #deleteButtonsCont{

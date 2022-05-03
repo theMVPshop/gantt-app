@@ -220,7 +220,7 @@ const Gantt = () => {
           break;
         case "delete":
           for (let i = 0; i < dataCopy.data.length; i++) {
-            console.log(copy);
+            console.log("DELETE: ", copy.confirmDeleteModal.display);
             if (dataCopy.data[i].id == id) {
               copy.confirmDeleteModal = {
                 display: true,

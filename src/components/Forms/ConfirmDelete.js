@@ -1,7 +1,7 @@
-import { gantt } from "dhtmlx-gantt";
-import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 
+import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Forms.css"
 
 const url = "http://localhost:4000/tasks"
@@ -15,6 +15,7 @@ const ConfirmDelete = (props) => {
   let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {
+    console.log("resetModal confirmDelete: props.confirmDeleteModal.display", props.modalState.confirmDeleteModal.display )
     props.handleModalDisplayState("confirmDeleteModal", {
       display: false,
       id: "cohort_0",
@@ -42,19 +43,33 @@ const ConfirmDelete = (props) => {
         style={
           props.modalState.confirmDeleteModal.display
             ? { display: "flex" }
-            : { display: "flex" }
+            : { display: "none" }
             // : { display: "none" }
         }
       
       
       >
+        <Exit
+            className="exit-button"
+            onClick={() => {
+              console.log(
+                "add cohort form state",
+                props.modalState.addCohortForm
+              );
+              props.handleModalDisplayState("addCohortForm", {
+                display: false,
+                id: "cohort_0",
+              });
+            }}
+          ></Exit>
         <h1 className="deleteQuestionText">
           Are you sure you want to delete{" "}
           {props.modalState.confirmDeleteModal.title}?
         </h1>
         <div 
           className="deleteButtonsCont" 
-          id="deleteButtonsCont">
+          id="deleteButtonsCont"
+        >
           <button 
             className="submit deleteYesNoButtons"
             onClick={() => {
@@ -69,7 +84,10 @@ const ConfirmDelete = (props) => {
           </button>
           <button 
             className="submit deleteYesNoButtons" 
-            onClick={resetModal}>
+            onClick={resetModal}
+            type="button"
+          >
+           
               No
           </button>
         </div>
@@ -79,8 +97,6 @@ const ConfirmDelete = (props) => {
           <button onClick={resetModal}>No</button>
         </div> */}
       </form>
-      
-       
     </div>
   );
 };
