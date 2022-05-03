@@ -53,12 +53,11 @@ const ConfirmDelete = (props) => {
             className="exit-button"
             onClick={() => {
               console.log(
-                "add cohort form state",
-                props.modalState.addCohortForm
+                "Exit confirmDelete",
+                props.modalState.confirmDeleteModal
               );
-              props.handleModalDisplayState("addCohortForm", {
+              props.handleModalDisplayState("confirmDeleteModal", {
                 display: false,
-                id: "cohort_0",
               });
             }}
           ></Exit>
