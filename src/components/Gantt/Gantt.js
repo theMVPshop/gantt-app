@@ -33,7 +33,7 @@ const Gantt = () => {
     },
     courseEditForm: {
       display: false,
-      id: "cohort_0",
+      id: "course_0",
     },
     confirmDeleteModal: {
       display: false,
@@ -66,7 +66,7 @@ const Gantt = () => {
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
-    "<svg id='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
+    "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
 
   var plusIconHeader =
     "<svg id='plusIconHeader' data-action='add_custom' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -255,6 +255,13 @@ const Gantt = () => {
     // });
 
     //gantt custom columns
+
+    gantt.templates.grid_row_class = function (start, end, task) {
+      if (task.$level > 0) {
+        return "nested_task";
+      }
+    };
+
     gantt.config.columns = [
       {
         name: "title",
