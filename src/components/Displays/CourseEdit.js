@@ -8,24 +8,45 @@ const CourseEdit = (props) => {
 
   const [formData, setFormData] = useState({
     title: "",
-    courseNum: "",
-    courseLink: "",
-    hubSpotTicket: "",
-    rocketChat: "",
+    course_link: "",
+    hubspot_ticket: "",
+    rocketchat: "",
     instructor: "",
-    teacherAssistant: "",
+    teacher_assistant: "",
     location: "",
-    days: "",
+    day_of_week: "",
     mode: "",
-    start_date: "yyyy-MM-dd",
-    end_date: "YYYY-MM-DD",
-    startStudents: 0,
-    endtudents: 0,
-    activeStatus: false,
-    id: "course_0",
+    start_date: "2022-07-05",
+    end_date: "2022-07-05",
+    student_number_start: 0,
+    student_number_end: 0,
+    active_status: false,
+    id: "cohort_0",
     parent: "cohort_0",
   });
-
+  
+  useEffect(() => {
+    let spreadFormData = {...props.modalState.currentTask}
+    console.log(spreadFormData)
+    setFormData({
+      title: props.modalState.currentTask.title,
+      course_link: props.modalState.currentTask.course_link,
+      hubspot_ticket: props.modalState.currentTask.hubspot_ticket,
+      rocketchat: props.modalState.currentTask.rocketchat,
+      instructor: props.modalState.currentTask.instructor,
+      teacher_assistant: props.modalState.currentTask.teacher_assistant,
+      location: props.modalState.currentTask.location,
+      day_of_week: props.modalState.currentTask.day_of_week,
+      mode: props.modalState.currentTask.mode,
+      start_date: props.modalState.currentTask.start_date,
+      end_date: props.modalState.currentTask.end_date,
+      student_number_start: props.modalState.currentTask.student_number_start,
+      student_number_end: props.modalState.currentTask.student_number_end,
+      active_status: props.modalState.currentTask.active_status,
+      id: props.modalState.currentTask.id,
+      parent: props.modalState.currentTask.parent,
+    })
+  }, [props.modalState.currentTask])
 
   const pushFormData = () => {
     var courseCounter = 1;
@@ -57,11 +78,8 @@ const CourseEdit = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            console.log("display", props.modalState.courseDisplay.display);
-            const copy = props.modalState;
-            copy.courseDisplay.display = !copy.courseDisplay.display;
             props.handleModalDisplayState("courseEditForm", {
-              display: "false",
+              display: false,
               id: "course_0",
             });
           }}
@@ -86,22 +104,7 @@ const CourseEdit = (props) => {
               />
             </div>
 
-            <div className="info">
-              <label className="label">Course Number</label>
-              <input
-                type="text"
-                value={formData.courseNum}
-                onChange={(e) => {
-                  setFormData((prevState) => {
-                    let prev = { ...prevState };
-                    prev.courseNum = e.target.value;
-                    return prev;
-                  });
-                }}
-                name="courseNum"
-                className="input"
-              />
-            </div>
+            
 
             <div className="info">
               <label className="label">Course Link</label>
@@ -109,11 +112,11 @@ const CourseEdit = (props) => {
                 type="text"
                 name="courseLink"
                 className="input"
-                value={formData.courseLink}
+                value={formData.course_link}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.courseLink = e.target.value;
+                    prev.course_link = e.target.value;
                     return prev;
                   });
                 }}
@@ -126,11 +129,11 @@ const CourseEdit = (props) => {
                 type="text"
                 name="hubSpotTicket"
                 className="input"
-                value={formData.hubSpotTicket}
+                value={formData.hubspot_ticket}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.hubSpotTicket = e.target.value;
+                    prev.hubspot_ticket = e.target.value;
                     return prev;
                   });
                 }}
@@ -143,11 +146,11 @@ const CourseEdit = (props) => {
                 type="text"
                 name="rocketChat"
                 className="input"
-                value={formData.rocketChat}
+                value={formData.rocketchat}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.rocketChat = e.target.value;
+                    prev.rocketchat = e.target.value;
                     return prev;
                   });
                 }}
@@ -176,11 +179,11 @@ const CourseEdit = (props) => {
                 type="text"
                 name="teacherAssistant"
                 className="input"
-                value={formData.teacherAssistant}
+                value={formData.teacher_assistant}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.teacherAssistant = e.target.value;
+                    prev.teacher_assistant = e.target.value;
                     return prev;
                   });
                 }}
@@ -214,11 +217,11 @@ const CourseEdit = (props) => {
               <label className="label">Days</label>
               <select
                 className="input"
-                value={formData.days}
+                value={formData.day_of_week}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.days = e.target.value;
+                    prev.day_of_week = e.target.value;
                     return prev;
                   });
                 }}
@@ -289,11 +292,11 @@ const CourseEdit = (props) => {
                 type="number"
                 name="studentNumStart"
                 className="input"
-                value={formData.startStudents}
+                value={formData.student_number_start}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.startStudents = e.target.value;
+                    prev.student_number_start = e.target.value;
                     return prev;
                   });
                 }}
@@ -308,11 +311,11 @@ const CourseEdit = (props) => {
                 type="number"
                 name="studentNumEnd"
                 className="input"
-                value={formData.endStudents}
+                value={formData.student_number_end}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.endStudents = e.target.value;
+                    prev.student_number_end = e.target.value;
                     return prev;
                   });
                 }}
@@ -324,11 +327,11 @@ const CourseEdit = (props) => {
               <input
                 type="checkbox"
                 className="input"
-                value={formData.activeStatus}
+                value={formData.active_status}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.activeStatus = e.target.value;
+                    prev.active_status = e.target.value;
                     return prev;
                   });
                 }}

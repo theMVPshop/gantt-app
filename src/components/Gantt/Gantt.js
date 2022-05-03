@@ -33,7 +33,7 @@ const Gantt = () => {
     },
     courseEditForm: {
       display: false,
-      id: "cohort_0",
+      id: "course_0",
     },
     confirmDeleteModal: {
       display: false,
@@ -66,7 +66,7 @@ const Gantt = () => {
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
-    "<svg id='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
+    "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
 
   var plusIconHeader =
     "<svg id='plusIconHeader' data-action='add_custom' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -214,13 +214,13 @@ const Gantt = () => {
           break;
         case "add":
           copy.addCourseForm = { display: true, id: id };
-          console.log("COPY.ADDCOURSEFORM IN GANTT.JS", copy.addCourseForm)
-          console.log("THE PROVIDED ID", id)
+          console.log("COPY.ADDCOURSEFORM IN GANTT.JS", copy.addCourseForm);
+          console.log("THE PROVIDED ID", id);
           setModalState(copy);
           break;
         case "delete":
           for (let i = 0; i < dataCopy.data.length; i++) {
-            console.log(copy);
+            console.log("DELETE: ", copy.confirmDeleteModal.display);
             if (dataCopy.data[i].id == id) {
               copy.confirmDeleteModal = {
                 display: true,
@@ -255,6 +255,17 @@ const Gantt = () => {
     // });
 
     //gantt custom columns
+
+    gantt.templates.grid_row_class = function (start, end, task) {
+      if (task.$level > 0) {
+        return "nested_task";
+      }
+    };
+
+    gantt.templates.task_text = function (start, end, task) {
+      return task.title;
+    };
+
     gantt.config.columns = [
       {
         name: "title",

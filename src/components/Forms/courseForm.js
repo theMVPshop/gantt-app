@@ -5,7 +5,7 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseForm = (props) => {
-  console.log("COURSE FORM PROPS", props)
+  console.log("COURSE FORM PROPS", props);
   // useEffect(() => {
   //   console.log(props.courseDisplay.id);
   // }, [props.courseDisplay.id]);
@@ -22,11 +22,11 @@ const CourseForm = (props) => {
     mode: "",
     start_date: "2022-07-05",
     end_date: "2022-07-05",
-    start_number_start: 0,
+    student_number_start: 0,
     student_number_end: 0,
     active_status: false,
-    id: 0,
-    parent: 0,
+    id: "cohort_0",
+    parent: "cohort_0",
   });
 
   //function that resets formData back to default
@@ -43,25 +43,28 @@ const CourseForm = (props) => {
       mode: "",
       start_date: "2022-07-05",
       end_date: "2022-07-05",
-      start_number_start: 0,
+      student_number_start: 0,
       student_number_end: 0,
       active_status: false,
-      id: 0,
-      parent: 0,
+      id: "cohort_0",
+      parent: "cohort_0",
     });
   };
 
   const pushFormData = () => {
     var courseCounter = 1;
+    var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
       let courseIDArray = props.data.data[i].id.split("_");
       if (courseIDArray[0] === "course") {
         courseCounter++;
-        console.log(courseCounter);
+        idArray.push(courseIDArray[1]);
       }
     }
-    formData.id = `course_${courseCounter}`;
+    let newID = Math.max(...idArray) + 1;
+    formData.id = `course_${newID}`;
     formData.parent = props.modalState.addCourseForm.id;
+
     axios
       .post(url, formData)
       .then((res) => {
@@ -72,7 +75,10 @@ const CourseForm = (props) => {
       })
       .catch((err) => console.log("there was an error", err));
     gantt.open(props.courseDisplay.id); //forces open the parent task
-    props.handleModalDisplayState("addCourseForm", { display: false, id: "course_0" }); //turning modal display to none and resetting the parent task id passed as a prop
+    props.handleModalDisplayState("addCourseForm", {
+      display: false,
+      id: "course_0",
+    }); //turning modal display to none and resetting the parent task id passed as a prop
   };
 
   return (

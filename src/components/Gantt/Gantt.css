@@ -13,6 +13,10 @@ body,
   padding-top: 50px;
 }
 
+.nested_task #plusIconRow {
+  display: none;
+}
+
 #editIcon {
   cursor: pointer;
   margin-top: 6px;
@@ -58,7 +62,7 @@ body,
   position: absolute;
 }
 
-#formCont div {
+.formCont div {
   width: 100%;
   height: 100%;
   display: flex;
@@ -80,7 +84,7 @@ body,
   padding: 10px;
   padding-top: 20px;
   border-radius: 20px;
-  box-shadow: 5px 5px 20px ;
+  box-shadow: 5px 5px 20px;
 }
 
 .info {
@@ -144,7 +148,7 @@ body,
 
 /* *****CohortForm Styles***** */
 .cohortForm {
-  box-shadow: 5px 5px 15px ;
+  box-shadow: 5px 5px 15px;
   font-family: "Lexend Deca", sans-serif;
   width: 480px;
   height: 280px;
@@ -153,7 +157,7 @@ body,
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #eceeff ;
+  background-color: #eceeff;
   border-radius: 10px;
   position: absolute;
   z-index: 101;
@@ -210,27 +214,52 @@ body,
 }
 /* *****CohortForm Styles End***** */
 
-/*-----Confirm Delete Modal-----*/
-
-#confirmDeleteModal {
-  position: absolute;
-  margin: 0;
-  height: 200px;
-  width: 200px;
-  z-index: 10;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#confirmDeleteModal div {
-  display: flex;
-  flex-direction: row;
-}
 ::placeholder {
   color: #eceeff;
 }
-/* *****CohortForm Styles End***** */
+/*-----Confirm Delete Modal START-----*/
+
+
+.confirmDelete {
+  /* border: 1px solid blue; */
+  font-family: "Lexend Deca", sans-serif;
+  width: 465px;
+  height: 260px;
+  margin: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background-color: #eceeff;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 101;
+  position: absolute;
+  top: 0;
+
+  text-align: center;
+  box-shadow: 5px 5px 15px;
+}
+
+.deleteQuestionText {
+  /* border: 1px solid darkorange; */
+  font-size: 32px;
+  align-self: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#deleteButtonsCont {
+  /* border: 1px solid purple; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.deleteYesNoButtons {
+  width: 150px;
+}
+
+/* Confirm Delete Modal End */
 
 .exit-button {
   height: auto;
@@ -260,13 +289,13 @@ body,
   color: #2f2f2f;
 }
 
-.gantt_tree_icon.gantt_folder_open{
+.gantt_tree_icon.gantt_folder_open {
   fill: #2f2f2f;
 }
 
 .gantt_scale_cell {
   background-color: #eceeff;
-  color: #2f2f2f!important;
+  color: #2f2f2f !important;
   border: 1px solid #2f2f2f;
 }
 
@@ -288,33 +317,33 @@ body,
   border-right: 1px solid lightgrey;
 }
 
-.gantt_task_content{
-  background-color:#079043;
+.gantt_task_content {
+  background-color: #079043;
   border-radius: 5px;
   border-color: transparent;
 }
 
-.gantt_task_progress_wrapper{
+.gantt_task_progress_wrapper {
   background-color: transparent;
 }
 
-.gantt_task_line.gantt_bar_task{
+.gantt_task_line.gantt_bar_task {
   background-color: transparent;
   border: transparent;
 }
 
-#plusIconRow{
-  fill:#079043
-}
-
-#plusIconHeader{
+#plusIconRow {
   fill: #079043;
 }
 
-.gantt_data_area{
+#plusIconHeader {
+  fill: #079043;
+}
+
+.gantt_data_area {
   background-color: #eceeff;
 }
 
-.gantt_grid_data{
+.gantt_grid_data {
   background-color: #eceeff;
 }
