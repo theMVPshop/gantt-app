@@ -53,18 +53,20 @@ p{
   border-radius: 5px;
   border-color: transparent;
   background-color: #079043;
+  color: #ECEEFF;
   opacity: 60%;
   padding: 15px;
   height: 50px;
   width:100%;
   margin:0;
-}
+} 
 
 .password{
   font-family: 'Lexend Deca', sans-serif;
   border-radius: 5px;
   border-color: transparent;
   background-color: #079043;
+  color: #ECEEFF;
   opacity: 60%;
   margin-top: 10px;
   padding: 15px;

@@ -60,6 +60,7 @@ const CourseDisplay = (props) => {
             props.handleModalDisplayState("currentTask", {})
           }}
         />
+        <h1 className="minor-title">Course Info</h1>
         
         <div className="group-container">
           <div className="group">
