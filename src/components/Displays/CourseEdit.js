@@ -1,11 +1,10 @@
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
-
+import axios from "axios";
+const url = "http://localhost:4000/tasks";
 
 const CourseEdit = (props) => {
-
-
   const [formData, setFormData] = useState({
     title: "",
     courseNum: "",
@@ -26,21 +25,39 @@ const CourseEdit = (props) => {
     parent: "cohort_0",
   });
 
+  const resetForm = () => {
+    setFormData({
+      title: "",
+      course_link: "",
+      hubspot_ticket: "",
+      rocketchat: "",
+      instructor: "",
+      teacher_assistant: "",
+      location: "",
+      day_of_week: "",
+      mode: "",
+      start_date: "2022-07-05",
+      end_date: "2022-07-05",
+      start_number_start: 0,
+      student_number_end: 0,
+      active_status: false,
+      id: "cohort_0",
+      parent: "cohort_0",
+    });
+  };
 
   const pushFormData = () => {
-    var courseCounter = 1;
-    for (let i = 0; i < props.data.data.length; i++) {
-      let courseIDArray = props.data.data[i].id.split("_");
-      if (courseIDArray[0] === "course") {
-        courseCounter++;
-        console.log(courseCounter);
-      }
-    }
-    formData.id = `course_50`;
-    formData.parent = props.courseDisplay.id;
-    props.addTask(formData);
-    gantt.open(props.courseDisplay.id); //forces open the parent task
-    props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
+    // axios
+    //   .put(url, formData)
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       props.customEditTask(formData);
+    //       resetForm();
+    //     }
+    //   })
+    //   .catch((err) => console.log("there was an error", err));
+    props.customEditTask(formData);
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
   return (

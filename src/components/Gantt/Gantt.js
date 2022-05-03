@@ -64,6 +64,12 @@ const Gantt = () => {
     setData(gantt.serialize());
   };
 
+  const customEditTask = (task) => {
+    console.log(task);
+    gantt.updateTask(task);
+    setData(gantt.serialize());
+  };
+
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
     "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -407,12 +413,14 @@ const Gantt = () => {
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
+          customEditTask={customEditTask}
         ></CohortEdit>
         <CourseEdit
           data={data}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
+          customEditTask={customEditTask}
         ></CourseEdit>
         {/*<button
           onClick={() => {
