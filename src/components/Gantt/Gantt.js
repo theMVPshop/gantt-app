@@ -262,6 +262,10 @@ const Gantt = () => {
       }
     };
 
+    gantt.templates.task_text = function (start, end, task) {
+      return task.title;
+    };
+
     gantt.config.columns = [
       {
         name: "title",
