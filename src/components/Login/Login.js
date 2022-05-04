@@ -60,7 +60,7 @@ const Login = () => {
         <h1>Sign in</h1>
         <p>Enter your email and password below</p>
         <div className="input-group">
-          <input
+          <input 
             type="email"
             id="inputID1"
             placeholder="Email"
