@@ -24,6 +24,7 @@
   top: 0;
   z-index: 101;
   box-shadow: 5px 5px 15px;
+  margin-top: 50px;
 }
 
 .display-info {
@@ -55,23 +56,22 @@
   box-sizing: border-box;
   font-family: "Lexend Deca", sans-serif;
   width: 950px;
-  height: 450px;
+  height:500px;
   background-color: #eceeff;
   position: absolute;
   z-index: 101;
   display: flex;
   flex-direction: column;
-  margin: 15px;
+  margin-top: 50px;
   padding: 10px;
   border-radius: 20px;
   margin-bottom: 10px;
   top: 0;
+  padding-bottom: 70px;
   box-shadow: 5px 5px 20px;
 }
 
 .display-info {
-  width: 100%;
-  width: auto;
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
@@ -92,7 +92,7 @@
 }
 
 .display-label {
-  width: 160px;
+  width: 300px;
   font-size: 15px;
   font-weight: 800;
   text-align: left;
@@ -101,8 +101,10 @@
 }
 
 .display-input {
-  margin-right: 70px;
   align-self: center;
+  margin-left: -50px;
+  margin-right:50px;
+  padding-top: 10px;
 }
 
 .edit-button {
