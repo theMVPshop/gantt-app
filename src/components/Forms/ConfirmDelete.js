@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import { gantt } from "dhtmlx-gantt";
 
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Forms.css"
@@ -15,12 +16,13 @@ const ConfirmDelete = (props) => {
   let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {
-    console.log("resetModal confirmDelete: props.confirmDeleteModal.display", props.modalState.confirmDeleteModal.display )
+    // console.log("resetModal confirmDelete: props.confirmDeleteModal.display", props.modalState.confirmDeleteModal.display )
     props.handleModalDisplayState("confirmDeleteModal", {
       display: false,
       id: "cohort_0",
       title: "",
     });
+  
   };
 
   const pushFormData = () => {

@@ -220,15 +220,13 @@ body,
 /*-----Confirm Delete Modal START-----*/
 
 .confirmDelete {
-  /* border: 1px solid blue; */
   font-family: "Lexend Deca", sans-serif;
   width: 465px;
-  height: 260px;
-  margin: 15px;
+  margin: 50px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   background-color: #eceeff;
   border-radius: 10px;
   position: absolute;
