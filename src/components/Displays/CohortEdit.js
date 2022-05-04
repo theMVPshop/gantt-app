@@ -39,7 +39,8 @@ const CohortEdit = (props) => {
   };
 
   return (
-    <form
+    <div>
+      <form
       className="cohortEdit"
       style={
         props.modalState.cohortEditForm.display
@@ -49,12 +50,12 @@ const CohortEdit = (props) => {
     >
       <div className="title-div">
         <Exit
-          className="edit-exit"
+          className="edit-exit exit-button"
           onClick={() => {
-            console.log("display", props.modalState.courseDisplay.display);
+            console.log("display", props.modalState.cohortEditForm.display);
             const copy = props.modalState;
-            copy.courseDisplay.display = !copy.courseDisplay.display;
-            props.setModalState(copy);
+            copy.cohortEditForm.display = !copy.cohortEditForm.display;
+            props.handleModalDisplayState(copy);
           }}
         ></Exit>
         <h1 className="minor-title">Edit Cohort Info</h1>
@@ -123,7 +124,9 @@ const CohortEdit = (props) => {
         value="Confirm Changes"
         onClick={pushEditedData}
       />
-    </form>
+    </form> 
+  </div>
+  
   );
 };
 

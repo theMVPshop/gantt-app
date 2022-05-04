@@ -64,9 +64,8 @@ const Gantt = () => {
     setData(gantt.serialize());
   };
 
-  const customEditTask = (task) => {
-    console.log(task);
-    gantt.updateTask(task);
+  const customEditTask = (id, task) => {
+    gantt.updateTask(id, task);
     setData(gantt.serialize());
   };
 

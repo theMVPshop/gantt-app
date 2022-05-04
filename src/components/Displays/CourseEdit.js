@@ -48,16 +48,15 @@ const CourseEdit = (props) => {
   }, [props.modalState.currentTask]);
 
   const pushFormData = () => {
-    // axios
-    //   .put(url, formData)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       props.customEditTask(formData);
-    //       resetForm();
-    //     }
-    //   })
-    //   .catch((err) => console.log("there was an error", err));
-    props.customEditTask(formData);
+    axios
+      .put(`${url}/${props.modalState.currentTask.id}`, formData)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          props.customEditTask(formData.id, formData);
+        }
+      })
+      .catch((err) => console.log("there was an error", err));
     gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 

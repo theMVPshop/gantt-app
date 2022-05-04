@@ -52,7 +52,7 @@ body,
   width: 22px;
   height: 22px;
   margin-top: 6px;
-  fill: #299bc4;
+  fill: #306072;
   cursor: pointer;
 }
 
@@ -218,7 +218,6 @@ body,
   color: #eceeff;
 }
 /*-----Confirm Delete Modal START-----*/
-
 
 .confirmDelete {
   /* border: 1px solid blue; */
