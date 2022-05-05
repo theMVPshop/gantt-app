@@ -75,6 +75,10 @@ p{
   width: 500px !important;
 }
 
+input:-webkit-autofill{
+  border: 2px solid #079043 !important;
+}
+
 #inputID1::placeholder {
   color: white;
   opacity: 100%;
