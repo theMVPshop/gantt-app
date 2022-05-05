@@ -24,7 +24,25 @@ const CourseEdit = (props) => {
     parent: "cohort_0",
   });
 
+<<<<<<< HEAD
+  // const createDate = () => {
+  //   //varaible to create the new date
+  //   // let origDate = props.modalState.currentTask.start_date
+  //   let origDate = ""
+  //   //variable to hold pieces of the date that we want to display
+  //   let displayDate = `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()
+  //   return displayDate
+  // }
+  
   useEffect(() => {
+    let spreadFormData = {...props.modalState.currentTask}
+    // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
+      // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
+    
+    console.log(spreadFormData)
+=======
+  useEffect(() => {
+>>>>>>> 9d3a9546dbb799e9153c537d340bf336041d47b0
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
@@ -35,7 +53,8 @@ const CourseEdit = (props) => {
       location: props.modalState.currentTask.location,
       day_of_week: props.modalState.currentTask.day_of_week,
       mode: props.modalState.currentTask.mode,
-      start_date: props.modalState.currentTask.start_date,
+      // start_date: props.modalState.currentTask.start_date,
+      // start_date: {createDate},
       end_date: props.modalState.currentTask.end_date,
       student_number_start: props.modalState.currentTask.student_number_start,
       student_number_end: props.modalState.currentTask.student_number_end,
@@ -44,6 +63,8 @@ const CourseEdit = (props) => {
       parent: props.modalState.currentTask.parent,
     });
   }, [props.modalState.currentTask]);
+
+  
 
   const pushFormData = () => {
     axios
