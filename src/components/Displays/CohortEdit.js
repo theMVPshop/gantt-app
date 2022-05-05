@@ -12,8 +12,8 @@ const CohortEdit = (props) => {
   const [formData, setFormData] = useState({
     id: "cohort_0",
     title: "",
-    start_date: "2020-10-10",
-    end_date: "yyyy-mm-dd",
+    start_date: props.modalState.currentTask.start_date,
+    end_date: props.modalState.currentTask.end_date,
   });
 
   const resetForm = () => {
@@ -62,8 +62,8 @@ const CohortEdit = (props) => {
   useEffect(() => {
     setFormData({
       title: props.modalState.currentTask.title,
-      start_date: formatDate(props.modalState.currentTask.start_date),
-      end_date: formatDate(props.modalState.currentTask.end_date),
+      start_date: props.modalState.currentTask.start_date,
+      end_date: props.modalState.currentTask.end_date,
     });
   }, [props.modalState.currentTask]);
 
@@ -117,7 +117,7 @@ const CohortEdit = (props) => {
           <label className="label">Start Date</label>
           <input
             type="date"
-            value={formatDate(props.modalState.currentTask.start_date)}
+            value={formatDate(formData.start_date)}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -134,7 +134,7 @@ const CohortEdit = (props) => {
           <label className="label">Graduation Date</label>
           <input
             type="date"
-            value={formatDate(props.modalState.currentTask.end_date)}
+            value={formatDate(formData.end_date)}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
