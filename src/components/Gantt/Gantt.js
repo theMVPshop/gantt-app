@@ -41,7 +41,24 @@ const Gantt = () => {
       title: "",
     },
 
-    currentTask: {},
+    currentTask: {
+      title: "",
+      course_link: "",
+      hubspot_ticket: "",
+      rocketchat: "",
+      instructor: "",
+      teacher_assistant: "",
+      location: "",
+      day_of_week: "",
+      mode: "",
+      start_date: "2022-07-05",
+      end_date: "2022-07-05",
+      student_number_start: 0,
+      student_number_end: 0,
+      active_status: false,
+      id: "cohort_0",
+      parent: "cohort_0",
+    },
   });
 
   //function for updating display state provided to components

@@ -25,8 +25,6 @@ const CourseEdit = (props) => {
   });
 
   useEffect(() => {
-    let spreadFormData = { ...props.modalState.currentTask };
-    console.log(spreadFormData);
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
