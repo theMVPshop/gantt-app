@@ -1,11 +1,10 @@
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
-
+import axios from "axios";
+const url = "http://localhost:4000/tasks";
 
 const CourseEdit = (props) => {
-
-
   const [formData, setFormData] = useState({
     title: "",
     course_link: "",
@@ -25,6 +24,7 @@ const CourseEdit = (props) => {
     parent: "cohort_0",
   });
 
+<<<<<<< HEAD
   // const createDate = () => {
   //   //varaible to create the new date
   //   // let origDate = props.modalState.currentTask.start_date
@@ -40,6 +40,9 @@ const CourseEdit = (props) => {
       // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
     
     console.log(spreadFormData)
+=======
+  useEffect(() => {
+>>>>>>> 9d3a9546dbb799e9153c537d340bf336041d47b0
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
@@ -58,25 +61,22 @@ const CourseEdit = (props) => {
       active_status: props.modalState.currentTask.active_status,
       id: props.modalState.currentTask.id,
       parent: props.modalState.currentTask.parent,
-    })
-  }, [props.modalState.currentTask])
+    });
+  }, [props.modalState.currentTask]);
 
   
 
   const pushFormData = () => {
-    var courseCounter = 1;
-    for (let i = 0; i < props.data.data.length; i++) {
-      let courseIDArray = props.data.data[i].id.split("_");
-      if (courseIDArray[0] === "course") {
-        courseCounter++;
-        console.log(courseCounter);
-      }
-    }
-    formData.id = `course_50`;
-    formData.parent = props.courseDisplay.id;
-    props.addTask(formData);
-    gantt.open(props.courseDisplay.id); //forces open the parent task
-    props.setCourseFormDisplay({ display: false, id: 0 }); //turning modal display to none and resetting the parent task id passed as a prop
+    axios
+      .put(`${url}/${props.modalState.currentTask.id}`, formData)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          props.customEditTask(formData.id, formData);
+        }
+      })
+      .catch((err) => console.log("there was an error", err));
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
   return (
@@ -118,8 +118,6 @@ const CourseEdit = (props) => {
                 className="input"
               />
             </div>
-
-            
 
             <div className="info">
               <label className="label">Course Link</label>

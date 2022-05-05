@@ -8,7 +8,6 @@ const CourseDisplay = (props) => {
   // }, [props.courseDisplay.id]);
   console.log("CourseDisplay Props", props);
 
-
   const editForm = () => {
     console.log(
       "This will eventually make the display go away and the form appear"
@@ -17,8 +16,13 @@ const CourseDisplay = (props) => {
   };
 
   useEffect(() => {
-    console.log("Current task", props.modalState.currentTask)
-    props.modalState.currentTask.start_date ? console.log("start date", props.modalState.currentTask.start_date.toString()) : console.log("");
+    console.log("Current task", props.modalState.currentTask);
+    props.modalState.currentTask.start_date
+      ? console.log(
+          "start date",
+          props.modalState.currentTask.start_date.toString()
+        )
+      : console.log("");
   }, [props.modalState.currentTask]);
 
   return (
@@ -40,15 +44,15 @@ const CourseDisplay = (props) => {
               id: "course_0",
               courseName: "PropsfakeCourseName",
             });
-            props.handleModalDisplayState("currentTask", {})
+            props.handleModalDisplayState("currentTask", {});
           }}
         />
         <h1 className="minor-title">Course Info</h1>
-        
+
         <div className="group-container">
           <div className="group">
             <div className="display-info">
-              <label className="display-label">Course Number:</label>
+              <label className="display-label">Course Name:</label>
               {/* <input
             type="text"
             value={formData.courseNum}
@@ -252,9 +256,11 @@ const CourseDisplay = (props) => {
             }}
           /> */}
               <div className="display-input">
-              {
-              props.modalState.currentTask.start_date ? props.modalState.currentTask.start_date.toString().slice(0, 15) : ""
-              }
+                {props.modalState.currentTask.start_date
+                  ? props.modalState.currentTask.start_date
+                      .toString()
+                      .slice(0, 15)
+                  : ""}
               </div>
             </div>
 
@@ -274,9 +280,11 @@ const CourseDisplay = (props) => {
             }}
           /> */}
               <div className="display-input">
-              {
-              props.modalState.currentTask.end_date ? props.modalState.currentTask.end_date.toString().slice(0, 15) : ""
-              }
+                {props.modalState.currentTask.end_date
+                  ? props.modalState.currentTask.end_date
+                      .toString()
+                      .slice(0, 15)
+                  : ""}
               </div>
             </div>
 
@@ -343,7 +351,9 @@ const CourseDisplay = (props) => {
           />
           <span className="slider round"></span> */}
               <div className="display-input">
-                {props.modalState.currentTask.active_status ? "active" : "inactive"}
+                {props.modalState.currentTask.active_status
+                  ? "active"
+                  : "inactive"}
               </div>
             </div>
           </div>
