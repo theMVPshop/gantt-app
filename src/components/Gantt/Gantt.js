@@ -383,9 +383,32 @@ const Gantt = () => {
     { id: "gantt-task-dbl-click" }
   );
 
+  
+    
+  
+
   return (
     <div>
-      <div className="formCont" id="formCont">
+      <div className="formCont" id="formCont"
+        style={
+          modalState.cohortDisplay.display || 
+          modalState.addCohortForm.display ||
+          modalState.cohortEditForm.display || 
+          modalState.courseDisplay.display || 
+          modalState.addCourseForm.display ||
+          modalState.courseEditForm.display ||
+          modalState.confirmDeleteModal.display
+            ? { 
+                height: "100%", 
+                backgroundColor: "rgb(236, 238, 255, 0.6)",
+                zIndex: "102" 
+              }
+            : { height:"auto",
+                backgroundColor: "none",
+                zIndex: "101"
+              }
+        }
+      >
         <CourseForm
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
