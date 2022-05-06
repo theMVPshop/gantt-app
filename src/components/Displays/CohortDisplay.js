@@ -18,7 +18,12 @@ const CohortDisplay = (props) => {
       className="cohortForm-display"
       style={
         props.modalState.cohortDisplay.display
-          ? { display: "flex" }
+          ? { 
+              display: "flex", 
+              // height: "100%", 
+              // backgroundColor: "rgb(7, 144, 67, .6)",
+              // zIndex: "102" 
+            }
           : { display: "none" }
       }
     >
