@@ -24,7 +24,6 @@ const CourseEdit = (props) => {
     parent: "cohort_0",
   });
 
-<<<<<<< HEAD
   // const createDate = () => {
   //   //varaible to create the new date
   //   // let origDate = props.modalState.currentTask.start_date
@@ -40,9 +39,7 @@ const CourseEdit = (props) => {
       // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
     
     console.log(spreadFormData)
-=======
   useEffect(() => {
->>>>>>> 9d3a9546dbb799e9153c537d340bf336041d47b0
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
