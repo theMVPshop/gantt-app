@@ -20,8 +20,8 @@ const CourseForm = (props) => {
     location: "",
     day_of_week: "",
     mode: "",
-    start_date: props.modalState.currentTask.start_date,
-    end_date: props.modalState.currentTask.end_date,
+    start_date: "YYYY-MM-DD",
+    end_date: "YYYY-MM-DD",
     student_number_start: 0,
     student_number_end: 0,
     active_status: false,
@@ -49,20 +49,6 @@ const CourseForm = (props) => {
       id: "cohort_0",
       parent: "cohort_0",
     });
-  };
-
-  const formatDate = (date) => {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    console.log([year, month, day].join("-"));
-
-    return [year, month, day].join("-");
   };
 
   const pushFormData = () => {
@@ -94,25 +80,6 @@ const CourseForm = (props) => {
       id: "course_0",
     }); //turning modal display to none and resetting the parent task id passed as a prop
   };
-
-  useEffect(() => {
-    setFormData({
-      title: props.modalState.currentTask.title,
-      course_link: props.modalState.currentTask.course_link,
-      hubspot_ticket: props.modalState.currentTask.hubspot_ticket,
-      rocketchat: props.modalState.currentTask.rocketchat,
-      instructor: props.modalState.currentTask.instructor,
-      teacher_assistant: props.modalState.currentTask.teacher_assistant,
-      location: props.modalState.currentTask.location,
-      day_of_week: props.modalState.currentTask.days_of_week,
-      mode: props.modalState.currentTask.mode,
-      start_date: props.modalState.currentTask.start_date,
-      end_date: props.modalState.currentTask.end_date,
-      student_number_start: props.modalState.currentTask.student_number_start,
-      student_number_end: props.modalState.currentTask.student_number_end,
-      active_status: props.modalState.currentTask.active_status,
-    });
-  }, [props.modalState.currentTask]);
 
   return (
     <div>
@@ -307,7 +274,7 @@ const CourseForm = (props) => {
                 type="date"
                 name="start_date"
                 className="input"
-                value={formatDate(formData.start_date)}
+                value={formData.start_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
@@ -324,7 +291,7 @@ const CourseForm = (props) => {
                 type="date"
                 name="end_date"
                 className="input"
-                value={formatDate(formData.end_date)}
+                value={formData.end_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };

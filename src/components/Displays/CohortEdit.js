@@ -9,11 +9,23 @@ const url = "http://localhost:4000/tasks";
 const CohortEdit = (props) => {
   // console.log("props here---", props.data.data)
 
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
+
   const [formData, setFormData] = useState({
     id: "cohort_0",
     title: "",
-    start_date: props.modalState.currentTask.start_date,
-    end_date: props.modalState.currentTask.end_date,
+    start_date: formatDate(props.modalState.currentTask.start_date),
+    end_date: formatDate(props.modalState.currentTask.end_date),
   });
 
   const resetForm = () => {
@@ -46,18 +58,6 @@ const CohortEdit = (props) => {
       .catch((err) => console.log("there was an error", err));
     gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
-
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
 
   useEffect(() => {
     setFormData({
