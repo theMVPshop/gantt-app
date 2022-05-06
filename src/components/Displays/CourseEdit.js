@@ -5,6 +5,26 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseEdit = (props) => {
+  const formatDate = (date) => {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    console.log([year, month, day].join("-"));
+
+    return [year, month, day].join("-");
+  };
+
+  const formatDateUp = (date) => {
+    let translatedDate = date.slice(0, 10);
+    console.log(translatedDate);
+    return translatedDate;
+  };
+
   const [formData, setFormData] = useState({
     title: "",
     course_link: "",
@@ -15,8 +35,8 @@ const CourseEdit = (props) => {
     location: "",
     day_of_week: "",
     mode: "",
-    start_date: "2022-07-05",
-    end_date: "2022-07-05",
+    start_date: formatDate(props.modalState.currentTask.start_date),
+    end_date: formatDate(props.modalState.currentTask.end_date),
     student_number_start: 0,
     student_number_end: 0,
     active_status: false,
@@ -32,16 +52,12 @@ const CourseEdit = (props) => {
   //   let displayDate = `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()
   //   return displayDate
   // }
-  
-  // useEffect(() => {
-  //   let spreadFormData = {...props.modalState.currentTask}
-  //   // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
-  //     // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
-    
-  //   console.log(spreadFormData)
-    
-    console.log(spreadFormData)
   useEffect(() => {
+    let spreadFormData = { ...props.modalState.currentTask };
+    // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
+    // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString())
+
+    console.log(spreadFormData);
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
@@ -52,9 +68,8 @@ const CourseEdit = (props) => {
       location: props.modalState.currentTask.location,
       day_of_week: props.modalState.currentTask.day_of_week,
       mode: props.modalState.currentTask.mode,
-      // start_date: props.modalState.currentTask.start_date,
-      // start_date: {createDate},
-      end_date: props.modalState.currentTask.end_date,
+      start_date: formatDate(props.modalState.currentTask.start_date),
+      end_date: formatDate(props.modalState.currentTask.end_date),
       student_number_start: props.modalState.currentTask.student_number_start,
       student_number_end: props.modalState.currentTask.student_number_end,
       active_status: props.modalState.currentTask.active_status,
@@ -63,15 +78,16 @@ const CourseEdit = (props) => {
     });
   }, [props.modalState.currentTask]);
 
-  
-
   const pushFormData = () => {
+    let copy = formData;
+    copy.start_date = formatDateUp(formData.start_date);
+    copy.end_date = formatDateUp(formData.end_date);
     axios
-      .put(`${url}/${props.modalState.currentTask.id}`, formData)
+      .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          props.customEditTask(formData.id, formData);
+          props.customEditTask(copy.id, copy);
         }
       })
       .catch((err) => console.log("there was an error", err));
@@ -268,7 +284,7 @@ const CourseEdit = (props) => {
                 type="date"
                 name="startDate"
                 className="input"
-                value={formData.start_date}
+                value={formatDate(formData.start_date)}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
@@ -285,7 +301,7 @@ const CourseEdit = (props) => {
                 type="date"
                 name="endDate"
                 className="input"
-                value={formData.end_date}
+                value={formatDate(formData.end_date)}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
