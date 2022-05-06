@@ -52,7 +52,6 @@ const CourseEdit = (props) => {
   //   let displayDate = `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()
   //   return displayDate
   // }
-
   useEffect(() => {
     let spreadFormData = { ...props.modalState.currentTask };
     // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
