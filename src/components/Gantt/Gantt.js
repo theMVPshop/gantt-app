@@ -86,6 +86,8 @@ const Gantt = () => {
     setData(gantt.serialize());
   };
 
+  const switchForms = (originalForm, newForm) => {};
+
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
     "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -172,6 +174,46 @@ const Gantt = () => {
       return true;
     },
     { id: "task-header-click" }
+  );
+
+  gantt.attachEvent(
+    "onTaskDblClick",
+    function (id, e) {
+      console.log("You double clicked a task with this id: ", id);
+      console.log("data in double click: ", data);
+      gantt.detachEvent("gantt-task-dbl-click");
+      // func to find task that matches clicked task's id
+      function getCurrentTask() {
+        console.log("double click. finding current task...");
+        var taskIDArray = id.split("_");
+        for (let i = 0; i < data.data.length; i++) {
+          console.log(
+            "getCurrentTask(), data[i].id in for loop: ",
+            data.data[i].id
+          );
+          if (data.data[i].id == id) {
+            console.log("THEY MATCH!");
+            console.log(taskIDArray);
+            //copy current modal state
+            setModalState((prevState) => {
+              var copy = { ...prevState };
+              //add current data object to copy
+              copy.currentTask = data.data[i];
+              if (taskIDArray[0] === "course") {
+                copy.courseDisplay.display = true;
+              } else if (taskIDArray[0] === "cohort") {
+                copy.cohortDisplay.display = true;
+              }
+
+              return copy;
+            });
+            return;
+          }
+        }
+      }
+      getCurrentTask();
+    },
+    { id: "gantt-task-dbl-click" }
   );
 
   const onTaskClick = (id, e) => {
@@ -350,63 +392,26 @@ const Gantt = () => {
   });
 
   //This runs on a double click of a task  (bar on calendar or column on left)
-  gantt.attachEvent(
-    "onTaskDblClick",
-    function (id, e) {
-      console.log("You double clicked a task with this id: ", id);
-      console.log("data in double click: ", data);
-      gantt.detachEvent("gantt-task-dbl-click");
-      // func to find task that matches clicked task's id
-      function getCurrentTask() {
-        console.log("double click. finding current task...");
-        for (let i = 0; i < data.data.length; i++) {
-          console.log(
-            "getCurrentTask(), data[i].id in for loop: ",
-            data.data[i].id
-          );
-          if (data.data[i].id == id) {
-            console.log("THEY MATCH!");
-            //copy current modal state
-            setModalState((prevState) => {
-              var copy = { ...prevState };
-              //add current data object to copy
-              copy.currentTask = data.data[i];
-              copy.courseDisplay.display = true;
-              return copy;
-            });
-            return;
-          }
-        }
-        getCurrentTask();
-      }
-    },
-    { id: "gantt-task-dbl-click" }
-  );
-
-  
-    
-  
 
   return (
     <div>
-      <div className="formCont" id="formCont"
+      <div
+        className="formCont"
+        id="formCont"
         style={
-          modalState.cohortDisplay.display || 
+          modalState.cohortDisplay.display ||
           modalState.addCohortForm.display ||
-          modalState.cohortEditForm.display || 
-          modalState.courseDisplay.display || 
+          modalState.cohortEditForm.display ||
+          modalState.courseDisplay.display ||
           modalState.addCourseForm.display ||
           modalState.courseEditForm.display ||
           modalState.confirmDeleteModal.display
-            ? { 
-                height: "100%", 
+            ? {
+                height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
-                zIndex: "102" 
+                zIndex: "102",
               }
-            : { height:"auto",
-                backgroundColor: "none",
-                zIndex: "101"
-              }
+            : { height: "auto", backgroundColor: "none", zIndex: "101" }
         }
       >
         <CourseForm
@@ -439,6 +444,7 @@ const Gantt = () => {
           setData={setData}
           data={data}
           exitIcon={exitIcon}
+          switchForms={switchForms}
         ></CohortDisplay>
         {/* Course display form with x in top right corner */}
         <CourseDisplay
@@ -446,6 +452,7 @@ const Gantt = () => {
           handleModalDisplayState={handleModalDisplayState}
           setData={setData}
           data={data}
+          switchForms={switchForms}
         ></CourseDisplay>
         <CohortEdit
           data={data}
