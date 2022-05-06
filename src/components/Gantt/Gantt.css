@@ -56,9 +56,15 @@ body,
   cursor: pointer;
 }
 
+
 #formCont {
   width: 100%;
   position: absolute;
+
+  /* styles for when modal is open */
+  /* height: 100%;
+  background-color: rgb(7, 144, 67, .6);
+  z-index: 102; */
 }
 
 .formCont div {
@@ -74,7 +80,7 @@ body,
   font-family: "Lexend Deca", sans-serif;
   width: 1000px;
   height: 600px;
-  background-color: #eceeff;
+  background-color: rgb(236, 238, 255);
   position: absolute;
   z-index: 101;
   display: flex;

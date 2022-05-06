@@ -33,10 +33,12 @@ const CourseEdit = (props) => {
   //   return displayDate
   // }
   
-  useEffect(() => {
-    let spreadFormData = {...props.modalState.currentTask}
-    // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
-      // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
+  // useEffect(() => {
+  //   let spreadFormData = {...props.modalState.currentTask}
+  //   // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
+  //     // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString()) 
+    
+  //   console.log(spreadFormData)
     
     console.log(spreadFormData)
   useEffect(() => {
