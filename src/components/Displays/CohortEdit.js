@@ -9,7 +9,7 @@ const url = "http://localhost:4000/tasks";
 const CohortEdit = (props) => {
   // console.log("props here---", props.data.data)
 
-  function formatDate(date) {
+  const formatDate = (date) => {
     var d = new Date(date),
       month = "" + (d.getMonth() + 1),
       day = "" + d.getDate(),
@@ -18,8 +18,10 @@ const CohortEdit = (props) => {
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
 
+    console.log("DATE IN COHORT EDIT", [year, month, day].join("-"));
+
     return [year, month, day].join("-");
-  }
+  };
 
   const [formData, setFormData] = useState({
     id: "cohort_0",
@@ -27,6 +29,15 @@ const CohortEdit = (props) => {
     start_date: formatDate(props.modalState.currentTask.start_date),
     end_date: formatDate(props.modalState.currentTask.end_date),
   });
+
+  useEffect(() => {
+    setFormData({
+      id: props.modalState.currentTask.id,
+      title: props.modalState.currentTask.title,
+      start_date: formatDate(props.modalState.currentTask.start_date),
+      end_date: formatDate(props.modalState.currentTask.end_date),
+    });
+  }, [props.modalState.currentTask]);
 
   const resetForm = () => {
     setFormData({
@@ -117,7 +128,7 @@ const CohortEdit = (props) => {
           <label className="label">Start Date</label>
           <input
             type="date"
-            value={formatDate(formData.start_date)}
+            value={formData.start_date}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -134,7 +145,7 @@ const CohortEdit = (props) => {
           <label className="label">Graduation Date</label>
           <input
             type="date"
-            value={formatDate(formData.end_date)}
+            value={formData.end_date}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };

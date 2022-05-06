@@ -14,7 +14,7 @@ const CourseEdit = (props) => {
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
 
-    console.log([year, month, day].join("-"));
+    console.log("DATE IN COURSE EDIT", [year, month, day].join("-"));
 
     return [year, month, day].join("-");
   };
@@ -40,7 +40,7 @@ const CourseEdit = (props) => {
     student_number_start: 0,
     student_number_end: 0,
     active_status: false,
-    id: "cohort_0",
+    id: "course_0",
     parent: "cohort_0",
   });
 
@@ -284,7 +284,8 @@ const CourseEdit = (props) => {
                 type="date"
                 name="startDate"
                 className="input"
-                value={formatDate(formData.start_date)}
+              
+                value={formData.start_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
@@ -301,7 +302,8 @@ const CourseEdit = (props) => {
                 type="date"
                 name="endDate"
                 className="input"
-                value={formatDate(formData.end_date)}
+             
+                value={formData.end_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
