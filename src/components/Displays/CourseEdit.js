@@ -14,7 +14,7 @@ const CourseEdit = (props) => {
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
 
-    console.log("DATE IN COURSE EDIT", [year, month, day].join("-"));
+    // console.log("DATE IN COURSE EDIT", [year, month, day].join("-"));
 
     return [year, month, day].join("-");
   };
@@ -57,7 +57,7 @@ const CourseEdit = (props) => {
     // console.log("useEffect CourseEdit props.modalState.currentTask.start_date: ", props.modalState.currentTask.start_date)
     // console.log("!!!!!DATE: ", `${origDate.getMonth()+1}/${origDate.getDate()}/${origDate.getFullYear()}`.toString())
 
-    console.log(spreadFormData);
+    // console.log(spreadFormData);
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
