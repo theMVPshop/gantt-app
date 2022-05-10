@@ -23,6 +23,12 @@ const CohortEdit = (props) => {
     return [year, month, day].join("-");
   };
 
+  const formatDateUp = (date) => {
+    let translatedDate = date.slice(0, 10);
+    console.log(translatedDate);
+    return translatedDate;
+  };
+
   const [formData, setFormData] = useState({
     id: "cohort_0",
     title: "",
@@ -57,12 +63,18 @@ const CohortEdit = (props) => {
   });
 
   const pushFormData = () => {
+    var copy = formData;
+    copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
+    copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+
     axios
-      .put(`${url}/${props.modalState.currentTask.id}`, formData)
+      .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          props.customEditTask(formData.id, formData);
+          copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
+          copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
+          props.customEditTask(copy.id, copy);
           resetForm();
         }
       })
@@ -73,8 +85,8 @@ const CohortEdit = (props) => {
   useEffect(() => {
     setFormData({
       title: props.modalState.currentTask.title,
-      start_date: props.modalState.currentTask.start_date,
-      end_date: props.modalState.currentTask.end_date,
+      start_date: formatDate(props.modalState.currentTask.start_date),
+      end_date: formatDate(props.modalState.currentTask.end_date),
     });
   }, [props.modalState.currentTask]);
 

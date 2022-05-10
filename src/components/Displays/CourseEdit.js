@@ -80,13 +80,15 @@ const CourseEdit = (props) => {
 
   const pushFormData = () => {
     let copy = formData;
-    copy.start_date = formatDateUp(formData.start_date);
-    copy.end_date = formatDateUp(formData.end_date);
+    copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
+    copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
     axios
       .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
+          copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
+          copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
           props.customEditTask(copy.id, copy);
         }
       })
@@ -284,7 +286,6 @@ const CourseEdit = (props) => {
                 type="date"
                 name="startDate"
                 className="input"
-              
                 value={formData.start_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
@@ -302,7 +303,6 @@ const CourseEdit = (props) => {
                 type="date"
                 name="endDate"
                 className="input"
-             
                 value={formData.end_date}
                 onChange={(e) => {
                   setFormData((prevState) => {
