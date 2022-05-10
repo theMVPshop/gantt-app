@@ -6,7 +6,6 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login/Login.js";
 import Signup from "./components/Signup/Signup.js";
 
-
 export const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
   console.log("cookies", cookies);
