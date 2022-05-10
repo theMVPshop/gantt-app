@@ -15,24 +15,24 @@ const Nav = () => {
     window.location.replace("/");
   }
 
-  useEffect(() => {
-    const timer = new IdleTimer({
-      timeout: 5, //expire after 5 seconds
-      onTimeout: () => {
-        setIsTimeout(true);
-        logoutUser();
-      },
-      onExpired: () => {
-        //do something if expired on load
-        setIsTimeout(true);
-        logoutUser();
-      }
-    });
+  // useEffect(() => {
+  //   const timer = new IdleTimer({
+  //     timeout: 5, //expire after 5 seconds
+  //     onTimeout: () => {
+  //       setIsTimeout(true);
+  //       logoutUser();
+  //     },
+  //     onExpired: () => {
+  //       //do something if expired on load
+  //       setIsTimeout(true);
+  //       logoutUser();
+  //     }
+  //   });
 
-    return () => {
-      timer.cleanUp();
-    };
-  }, []);
+  //   return () => {
+  //     timer.cleanUp();
+  //   };
+  // }, []);
 
   return (
     <nav className="nav-bar">
