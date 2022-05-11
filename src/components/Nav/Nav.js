@@ -1,38 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { checkAuth } from "../../Router";
-import IdleTimer from "../IdleTimer";
+import { checkAuth, logoutUser } from "../../Router";
 import "./Nav.css";
 
 const Nav = () => {
   const currentPath = window.location.pathname;
-  const [isTimeout, setIsTimeout] = useState(false);
-
-  const logoutUser = () => {
-    document.cookie = "loggedIn=";
-    localStorage.clear();
-    window.location.replace("/");
-  }
-
-  useEffect(() => {
-    const timer = new IdleTimer({
-      timeout: 5, //expire after 5 seconds
-      onTimeout: () => {
-        setIsTimeout(true);
-        logoutUser();
-      },
-      onExpired: () => {
-        //do something if expired on load
-        setIsTimeout(true);
-        logoutUser();
-      }
-    });
-
-    return () => {
-      timer.cleanUp();
-    };
-  }, []);
 
   return (
     <nav className="nav-bar">
@@ -40,7 +13,7 @@ const Nav = () => {
       { checkAuth() ? 
         <button className="nav-link">
           <Link to="/" className="link"
-            onClick={logoutUser}
+            onClick={() => logoutUser()}
           >
             Logout
           </Link>
