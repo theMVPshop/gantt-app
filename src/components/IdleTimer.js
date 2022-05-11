@@ -42,6 +42,7 @@ class IdleTimer {
     window.addEventListener("mousemove", this.eventHandler);
     window.addEventListener("scroll", this.eventHandler);
     window.addEventListener("keydown", this.eventHandler);
+    window.addEventListener("mousewheel", this.eventHandler);
   }
 
   cleanUp() {
@@ -51,6 +52,8 @@ class IdleTimer {
     window.removeEventListener("mousemove", this.eventHandler);
     window.removeEventListener("scroll", this.eventHandler);
     window.removeEventListener("keydown", this.eventHandler);
+    window.removeEventListener("mousewheel", this.eventHandler);
   }
 }
+
 export default IdleTimer;

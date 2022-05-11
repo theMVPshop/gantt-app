@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 5, //expire after 5 seconds
+      timeout: 7200, //expire after 7,200 seconds (2 hours)
       onTimeout: () => {
         logoutUser();
       },
