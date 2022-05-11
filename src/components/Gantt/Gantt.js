@@ -86,7 +86,12 @@ const Gantt = () => {
     setData(gantt.serialize());
   };
 
-  const switchForms = (originalForm, newForm) => {};
+  const switchForms = (originalFormName, newFormName) => {
+    let copy = { ...modalState };
+    copy[originalFormName].display = false;
+    copy[newFormName].display = true;
+    setModalState(copy);
+  };
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -307,7 +312,7 @@ const Gantt = () => {
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("what was I going to log?")
+    console.log("what was I going to log?");
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.scale_unit = "month";
     gantt.init(containerRef.current);

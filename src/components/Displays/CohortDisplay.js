@@ -12,8 +12,6 @@ const CohortDisplay = (props) => {
     console.log(props.modalState.currentTask);
   }, [props.modalState.currentTask]);
 
-  const switchForms = () => {};
-
   return (
     <div>
       <form
@@ -65,7 +63,11 @@ const CohortDisplay = (props) => {
               : ""}
           </div>
         </div>
-        <div className="submit" value="Edit" onClick={switchForms()}>
+        <div
+          className="submit"
+          value="Edit"
+          onClick={() => props.switchForms("cohortDisplay", "cohortEditForm")}
+        >
           Edit
         </div>
       </form>

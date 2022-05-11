@@ -358,61 +358,16 @@ const CourseDisplay = (props) => {
             </div>
           </div>
         </div>
-        {/* <input className="submit" value="Save" onClick={pushFormData} /> */}
+        <div
+          className="submit"
+          value="Edit"
+          onClick={() => props.switchForms("courseDisplay", "courseEditForm")}
+        >
+          Edit
+        </div>
       </form>
     </div>
   );
 };
 
 export default CourseDisplay;
-
-//pieces taken out from CourseForm
-
-//function that resets formData back to default
-// const resetForm = () => {
-//   setFormData({
-//     courseNum: "",
-//     courseLink: "",
-//     hubSpotTicket: "",
-//     rocketChat: "",
-//     instructor: "",
-//     teacherAssistant: "",
-//     location: "",
-//     days: "",
-//     mode: "",
-//     start_date: "2022-07-05",
-//     end_date: "2022-07-05",
-//     startStudents: 0,
-//     endStudents: 0,
-//     activeStatus: false,
-//   });
-// };
-
-// const pushFormData = () => {
-//   console.log(props.courseDisplay.id);
-//   props.setData((prevState) => {
-//     let prev = { ...prevState };
-//     const found = prev.data.find(
-//       (element) => element.id === props.courseDisplay.id
-//     );
-//     console.log(found);
-//     return prev;
-//   });
-// };
-
-// const [formData, setFormData] = useState({
-//   courseNum: "",
-//   courseLink: "",
-//   hubSpotTicket: "",
-//   rocketChat: "",
-//   instructor: "",
-//   teacherAssistant: "",
-//   location: "",
-//   days: "",
-//   mode: "",
-//   startDate: 0,
-//   endDate: 0,
-//   startStudents: 0,
-//   endStudents: 0,
-//   activeStatus: false,
-// });
