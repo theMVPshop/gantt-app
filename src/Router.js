@@ -13,6 +13,12 @@ export const checkAuth = () => {
   return cookies["loggedIn"] ? true : false;
 };
 
+export const logoutUser = () => {
+  document.cookie = "loggedIn=";
+  localStorage.clear();
+  window.location.replace("/");
+}
+
 const ProtectedRoute = ({ children }) => {
   return checkAuth() ? children : <Navigate to="/" />
 }

@@ -5,7 +5,6 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
-// copied over code from CohortForm***
 const CohortEdit = (props) => {
   // console.log("props here---", props.data.data)
 

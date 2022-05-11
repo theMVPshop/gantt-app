@@ -1,12 +1,31 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import Router from "./Router.js";
+import Router, { logoutUser } from "./Router.js";
 import Nav from "./components/Nav/Nav.js";
+import IdleTimer from "./components/IdleTimer.js";
 
 import "./App.css";
 
 const App = () => {
+
+  useEffect(() => {
+    const timer = new IdleTimer({
+      timeout: 7200, //expire after 7,200 seconds (2 hours)
+      onTimeout: () => {
+        logoutUser();
+      },
+      onExpired: () => {
+        //do something if expired on load
+        logoutUser();
+      }
+    });
+
+    return () => {
+      timer.cleanUp();
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <Nav />
