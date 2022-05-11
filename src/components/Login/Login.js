@@ -1,12 +1,9 @@
 import React from "react";
 import axios from "axios";
-
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Login.css";
-import { ReactComponent as Vector } from "../../images/Vectors.svg";
-import background from "./Vectors.svg"
+
 import vector from "../../images/Vectors.svg"
 
 const Login = () => {
@@ -46,8 +43,6 @@ const Login = () => {
       });
   };
 
-  // const handleError = (errors) => {};
-
   const loginOptions = {
     email: { required: "Email is required" },
     password: { required: "Password is required" },
@@ -55,7 +50,6 @@ const Login = () => {
 
   return (
     <div className="login-window-container">
-  
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
         <h1>Sign in</h1>
         <p>Enter your email and password below</p>
@@ -90,13 +84,8 @@ const Login = () => {
         <button type="submit" className="login">
           Log In
         </button>
-        <Link to="/dashboard">Dashboard</Link>
       </form>
-      {/* <div style={{ backgroundImage: `url(${background})` }}className="vector-cont"> */}
-
-        <img style={{ objectFit: "fill"}} src={vector} className="vector" alt="decorative green shape"></img>
-        {/* <Vector style={{ objectFit: "fill"}} className="vector" /> */}
-
+      <img style={{ objectFit: "fill"}} src={vector} className="vector" alt="decorative green shape"/>
     </div>
   );
 };

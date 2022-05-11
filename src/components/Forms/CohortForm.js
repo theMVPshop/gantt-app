@@ -19,20 +19,24 @@ const CohortForm = (props) => {
       start_date: "yyyy-mm-dd",
       end_date: "yyyy-mm-dd",
     });
-    props.handleModalDisplayState("addCohortForm", { display: false, id: "cohort_0" });
+    props.handleModalDisplayState("addCohortForm", {
+      display: false,
+      id: "cohort_0",
+    });
   };
 
   const pushFormData = () => {
     var cohortCounter = 1;
+    var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
       let cohortIDArray = props.data.data[i].id.split("_");
       if (cohortIDArray[0] === "cohort") {
         cohortCounter++;
-        console.log(cohortCounter);
+        idArray.push(cohortIDArray[1]);
       }
     }
-    formData.id = `cohort_${cohortCounter}`;
-    console.log(formData);
+    let newID = Math.max(...idArray) + 1;
+    formData.id = `cohort_${newID}`;
     axios
       .post(url, formData)
       .then((res) => {
