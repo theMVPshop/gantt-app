@@ -61,10 +61,16 @@ const CourseForm = (props) => {
         idArray.push(courseIDArray[1]);
       }
     }
-    let newID = Math.max(...idArray) + 1;
-    formData.id = `course_${newID}`;
-    formData.parent = props.modalState.addCourseForm.id;
 
+    if (idArray.length > 0) {
+      const newID = Math.max(...idArray) + 1;
+      formData.id = `course_${newID}`;
+    } else {
+      formData.id = "course_1";
+    }
+
+    formData.parent = props.modalState.addCourseForm.id;
+    console.log(formData.id);
     axios
       .post(url, formData)
       .then((res) => {
