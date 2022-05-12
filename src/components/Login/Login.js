@@ -57,7 +57,7 @@ const Login = () => {
           <input 
             type="email"
             id="inputID1"
-            placeholder="Email"
+            placeholder="Email*"
             className="email"
             name="email"
             {...register("email", loginOptions.email)}
@@ -71,7 +71,7 @@ const Login = () => {
           <input
             type="password"
             id="inputID2"
-            placeholder="Password"
+            placeholder="Password*"
             className="password"
             name="password"
             {...register("password", loginOptions.password)}
@@ -80,6 +80,9 @@ const Login = () => {
         <small className="text-danger">
           {errors?.password && errors.password.message}
         </small>
+        <h6>
+          <em>*required</em>
+        </h6>
         <br />
         <button type="submit" className="login">
           Log In

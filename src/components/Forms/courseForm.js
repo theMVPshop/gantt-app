@@ -108,7 +108,7 @@ const CourseForm = (props) => {
         <div className="group-container">
           <div className="group">
             <div className="info">
-              <label className="label">Course Name</label>
+              <label className="label">Course Name*</label>
               <input
                 type="title"
                 value={formData.title}
@@ -269,7 +269,7 @@ const CourseForm = (props) => {
             </div>
 
             <div className="info">
-              <label className="label">Start Date</label>
+              <label className="label">Start Date*</label>
               <input
                 type="date"
                 name="start_date"
@@ -286,7 +286,7 @@ const CourseForm = (props) => {
             </div>
 
             <div className="info">
-              <label className="label">End Date</label>
+              <label className="label">End Date*</label>
               <input
                 type="date"
                 name="end_date"
@@ -359,9 +359,14 @@ const CourseForm = (props) => {
             </div>
           </div>
         </div>
+        <h6>
+          <em>*required</em>
+        </h6>
+
         <button className="submit" onClick={pushFormData}>
           Save
         </button>
+          
       </form>
     </div>
   );
