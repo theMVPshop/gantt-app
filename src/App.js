@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import Router, { checkAuth, logoutUser } from "./Router.js";
-import Nav from "./components/Nav/Nav.js";
+import Router, { logoutUser } from "./Router.js";
 import IdleTimer from "./components/IdleTimer.js";
 
 import "./App.css";
@@ -28,7 +27,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {checkAuth() && <Nav />}
       <Router />
     </BrowserRouter>
   );
