@@ -590,7 +590,10 @@ const Gantt = () => {
         id="gantt-chart-container"
       ></div>
       <div>
-        <button id="zoomIN" onClick={zoom_in}>
+        <button id="zoomIn" onClick={zoom_in}>
+          ZOOM IN
+        </button>
+        <button id="zoomOut" onClick={zoom_out}>
           ZOOM IN
         </button>
       </div>
