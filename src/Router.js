@@ -5,6 +5,7 @@ import cookie from "cookie";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login/Login.js";
 import Signup from "./components/Signup/Signup.js";
+import Nav from "./components/Nav/Nav.js";
 
 export const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
@@ -31,6 +32,7 @@ const Router = () => {
       {/* Dashboard renders the Gantt chart with data */}
       <Route path="/dashboard" element={
         <ProtectedRoute>
+          <Nav />
           <Dashboard />
         </ProtectedRoute>
       } />

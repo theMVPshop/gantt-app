@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
+
 .nav-bar {
   height: 50px;
   width: 100%;
@@ -29,4 +31,28 @@
 
 .name-tag{
   margin-top: 20px;
+}
+
+.logo{
+  z-index: 1000;
+  height: auto;
+  width: 50px;
+  margin-left: -150px;
+  margin-bottom: 5px;
+}
+
+.name{
+  font-family: 'Podkova', serif;
+  font-size: 25px;
+  margin-left: -300px;
+  margin-right:-200px;
+}
+.name-tag{
+  align-self: center;
+  margin-right: 200px;
+}
+
+.nav-link{
+  margin-right: -150px;
+  border-radius: 25px;
 }

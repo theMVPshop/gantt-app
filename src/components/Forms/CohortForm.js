@@ -46,14 +46,23 @@ const requiredFields ={
     // }
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
-      let cohortIDArray = props.data.data[i].id.split("_");
-      if (cohortIDArray[0] === "cohort") {
-        cohortCounter++;
-        idArray.push(cohortIDArray[1]);
-      }
+      if (props.data.data[0].id) {
+        let cohortIDArray = props.data.data[i].id.split("_");
+        if (cohortIDArray[0] === "cohort") {
+          cohortCounter++;
+          idArray.push(cohortIDArray[1]);
+        }
+      } else idArray.push("1");
     }
-    let newID = Math.max(...idArray) + 1;
-    formData.id = `cohort_${newID}`;
+
+    if (idArray.length > 0) {
+      //protects against 'course_infinity" id being created
+      const newID = Math.max(...idArray) + 1;
+      formData.id = `cohort_${newID}`;
+    } else {
+      formData.id = "cohort_1";
+    }
+
     axios
       .post(url, formData)
       .then((res) => {
