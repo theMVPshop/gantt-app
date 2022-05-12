@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
@@ -62,6 +61,8 @@ const Signup = () => {
     password: { required: "Password is required" },
     confirmPassword: { required: "Password confirmation is required" },
   };
+
+  const currentPath = window.location.pathname;
 
   return (
     <div className="sign-up-container">
@@ -147,6 +148,29 @@ const Signup = () => {
           </small>
           <br />
           <button className="login" type="submit">Sign Up</button>
+
+          {currentPath === "/" ? (
+            <Link
+              className="link"
+              to="/signup"
+              onClick={() => {
+                window.location.replace("/signup");
+              }}
+            >
+              Sign Up
+            </Link>
+          ) : (
+            <Link
+              className="link"
+              to="/"
+              onClick={() => {
+                window.location.replace("/");
+              }}
+            >
+              Already have an account? Sign in!
+            </Link>
+          )}
+
         </form>
       </div>
       <img style={{ objectFit: "fill"}} src={vector}  className="vector"></img>
