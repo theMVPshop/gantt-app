@@ -314,8 +314,6 @@ const Gantt = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
     console.log("what was I going to log?");
     gantt.config.date_format = "%Y-%m-%d %H:%i";
-    gantt.config.scale_unit = "month";
-    gantt.init(containerRef.current);
     // gantt.parse(data);
 
     // gantt.attachEvent("onTaskDblClick", function (id, e) {
@@ -394,8 +392,98 @@ const Gantt = () => {
         width: 40,
       },
     ];
-    //onclick listener for custom buttons in row
+
+    var zoomConfig = {
+      levels: [
+        {
+          name: "day",
+          scale_height: 27,
+          min_column_width: 80,
+          scales: [{ unit: "day", step: 1, format: "%d %M" }],
+        },
+        {
+          name: "week",
+          scale_height: 50,
+          min_column_width: 50,
+          scales: [
+            {
+              unit: "week",
+              step: 1,
+              format: function (date) {
+                var dateToStr = gantt.date.date_to_str("%d %M");
+                var endDate = gantt.date.add(date, -6, "day");
+                return dateToStr(date) + " - " + dateToStr(endDate);
+              },
+            },
+            { unit: "day", step: 1, format: "%j %D" },
+          ],
+        },
+        {
+          name: "month",
+          scale_height: 50,
+          min_column_width: 120,
+          scales: [
+            { unit: "month", format: "%F, %Y" },
+            { unit: "week", format: "Week #%W" },
+          ],
+        },
+        {
+          name: "quarter",
+          height: 50,
+          min_column_width: 90,
+          scales: [
+            {
+              unit: "quarter",
+              step: 1,
+              format: function (date) {
+                var dateToStr = gantt.date.date_to_str("%M");
+                var endDate = gantt.date.add(
+                  gantt.date.add(date, 3, "month"),
+                  -1,
+                  "day"
+                );
+                return dateToStr(date) + " - " + dateToStr(endDate);
+              },
+            },
+            { unit: "month", step: 1, format: "%M" },
+          ],
+        },
+        {
+          name: "year",
+          scale_height: 50,
+          min_column_width: 30,
+          scales: [{ unit: "year", step: 1, format: "%Y" }],
+        },
+      ],
+      useKey: "ctrlKey",
+      trigger: "wheel",
+      element: function () {
+        return gantt.$root.querySelector(".gantt_data_area");
+      },
+    };
+
+    gantt.ext.zoom.init(zoomConfig);
+    gantt.ext.zoom.setLevel("week");
+
+    gantt.init(containerRef.current);
+
+    gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
+      var new_position = gantt.posFromDate(left_date);
+      gantt.scrollTo(new_position, null);
+    });
   });
+
+  var left_date;
+  function zoom_in() {
+    var position = gantt.getScrollState().x;
+    left_date = gantt.dateFromPos(position);
+    gantt.ext.zoom.zoomIn();
+  }
+  function zoom_out() {
+    var position = gantt.getScrollState().x;
+    left_date = gantt.dateFromPos(position);
+    gantt.ext.zoom.zoomOut();
+  }
 
   //This runs on a double click of a task  (bar on calendar or column on left)
 
@@ -501,6 +589,11 @@ const Gantt = () => {
         style={{ width: "100%", height: "100%" }}
         id="gantt-chart-container"
       ></div>
+      <div>
+        <button id="zoomIN" onClick={zoom_in}>
+          ZOOM IN
+        </button>
+      </div>
     </div>
   );
 };

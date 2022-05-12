@@ -56,7 +56,6 @@ body,
   cursor: pointer;
 }
 
-
 #formCont {
   width: 100%;
   position: absolute;
@@ -345,4 +344,10 @@ body,
 
 .gantt_grid_data {
   background-color: #eceeff;
+}
+
+#zoomIn {
+  position: relative;
+  z-index: 500;
+  display: flex;
 }
