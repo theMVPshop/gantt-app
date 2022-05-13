@@ -10,7 +10,9 @@ body,
 }
 
 #gantt-chart-container {
-  padding-top: 50px;
+  padding-top: 90px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .nested_task #plusIconRow {
@@ -194,8 +196,6 @@ body,
   align-self: center;
 }
 
-
-
 .submit {
   text-align: center;
   font-family: "Lexend Deca", sans-serif;
@@ -307,10 +307,8 @@ body,
 .gantt_grid_head_cell {
   background-color: #eceeff;
   border: 1px solid #2f2f2f;
-;
   color: #2f2f2f !important;
 }
-
 
 .gantt_task_cell {
   border-left: 1px solid lightgrey;
@@ -351,5 +349,11 @@ body,
 #zoomIn {
   position: relative;
   z-index: 500;
+  display: flex;
+}
+
+#zoomOut {
+  position: relative;
+  z-index: 10;
   display: flex;
 }

@@ -314,6 +314,7 @@ const Gantt = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
     console.log("what was I going to log?");
     gantt.config.date_format = "%Y-%m-%d %H:%i";
+    gantt.config.wheel_scroll_sensitivity = 0.5;
     // gantt.parse(data);
 
     // gantt.attachEvent("onTaskDblClick", function (id, e) {

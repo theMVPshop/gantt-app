@@ -16,21 +16,18 @@
   font-family: "Lexend Deca", sans-serif;
   background-color: #eceeff;
   border-color: transparent;
-  border-radius: 10px;
   color: #079043;
-  width: 80px;
-  height: 40px;
+  width: 100px;
+  height: 30px;
   cursor: pointer;
+  margin-right: -150px;
+  border-radius: 10px;
 }
 
 .link {
   text-decoration: none;
   color: #079043;
-  padding: 10px 12px;
-}
-
-.name-tag{
-  margin-top: 20px;
+  font-size: 15px;
 }
 
 .logo{
@@ -43,16 +40,13 @@
 
 .name{
   font-family: 'Podkova', serif;
+  
   font-size: 25px;
   margin-left: -300px;
   margin-right:-200px;
 }
 .name-tag{
   align-self: center;
-  margin-right: 200px;
-}
-
-.nav-link{
-  margin-right: -150px;
-  border-radius: 25px;
+  margin-right: 400px;
+  margin-top: 30px;
 }
