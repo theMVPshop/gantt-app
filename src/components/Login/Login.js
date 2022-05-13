@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 import "./Login.css";
 
@@ -48,6 +49,8 @@ const Login = () => {
     password: { required: "Password is required" },
   };
 
+  const currentPath = window.location.pathname;
+
   return (
     <div className="login-window-container">
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
@@ -57,7 +60,7 @@ const Login = () => {
           <input 
             type="email"
             id="inputID1"
-            placeholder="Email"
+            placeholder="Email*"
             className="email"
             name="email"
             {...register("email", loginOptions.email)}
@@ -71,7 +74,7 @@ const Login = () => {
           <input
             type="password"
             id="inputID2"
-            placeholder="Password"
+            placeholder="Password*"
             className="password"
             name="password"
             {...register("password", loginOptions.password)}
@@ -80,10 +83,36 @@ const Login = () => {
         <small className="text-danger">
           {errors?.password && errors.password.message}
         </small>
+        <h6>
+          <em>*required</em>
+        </h6>
         <br />
         <button type="submit" className="login">
           Log In
         </button>
+
+        {currentPath === "/" ? (
+            <Link
+              className="link"
+              to="/signup"
+              onClick={() => {
+                window.location.replace("/signup");
+              }}
+            >
+              or Create an account!
+            </Link>
+          ) : (
+            <Link
+              className="link"
+              to="/"
+              onClick={() => {
+                window.location.replace("/");
+              }}
+            >
+              Sign In
+            </Link>
+          )}
+
       </form>
       <img style={{ objectFit: "fill"}} src={vector} className="vector" alt="decorative green shape"/>
     </div>
