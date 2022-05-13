@@ -10,7 +10,9 @@ body,
 }
 
 #gantt-chart-container {
-  padding-top: 50px;
+  padding-top: 90px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .nested_task #plusIconRow {
@@ -62,8 +64,8 @@ body,
 
   /* styles for when modal is open */
   /* height: 100%;
-  background-color: rgb(7, 144, 67, .6);
-  z-index: 102; */
+    background-color: rgb(7, 144, 67, .6);
+    z-index: 102; */
 }
 
 .formCont div {
@@ -349,5 +351,11 @@ body,
 #zoomIn {
   position: relative;
   z-index: 500;
+  display: flex;
+}
+
+#zoomOut {
+  position: relative;
+  z-index: 10;
   display: flex;
 }
