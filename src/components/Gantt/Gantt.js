@@ -222,7 +222,14 @@ const Gantt = () => {
   );
 
   const onTaskClick = (id, e) => {
-    console.log(e);
+    // expand/collapse cohorts
+    if (e.target.className === "gantt_tree_icon gantt_close") {
+      gantt.close(id);
+    } else if (e.target.className === "gantt_tree_icon gantt_open") {
+      gantt.open(id);
+    };
+
+    // button functionality for view, edit, add, delete
     var button = e.target.closest("[data-action]");
     if (button) {
       var action = button.getAttribute("data-action");
