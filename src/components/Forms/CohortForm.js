@@ -8,6 +8,7 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CohortForm = (props) => {
+  //something about this is keeping it from refreshing 
   const {
     register,
     handleSubmit,
@@ -46,7 +47,6 @@ const requiredFields ={
 
   const pushFormData = () => {
     var cohortCounter = 1;
-    console.log("pushFormData, formData:", formData)
   
     if (formData.title == "" ){
       setFormData((prevState) => {
@@ -76,7 +76,6 @@ const requiredFields ={
       return
     }
     
-      console.log("!Cohort Add; formData attempt to send: ", formData)
       var idArray = [];
       for (let i = 0; i < props.data.data.length; i++) {
         if (props.data.data[0].id) {
