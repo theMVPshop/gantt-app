@@ -63,13 +63,13 @@ const CohortDisplay = (props) => {
               : ""}
           </div>
         </div>
-        <div
-          className="submit"
+        <button
+          className="edit-button"
           value="Edit"
           onClick={() => props.switchForms("cohortDisplay", "cohortEditForm")}
         >
           Edit
-        </div>
+        </button>
       </form>
     </div>
   );
