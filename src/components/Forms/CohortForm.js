@@ -27,7 +27,7 @@ const requiredFields ={
     end_date: "",
     title_error: false,
     start_date_error: false,
-    graduation_date_error: false,
+    end_date_error: false,
   });
 
  
@@ -46,25 +46,37 @@ const requiredFields ={
 
   const pushFormData = () => {
     var cohortCounter = 1;
+    console.log("pushFormData, formData:", formData)
   
-    if (formData.title == ""){
-      setFormData({title_error: true} )
+    if (formData.title == "" ){
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.title_error = true;
+        return prev;
+      });
       return
     }
     
-    if (formData.start_date == ""){
-      console.log("There's no start date")
-      setFormData({ start_date_error: true })
+    if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.start_date_error = true;
+        return prev;
+      });
       return
     }
 
-    if (formData.end_date == ""){
-      console.log("There's no graduation date")
-      setFormData({ graduation_date_error: true })
+    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+      console.log("no end date")
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.end_date_error = true;
+        return prev;
+      });
       return
     }
     
-    
+      console.log("!Cohort Add; formData attempt to send: ", formData)
       var idArray = [];
       for (let i = 0; i < props.data.data.length; i++) {
         if (props.data.data[0].id) {
@@ -112,14 +124,7 @@ const requiredFields ={
           <Exit
             className="exit-button"
             onClick={() => {
-              console.log(
-                "add cohort form state",
-                props.modalState.addCohortForm
-              );
-              props.handleModalDisplayState("addCohortForm", {
-                display: false,
-                id: "cohort_0",
-              });
+              resetForm()
             }}
           ></Exit>
           <h1 className="minor-title">Add Cohort</h1>
@@ -186,7 +191,7 @@ const requiredFields ={
           />
         </div>
         <small className="text-danger">
-        {formData.graduation_date_error && requiredFields.graduationDate}
+        {formData.end_date_error && requiredFields.graduationDate}
         </small>
         <h6 className="required">
           <em>*required</em>
