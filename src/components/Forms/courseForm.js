@@ -5,10 +5,12 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseForm = (props) => {
-  console.log("COURSE FORM PROPS", props);
-  // useEffect(() => {
-  //   console.log(props.courseDisplay.id);
-  // }, [props.courseDisplay.id]);
+
+  const requiredFields ={
+    cohortName:  "Cohort Name is required (this can be changed later)",
+    startDate: "Start Date is required (this can be changed later)",
+    endDate: "End Date is required (this can be changed later)",
+  }
 
   const [formData, setFormData] = useState({
     title: "",
@@ -27,6 +29,9 @@ const CourseForm = (props) => {
     active_status: false,
     id: "cohort_0",
     parent: "cohort_0",
+    title_error: false,
+    start_date_error: false,
+    end_date_error: false
   });
 
   //function that resets formData back to default
@@ -41,17 +46,57 @@ const CourseForm = (props) => {
       location: "",
       day_of_week: "",
       mode: "",
-      start_date: "2022-07-05",
-      end_date: "2022-07-05",
+      start_date: "",
+      end_date: "",
       student_number_start: 0,
       student_number_end: 0,
       active_status: false,
       id: "cohort_0",
       parent: "cohort_0",
+      title_error: false,
+    start_date_error: false,
+    end_date_error: false
+      
+    });
+    props.handleModalDisplayState("addCourseForm", {
+      display: false,
+      id: "course_0",
     });
   };
 
+  //This function first checks for required fields
+  //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
+    console.log("typeof formData.start_date: ", typeof formData.start_date)
+    if (formData.title == "" ){
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.title_error = true;
+        return prev;
+      });
+      return
+    }
+    
+    if (formData.start_date == "YYYY-MM-DD" || formData.start_date == ''){
+      console.log("there's no start date")
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.start_date_error = true;
+        return prev;
+      });
+      return
+    }
+
+    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+      console.log("no end date")
+      setFormData((prevState) => {
+        let prev = { ...prevState };
+        prev.end_date_error = true;
+        return prev;
+      });
+      return
+    }
+
     var courseCounter = 1;
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
@@ -100,14 +145,7 @@ const CourseForm = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            console.log(
-              "add course form state",
-              props.modalState.addCourseForm
-            );
-            props.handleModalDisplayState("addCourseForm", {
-              display: false,
-              id: "course_0",
-            });
+            resetForm()
           }}
         ></Exit>
         <h1 className="minor-title">Add Course</h1>
@@ -129,6 +167,9 @@ const CourseForm = (props) => {
                 className="input"
               />
             </div>
+            <small className="text-danger">
+              {formData.title_error && requiredFields.cohortName}
+            </small>
 
             <div className="info">
               <label className="label">Course Link</label>
@@ -290,6 +331,9 @@ const CourseForm = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger">
+              {formData.start_date_error && requiredFields.startDate}
+            </small>
 
             <div className="info">
               <label className="label">End Date*</label>
@@ -307,6 +351,9 @@ const CourseForm = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger">
+              {formData.end_date_error && requiredFields.endDate}
+            </small>
 
             <div className="info">
               <label className="label">
@@ -369,9 +416,10 @@ const CourseForm = (props) => {
           <em>*required</em>
         </h6>
 
-        <button className="submit" onClick={pushFormData}>
+        <section className="submit" onClick={pushFormData}>
+
           Save
-        </button>
+        </section>
           
       </form>
     </div>

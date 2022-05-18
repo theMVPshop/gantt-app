@@ -334,8 +334,7 @@ const Gantt = () => {
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("what was I going to log?");
-    gantt.config.date_format = "%Y-%m-%d %H:%i";
+   gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.wheel_scroll_sensitivity = 0.5;
     // gantt.parse(data);
 
