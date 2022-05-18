@@ -39,6 +39,7 @@ const CohortDisplay = (props) => {
           }}
         ></Exit>
         <h1 className="minor-title">Cohort Info</h1>
+        <div className="cohort-info">
         <div className="display-info">
           <label className="label display-label">Cohort Name:</label>
 
@@ -63,13 +64,14 @@ const CohortDisplay = (props) => {
               : ""}
           </div>
         </div>
-        <div
-          className="submit"
+        </div>
+        <button
+          className="edit-button"
           value="Edit"
           onClick={() => props.switchForms("cohortDisplay", "cohortEditForm")}
         >
           Edit
-        </div>
+        </button>
       </form>
     </div>
   );

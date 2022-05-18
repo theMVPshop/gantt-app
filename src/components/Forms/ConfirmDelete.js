@@ -63,7 +63,7 @@ const ConfirmDelete = (props) => {
               });
             }}
           ></Exit>
-        <h1 className="deleteQuestionText">
+        <h1 className="minor-title">
           Are you sure you want to delete{" "}
           {props.modalState.confirmDeleteModal.title}?
         </h1>
