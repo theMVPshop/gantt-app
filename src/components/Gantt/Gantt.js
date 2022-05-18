@@ -14,6 +14,16 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
+  const [scale, setScale] = useState({
+    day: false,
+    week: false,
+    month: false,
+    quarter: false,
+    year: false,
+  });
+
+  const [initialScale, setInitialScale] = useState();
+
   const [modalState, setModalState] = useState({
     addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
@@ -92,6 +102,11 @@ const Gantt = () => {
     copy[newFormName].display = true;
     setModalState(copy);
   };
+
+  useEffect(() => {
+    let truth = gantt.ext.zoom.getCurrentLevel();
+    setInitialScale(truth);
+  }, []);
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -227,7 +242,7 @@ const Gantt = () => {
       gantt.close(id);
     } else if (e.target.className === "gantt_tree_icon gantt_open") {
       gantt.open(id);
-    };
+    }
 
     // button functionality for view, edit, add, delete
     var button = e.target.closest("[data-action]");
@@ -596,13 +611,28 @@ const Gantt = () => {
         style={{ width: "100%", height: "100%" }}
         id="gantt-chart-container"
       ></div>
-      <div>
+      <div id="zoomController">
         <button id="zoomIn" onClick={zoom_in}>
-          ZOOM IN
+          Zoom In
         </button>
         <button id="zoomOut" onClick={zoom_out}>
-          ZOOM IN
+          Zoom Out
         </button>
+        <label for="dayScale">Day Scale</label>
+        <input type="radio" id="dayScale" name="scale" value="day"></input>
+        <label for="weekScale">Week Scale</label>
+        <input type="radio" id="weekScale" name="scale" value="week"></input>
+        <label for="monthScale">Month Scale</label>
+        <input type="radio" id="monthScale" name="scale" value="month"></input>
+        <label for="quarterScale">Quarter Scale</label>
+        <input
+          type="radio"
+          id="quarterScale"
+          name="scale"
+          value="quarter"
+        ></input>
+        <label for="yearScale">Year Scale</label>
+        <input type="radio" id="yearScale" name="scale" value="year"></input>
       </div>
     </div>
   );

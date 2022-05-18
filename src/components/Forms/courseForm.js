@@ -53,6 +53,9 @@ const CourseForm = (props) => {
       active_status: false,
       id: "cohort_0",
       parent: "cohort_0",
+      title_error: false,
+    start_date_error: false,
+    end_date_error: false
       
     });
     props.handleModalDisplayState("addCourseForm", {
@@ -64,7 +67,7 @@ const CourseForm = (props) => {
   //This function first checks for required fields
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
-    console.log("please don't go!")
+    console.log("typeof formData.start_date: ", typeof formData.start_date)
     if (formData.title == "" ){
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -74,7 +77,8 @@ const CourseForm = (props) => {
       return
     }
     
-    if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
+    if (formData.start_date == "YYYY-MM-DD" || formData.start_date == ''){
+      console.log("there's no start date")
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
@@ -141,7 +145,7 @@ const CourseForm = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            // resetForm()
+            resetForm()
           }}
         ></Exit>
         <h1 className="minor-title">Add Course</h1>
@@ -327,6 +331,9 @@ const CourseForm = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger">
+              {formData.start_date_error && requiredFields.startDate}
+            </small>
 
             <div className="info">
               <label className="label">End Date*</label>
@@ -344,6 +351,9 @@ const CourseForm = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger">
+              {formData.end_date_error && requiredFields.endDate}
+            </small>
 
             <div className="info">
               <label className="label">
