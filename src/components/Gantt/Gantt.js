@@ -498,8 +498,6 @@ const Gantt = () => {
     let scroll_state, click, original_mouse_position;
     let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
 
-    console.log("timeline area element", timeline_area)
-
     timeline_area.onmousedown = (event) => {
       click = true;
       scroll_state = gantt.getScrollState().x;
@@ -516,6 +514,7 @@ const Gantt = () => {
         }
     });
     // gantt chart horizontal scroll END
+    
   });
 
   var left_date;

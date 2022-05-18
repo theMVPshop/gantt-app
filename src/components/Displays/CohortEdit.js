@@ -1,4 +1,3 @@
-import { click } from "@testing-library/user-event/dist/click";
 import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
@@ -6,7 +5,6 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CohortEdit = (props) => {
-  // console.log("props here---", props.data.data)
 
   const formatDate = (date) => {
     var d = new Date(date),
@@ -16,8 +14,6 @@ const CohortEdit = (props) => {
 
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
-
-    console.log("DATE IN COHORT EDIT", [year, month, day].join("-"));
 
     return [year, month, day].join("-");
   };
@@ -51,15 +47,6 @@ const CohortEdit = (props) => {
       end_date: "yyyy-mm-dd",
     });
   };
-
-  gantt.attachEvent("onTaskDblClick", function (id, e) {
-    const doubleClickedTask = id;
-    // let data = props.data.data.find();
-    //     // for (let i = 0; i < props.data.data.length; i++) {
-    //     //   console.log("this is i", i)
-    //     // }
-    //     return;
-  });
 
   const pushFormData = () => {
     var copy = formData;
@@ -111,12 +98,6 @@ const CohortEdit = (props) => {
           ></Exit>
           <h1 className="minor-title">Edit Cohort Info</h1>
         </div>
-        {/* className="cohortForm" 
-          style={
-            props.cohortFormDisplay.display
-              ? { display: "flex" }
-              : { display: "none" }
-      } */}
         <div className="edit-info">
           <label className="label">Cohort Name</label>
           <input
