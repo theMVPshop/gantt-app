@@ -1,5 +1,5 @@
 import { gantt } from "dhtmlx-gantt";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
 const url = "http://localhost:4000/tasks";
@@ -54,8 +54,8 @@ const CourseForm = (props) => {
       id: "cohort_0",
       parent: "cohort_0",
       title_error: false,
-    start_date_error: false,
-    end_date_error: false
+      start_date_error: false,
+      end_date_error: false
       
     });
     props.handleModalDisplayState("addCourseForm", {
@@ -68,7 +68,7 @@ const CourseForm = (props) => {
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
     console.log("typeof formData.start_date: ", typeof formData.start_date)
-    if (formData.title == "" ){
+    if (formData.title === "" ){
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
@@ -77,7 +77,7 @@ const CourseForm = (props) => {
       return
     }
     
-    if (formData.start_date == "YYYY-MM-DD" || formData.start_date == ''){
+    if (formData.start_date === "YYYY-MM-DD" || formData.start_date == ''){
       console.log("there's no start date")
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -87,7 +87,7 @@ const CourseForm = (props) => {
       return
     }
 
-    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+    if (formData.end_date == "" || formData.end_date === 'yyyy-mm-dd'){
       console.log("no end date")
       setFormData((prevState) => {
         let prev = { ...prevState };

@@ -65,13 +65,15 @@ const CohortDisplay = (props) => {
           </div>
         </div>
         </div>
-        <button
+        {/* this is saved as a section instead of a button
+        bc we do not want it to reload, which a button will do */}
+        <section
           className="edit-button"
           value="Edit"
           onClick={() => props.switchForms("cohortDisplay", "cohortEditForm")}
         >
           Edit
-        </button>
+        </section>
       </form>
     </div>
   );
