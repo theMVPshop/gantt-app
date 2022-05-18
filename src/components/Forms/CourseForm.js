@@ -77,7 +77,7 @@ const CourseForm = (props) => {
       return
     }
     
-    if (formData.start_date === "YYYY-MM-DD" || formData.start_date == ''){
+    if (formData.start_date === "YYYY-MM-DD" || formData.start_date === ''){
       console.log("there's no start date")
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -87,7 +87,7 @@ const CourseForm = (props) => {
       return
     }
 
-    if (formData.end_date == "" || formData.end_date === 'yyyy-mm-dd'){
+    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
       console.log("no end date")
       setFormData((prevState) => {
         let prev = { ...prevState };

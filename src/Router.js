@@ -9,7 +9,6 @@ import Nav from "./components/Nav/Nav.js";
 
 export const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
-  console.log("cookies", cookies);
 
   return cookies["loggedIn"] ? true : false;
 };

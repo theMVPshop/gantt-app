@@ -493,6 +493,28 @@ const Gantt = () => {
       var new_position = gantt.posFromDate(left_date);
       gantt.scrollTo(new_position, null);
     });
+
+    // gantt chart horizontal scroll START
+    let scroll_state, click, original_mouse_position;
+    let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
+
+    timeline_area.onmousedown = (event) => {
+      click = true;
+      scroll_state = gantt.getScrollState().x;
+      original_mouse_position = event.clientX;
+    }
+    
+    window.onmouseup = function(event){
+      click = false;
+    }
+
+    gantt.attachEvent("onMouseMove", function (id, e){
+      var scroll_value = scroll_state + original_mouse_position - e.clientX
+        if (click) { gantt.scrollTo(scroll_value, null);
+        }
+    });
+    // gantt chart horizontal scroll END
+    
   });
 
   var left_date;
