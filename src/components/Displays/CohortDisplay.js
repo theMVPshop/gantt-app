@@ -39,6 +39,7 @@ const CohortDisplay = (props) => {
           }}
         ></Exit>
         <h1 className="minor-title">Cohort Info</h1>
+        <div className="cohort-info">
         <div className="display-info">
           <label className="label display-label">Cohort Name:</label>
 
@@ -62,6 +63,7 @@ const CohortDisplay = (props) => {
               ? props.modalState.currentTask.end_date.toString().slice(0, 15)
               : ""}
           </div>
+        </div>
         </div>
         <button
           className="edit-button"

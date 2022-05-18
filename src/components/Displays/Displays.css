@@ -2,6 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
 /* ****** Cohort Display ***** */
+.cohort-info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 125px;
+}
+
 .display-label {
   font-size: 15px;
   padding-left: 15px;
@@ -31,7 +37,6 @@
   display: flex;
   flex-direction: row;
   margin-top: 15px;
-  margin-left: 125px;
 }
 
 .input-display {

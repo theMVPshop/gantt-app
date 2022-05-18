@@ -226,6 +226,7 @@ body,
   width: 465px;
   margin-top: 50px;
   padding: 10px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   background-color: #eceeff;
@@ -237,13 +238,6 @@ body,
 
   text-align: center;
   box-shadow: 5px 5px 15px;
-}
-
-.deleteQuestionText {
-  /* border: 1px solid darkorange; */
-  font-size: 32px;
-  align-self: center;
-  /* margin-bottom: 10px; */
 }
 
 #deleteButtonsCont {
