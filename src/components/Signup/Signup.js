@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 
@@ -52,7 +52,6 @@ const Signup = () => {
     
   }
 
-  const handleError = (errors) => {};
 
   const loginOptions = {
     firstName: { required: "First name is required" },
@@ -173,7 +172,7 @@ const Signup = () => {
 
         </form>
       </div>
-      <img style={{ objectFit: "fill"}} src={vector}  className="vector"></img>
+      <img style={{ objectFit: "fill"}} src={vector} alt="green_hills_bottom_border" className="vector"></img>
     </div>
   );
 };

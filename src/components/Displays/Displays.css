@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 280px;
   width: 480px;
   position: absolute;
   top: 0;
@@ -44,7 +43,7 @@
   align-self: center;
 }
 
-.edit {
+/* .edit {
   border-color: transparent;
   border-radius: 5px;
   background-color: #079043;
@@ -52,10 +51,10 @@
   width: 65%;
   height: 40px;
   align-self: center;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 15px;
   cursor: pointer;
-}
+} */
 
 /* ****** Course Display ***** */
 .courseForm-display {
@@ -119,8 +118,8 @@
   z-index: 10;
   padding: 10px;
   width: 330px;
-  margin-top: 40px;
-  margin-bottom: 45px;
+  margin-top: 30px;
+  margin-bottom: 25px;
   align-self: center;
   border-radius: 5px;
   border-color: transparent;
@@ -172,6 +171,10 @@
   position: absolute;
   margin-right: 26rem;
   margin-top: 5px;
+}
+
+.edit-danger {
+  align-self: center;
 }
 
 /* ***** Course Edit ***** */
