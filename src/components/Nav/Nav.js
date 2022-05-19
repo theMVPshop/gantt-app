@@ -15,10 +15,8 @@ const Nav = () => {
         <p className="name-tag">Welcome, {localStorage.getItem("user_name")}</p>
       )}
       {checkAuth() && (
-        <button className="nav-link">
-          <Link to="/" className="link"
-            onClick={() => logoutUser()}
-          >
+        <button className="nav-link" onClick={() => logoutUser()}>
+          <Link to="/" className="link">
             Logout
           </Link>
         </button>
