@@ -128,7 +128,7 @@ const requiredFields ={
           ></Exit>
           <h1 className="minor-title">Add Cohort</h1>
         </div>
-        <div className="info">
+        <div className="minor-info">
           <label className="label">Cohort Name*</label>
           <input
             type="title"
@@ -150,7 +150,7 @@ const requiredFields ={
           {formData.title_error && requiredFields.cohortName}
         </small>
 
-        <div className="info">
+        <div className="minor-info">
           <label className="label">Start Date*</label>
           <input
             type="date"
@@ -172,7 +172,7 @@ const requiredFields ={
         {formData.start_date_error && requiredFields.startDate}
         </small>
 
-        <div className="info">
+        <div className="minor-info">
           <label className="label">Graduation Date*</label>
           <input
             type="date"
