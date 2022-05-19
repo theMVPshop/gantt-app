@@ -10,7 +10,7 @@ body,
 }
 
 .gantt_link_point {
-  height: 30px !important;
+  display: none !important;
 }
 
 #gantt-chart-container {
