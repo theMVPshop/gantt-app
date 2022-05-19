@@ -1,5 +1,5 @@
 import { gantt } from "dhtmlx-gantt";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import { useForm } from "react-hook-form"
 
@@ -10,9 +10,7 @@ const url = "http://localhost:4000/tasks";
 const CohortForm = (props) => {
   //something about this is keeping it from refreshing 
   const {
-    register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
 const requiredFields ={
@@ -31,8 +29,6 @@ const requiredFields ={
     end_date_error: false,
   });
 
- 
-
   const resetForm = () => {
     setFormData({
       title: "",
@@ -48,7 +44,7 @@ const requiredFields ={
   const pushFormData = () => {
     var cohortCounter = 1;
   
-    if (formData.title == "" ){
+    if (formData.title === "" ){
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
@@ -57,7 +53,7 @@ const requiredFields ={
       return
     }
     
-    if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
+    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === ''){
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
@@ -66,7 +62,7 @@ const requiredFields ={
       return
     }
 
-    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
       console.log("no end date")
       setFormData((prevState) => {
         let prev = { ...prevState };

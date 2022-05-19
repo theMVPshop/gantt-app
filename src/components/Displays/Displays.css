@@ -173,6 +173,10 @@
   margin-top: 5px;
 }
 
+.edit-danger {
+  align-self: center;
+}
+
 /* ***** Course Edit ***** */
 
 .courseEdit{

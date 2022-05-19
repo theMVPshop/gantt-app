@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { gantt } from "dhtmlx-gantt";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 
 import "./Displays.css";
 
 const CohortDisplay = (props) => {
-  let task = props.modalState.currentTask;
 
   useEffect(() => {
     console.log(props.modalState.currentTask);
@@ -19,10 +16,7 @@ const CohortDisplay = (props) => {
         style={
           props.modalState.cohortDisplay.display
             ? {
-                display: "flex",
-                // height: "100%",
-                // backgroundColor: "rgb(7, 144, 67, .6)",
-                // zIndex: "102"
+                display: "flex"
               }
             : { display: "none" }
         }
@@ -65,26 +59,18 @@ const CohortDisplay = (props) => {
           </div>
         </div>
         </div>
-        <button
+        {/* this is saved as a section instead of a button
+        bc we do not want it to reload, which a button will do */}
+        <section
           className="edit-button"
           value="Edit"
           onClick={() => props.switchForms("cohortDisplay", "cohortEditForm")}
         >
           Edit
-        </button>
+        </section>
       </form>
     </div>
   );
 };
 
 export default CohortDisplay;
-
-// useEffect((props) => {
-//   console.log("props", props)
-
-//Don't need this?:
-//create state for the task to be displayed
-
-//   // console.log("props.cohortDisplay.cohortName: ", props.cohortDisplay.cohortName )
-//   //can i set this up so the dependency array fires if cohortDisply display changes? from props?
-// }, [])
