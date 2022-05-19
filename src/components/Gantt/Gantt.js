@@ -14,15 +14,8 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [scale, setScale] = useState({
-    day: false,
-    week: false,
-    month: false,
-    quarter: false,
-    year: false,
-  });
-
   const [initialScale, setInitialScale] = useState();
+  console.log("Initial Scale:", initialScale);
 
   const [modalState, setModalState] = useState({
     addCourseForm: { display: false, id: "course_0" },
@@ -127,30 +120,8 @@ const Gantt = () => {
   var exitIcon =
     "<svg xmlns='http://www.w3.org/2000/svg' class='exit' viewBox='0 0 24 24'><path d='M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z'/></svg>";
 
-  //state for storing data, currently filled with dummy dat
-
-  const [data, setData] = useState({ data: [], links: [] });
-
-  const [newTask, setNewTask] = useState({
-    id: 0,
-    text: "",
-    start_date: "",
-    duration: 0,
-    progress: 0,
-  });
-
-  //monitors data and re-renders gantt chart if change detected
-
-  // maybe try fetch function then call it in useEffect
-  // dateToStr function for gantt
-  // let dateToStr = gantt.data.date_to_str("%Y-%m-%d %H:%i");
-  // gantt.templates.format_date = function() {
-  //     return dateToStr ();
-  //   }
-
-  useEffect(() => {
-    gantt.parse(data);
-  }, []);
+  //state for storing data
+  const [data, setData] = useState({ data: [], links: [] }); 
 
   useEffect(() => {
     axios
@@ -160,13 +131,7 @@ const Gantt = () => {
           obj.start_date = obj.start_date.slice(0, 10);
           obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
-          // console logging all objects which return date in correct string format and length
-          // console.log("objects", obj);
-          // setting data here returns date in following format - '2023-02-01T06:00:00.000Z'
-          // also creates error - Invalid start_date argument for getDuration method
-          // setData({ data: res.data, links: [] });
         });
-        // here is where the dates change back to their original format
         setData({ data: res.data, links: [] });
       })
       .catch((err) => console.log("error", err));
@@ -211,7 +176,7 @@ const Gantt = () => {
             "getCurrentTask(), data[i].id in for loop: ",
             data.data[i].id
           );
-          if (data.data[i].id == id) {
+          if (data.data[i].id === id) {
             console.log("THEY MATCH!");
             console.log(taskIDArray);
             //copy current modal state
@@ -259,7 +224,7 @@ const Gantt = () => {
             if (taskIDArray[0] === "course") {
               //check if clicked task is course
               copy.courseDisplay.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -269,7 +234,7 @@ const Gantt = () => {
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortDisplay.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -284,7 +249,7 @@ const Gantt = () => {
             if (taskIDArray[0] === "course") {
               //check if clicked task is course
               copy.courseEditForm.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -294,7 +259,7 @@ const Gantt = () => {
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortEditForm.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -312,7 +277,7 @@ const Gantt = () => {
         case "delete":
           for (let i = 0; i < dataCopy.data.length; i++) {
             console.log("DELETE: ", copy.confirmDeleteModal.display);
-            if (dataCopy.data[i].id == id) {
+            if (dataCopy.data[i].id === id) {
               copy.confirmDeleteModal = {
                 display: true,
                 id: id,
@@ -514,7 +479,7 @@ const Gantt = () => {
         }
     });
     // gantt chart horizontal scroll END
-    
+
   });
 
   var left_date;
