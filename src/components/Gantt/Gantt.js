@@ -173,7 +173,6 @@ const Gantt = () => {
   }, []);
 
   useEffect(() => {
-    console.log("DATA", data);
     gantt.parse(data);
   }, [data]);
 
