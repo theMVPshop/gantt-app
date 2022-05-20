@@ -5,6 +5,54 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseEdit = (props) => {
+
+  const requiredFields ={
+    cohortName:  "Cohort Name is required (this can be changed later)",
+    startDate: "Start Date is required (this can be changed later)",
+    graduationDate: "End Date is required (this can be changed later)",
+  }
+
+  const [errorData, setErrorData] = useState({
+    title_error: false,
+    start_date_error: false,
+    end_date_error: false,
+  })
+
+  const validateInput = (e) => {
+    
+    if (formData.title == "" ){
+      e.preventDefault()
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.title_error = true;
+        return prev;
+      });
+      return
+    }
+    if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
+      e.preventDefault()
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.start_date_error = true;
+        return prev;
+      });
+      return
+    }
+
+    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+      e.preventDefault()
+
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.end_date_error = true;
+        return prev;
+      });
+      return
+    }
+    pushFormData()
+  }
+
+
   const formatDate = (date) => {
     var d = new Date(date),
       month = "" + (d.getMonth() + 1),
@@ -19,7 +67,6 @@ const CourseEdit = (props) => {
 
   const formatDateUp = (date) => {
     let translatedDate = date.slice(0, 10);
-    console.log(translatedDate);
     return translatedDate;
   };
 
@@ -120,6 +167,9 @@ const CourseEdit = (props) => {
                 className="input"
               />
             </div>
+            <small className="text-danger edit-danger">
+              {errorData.title_error && requiredFields.cohortName}
+            </small>
 
             <div className="info">
               <label className="label">Course Link</label>
@@ -281,6 +331,9 @@ const CourseEdit = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger edit-danger">
+              {errorData.start_date_error && requiredFields.startDate}
+            </small>
 
             <div className="info">
               <label className="label">End Date</label>
@@ -298,6 +351,9 @@ const CourseEdit = (props) => {
                 }}
               />
             </div>
+            <small className="text-danger edit-danger">
+              {errorData.end_date_error && requiredFields.graduationDate}
+            </small>
 
             <div className="info">
               <label className="label">
@@ -355,7 +411,7 @@ const CourseEdit = (props) => {
             </div>
           </div>
         </div>
-        <button className="submit" onClick={pushFormData}>
+        <button className="submit" onClick={validateInput}>
           Confirm Changes
         </button>
       </form>

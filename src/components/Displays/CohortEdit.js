@@ -11,6 +11,7 @@ const CohortEdit = (props) => {
     startDate: "Start Date is required (this can be changed later)",
     graduationDate: "Graduation Date is required (this can be changed later)",
   }
+
   const formatDate = (date) => {
     var d = new Date(date),
       month = "" + (d.getMonth() + 1),
@@ -25,7 +26,6 @@ const CohortEdit = (props) => {
 
   const formatDateUp = (date) => {
     let translatedDate = date.slice(0, 10);
-    console.log(translatedDate);
     return translatedDate;
   };
 
@@ -34,10 +34,13 @@ const CohortEdit = (props) => {
     title: "",
     start_date: formatDate(props.modalState.currentTask.start_date),
     end_date: formatDate(props.modalState.currentTask.end_date),
+  });
+
+  const [errorData, setErrorData] = useState({
     title_error: false,
     start_date_error: false,
     end_date_error: false,
-  });
+  })
 
   useEffect(() => {
     setFormData({
@@ -48,26 +51,30 @@ const CohortEdit = (props) => {
     });
   }, [props.modalState.currentTask]);
 
-  const resetForm = () => {
+  //Is this doing anything?
+  const resetErrorData = () => {
+    console.log("resetErrorData")
     setFormData({
-      title: "",
-      start_date: "yyyy-mm-dd",
-      end_date: "yyyy-mm-dd",
+        title_error: false,
+        start_date_error: false,
+        end_date_error: false,
     });
   };
 
-  const pushFormData = () => {
+  const validateInput = (e) => {
+    
     if (formData.title == "" ){
-      setFormData((prevState) => {
+      e.preventDefault()
+      setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
         return prev;
       });
       return
     }
-    
     if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
-      setFormData((prevState) => {
+      e.preventDefault()
+      setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
         return prev;
@@ -76,42 +83,46 @@ const CohortEdit = (props) => {
     }
 
     if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
-      console.log("no end date")
-      setFormData((prevState) => {
+      e.preventDefault()
+
+      setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.end_date_error = true;
         return prev;
       });
       return
     }
+    pushFormData()
+  }
 
-    console.log("when pushing cohort edit, formData.start_date, formData.end_date:", formData.start_date, formData.end_date)
-    var copy = formData;
-    copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
-    copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+  const pushFormData = () => {
+      var copy = formData;
+      copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
+      copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+      console.log("after formatDateUp: ", copy.end_date)
+      axios
+        .put(`${url}/${props.modalState.currentTask.id}`, copy)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
+            copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
+            props.customEditTask(copy.id, copy);
+            // resetForm();
+          }
+        })
+        .catch((err) => console.log("there was an error", err));
+        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+      };
+  
 
-    axios
-      .put(`${url}/${props.modalState.currentTask.id}`, copy)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
-          copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
-          props.customEditTask(copy.id, copy);
-          resetForm();
-        }
-      })
-      .catch((err) => console.log("there was an error", err));
-    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-  };
-
-  useEffect(() => {
-    setFormData({
-      title: props.modalState.currentTask.title,
-      start_date: formatDate(props.modalState.currentTask.start_date),
-      end_date: formatDate(props.modalState.currentTask.end_date),
-    });
-  }, [props.modalState.currentTask]);
+  // useEffect(() => {
+  //   setFormData({
+  //     title: props.modalState.currentTask.title,
+  //     start_date: formatDate(props.modalState.currentTask.start_date),
+  //     end_date: formatDate(props.modalState.currentTask.end_date),
+  //   });
+  // }, [props.modalState.currentTask]);
 
   return (
     <div>
@@ -131,6 +142,7 @@ const CohortEdit = (props) => {
               const copy = props.modalState;
               copy.cohortEditForm.display = !copy.cohortEditForm.display;
               props.handleModalDisplayState(copy);
+              resetErrorData();
             }}
           ></Exit>
           <h1 className="minor-title">Edit Cohort Info</h1>
@@ -153,9 +165,15 @@ const CohortEdit = (props) => {
           />
           
         </div>
-        <small className="text-danger edit-danger">
-          {/* if titleErrors state is true display here */}
-          {formData.title_error && requiredFields.cohortName}
+        <small className="text-danger edit-danger"
+          style={
+          errorData.title_error
+          
+            ? { display: "flex" }
+            : { display: "none" }
+        }
+        >
+          {requiredFields.cohortName}
         </small>
         
 
@@ -170,13 +188,14 @@ const CohortEdit = (props) => {
                 prev.start_date = e.target.value;
                 return prev;
               });
+              
             }}
             name="start_date"
             className="input"
           />
         </div>
         <small className="text-danger edit-danger">
-        {formData.start_date_error && requiredFields.startDate}
+        {errorData.start_date_error && requiredFields.startDate}
         </small>
 
         <div className="edit-info">
@@ -196,15 +215,14 @@ const CohortEdit = (props) => {
           />
         </div>
         <small className="text-danger edit-danger">
-        {formData.end_date_error && requiredFields.graduationDate}
+        {errorData.end_date_error && requiredFields.graduationDate}
         </small>
-
-        <input
-          // type="submit"
-          className="submit"
-          value="Confirm Changes"
-          onClick={pushFormData}
-        />
+          <button
+            className="submit"
+            onClick={validateInput}
+            >
+              Confirm Changes
+          </button>
       </form>
     </div>
   );
