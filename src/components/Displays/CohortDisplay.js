@@ -10,16 +10,17 @@ const CohortDisplay = (props) => {
   }, [props.modalState.currentTask]);
 
   return (
-    <div>
+    <div
+    style={
+      props.modalState.cohortDisplay.display
+        ? {
+            display: "flex"
+          }
+        : { display: "none" }
+    }>
       <form
         className="cohortForm-display"
-        style={
-          props.modalState.cohortDisplay.display
-            ? {
-                display: "flex"
-              }
-            : { display: "none" }
-        }
+        
       >
         <Exit
           className="exit-button"

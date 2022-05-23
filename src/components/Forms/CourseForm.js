@@ -133,14 +133,15 @@ const CourseForm = (props) => {
   };
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.addCourseForm.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="courseForm"
-        style={
-          props.modalState.addCourseForm.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
+        
       >
         <Exit
           className="exit-button"

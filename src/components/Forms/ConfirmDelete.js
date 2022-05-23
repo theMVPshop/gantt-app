@@ -24,15 +24,15 @@ const ConfirmDelete = (props) => {
   };
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.confirmDeleteModal.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="confirmDelete"
         id="confirmDelete"
-        style={
-          props.modalState.confirmDeleteModal.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
         <Exit
             className="exit-button"

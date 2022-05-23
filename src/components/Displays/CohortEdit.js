@@ -125,14 +125,16 @@ const CohortEdit = (props) => {
   // }, [props.modalState.currentTask]);
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.cohortEditForm.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
+      
       <form
         className="cohortEdit"
-        style={
-          props.modalState.cohortEditForm.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
+        
       >
         <div className="title-div">
           <Exit
