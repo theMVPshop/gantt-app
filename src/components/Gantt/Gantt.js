@@ -504,7 +504,8 @@ const Gantt = () => {
   }
 
   return (
-    <div>
+    <div
+    >
       <div
         className="formCont"
         id="formCont"
@@ -519,9 +520,14 @@ const Gantt = () => {
             ? {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
-                zIndex: "102",
+                zIndex: "102"
               }
-            : { height: "auto", backgroundColor: "none", zIndex: "101" }
+            : { 
+                // height: "auto", 
+                backgroundColor: "none", 
+                zIndex: "101" 
+              }
+          
         }
       >
         <CourseForm

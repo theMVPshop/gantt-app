@@ -20,7 +20,7 @@ const CohortDisplay = (props) => {
     }>
       <form
         className="cohortForm-display"
-        
+
       >
         <Exit
           className="exit-button"
