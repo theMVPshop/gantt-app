@@ -14,16 +14,6 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [scale, setScale] = useState({
-    day: false,
-    week: false,
-    month: false,
-    quarter: false,
-    year: false,
-  });
-
-  const [initialScale, setInitialScale] = useState();
-
   const [modalState, setModalState] = useState({
     addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
@@ -102,11 +92,6 @@ const Gantt = () => {
     copy[newFormName].display = true;
     setModalState(copy);
   };
-
-  useEffect(() => {
-    let truth = gantt.ext.zoom.getCurrentLevel();
-    setInitialScale(truth);
-  }, []);
 
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
@@ -491,6 +476,7 @@ const Gantt = () => {
     gantt.init(containerRef.current);
 
     gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
+      console.log(new_position);
       var new_position = gantt.posFromDate(left_date);
       gantt.scrollTo(new_position, null);
     });
@@ -500,11 +486,15 @@ const Gantt = () => {
   function zoom_in() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
+    console.log(position);
+    console.log(left_date);
     gantt.ext.zoom.zoomIn();
   }
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
+    console.log(position);
+    console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
 
@@ -619,21 +609,6 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
-        <label for="dayScale">Day Scale</label>
-        <input type="radio" id="dayScale" name="scale" value="day"></input>
-        <label for="weekScale">Week Scale</label>
-        <input type="radio" id="weekScale" name="scale" value="week"></input>
-        <label for="monthScale">Month Scale</label>
-        <input type="radio" id="monthScale" name="scale" value="month"></input>
-        <label for="quarterScale">Quarter Scale</label>
-        <input
-          type="radio"
-          id="quarterScale"
-          name="scale"
-          value="quarter"
-        ></input>
-        <label for="yearScale">Year Scale</label>
-        <input type="radio" id="yearScale" name="scale" value="year"></input>
       </div>
     </div>
   );
