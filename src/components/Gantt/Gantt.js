@@ -96,11 +96,6 @@ const Gantt = () => {
     setModalState(copy);
   };
 
-  useEffect(() => {
-    let truth = gantt.ext.zoom.getCurrentLevel();
-    setInitialScale(truth);
-  }, []);
-
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
     "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -121,7 +116,7 @@ const Gantt = () => {
     "<svg xmlns='http://www.w3.org/2000/svg' class='exit' viewBox='0 0 24 24'><path d='M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z'/></svg>";
 
   //state for storing data
-  const [data, setData] = useState({ data: [], links: [] }); 
+  const [data, setData] = useState({ data: [], links: [] });
 
   useEffect(() => {
     axios
@@ -292,7 +287,7 @@ const Gantt = () => {
 
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
-  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
     const newDate = task.start_date;
     console.log(typeof newDate);
 
@@ -301,10 +296,10 @@ const Gantt = () => {
     //     month = "" + (d.getMonth() + 1),
     //     day = "" + d.getDate(),
     //     year = d.getFullYear();
-  
+
     //   if (month.length < 2) month = "0" + month;
     //   if (day.length < 2) day = "0" + day;
-  
+
     //   return [year, month, day].join("-");
     // };
   });
@@ -464,6 +459,7 @@ const Gantt = () => {
     gantt.init(containerRef.current);
 
     gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
+      console.log(new_position);
       var new_position = gantt.posFromDate(left_date);
       gantt.scrollTo(new_position, null);
     });
@@ -476,30 +472,34 @@ const Gantt = () => {
       click = true;
       scroll_state = gantt.getScrollState().x;
       original_mouse_position = event.clientX;
-    }
-    
-    window.onmouseup = function(event){
-      click = false;
-    }
+    };
 
-    gantt.attachEvent("onMouseMove", function (id, e){
-      var scroll_value = scroll_state + original_mouse_position - e.clientX
-        if (click) { gantt.scrollTo(scroll_value, null);
-        }
+    window.onmouseup = function (event) {
+      click = false;
+    };
+
+    gantt.attachEvent("onMouseMove", function (id, e) {
+      var scroll_value = scroll_state + original_mouse_position - e.clientX;
+      if (click) {
+        gantt.scrollTo(scroll_value, null);
+      }
     });
     // gantt chart horizontal scroll END
-
   });
 
   var left_date;
   function zoom_in() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
+    console.log(position);
+    console.log(left_date);
     gantt.ext.zoom.zoomIn();
   }
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
+    console.log(position);
+    console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
 
@@ -527,7 +527,8 @@ const Gantt = () => {
                 backgroundColor: "none", 
                 zIndex: "101" 
               }
-          }
+          
+        }
       >
         <CourseForm
           modalState={modalState}
@@ -595,21 +596,6 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
-        <label for="dayScale">Day Scale</label>
-        <input type="radio" id="dayScale" name="scale" value="day"></input>
-        <label for="weekScale">Week Scale</label>
-        <input type="radio" id="weekScale" name="scale" value="week"></input>
-        <label for="monthScale">Month Scale</label>
-        <input type="radio" id="monthScale" name="scale" value="month"></input>
-        <label for="quarterScale">Quarter Scale</label>
-        <input
-          type="radio"
-          id="quarterScale"
-          name="scale"
-          value="quarter"
-        ></input>
-        <label for="yearScale">Year Scale</label>
-        <input type="radio" id="yearScale" name="scale" value="year"></input>
       </div>
     </div>
   );

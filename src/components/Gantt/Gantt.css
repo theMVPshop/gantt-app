@@ -358,19 +358,6 @@ body,
   cursor: pointer;
 }
 
-#zoomController label {
-  margin: 0px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-}
-
-#zoomController input {
-  margin-right: 10px;
-  width: 17px;
-  height: 17px;
-  margin-top: 3px;
-}
-
 #zoomController {
   padding-left: 10px;
   position: absolute;
@@ -379,4 +366,5 @@ body,
   top: 50px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
