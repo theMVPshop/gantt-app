@@ -214,7 +214,6 @@ const Gantt = () => {
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
-      // console.log("data copy", dataCopy);
       var taskIDArray = id.split("_");
       gantt.detachEvent("task-click");
       switch (action) {
@@ -229,7 +228,6 @@ const Gantt = () => {
                 setModalState(copy); //set modal state to copy
                 return;
               }
-              // setModalState(copy);
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortDisplay.display = "flex"; //if true set copy of state display to flex
@@ -241,7 +239,6 @@ const Gantt = () => {
               }
             }
           }
-          // setModalState(copy);
           break;
         case "edit":
           for (let i = 0; i < dataCopy.data.length; i++) {
@@ -254,7 +251,6 @@ const Gantt = () => {
                 setModalState(copy); //set modal state to copy
                 return;
               }
-              // setModalState(copy);
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortEditForm.display = "flex"; //if true set copy of state display to flex
@@ -296,17 +292,31 @@ const Gantt = () => {
 
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
+  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+    const newDate = task.start_date;
+    console.log(typeof newDate);
+
+    // const formatDate = (date) => {
+    //   var d = new Date(date),
+    //     month = "" + (d.getMonth() + 1),
+    //     day = "" + d.getDate(),
+    //     year = d.getFullYear();
+  
+    //   if (month.length < 2) month = "0" + month;
+    //   if (day.length < 2) day = "0" + day;
+  
+    //   return [year, month, day].join("-");
+    // };
+  });
+
+  // gantt.attachEvent("onAfterTaskDrag", function(id, mode, e){
+  //   console.log("Task Drag Ended", id, "Mode:", mode, "Event", e);
+  // });
+
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-   gantt.config.date_format = "%Y-%m-%d %H:%i";
+    gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.wheel_scroll_sensitivity = 0.5;
-    // gantt.parse(data);
-
-    // gantt.attachEvent("onTaskDblClick", function (id, e) {
-    //   console.log(
-    //     "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
-    //   );
-    // });
 
     //gantt custom columns
 
@@ -493,8 +503,6 @@ const Gantt = () => {
     gantt.ext.zoom.zoomOut();
   }
 
-  //This runs on a double click of a task  (bar on calendar or column on left)
-
   return (
     <div
     >
@@ -519,7 +527,7 @@ const Gantt = () => {
                 backgroundColor: "none", 
                 zIndex: "101" 
               }
-        }
+          }
       >
         <CourseForm
           modalState={modalState}
@@ -553,7 +561,6 @@ const Gantt = () => {
           exitIcon={exitIcon}
           switchForms={switchForms}
         ></CohortDisplay>
-        {/* Course display form with x in top right corner */}
         <CourseDisplay
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -575,27 +582,6 @@ const Gantt = () => {
           setData={setData}
           customEditTask={customEditTask}
         ></CourseEdit>
-        {/*<button
-          onClick={() => {
-            setCourseFormDisplay({ display: !courseFormDisplay.display });
-          }}
-        >
-          ShowCourseForm
-        </button>
-        <button
-          onClick={() => {
-            setCohortFormDisplay({ display: !cohortFormDisplay.display });
-          }}
-        >
-          ShowCohortForm
-        </button>
-        <button
-          onClick={() => {
-            setCourseDisplay({ display: !courseDisplay.display });
-          }}
-        >
-          ShowCourse DISPLAY
-        </button>*/}
       </div>
       <div
         ref={containerRef}

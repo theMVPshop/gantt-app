@@ -335,40 +335,17 @@ body,
   border: transparent;
 }
 
-#plusIconRow {
+#plusIconRow, #plusIconHeader {
   fill: #079043;
 }
 
-#plusIconHeader {
-  fill: #079043;
-}
-
-.gantt_data_area {
+.gantt_data_area, .gantt_grid_data {
   background-color: #eceeff;
 }
 
-.gantt_grid_data {
-  background-color: #eceeff;
-}
-
-#zoomIn {
+#zoomIn, #zoomOut {
   position: relative;
-  z-index: 500;
-  display: flex;
-  background-color: #3c4a3e;
-  color: white;
-  border: 1px solid #3c4a3e;
-  width: 80px;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-#zoomOut {
-  position: relative;
-  z-index: 500;
+  z-index: 100;
   display: flex;
   background-color: #3c4a3e;
   color: white;
