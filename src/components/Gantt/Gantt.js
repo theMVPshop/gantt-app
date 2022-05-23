@@ -14,9 +14,6 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
-  const [initialScale, setInitialScale] = useState();
-  console.log("Initial Scale:", initialScale);
-
   const [modalState, setModalState] = useState({
     addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
@@ -447,10 +444,10 @@ const Gantt = () => {
         },
       ],
       useKey: "ctrlKey",
-      trigger: "wheel",
-      element: function () {
-        return gantt.$root.querySelector(".gantt_data_area");
-      },
+      // trigger: "wheel",
+      // element: function () {
+      //   return gantt.$root.querySelector(".gantt_data_area");
+      // },
     };
 
     gantt.ext.zoom.init(zoomConfig);
@@ -459,7 +456,6 @@ const Gantt = () => {
     gantt.init(containerRef.current);
 
     gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
-      console.log(new_position);
       var new_position = gantt.posFromDate(left_date);
       gantt.scrollTo(new_position, null);
     });
