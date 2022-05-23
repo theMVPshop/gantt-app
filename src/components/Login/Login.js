@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import "./Login.css";
-
 import vector from "../../images/Vectors.svg"
+
 
 const Login = () => {
   const {
@@ -15,14 +15,11 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    console.log("hey, you clicked login");
-    //make a post call to our backend here:
+    
+    const url = "http://localhost:4000/users/login";
 
-    //SAVE URL HERE:
-
-    //axios post call including email and password
     axios
-      .post("http://localhost:4000/users/login", {
+      .post(url, {
         email: data.email,
         password: data.password,
       })

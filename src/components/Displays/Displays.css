@@ -2,12 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
 /* ****** Cohort Display ***** */
+.cohort-info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 125px;
+}
+
 .display-label {
   font-size: 15px;
-  text-align: right;
   padding-left: 15px;
   margin-top: -15px;
-  margin-left: -20px;
+  align-self: center;
 }
 
 .cohortForm-display {
@@ -18,27 +23,27 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 280px;
+  align-items: center;
   width: 480px;
   position: absolute;
   top: 0;
   z-index: 101;
   box-shadow: 5px 5px 15px;
-  margin-top: 50px;
+  margin: 50px;
 }
 
 .display-info {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .input-display {
   margin-left: -80px;
-
+  align-self: center;
 }
 
-.edit {
+/* .edit {
   border-color: transparent;
   border-radius: 5px;
   background-color: #079043;
@@ -46,17 +51,16 @@
   width: 65%;
   height: 40px;
   align-self: center;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 15px;
   cursor: pointer;
-}
+} */
 
 /* ****** Course Display ***** */
 .courseForm-display {
-  box-sizing: border-box;
   font-family: "Lexend Deca", sans-serif;
-  width: 950px;
-  height:500px;
+  width: 1000px;
+  height:600px;
   background-color: #eceeff;
   position: absolute;
   z-index: 101;
@@ -64,21 +68,20 @@
   flex-direction: column;
   margin-top: 50px;
   padding: 10px;
+  padding-top: 20px;
   border-radius: 20px;
-  margin-bottom: 10px;
   top: 0;
-  padding-bottom: 70px;
   box-shadow: 5px 5px 20px;
 }
 
 
 .display-info {
+  width: auto;
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
-  padding: 0;
-  align-items: center;
-  margin-left: 70px;
+  padding: 0;   
+
 }
 
 .group {
@@ -93,32 +96,37 @@
 }
 
 .display-label {
-  width: 300px;
+  width: 30%;
   font-size: 15px;
   font-weight: 800;
   text-align: left;
-  align-self: end;
-  margin-right: 40px;
+  align-self: center;
 }
 
 .display-input {
-  align-self: center;
-  margin-left: -50px;
-  margin-right:50px;
-  padding-top: 10px;
+  height: 25px;
+  width: 40% !important;
+  padding-left: 10px;
+  padding: 5px;
+  align-self:center;
 }
 
 .edit-button {
-  border-color: transparent;
-  border-radius: 5px;
-  background-color: #079043;
-  color: #eceeff;
-  width: 65%;
-  height: 40px;
+  text-align: center;
+  font-family: "Lexend Deca", sans-serif;
+  position: relative;
+  z-index: 10;
+  padding: 10px;
+  width: 330px;
+  margin-top: 30px;
+  margin-bottom: 25px;
   align-self: center;
-  margin-top: 40px;
+  border-radius: 5px;
+  border-color: transparent;
   font-size: 15px;
-  margin-top: 40px;
+  background-color: #079043;
+  font-weight: 800;
+  color: #eceeff;
   cursor: pointer;
 }
 
@@ -137,21 +145,19 @@
   padding-top: 10px;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   background-color: #eceeff;
   border-radius: 10px;
   position: absolute;
   z-index: 10;
   box-shadow: 5px 5px 15px;
-
   top: 0;
   margin: 50px;
 }
 
 .minor-title{
-  font-size: 32px;
+  font-size: 35px;
   align-self: center;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 
@@ -165,6 +171,10 @@
   position: absolute;
   margin-right: 26rem;
   margin-top: 5px;
+}
+
+.edit-danger {
+  align-self: center;
 }
 
 /* ***** Course Edit ***** */

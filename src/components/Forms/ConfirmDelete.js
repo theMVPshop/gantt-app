@@ -1,6 +1,5 @@
 
 import axios from "axios";
-import { gantt } from "dhtmlx-gantt";
 
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Forms.css"
@@ -16,25 +15,12 @@ const ConfirmDelete = (props) => {
   let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {
-    // console.log("resetModal confirmDelete: props.confirmDeleteModal.display", props.modalState.confirmDeleteModal.display )
     props.handleModalDisplayState("confirmDeleteModal", {
       display: false,
       id: "cohort_0",
       title: "",
     });
   
-  };
-
-  const pushFormData = () => {
-    axios
-      .delete(`${url}/${id}`)
-      .then((res) => {
-        if (res.status === 200) {
-          props.customDeleteTask(id);
-          resetModal();
-        }
-      })
-      .catch((err) => console.log("there was an error", err));
   };
 
   return (
@@ -46,10 +32,7 @@ const ConfirmDelete = (props) => {
           props.modalState.confirmDeleteModal.display
             ? { display: "flex" }
             : { display: "none" }
-            // : { display: "none" }
         }
-      
-      
       >
         <Exit
             className="exit-button"
@@ -63,7 +46,7 @@ const ConfirmDelete = (props) => {
               });
             }}
           ></Exit>
-        <h1 className="deleteQuestionText">
+        <h1 className="minor-title">
           Are you sure you want to delete{" "}
           {props.modalState.confirmDeleteModal.title}?
         </h1>
@@ -88,15 +71,9 @@ const ConfirmDelete = (props) => {
             onClick={resetModal}
             type="button"
           >
-           
               No
           </button>
         </div>
-  
-        {/* <div>
-          <button onClick={pushFormData}>Yes</button>
-          <button onClick={resetModal}>No</button>
-        </div> */}
       </form>
     </div>
   );

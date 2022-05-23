@@ -14,6 +14,9 @@ import axios from "axios";
 const Gantt = () => {
   const containerRef = useRef(null);
 
+  const [initialScale, setInitialScale] = useState();
+  console.log("Initial Scale:", initialScale);
+
   const [modalState, setModalState] = useState({
     addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
@@ -112,30 +115,8 @@ const Gantt = () => {
   var exitIcon =
     "<svg xmlns='http://www.w3.org/2000/svg' class='exit' viewBox='0 0 24 24'><path d='M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z'/></svg>";
 
-  //state for storing data, currently filled with dummy dat
-
+  //state for storing data
   const [data, setData] = useState({ data: [], links: [] });
-
-  const [newTask, setNewTask] = useState({
-    id: 0,
-    text: "",
-    start_date: "",
-    duration: 0,
-    progress: 0,
-  });
-
-  //monitors data and re-renders gantt chart if change detected
-
-  // maybe try fetch function then call it in useEffect
-  // dateToStr function for gantt
-  // let dateToStr = gantt.data.date_to_str("%Y-%m-%d %H:%i");
-  // gantt.templates.format_date = function() {
-  //     return dateToStr ();
-  //   }
-
-  useEffect(() => {
-    gantt.parse(data);
-  }, []);
 
   useEffect(() => {
     axios
@@ -145,20 +126,13 @@ const Gantt = () => {
           obj.start_date = obj.start_date.slice(0, 10);
           obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
-          // console logging all objects which return date in correct string format and length
-          // console.log("objects", obj);
-          // setting data here returns date in following format - '2023-02-01T06:00:00.000Z'
-          // also creates error - Invalid start_date argument for getDuration method
-          // setData({ data: res.data, links: [] });
         });
-        // here is where the dates change back to their original format
         setData({ data: res.data, links: [] });
       })
       .catch((err) => console.log("error", err));
   }, []);
 
   useEffect(() => {
-    console.log("DATA", data);
     gantt.parse(data);
   }, [data]);
 
@@ -196,7 +170,7 @@ const Gantt = () => {
             "getCurrentTask(), data[i].id in for loop: ",
             data.data[i].id
           );
-          if (data.data[i].id == id) {
+          if (data.data[i].id === id) {
             console.log("THEY MATCH!");
             console.log(taskIDArray);
             //copy current modal state
@@ -235,7 +209,6 @@ const Gantt = () => {
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
-      // console.log("data copy", dataCopy);
       var taskIDArray = id.split("_");
       gantt.detachEvent("task-click");
       switch (action) {
@@ -244,17 +217,16 @@ const Gantt = () => {
             if (taskIDArray[0] === "course") {
               //check if clicked task is course
               copy.courseDisplay.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
                 return;
               }
-              // setModalState(copy);
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortDisplay.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -262,24 +234,22 @@ const Gantt = () => {
               }
             }
           }
-          // setModalState(copy);
           break;
         case "edit":
           for (let i = 0; i < dataCopy.data.length; i++) {
             if (taskIDArray[0] === "course") {
               //check if clicked task is course
               copy.courseEditForm.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
                 return;
               }
-              // setModalState(copy);
             } else if (taskIDArray[0] === "cohort") {
               //check if clicked task is cohort
               copy.cohortEditForm.display = "flex"; //if true set copy of state display to flex
-              if (dataCopy.data[i].id == id) {
+              if (dataCopy.data[i].id === id) {
                 //if clicked task id is equal to the current i data id property
                 copy.currentTask = dataCopy.data[i]; //if true set copy of state current task to the found data
                 setModalState(copy); //set modal state to copy
@@ -297,7 +267,7 @@ const Gantt = () => {
         case "delete":
           for (let i = 0; i < dataCopy.data.length; i++) {
             console.log("DELETE: ", copy.confirmDeleteModal.display);
-            if (dataCopy.data[i].id == id) {
+            if (dataCopy.data[i].id === id) {
               copy.confirmDeleteModal = {
                 display: true,
                 id: id,
@@ -317,18 +287,31 @@ const Gantt = () => {
 
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
+  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
+    const newDate = task.start_date;
+    console.log(typeof newDate);
+
+    // const formatDate = (date) => {
+    //   var d = new Date(date),
+    //     month = "" + (d.getMonth() + 1),
+    //     day = "" + d.getDate(),
+    //     year = d.getFullYear();
+
+    //   if (month.length < 2) month = "0" + month;
+    //   if (day.length < 2) day = "0" + day;
+
+    //   return [year, month, day].join("-");
+    // };
+  });
+
+  // gantt.attachEvent("onAfterTaskDrag", function(id, mode, e){
+  //   console.log("Task Drag Ended", id, "Mode:", mode, "Event", e);
+  // });
+
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("what was I going to log?");
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.wheel_scroll_sensitivity = 0.5;
-    // gantt.parse(data);
-
-    // gantt.attachEvent("onTaskDblClick", function (id, e) {
-    //   console.log(
-    //     "This gantt.attachEvent, onTaskDblClick needs to stay here to prevent the default modal from popping up"
-    //   );
-    // });
 
     //gantt custom columns
 
@@ -480,6 +463,28 @@ const Gantt = () => {
       var new_position = gantt.posFromDate(left_date);
       gantt.scrollTo(new_position, null);
     });
+
+    // gantt chart horizontal scroll START
+    let scroll_state, click, original_mouse_position;
+    let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
+
+    timeline_area.onmousedown = (event) => {
+      click = true;
+      scroll_state = gantt.getScrollState().x;
+      original_mouse_position = event.clientX;
+    };
+
+    window.onmouseup = function (event) {
+      click = false;
+    };
+
+    gantt.attachEvent("onMouseMove", function (id, e) {
+      var scroll_value = scroll_state + original_mouse_position - e.clientX;
+      if (click) {
+        gantt.scrollTo(scroll_value, null);
+      }
+    });
+    // gantt chart horizontal scroll END
   });
 
   var left_date;
@@ -497,8 +502,6 @@ const Gantt = () => {
     console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
-
-  //This runs on a double click of a task  (bar on calendar or column on left)
 
   return (
     <div>
@@ -553,7 +556,6 @@ const Gantt = () => {
           exitIcon={exitIcon}
           switchForms={switchForms}
         ></CohortDisplay>
-        {/* Course display form with x in top right corner */}
         <CourseDisplay
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -575,27 +577,6 @@ const Gantt = () => {
           setData={setData}
           customEditTask={customEditTask}
         ></CourseEdit>
-        {/*<button
-          onClick={() => {
-            setCourseFormDisplay({ display: !courseFormDisplay.display });
-          }}
-        >
-          ShowCourseForm
-        </button>
-        <button
-          onClick={() => {
-            setCohortFormDisplay({ display: !cohortFormDisplay.display });
-          }}
-        >
-          ShowCohortForm
-        </button>
-        <button
-          onClick={() => {
-            setCourseDisplay({ display: !courseDisplay.display });
-          }}
-        >
-          ShowCourse DISPLAY
-        </button>*/}
       </div>
       <div
         ref={containerRef}
