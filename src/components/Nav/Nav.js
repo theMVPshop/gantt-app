@@ -10,7 +10,7 @@ const Nav = () => {
   return (
     <nav className="nav-bar">
       <img src={logo} className="logo" alt="logo-img"/>
-      <h8 className="name">Course Tracker</h8>
+      <h4 className="name">Course Tracker</h4>
       {checkAuth() && (
         <p className="name-tag">Welcome, {localStorage.getItem("user_name")}</p>
       )}
