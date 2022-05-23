@@ -5,12 +5,11 @@ import axios from "axios";
 const url = "http://localhost:4000/tasks";
 
 const CourseForm = (props) => {
-
-  const requiredFields ={
-    cohortName:  "Cohort Name is required (this can be changed later)",
+  const requiredFields = {
+    cohortName: "Cohort Name is required (this can be changed later)",
     startDate: "Start Date is required (this can be changed later)",
     endDate: "End Date is required (this can be changed later)",
-  }
+  };
 
   const [formData, setFormData] = useState({
     title: "",
@@ -31,7 +30,7 @@ const CourseForm = (props) => {
     parent: "cohort_0",
     title_error: false,
     start_date_error: false,
-    end_date_error: false
+    end_date_error: false,
   });
 
   //function that resets formData back to default
@@ -55,8 +54,7 @@ const CourseForm = (props) => {
       parent: "cohort_0",
       title_error: false,
       start_date_error: false,
-      end_date_error: false
-      
+      end_date_error: false,
     });
     props.handleModalDisplayState("addCourseForm", {
       display: false,
@@ -67,42 +65,40 @@ const CourseForm = (props) => {
   //This function first checks for required fields
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
-    console.log("typeof formData.start_date: ", typeof formData.start_date)
-    if (formData.title === "" ){
+    console.log("typeof formData.start_date: ", typeof formData.start_date);
+    if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
         return prev;
       });
-      return
+      return;
     }
-    
-    if (formData.start_date === "YYYY-MM-DD" || formData.start_date === ''){
-      console.log("there's no start date")
+
+    if (formData.start_date === "YYYY-MM-DD" || formData.start_date === "") {
+      console.log("there's no start date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
         return prev;
       });
-      return
+      return;
     }
 
-    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
-      console.log("no end date")
+    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
+      console.log("no end date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.end_date_error = true;
         return prev;
       });
-      return
+      return;
     }
 
-    var courseCounter = 1;
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
       let courseIDArray = props.data.data[i].id.split("_");
       if (courseIDArray[0] === "course") {
-        courseCounter++;
         idArray.push(courseIDArray[1]);
       }
     }
@@ -146,7 +142,7 @@ const CourseForm = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            resetForm()
+            resetForm();
           }}
         ></Exit>
         <h1 className="minor-title">Add Course</h1>
@@ -418,10 +414,8 @@ const CourseForm = (props) => {
         </h6>
 
         <section className="submit" onClick={pushFormData}>
-
           Save
         </section>
-          
       </form>
     </div>
   );

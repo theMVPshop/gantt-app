@@ -3,7 +3,6 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Displays.css";
 
 const CourseDisplay = (props) => {
-
   useEffect(() => {
     props.modalState.currentTask.start_date
       ? console.log(
@@ -152,13 +151,13 @@ const CourseDisplay = (props) => {
             </div>
           </div>
         </div>
-        <butt
+        <button
           className="submit"
           value="Edit"
           onClick={() => props.switchForms("courseDisplay", "courseEditForm")}
         >
           Edit
-        </butt>
+        </button>
       </form>
     </div>
   );

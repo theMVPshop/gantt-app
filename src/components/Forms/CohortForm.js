@@ -1,23 +1,21 @@
 import { gantt } from "dhtmlx-gantt";
 import React, { useState } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
 const url = "http://localhost:4000/tasks";
 
 const CohortForm = (props) => {
-  //something about this is keeping it from refreshing 
-  const {
-    handleSubmit,
-  } = useForm();
+  //something about this is keeping it from refreshing
+  const { handleSubmit } = useForm();
 
-const requiredFields ={
-  cohortName:  "Cohort Name is required (this can be changed later)",
-  startDate: "Start Date is required (this can be changed later)",
-  graduationDate: "Graduation Date is required (this can be changed later)",
-}
+  const requiredFields = {
+    cohortName: "Cohort Name is required (this can be changed later)",
+    startDate: "Start Date is required (this can be changed later)",
+    graduationDate: "Graduation Date is required (this can be changed later)",
+  };
 
   const [formData, setFormData] = useState({
     id: "cohort_0",
@@ -42,66 +40,61 @@ const requiredFields ={
   };
 
   const pushFormData = () => {
-    var cohortCounter = 1;
-  
-    if (formData.title === "" ){
+    if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
         return prev;
       });
-      return
+      return;
     }
-    
-    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === ''){
+
+    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
         return prev;
       });
-      return
+      return;
     }
 
-    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
-      console.log("no end date")
+    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
+      console.log("no end date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.end_date_error = true;
         return prev;
       });
-      return
+      return;
     }
-    
-      var idArray = [];
-      for (let i = 0; i < props.data.data.length; i++) {
-        if (props.data.data[0].id) {
-          let cohortIDArray = props.data.data[i].id.split("_");
-          if (cohortIDArray[0] === "cohort") {
-            cohortCounter++;
-            idArray.push(cohortIDArray[1]);
-          }
-        } else idArray.push("1");
-      }
-      if (idArray.length > 0) {
-        //protects against 'course_infinity" id being created
-        const newID = Math.max(...idArray) + 1;
-        formData.id = `cohort_${newID}`;
-      } else {
-        formData.id = "cohort_1";
-      }
-  
-      axios
-        .post(url, formData)
-        .then((res) => {
-          if (res.status === 200) {
-            props.customAddTask(formData);
-            resetForm();
-          }
-        })
-        .catch((err) => console.log("there was an error", err));
-      gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-    
-    
+
+    var idArray = [];
+    for (let i = 0; i < props.data.data.length; i++) {
+      if (props.data.data[0].id) {
+        let cohortIDArray = props.data.data[i].id.split("_");
+        if (cohortIDArray[0] === "cohort") {
+          idArray.push(cohortIDArray[1]);
+        }
+      } else idArray.push("1");
+    }
+    if (idArray.length > 0) {
+      //protects against 'course_infinity" id being created
+      const newID = Math.max(...idArray) + 1;
+      formData.id = `cohort_${newID}`;
+    } else {
+      formData.id = "cohort_1";
+    }
+
+    axios
+      .post(url, formData)
+      .then((res) => {
+        if (res.status === 200) {
+          props.customAddTask(formData);
+          resetForm();
+        }
+      })
+      .catch((err) => console.log("there was an error", err));
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
   return (
@@ -119,7 +112,7 @@ const requiredFields ={
           <Exit
             className="exit-button"
             onClick={() => {
-              resetForm()
+              resetForm();
             }}
           ></Exit>
           <h1 className="minor-title">Add Cohort</h1>
@@ -151,7 +144,6 @@ const requiredFields ={
           <input
             type="date"
             value={formData.start_date}
-            
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
@@ -165,7 +157,7 @@ const requiredFields ={
           />
         </div>
         <small className="text-danger">
-        {formData.start_date_error && requiredFields.startDate}
+          {formData.start_date_error && requiredFields.startDate}
         </small>
 
         <div className="minor-info">
@@ -186,7 +178,7 @@ const requiredFields ={
           />
         </div>
         <small className="text-danger">
-        {formData.end_date_error && requiredFields.graduationDate}
+          {formData.end_date_error && requiredFields.graduationDate}
         </small>
         <h6 className="required">
           <em>*required</em>

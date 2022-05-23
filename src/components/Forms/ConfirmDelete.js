@@ -2,7 +2,6 @@
 import axios from "axios";
 
 import { ReactComponent as Exit } from "../../images/cancel.svg";
-import "./Forms.css"
 
 const url = "http://localhost:4000/tasks"
 
