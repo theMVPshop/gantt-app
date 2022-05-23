@@ -13,14 +13,14 @@ const CourseDisplay = (props) => {
   }, [props.modalState.currentTask]);
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.courseDisplay.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="courseForm-display"
-        style={
-          props.modalState.courseDisplay.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
         <Exit
           className="exit-button"

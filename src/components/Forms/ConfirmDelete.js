@@ -2,7 +2,6 @@
 import axios from "axios";
 
 import { ReactComponent as Exit } from "../../images/cancel.svg";
-import "./Forms.css"
 
 const url = "http://localhost:4000/tasks"
 
@@ -24,15 +23,15 @@ const ConfirmDelete = (props) => {
   };
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.confirmDeleteModal.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="confirmDelete"
         id="confirmDelete"
-        style={
-          props.modalState.confirmDeleteModal.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
         <Exit
             className="exit-button"

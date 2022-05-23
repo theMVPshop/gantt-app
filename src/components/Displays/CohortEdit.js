@@ -63,7 +63,7 @@ const CohortEdit = (props) => {
 
   const validateInput = (e) => {
     
-    if (formData.title == "" ){
+    if (formData.title === "" ){
       e.preventDefault()
       setErrorData((prevState) => {
         let prev = { ...prevState };
@@ -72,7 +72,7 @@ const CohortEdit = (props) => {
       });
       return
     }
-    if (formData.start_date == "yyyy-mm-dd" || formData.start_date == ''){
+    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === ''){
       e.preventDefault()
       setErrorData((prevState) => {
         let prev = { ...prevState };
@@ -82,7 +82,7 @@ const CohortEdit = (props) => {
       return
     }
 
-    if (formData.end_date == "" || formData.end_date == 'yyyy-mm-dd'){
+    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
       e.preventDefault()
 
       setErrorData((prevState) => {
@@ -125,14 +125,16 @@ const CohortEdit = (props) => {
   // }, [props.modalState.currentTask]);
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.cohortEditForm.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
+      
       <form
         className="cohortEdit"
-        style={
-          props.modalState.cohortEditForm.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
+        
       >
         <div className="title-div">
           <Exit

@@ -98,15 +98,15 @@ const CohortForm = (props) => {
   };
 
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.addCohortForm.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="cohortForm"
         onSubmit={handleSubmit()}
-        style={
-          props.modalState.addCohortForm.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
         <div className="title-div">
           <Exit
