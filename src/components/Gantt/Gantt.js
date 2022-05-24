@@ -61,6 +61,14 @@ const Gantt = () => {
     },
   });
 
+  // const [taskDateDrag, setTaskDateDrag] = useState({
+  //   start_date: "",
+  //   end_date: ""
+  // })
+
+  const [taskDateDrag, setTaskDateDrag] = useState("");
+  const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
+
   //function for updating display state provided to components
   const handleModalDisplayState = (value, obj) => {
     setModalState((prevState) => {
@@ -284,26 +292,132 @@ const Gantt = () => {
 
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
-  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
-    const newDate = task.start_date;
-    console.log(typeof newDate);
+  // task drag update START
+  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+    // console.log("Original**", original.start_date, "New**", task.start_date)
+    // let newStart = new Date(task.start_date);
+    // let newEnd = new Date(task.end_date);
+    let newDate = new Date(task.start_date);
 
-    // const formatDate = (date) => {
-    //   var d = new Date(date),
-    //     month = "" + (d.getMonth() + 1),
-    //     day = "" + d.getDate(),
-    //     year = d.getFullYear();
+    // let startMonth = newStart.getMonth() + 1;
+    // let startDay = newStart.getDate();
+    // let startYear = newStart.getFullYear();
 
-    //   if (month.length < 2) month = "0" + month;
-    //   if (day.length < 2) day = "0" + day;
+    // let endMonth = newEnd.getMonth() + 1;
+    // let endDay = newEnd.getDate();
+    // let endYear = newEnd.getFullYear();
+ 
+    let month = newDate.getMonth() + 1;
+    let day = newDate.getDate();
+    let year = newDate.getFullYear();
 
-    //   return [year, month, day].join("-");
-    // };
+    // if (startMonth < 10) {
+    //   startMonth = "0" + startMonth;
+    // }
+
+    // if (startDay < 10) {
+    //   startDay = "0" + startDay;
+    // }
+
+    // if (endMonth < 10) {
+    //   endMonth = "0" + endMonth;
+    // }
+
+    // if (endDay < 10) {
+    //   endDay = "0" + endDay;
+    // }
+  
+    if (month < 10) {
+      month = "0" + month;
+    }
+
+    if (day < 10) {
+      day = "0" + day;
+    }
+
+    // newStart = [startYear, startMonth, startDay].join("-");
+    // newEnd = [endYear, endMonth, endDay].join("-");
+
+    newDate = [year, month, day].join("-");
+
+    // setTaskDateDrag({
+    //   start_date: newStart,
+    //   end_date: newEnd
+    // });
+
+    setTaskDateDrag(newDate);
   });
 
-  // gantt.attachEvent("onAfterTaskDrag", function(id, mode, e){
-  //   console.log("Task Drag Ended", id, "Mode:", mode, "Event", e);
-  // });
+  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+    let newEnd = new Date(task.end_date);
+
+    let endMonth = newEnd.getMonth() + 1;
+    let endDay = newEnd.getDate();
+    let endYear = newEnd.getFullYear();
+
+    if (endMonth < 10) {
+      endMonth = "0" + endMonth;
+    }
+
+    if (endDay < 10) {
+      endDay = "0" + endDay;
+    }
+
+    newEnd = [endYear, endMonth, endDay].join("-");
+
+    setTaskEndDateDrag(newEnd);
+  });
+
+  gantt.attachEvent("onAfterTaskDrag", function(id, mode, e){
+    console.log("After Task Drag Event--", "ID:", id, "MODE:", mode, "Event", e);
+
+    if (taskDateDrag) {
+      axios
+      // .put(`http://localhost:4000/tasks/${id}`, {
+      //   start_date: taskDateDrag.start_date,
+      //   end_date: taskDateDrag.end_date
+      // })
+      .put(`http://localhost:4000/tasks/${id}`, {
+        start_date: taskDateDrag
+      })
+      .then((res) => {
+        console.log(res);
+        setTaskDateDrag("");
+      })
+      .catch((err) => console.log("there was an error", err));
+    }
+
+    if (taskEndDateDrag) {
+      axios
+      // .put(`http://localhost:4000/tasks/${id}`, {
+      //   start_date: taskDateDrag.start_date,
+      //   end_date: taskDateDrag.end_date
+      // })
+      .put(`http://localhost:4000/tasks/${id}`, {
+        end_date: taskEndDateDrag
+      })
+      .then((res) => {
+        console.log(res);
+        setTaskEndDateDrag("");
+      })
+      .catch((err) => console.log("there was an error", err));
+    }
+
+    // axios
+    //   // .put(`http://localhost:4000/tasks/${id}`, {
+    //   //   start_date: taskDateDrag.start_date,
+    //   //   end_date: taskDateDrag.end_date
+    //   // })
+    //   .put(`http://localhost:4000/tasks/${id}`, {
+    //     start_date: taskDateDrag
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     setTaskDateDrag("");
+    //   })
+    //   .catch((err) => console.log("there was an error", err));
+  });
+  // task drag update END
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
