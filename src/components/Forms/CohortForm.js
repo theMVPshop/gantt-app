@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
-const url = "http://localhost:4000/tasks";
+const url = "https://gantt-server.herokuapp.com/tasks";
 
 const CohortForm = (props) => {
   //something about this is keeping it from refreshing
@@ -98,16 +98,14 @@ const CohortForm = (props) => {
   };
 
   return (
-    <div 
-    style={
-      props.modalState.addCohortForm.display
-        ? { display: "flex" }
-        : { display: "none" }
-    }>
-      <form
-        className="cohortForm"
-        onSubmit={handleSubmit()}
-      >
+    <div
+      style={
+        props.modalState.addCohortForm.display
+          ? { display: "flex" }
+          : { display: "none" }
+      }
+    >
+      <form className="cohortForm" onSubmit={handleSubmit()}>
         <div className="title-div">
           <Exit
             className="exit-button"

@@ -2,56 +2,53 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import axios from "axios";
-const url = "http://localhost:4000/tasks";
+const url = "https://gantt-server.herokuapp.com/tasks";
 
 const CourseEdit = (props) => {
-
-  const requiredFields ={
-    cohortName:  "Cohort Name is required (this can be changed later)",
+  const requiredFields = {
+    cohortName: "Cohort Name is required (this can be changed later)",
     startDate: "Start Date is required (this can be changed later)",
     graduationDate: "End Date is required (this can be changed later)",
-  }
+  };
 
   const [errorData, setErrorData] = useState({
     title_error: false,
     start_date_error: false,
     end_date_error: false,
-  })
+  });
 
   const validateInput = (e) => {
-    
-    if (formData.title === "" ){
-      e.preventDefault()
+    if (formData.title === "") {
+      e.preventDefault();
       setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.title_error = true;
         return prev;
       });
-      return
+      return;
     }
-    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === ''){
-      e.preventDefault()
+    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
+      e.preventDefault();
       setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
         return prev;
       });
-      return
+      return;
     }
 
-    if (formData.end_date === "" || formData.end_date === 'yyyy-mm-dd'){
-      e.preventDefault()
+    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
+      e.preventDefault();
 
       setErrorData((prevState) => {
         let prev = { ...prevState };
         prev.end_date_error = true;
         return prev;
       });
-      return
+      return;
     }
-    pushFormData()
-  }
-
+    pushFormData();
+  };
 
   const formatDate = (date) => {
     var d = new Date(date),
@@ -88,7 +85,6 @@ const CourseEdit = (props) => {
     id: "course_0",
     parent: "cohort_0",
   });
-
 
   useEffect(() => {
     setFormData({
@@ -130,15 +126,14 @@ const CourseEdit = (props) => {
   };
 
   return (
-    <div 
-    style={
-      props.modalState.courseEditForm.display
-        ? { display: "flex" }
-        : { display: "none" }
-    }>
-      <form
-        className="courseEdit"
-      >
+    <div
+      style={
+        props.modalState.courseEditForm.display
+          ? { display: "flex" }
+          : { display: "none" }
+      }
+    >
+      <form className="courseEdit">
         <Exit
           className="exit-button"
           onClick={() => {

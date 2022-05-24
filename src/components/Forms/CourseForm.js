@@ -2,7 +2,7 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
-const url = "http://localhost:4000/tasks";
+const url = "https://gantt-server.herokuapp.com/tasks";
 
 const CourseForm = (props) => {
   const requiredFields = {
@@ -129,16 +129,14 @@ const CourseForm = (props) => {
   };
 
   return (
-    <div 
-    style={
-      props.modalState.addCourseForm.display
-        ? { display: "flex" }
-        : { display: "none" }
-    }>
-      <form
-        className="courseForm"
-        
-      >
+    <div
+      style={
+        props.modalState.addCourseForm.display
+          ? { display: "flex" }
+          : { display: "none" }
+      }
+    >
+      <form className="courseForm">
         <Exit
           className="exit-button"
           onClick={() => {
