@@ -151,13 +151,13 @@ const CourseDisplay = (props) => {
             </div>
           </div>
         </div>
-        <button
+        <section
           className="submit"
           value="Edit"
           onClick={() => props.switchForms("courseDisplay", "courseEditForm")}
         >
           Edit
-        </button>
+        </section>
       </form>
     </div>
   );
