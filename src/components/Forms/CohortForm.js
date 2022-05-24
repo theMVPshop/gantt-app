@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
-const url = "https://gantt-server.herokuapp.com/tasks";
+const url = "http://localhost:4000/tasks";
 
 const CohortForm = (props) => {
   //something about this is keeping it from refreshing

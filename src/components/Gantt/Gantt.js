@@ -117,7 +117,7 @@ const Gantt = () => {
 
   useEffect(() => {
     axios
-      .get("https://gantt-server.herokuapp.com/tasks/")
+      .get("http://localhost:4000/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);

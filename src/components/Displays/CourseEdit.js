@@ -2,7 +2,7 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import axios from "axios";
-const url = "https://gantt-server.herokuapp.com/tasks";
+const url = "http://localhost:4000/tasks";
 
 const CourseEdit = (props) => {
   const requiredFields = {

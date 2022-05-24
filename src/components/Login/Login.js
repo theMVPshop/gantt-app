@@ -14,7 +14,7 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    const url = "https://gantt-server.herokuapp.com/users/login";
+    const url = "http://localhost:4000/users/login";
 
     axios
       .post(url, {
