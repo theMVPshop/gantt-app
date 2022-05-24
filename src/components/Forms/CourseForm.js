@@ -120,7 +120,7 @@ const CourseForm = (props) => {
           resetForm();
         }
       })
-      .catch((err) => console.log("there was an error", err));
+      .catch((err) => console.log("there was an error", err ));
     gantt.open(props.courseDisplay.id); //forces open the parent task
     props.handleModalDisplayState("addCourseForm", {
       display: false,
