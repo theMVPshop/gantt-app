@@ -3,7 +3,6 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import "./Displays.css";
 
 const CourseDisplay = (props) => {
-
   useEffect(() => {
     props.modalState.currentTask.start_date
       ? console.log(
@@ -13,15 +12,36 @@ const CourseDisplay = (props) => {
       : console.log("");
   }, [props.modalState.currentTask]);
 
+  const displayDays = (props) => {
+    
+    if (props.modalState.currentTask.day_of_week === "partTimeMonWed"){
+      console.log("Did we get to Mon/Wed?? : ", )
+      return "Mon/Wed"
+    }else if(props.modalState.currentTask.day_of_week === "partTimeTuesThurs"){
+      return "Tues/Thurs"
+    }else if (props.modalState.currentTask.day_of_week === "fullTime"){
+      return "Full Time"
+    } 
+  }
+
+  const displayMode = (props) => {
+    console.log( "props.modalState.currentTask.location:", props.modalState.currentTask.location)
+    if (props.modalState.currentTask.mode == "inPerson") {
+      return "In Person"
+    }else if (props.modalState.currentTask.mode == "online") {
+      return "Online"
+    }
+  }
+
   return (
-    <div>
+    <div 
+    style={
+      props.modalState.courseDisplay.display
+        ? { display: "flex" }
+        : { display: "none" }
+    }>
       <form
         className="courseForm-display"
-        style={
-          props.modalState.courseDisplay.display
-            ? { display: "flex" }
-            : { display: "none" }
-        }
       >
         <Exit
           className="exit-button"
@@ -82,7 +102,10 @@ const CourseDisplay = (props) => {
             <div className="display-info">
               <label className="display-label">Location:</label>
               <div className="display-input">
-                {props.modalState.currentTask.location}
+                {/* {props.modalState.currentTask.location === "???"
+                  ? "ACA St Edwards"
+                  : props.modalState.currentTask.location} */}
+                  {props.modalState.currentTask.location}
               </div>
             </div>
           </div>
@@ -91,14 +114,15 @@ const CourseDisplay = (props) => {
             <div className="display-info">
               <label className="display-label">Days:</label>
               <div className="display-input">
-                {props.modalState.currentTask.day_of_week}
+                {/* call a function that returns three possible versions of this */}
+                {displayDays(props)}
               </div>
             </div>
 
             <div className="display-info">
               <label className="display-label">Mode:</label>
               <div className="display-input">
-                {props.modalState.currentTask.mode}
+                {displayMode(props)}
               </div>
             </div>
 
@@ -146,19 +170,19 @@ const CourseDisplay = (props) => {
               <label className="display-label">Active Status:</label>
               <div className="display-input">
                 {props.modalState.currentTask.active_status
-                  ? "active"
-                  : "inactive"}
+                  ? "Active"
+                  : "Inactive"}
               </div>
             </div>
           </div>
         </div>
-        <butt
+        <section
           className="submit"
           value="Edit"
           onClick={() => props.switchForms("courseDisplay", "courseEditForm")}
         >
           Edit
-        </butt>
+        </section>
       </form>
     </div>
   );

@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import "./Login.css";
-import vector from "../../images/Vectors.svg"
-
+import vector from "../../images/Vectors.svg";
 
 const Login = () => {
   const {
@@ -15,7 +14,6 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    
     const url = "http://localhost:4000/users/login";
 
     axios
@@ -54,7 +52,7 @@ const Login = () => {
         <h1>Sign in</h1>
         <p>Enter your email and password below</p>
         <div className="input-group">
-          <input 
+          <input
             type="email"
             id="inputID1"
             placeholder="Email*"
@@ -89,29 +87,33 @@ const Login = () => {
         </button>
 
         {currentPath === "/" ? (
-            <Link
-              className="link"
-              to="/signup"
-              onClick={() => {
-                window.location.replace("/signup");
-              }}
-            >
-              or Create an account!
-            </Link>
-          ) : (
-            <Link
-              className="link"
-              to="/"
-              onClick={() => {
-                window.location.replace("/");
-              }}
-            >
-              Sign In
-            </Link>
-          )}
-
+          <Link
+            className="link"
+            to="/signup"
+            onClick={() => {
+              window.location.replace("/signup");
+            }}
+          >
+            or Create an account!
+          </Link>
+        ) : (
+          <Link
+            className="link"
+            to="/"
+            onClick={() => {
+              window.location.replace("/");
+            }}
+          >
+            Sign In
+          </Link>
+        )}
       </form>
-      <img style={{ objectFit: "fill"}} src={vector} className="vector" alt="decorative green shape"/>
+      <img
+        style={{ objectFit: "fill" }}
+        src={vector}
+        className="vector"
+        alt="decorative green shape"
+      />
     </div>
   );
 };
