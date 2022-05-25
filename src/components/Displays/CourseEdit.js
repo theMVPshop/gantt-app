@@ -254,11 +254,12 @@ const CourseEdit = (props) => {
               <label className="label">Location</label>
               <select
                 className="input"
+        
                 value={formData.location}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.location = e.target.value;
+                    prev.location = e.target.checked;
                     return prev;
                   });
                 }}
@@ -393,11 +394,13 @@ const CourseEdit = (props) => {
               <input
                 type="checkbox"
                 className="input"
-                value={formData.active_status}
+                checked={formData.active_status}
+      
                 onChange={(e) => {
                   setFormData((prevState) => {
+                    console.log("formData.active_status: ", formData.active_status, "active checkbox e.target.checked: ", e.target.checked)
                     let prev = { ...prevState };
-                    prev.active_status = e.target.value;
+                    prev.active_status = e.target.checked;
                     return prev;
                   });
                 }}
