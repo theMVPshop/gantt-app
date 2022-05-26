@@ -15,7 +15,6 @@ const CourseDisplay = (props) => {
   const displayDays = (props) => {
     
     if (props.modalState.currentTask.day_of_week === "partTimeMonWed"){
-      console.log("Did we get to Mon/Wed?? : ", )
       return "Mon/Wed"
     }else if(props.modalState.currentTask.day_of_week === "partTimeTuesThurs"){
       return "Tues/Thurs"
@@ -26,13 +25,26 @@ const CourseDisplay = (props) => {
 
   const displayMode = (props) => {
     console.log( "props.modalState.currentTask.location:", props.modalState.currentTask.location)
-    if (props.modalState.currentTask.mode == "inPerson") {
+    if (props.modalState.currentTask.mode === "inPerson") {
       return "In Person"
-    }else if (props.modalState.currentTask.mode == "online") {
+    }else if (props.modalState.currentTask.mode === "online") {
       return "Online"
     }
   }
 
+  const displayLocation = (props) => {
+    if (props.modalState.currentTask.location === "acaStEdwards") {
+      return "ACA St. Edwards"
+    } else if (props.modalState.currentTask.location ==="lca") {
+      return "LCA"
+    } else if (props.modalState.currentTask.location === "acaOnlineNorth") {
+      return "ACA-Online-North"
+    } else if (props.modalState.currentTask.location === "ttcu") {
+      return "TTCU"
+    } else if (props.modalState.currentTask.location === "ttcuMarbleFalls") {
+      return "TTCU-Marble Falls"
+    }
+  }
   return (
     <div 
     style={
@@ -105,7 +117,7 @@ const CourseDisplay = (props) => {
                 {/* {props.modalState.currentTask.location === "???"
                   ? "ACA St Edwards"
                   : props.modalState.currentTask.location} */}
-                  {props.modalState.currentTask.location}
+                  {displayLocation(props)}
               </div>
             </div>
           </div>
