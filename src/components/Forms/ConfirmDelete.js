@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 
-const url = "http://localhost:4000/tasks";
+const url = "https://gantt-app.vercel.app/tasks";
 
 const ConfirmDelete = (props) => {
   // const deleteTask = () => {

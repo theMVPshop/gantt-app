@@ -125,7 +125,7 @@ const Gantt = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/tasks/")
+      .get("https://gantt-app.vercel.app/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);
@@ -293,7 +293,7 @@ const Gantt = () => {
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
   // task drag update START
-  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
     // console.log("Original**", original.start_date, "New**", task.start_date)
     // let newStart = new Date(task.start_date);
     // let newEnd = new Date(task.end_date);
@@ -306,7 +306,7 @@ const Gantt = () => {
     // let endMonth = newEnd.getMonth() + 1;
     // let endDay = newEnd.getDate();
     // let endYear = newEnd.getFullYear();
- 
+
     let month = newDate.getMonth() + 1;
     let day = newDate.getDate();
     let year = newDate.getFullYear();
@@ -326,7 +326,7 @@ const Gantt = () => {
     // if (endDay < 10) {
     //   endDay = "0" + endDay;
     // }
-  
+
     if (month < 10) {
       month = "0" + month;
     }
@@ -348,7 +348,7 @@ const Gantt = () => {
     setTaskDateDrag(newDate);
   });
 
-  gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
     let newEnd = new Date(task.end_date);
 
     let endMonth = newEnd.getMonth() + 1;
@@ -368,39 +368,47 @@ const Gantt = () => {
     setTaskEndDateDrag(newEnd);
   });
 
-  gantt.attachEvent("onAfterTaskDrag", function(id, mode, e){
-    console.log("After Task Drag Event--", "ID:", id, "MODE:", mode, "Event", e);
+  gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
+    console.log(
+      "After Task Drag Event--",
+      "ID:",
+      id,
+      "MODE:",
+      mode,
+      "Event",
+      e
+    );
 
     if (taskDateDrag) {
       axios
-      // .put(`http://localhost:4000/tasks/${id}`, {
-      //   start_date: taskDateDrag.start_date,
-      //   end_date: taskDateDrag.end_date
-      // })
-      .put(`http://localhost:4000/tasks/${id}`, {
-        start_date: taskDateDrag
-      })
-      .then((res) => {
-        console.log(res);
-        setTaskDateDrag("");
-      })
-      .catch((err) => console.log("there was an error", err));
+        // .put(`http://localhost:4000/tasks/${id}`, {
+        //   start_date: taskDateDrag.start_date,
+        //   end_date: taskDateDrag.end_date
+        // })
+        .put(`http://localhost:4000/tasks/${id}`, {
+          start_date: taskDateDrag,
+        })
+        .then((res) => {
+          console.log(res);
+          setTaskDateDrag("");
+        })
+        .catch((err) => console.log("there was an error", err));
     }
 
     if (taskEndDateDrag) {
       axios
-      // .put(`http://localhost:4000/tasks/${id}`, {
-      //   start_date: taskDateDrag.start_date,
-      //   end_date: taskDateDrag.end_date
-      // })
-      .put(`http://localhost:4000/tasks/${id}`, {
-        end_date: taskEndDateDrag
-      })
-      .then((res) => {
-        console.log(res);
-        setTaskEndDateDrag("");
-      })
-      .catch((err) => console.log("there was an error", err));
+        // .put(`http://localhost:4000/tasks/${id}`, {
+        //   start_date: taskDateDrag.start_date,
+        //   end_date: taskDateDrag.end_date
+        // })
+        .put(`http://localhost:4000/tasks/${id}`, {
+          end_date: taskEndDateDrag,
+        })
+        .then((res) => {
+          console.log(res);
+          setTaskEndDateDrag("");
+        })
+        .catch((err) => console.log("there was an error", err));
     }
 
     // axios

@@ -14,7 +14,7 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    const url = "http://localhost:4000/users/login";
+    const url = "https://gantt-app.vercel.app/users/login";
 
     axios
       .post(url, {

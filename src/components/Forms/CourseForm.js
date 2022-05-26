@@ -2,7 +2,7 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
-const url = "http://localhost:4000/tasks";
+const url = "https://gantt-app.vercel.app/tasks";
 
 const CourseForm = (props) => {
   const requiredFields = {
