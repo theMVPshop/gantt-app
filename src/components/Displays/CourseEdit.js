@@ -2,7 +2,7 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
 import axios from "axios";
-const url = "https://gantt-app.vercel.app/tasks";
+const url = "https://gantt-server.herokuapp.com/tasks/";
 
 const CourseEdit = (props) => {
   const requiredFields = {
@@ -254,7 +254,6 @@ const CourseEdit = (props) => {
               <label className="label">Location</label>
               <select
                 className="input"
-        
                 value={formData.location}
                 onChange={(e) => {
                   setFormData((prevState) => {
@@ -395,10 +394,14 @@ const CourseEdit = (props) => {
                 type="checkbox"
                 className="input"
                 checked={formData.active_status}
-      
                 onChange={(e) => {
                   setFormData((prevState) => {
-                    console.log("formData.active_status: ", formData.active_status, "active checkbox e.target.checked: ", e.target.checked)
+                    console.log(
+                      "formData.active_status: ",
+                      formData.active_status,
+                      "active checkbox e.target.checked: ",
+                      e.target.checked
+                    );
                     let prev = { ...prevState };
                     prev.active_status = e.target.checked;
                     return prev;

@@ -14,7 +14,7 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    const url = "https://gantt-app.vercel.app/users/login";
+    const url = "https://gantt-server.herokuapp.com/users/login/";
 
     axios
       .post(url, {

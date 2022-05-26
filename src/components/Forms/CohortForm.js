@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
-const url = "https://gantt-app.vercel.app/tasks";
+const url = "https://gantt-server.herokuapp.com/tasks/";
 
 const CohortForm = (props) => {
   //something about this is keeping it from refreshing
@@ -123,7 +123,6 @@ const CohortForm = (props) => {
             value={formData.title}
             onChange={(e) => {
               setFormData((prevState) => {
-        
                 let prev = { ...prevState };
                 prev.title = e.target.value;
                 return prev;

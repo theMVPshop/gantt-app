@@ -120,7 +120,7 @@ const Gantt = () => {
 
   useEffect(() => {
     axios
-      .get("https://gantt-app.vercel.app/tasks/")
+      .get("https://gantt-server.herokuapp.com/tasks/")
       .then((res) => {
         res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);
@@ -326,7 +326,7 @@ const Gantt = () => {
   gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
     if (taskStartDateDrag) {
       axios
-        .put(`https://gantt-app.vercel.app/tasks/${id}`, {
+        .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
           start_date: taskStartDateDrag,
         })
         .then((res) => {
@@ -337,7 +337,7 @@ const Gantt = () => {
 
     if (taskEndDateDrag) {
       axios
-        .put(`https://gantt-app.vercel.app/tasks/${id}`, {
+        .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
           end_date: taskEndDateDrag,
         })
         .then((res) => {
