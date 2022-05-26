@@ -123,6 +123,7 @@ const CohortForm = (props) => {
             value={formData.title}
             onChange={(e) => {
               setFormData((prevState) => {
+        
                 let prev = { ...prevState };
                 prev.title = e.target.value;
                 return prev;
