@@ -258,16 +258,18 @@ const CourseEdit = (props) => {
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.location = e.target.checked;
+                    prev.location = e.target.value;
                     return prev;
                   });
                 }}
               >
-                <option value="acaStEdwards">ACA - St. Edwards</option>
-                <option value="lca">LCA</option>
-                <option value="acaOnlineNorth">ACA - Online-North</option>
-                <option value="ttcu">TTCU</option>
-                <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
+                <option>Location</option>
+
+                <option value="ACA - St. Edwards">ACA - St. Edwards</option>
+                <option value="LCA">LCA</option>
+                <option value="ACA - Online-North">ACA - Online-North</option>
+                <option value="TTCU">TTCU</option>
+                <option value="TTCU - Marble Falls">TTCU - Marble Falls</option>
               </select>
             </div>
           </div>
@@ -277,18 +279,19 @@ const CourseEdit = (props) => {
               <label className="label">Days</label>
               <select
                 className="input"
-                value={formData.day_of_week}
+                value={formData.days}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.day_of_week = e.target.value;
+                    prev.days = e.target.value;
                     return prev;
                   });
                 }}
               >
-                <option value="partTimeMonWed">Mon/Wed</option>
-                <option value="partTimeTuesThurs">Tues/Thurs</option>
-                <option value="fullTime">Full Time</option>
+                <option>Days</option>
+                <option value="Mon/Wed">Mon/Wed</option>
+                <option value="Tues/Thur">Tues/Thurs</option>
+                <option value="Full Time">Full Time</option>
               </select>
             </div>
 
@@ -305,7 +308,8 @@ const CourseEdit = (props) => {
                   });
                 }}
               >
-                <option value="online">Online</option>
+                <option>Mode</option>
+                <option value="Online">Online</option>
                 <option value="inPerson">In-Person</option>
               </select>
             </div>

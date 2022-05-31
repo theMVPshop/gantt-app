@@ -263,11 +263,12 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option value="acaStEdwards">ACA - St. Edwards</option>
-                <option value="lca">LCA</option>
-                <option value="acaOnlineNorth">ACA - Online-North</option>
-                <option value="ttcu">TTCU</option>
-                <option value="ttcuMarbleFalls">TTCU - Marble Falls</option>
+                <option >Location</option>
+                <option value="ACA - St. Edwards">ACA - St. Edwards</option>
+                <option value="LCA">LCA</option>
+                <option value="ACA - Online-North">ACA - Online-North</option>
+                <option value="TTCU">TTCU</option>
+                <option value="TTCU - Marble Falls">TTCU - Marble Falls</option>
               </select>
             </div>
           </div>
@@ -286,9 +287,10 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option value="partTimeMonWed">Mon/Wed</option>
-                <option value="partTimeTuesThurs">Tues/Thurs</option>
-                <option value="fullTime">Full Time</option>
+                <option value="">Days</option>
+                <option value="Mon/Wed">Mon/Wed</option>
+                <option value="Tues/Thurs">Tues/Thurs</option>
+                <option value="Full Time">Full Time</option>
               </select>
             </div>
 
@@ -305,8 +307,9 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option value="online">Online</option>
-                <option value="inPerson">In-Person</option>
+                <option >Mode</option>
+                <option value="Online">Online</option>
+                <option value="In Person">In-Person</option>
               </select>
             </div>
 

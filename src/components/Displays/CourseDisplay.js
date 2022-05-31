@@ -4,6 +4,9 @@ import "./Displays.css";
 
 const CourseDisplay = (props) => {
   useEffect(() => {
+
+    console.log("day of week: ", props.modalState.currentTask.day_of_week)
+
     props.modalState.currentTask.start_date
       ? console.log(
           "start date",
@@ -12,16 +15,16 @@ const CourseDisplay = (props) => {
       : console.log("");
   }, [props.modalState.currentTask]);
 
-  const displayDays = (props) => {
+  // const displayDays = (props) => {
     
-    if (props.modalState.currentTask.day_of_week === "partTimeMonWed"){
-      return "Mon/Wed"
-    }else if(props.modalState.currentTask.day_of_week === "partTimeTuesThurs"){
-      return "Tues/Thurs"
-    }else if (props.modalState.currentTask.day_of_week === "fullTime"){
-      return "Full Time"
-    } 
-  }
+  //   if (props.modalState.currentTask.day_of_week === "partTimeMonWed"){
+  //     return "Mon/Wed"
+  //   }else if(props.modalState.currentTask.day_of_week === "partTimeTuesThurs"){
+  //     return "Tues/Thurs"
+  //   }else if (props.modalState.currentTask.day_of_week === "fullTime"){
+  //     return "Full Time"
+  //   } 
+  // }
 
   const displayMode = (props) => {
     console.log( "props.modalState.currentTask.location:", props.modalState.currentTask.location)
@@ -117,7 +120,7 @@ const CourseDisplay = (props) => {
                 {/* {props.modalState.currentTask.location === "???"
                   ? "ACA St Edwards"
                   : props.modalState.currentTask.location} */}
-                  {displayLocation(props)}
+                  {props.modalState.currentTask.location}
               </div>
             </div>
           </div>
@@ -127,14 +130,15 @@ const CourseDisplay = (props) => {
               <label className="display-label">Days:</label>
               <div className="display-input">
                 {/* call a function that returns three possible versions of this */}
-                {displayDays(props)}
+                {/* {displayDays(props)} */}
+                {props.modalState.currentTask.days}
               </div>
             </div>
 
             <div className="display-info">
               <label className="display-label">Mode:</label>
               <div className="display-input">
-                {displayMode(props)}
+                {props.modalState.currentTask.mode}
               </div>
             </div>
 
