@@ -4,9 +4,6 @@ import "./Displays.css";
 
 const CourseDisplay = (props) => {
   useEffect(() => {
-
-    console.log("day of week: ", props.modalState.currentTask.day_of_week)
-
     props.modalState.currentTask.start_date
       ? console.log(
           "start date",
@@ -15,39 +12,7 @@ const CourseDisplay = (props) => {
       : console.log("");
   }, [props.modalState.currentTask]);
 
-  // const displayDays = (props) => {
-    
-  //   if (props.modalState.currentTask.day_of_week === "partTimeMonWed"){
-  //     return "Mon/Wed"
-  //   }else if(props.modalState.currentTask.day_of_week === "partTimeTuesThurs"){
-  //     return "Tues/Thurs"
-  //   }else if (props.modalState.currentTask.day_of_week === "fullTime"){
-  //     return "Full Time"
-  //   } 
-  // }
 
-  const displayMode = (props) => {
-    console.log( "props.modalState.currentTask.location:", props.modalState.currentTask.location)
-    if (props.modalState.currentTask.mode === "inPerson") {
-      return "In Person"
-    }else if (props.modalState.currentTask.mode === "online") {
-      return "Online"
-    }
-  }
-
-  const displayLocation = (props) => {
-    if (props.modalState.currentTask.location === "acaStEdwards") {
-      return "ACA St. Edwards"
-    } else if (props.modalState.currentTask.location ==="lca") {
-      return "LCA"
-    } else if (props.modalState.currentTask.location === "acaOnlineNorth") {
-      return "ACA-Online-North"
-    } else if (props.modalState.currentTask.location === "ttcu") {
-      return "TTCU"
-    } else if (props.modalState.currentTask.location === "ttcuMarbleFalls") {
-      return "TTCU-Marble Falls"
-    }
-  }
   return (
     <div 
     style={
@@ -117,10 +82,7 @@ const CourseDisplay = (props) => {
             <div className="display-info">
               <label className="display-label">Location:</label>
               <div className="display-input">
-                {/* {props.modalState.currentTask.location === "???"
-                  ? "ACA St Edwards"
-                  : props.modalState.currentTask.location} */}
-                  {props.modalState.currentTask.location}
+                {props.modalState.currentTask.location}
               </div>
             </div>
           </div>
@@ -129,8 +91,6 @@ const CourseDisplay = (props) => {
             <div className="display-info">
               <label className="display-label">Days:</label>
               <div className="display-input">
-                {/* call a function that returns three possible versions of this */}
-                {/* {displayDays(props)} */}
                 {props.modalState.currentTask.days}
               </div>
             </div>
