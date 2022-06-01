@@ -16,7 +16,7 @@
   font-family: "Lexend Deca", sans-serif;
   background-color: #eceeff;
   border-color: transparent;
-  color: black;
+  color:#3C4A3E;
   width: 100px;
   height: 35px;
   cursor: pointer;
@@ -28,7 +28,7 @@
 
 .link {
   text-decoration: none;
-  color: black;
+  color: #3C4A3E;
   font-size: 15px;
 }
 
