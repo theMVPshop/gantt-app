@@ -7,7 +7,6 @@ body,
 .gantt-container {
   height: 100%;
   color: #3C4A3E;
-
   border-color: #ebebeb;
 }
 
@@ -357,7 +356,7 @@ body,
 
 #zoomIn {
   position: relative;
-  z-index: 500;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3C4A3E;
@@ -373,7 +372,7 @@ body,
 
 #zoomOut {
   position: relative;
-  z-index: 500;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3C4A3E;
