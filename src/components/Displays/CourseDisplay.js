@@ -91,8 +91,6 @@ const CourseDisplay = (props) => {
             <div className="display-info">
               <label className="display-label">Days:</label>
               <div className="display-input">
-                {/* call a function that returns three possible versions of this */}
-                {/* {displayDays(props)} */}
                 {props.modalState.currentTask.day_of_week}
               </div>
             </div>
