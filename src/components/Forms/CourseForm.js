@@ -65,7 +65,6 @@ const CourseForm = (props) => {
   //This function first checks for required fields
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
-    console.log("typeof formData.start_date: ", typeof formData.start_date);
     if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -76,8 +75,7 @@ const CourseForm = (props) => {
     }
 
     if (formData.start_date === "YYYY-MM-DD" || formData.start_date === "") {
-      console.log("there's no start date");
-      setFormData((prevState) => {
+        setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
         return prev;
@@ -86,7 +84,6 @@ const CourseForm = (props) => {
     }
 
     if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
-      console.log("no end date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.end_date_error = true;
@@ -111,7 +108,6 @@ const CourseForm = (props) => {
     }
 
     formData.parent = props.modalState.addCourseForm.id;
-    console.log(formData.id);
     axios
       .post(url, formData)
       .then((res) => {
@@ -282,10 +278,7 @@ const CourseForm = (props) => {
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    console.log("CourseForm prev.day_of_week before: ", prev.day_of_week)
                     prev.day_of_week = e.target.value;
-
-
                     return prev;
                   });
                 }}
@@ -401,8 +394,7 @@ const CourseForm = (props) => {
                 className="input"
                 value={formData.active_status}
                 onChange={(e) => {
-                  console.log(e.target.checked);
-                  setFormData((prevState) => {
+                    setFormData((prevState) => {
                     let prev = { ...prevState };
                     prev.active_status = e.target.checked;
                     return prev;

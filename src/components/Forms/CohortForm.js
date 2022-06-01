@@ -40,6 +40,7 @@ const CohortForm = (props) => {
   };
 
   const pushFormData = () => {
+    props.pullData();
     if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };

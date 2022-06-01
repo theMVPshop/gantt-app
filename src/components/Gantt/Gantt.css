@@ -5,18 +5,17 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
-  height: 100vh;
+  height: 100%;
   color: #2f2f2f;
 }
 
-.gantt_link_point {
-  display: none !important;
-}
-
 #gantt-chart-container {
-  padding-top: 90px;
+  padding-top: 79px;
   box-sizing: border-box;
   position: relative;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  max-height: 100vh;
 }
 
 .nested_task #plusIconRow {
@@ -80,7 +79,7 @@ body,
   font-family: "Lexend Deca", sans-serif;
   width: 1000px;
   height: 600px;
-  background-color: #eceeff;
+  background-color: rgb(236, 238, 255);
   position: absolute;
   z-index: 101;
   display: flex;
@@ -138,7 +137,6 @@ body,
   background-color: #079043;
   font-weight: 800;
   color: #eceeff;
-  cursor: pointer;
 }
 
 .group {
@@ -158,6 +156,7 @@ body,
   box-shadow: 5px 5px 15px;
   font-family: "Lexend Deca", sans-serif;
   width: 480px;
+  height: 280px;
   padding: 10px;
   margin-top: 50px;
   display: flex;
@@ -176,14 +175,6 @@ body,
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
-  padding: 0;
-}
-
-.minor-info {
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
   padding: 0;
 }
 
@@ -237,7 +228,6 @@ body,
   width: 465px;
   margin-top: 50px;
   padding: 10px;
-  padding-top: 30px;
   display: flex;
   flex-direction: column;
   background-color: #eceeff;
@@ -246,8 +236,16 @@ body,
   z-index: 101;
   position: absolute;
   top: 0;
+
   text-align: center;
   box-shadow: 5px 5px 15px;
+}
+
+.deleteQuestionText {
+  /* border: 1px solid darkorange; */
+  font-size: 32px;
+  align-self: center;
+  /* margin-bottom: 10px; */
 }
 
 #deleteButtonsCont {
@@ -335,27 +333,56 @@ body,
   border: transparent;
 }
 
-#plusIconRow, #plusIconHeader {
+.gantt_ver_scroll {
+  top: 0px !important;
+}
+
+#plusIconRow {
   fill: #079043;
 }
 
-.gantt_data_area, .gantt_grid_data {
+#plusIconHeader {
+  fill: #079043;
+}
+
+.gantt_data_area {
   background-color: #eceeff;
 }
 
-#zoomIn, #zoomOut {
+.gantt_grid_data {
+  background-color: #eceeff;
+}
+
+#zoomIn {
   position: relative;
-  z-index: 100;
+  z-index: 500;
   display: flex;
-  background-color: #3c4a3e;
-  color: white;
-  border: 1px solid #3c4a3e;
-  width: 80px;
-  height: 30px;
+  background-color: #eceeff;
+  color: black;
+  border: 1px solid #eceeff;
+  width: 100px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#zoomOut {
+  position: relative;
+  z-index: 500;
+  display: flex;
+  background-color: #eceeff;
+  color: black;
+  border: 1px solid #eceeff;
+  width: 100px;
+  height: 35px;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 #zoomController {
@@ -363,7 +390,8 @@ body,
   position: absolute;
   width: 100%;
   height: 40px;
-  top: 50px;
+  top: 20px;
+  right: 160px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

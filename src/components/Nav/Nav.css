@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Podkova&display=swap");
 
 .nav-bar {
-  height: 50px;
+  height: 80px;
   width: 100%;
   background-color: #3c4a3e;
   display: flex;
@@ -16,17 +16,19 @@
   font-family: "Lexend Deca", sans-serif;
   background-color: #eceeff;
   border-color: transparent;
-  color: #079043;
+  color: black;
   width: 100px;
-  height: 30px;
+  height: 35px;
   cursor: pointer;
   margin-right: -150px;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
 
 .link {
   text-decoration: none;
-  color: #079043;
+  color: black;
   font-size: 15px;
 }
 
