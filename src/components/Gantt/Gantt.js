@@ -96,6 +96,20 @@ const Gantt = () => {
     setModalState(copy);
   };
 
+  const pullData = () => {
+    axios
+      .get("https://gantt-server.herokuapp.com/tasks/")
+      .then((res) => {
+        res.data.forEach((obj) => {
+          obj.start_date = obj.start_date.slice(0, 10);
+          obj.end_date = obj.end_date.slice(0, 10);
+          obj.open = true;
+        });
+        setData({ data: res.data, links: [] });
+      })
+      .catch((err) => console.log("error", err));
+  };
+
   //variables are for declaring our svg icons. DHTMLX Gantt requires custom icons to be stored as inline html (non JSX) elements
   var plusIconRow =
     "<svg id='plusIconRow' className='plusIconRow' data-action='add' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z'/></svg>";
@@ -582,6 +596,7 @@ const Gantt = () => {
           setData={setData}
           data={data}
           customAddTask={customAddTask}
+          pullData={pullData}
         ></CohortForm>
         <ConfirmDelete
           modalState={modalState}
