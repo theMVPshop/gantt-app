@@ -278,11 +278,14 @@ const CourseForm = (props) => {
               <label className="label">Days</label>
               <select
                 className="input"
-                value={formData.days}
+                value={formData.day_of_week}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.days = e.target.value;
+                    console.log("CourseForm prev.day_of_week before: ", prev.day_of_week)
+                    prev.day_of_week = e.target.value;
+
+
                     return prev;
                   });
                 }}

@@ -279,18 +279,19 @@ const CourseEdit = (props) => {
               <label className="label">Days</label>
               <select
                 className="input"
-                value={formData.days}
+                value={formData.day_of_week}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.days = e.target.value;
+                    console.log("this is the prev .day_of_week state: ", prev.day_of_week)
+                    prev.day_of_week = e.target.value;
                     return prev;
                   });
                 }}
               >
                 <option>Days</option>
                 <option value="Mon/Wed">Mon/Wed</option>
-                <option value="Tues/Thur">Tues/Thurs</option>
+                <option value="Tues/Thurs">Tues/Thurs</option>
                 <option value="Full Time">Full Time</option>
               </select>
             </div>
