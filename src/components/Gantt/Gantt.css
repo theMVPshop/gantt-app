@@ -5,8 +5,13 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
+<<<<<<< HEAD
+  height: 100%;
+  color: #3C4A3E;
+=======
   max-height: 100%;
   color: #3c4a3e;
+>>>>>>> ef6e2bef1cc9d23a75f26f3e8cd3ae01cc0c1bd8
   border-color: #ebebeb;
 }
 
@@ -360,7 +365,7 @@ body,
 
 #zoomIn {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3c4a3e;
@@ -376,7 +381,7 @@ body,
 
 #zoomOut {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3c4a3e;
