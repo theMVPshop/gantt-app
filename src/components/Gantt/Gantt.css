@@ -7,7 +7,8 @@ body,
 .gantt-container {
   height: 100%;
   color: #3C4A3E;
-  border-color: #3C4A3E;
+
+  border-color: #ebebeb;
 }
 
 #gantt-chart-container {
@@ -296,9 +297,9 @@ body,
 .gantt_scale_cell {
   background-color: #eceeff;
   color: #3C4A3E !important;
-  border-left: 1px solid #3C4A3E;
-  border-right: 1px solid #3C4A3E;
-  border-bottom: 1px solid #3C4A3E;
+  border-left: 1px solid #cecece;
+  border-right: 1px solid #cecece;
+  border-bottom: 1px solid #cecece;
 }
 
 .gantt_task_row,
@@ -310,7 +311,7 @@ body,
 
 .gantt_grid_head_cell {
   background-color: #eceeff;
-  border: 1px solid #3C4A3E;
+  border: 1px solid #cecece;
   color: #3C4A3E !important;
 }
 
