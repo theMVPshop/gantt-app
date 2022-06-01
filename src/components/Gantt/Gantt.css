@@ -6,7 +6,8 @@ body,
 #root div:only-child,
 .gantt-container {
   height: 100%;
-  color: #2f2f2f;
+  color: #3C4A3E;
+  border-color: #3C4A3E;
 }
 
 #gantt-chart-container {
@@ -39,7 +40,7 @@ body,
   width: 22px;
   height: 22px;
   margin-top: 6px;
-  fill: #299bc4;
+  /* fill: #299bc4; */
   cursor: pointer;
   z-index: 2;
   position: relative;
@@ -280,24 +281,24 @@ body,
 }
 
 .gantt_tree_content {
-  color: black;
+  color: #3C4A3E;
 }
 
 .gantt_tree_icon.gantt_file {
-  fill: #2f2f2f;
-  color: #2f2f2f;
+  fill: #3C4A3E;
+  color: #3C4A3E;
 }
 
 .gantt_tree_icon.gantt_folder_open {
-  fill: #2f2f2f;
+  fill: #3C4A3E;
 }
 
 .gantt_scale_cell {
   background-color: #eceeff;
-  color: #2f2f2f !important;
-  border-left: 1px solid #2f2f2f;
-  border-right: 1px solid #2f2f2f;
-  border-bottom: 1px solid #2f2f2f;
+  color: #3C4A3E !important;
+  border-left: 1px solid #3C4A3E;
+  border-right: 1px solid #3C4A3E;
+  border-bottom: 1px solid #3C4A3E;
 }
 
 .gantt_task_row,
@@ -309,8 +310,8 @@ body,
 
 .gantt_grid_head_cell {
   background-color: #eceeff;
-  border: 1px solid #2f2f2f;
-  color: #2f2f2f !important;
+  border: 1px solid #3C4A3E;
+  color: #3C4A3E !important;
 }
 
 .gantt_task_cell {
@@ -358,7 +359,7 @@ body,
   z-index: 500;
   display: flex;
   background-color: #eceeff;
-  color: black;
+  color: #3C4A3E;
   border: 1px solid #eceeff;
   width: 100px;
   height: 35px;
@@ -374,7 +375,7 @@ body,
   z-index: 500;
   display: flex;
   background-color: #eceeff;
-  color: black;
+  color: #3C4A3E;
   border: 1px solid #eceeff;
   width: 100px;
   height: 35px;
