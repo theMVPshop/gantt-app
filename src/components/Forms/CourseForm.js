@@ -263,7 +263,7 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option >Location</option>
+                <option>Location</option>
                 <option value="ACA - St. Edwards">ACA - St. Edwards</option>
                 <option value="LCA">LCA</option>
                 <option value="ACA - Online-North">ACA - Online-North</option>
@@ -287,7 +287,7 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option value="">Days</option>
+                <option>Days</option>
                 <option value="Mon/Wed">Mon/Wed</option>
                 <option value="Tues/Thurs">Tues/Thurs</option>
                 <option value="Full Time">Full Time</option>
@@ -307,7 +307,7 @@ const CourseForm = (props) => {
                   });
                 }}
               >
-                <option >Mode</option>
+                <option>Mode</option>
                 <option value="Online">Online</option>
                 <option value="In Person">In-Person</option>
               </select>
