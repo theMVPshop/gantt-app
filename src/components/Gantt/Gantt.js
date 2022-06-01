@@ -366,6 +366,7 @@ const Gantt = () => {
   document.addEventListener("DOMContentLoaded", (event) => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     gantt.config.wheel_scroll_sensitivity = 0.5;
+    gantt.config.autosize = "y";
 
     //gantt custom columns
 
