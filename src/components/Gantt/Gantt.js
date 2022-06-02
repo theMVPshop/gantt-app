@@ -439,29 +439,6 @@ const Gantt = () => {
       },
     ];
 
-    gantt.config.layout = {
-      rows: [
-        {
-          cols: [
-            {
-              view: "grid",
-              id: "grid",
-              scrollX: "scrollHor",
-              scrollY: "scrollVer",
-            },
-            {
-              view: "timeline",
-              id: "timeline",
-              scrollX: "scrollHor",
-              scrollY: "scrollVer",
-            },
-            { view: "scrollbar", id: "scrollVer" },
-          ],
-        },
-        { view: "scrollbar", id: "scrollHor" },
-      ],
-    };
-
     var zoomConfig = {
       levels: [
         {
@@ -597,7 +574,7 @@ const Gantt = () => {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
                 zIndex: "102",
-                position: "fixed"
+                position: "fixed",
               }
             : {
                 backgroundColor: "none",

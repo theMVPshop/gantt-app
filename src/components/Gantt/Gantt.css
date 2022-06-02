@@ -9,7 +9,6 @@ body,
   color: #3c4a3e;
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #gantt-chart-container {
@@ -18,9 +17,6 @@ body,
   position: relative;
   box-sizing: border-box;
   max-height: 100%;
-}
-
-.timeline_cell {
 }
 
 .nested_task #plusIconRow {
@@ -177,7 +173,6 @@ body,
   cursor: pointer;
   border-radius: 5px;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #zoomOut {
@@ -192,14 +187,13 @@ body,
   width: 75px;
   height: 30px;
   font-size: 13px;
- 
+
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #zoomController {
