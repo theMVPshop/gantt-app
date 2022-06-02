@@ -5,14 +5,11 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
-<<<<<<< HEAD
-  height: 100%;
-  color: #3C4A3E;
-=======
   max-height: 100%;
   color: #3c4a3e;
->>>>>>> ef6e2bef1cc9d23a75f26f3e8cd3ae01cc0c1bd8
   border-color: #ebebeb;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #gantt-chart-container {
@@ -370,13 +367,18 @@ body,
   background-color: #eceeff;
   color: #3c4a3e;
   border: 1px solid #eceeff;
-  width: 100px;
-  height: 35px;
+  /* width: 100px;
+  height: 35px; */
+  width: 75px;
+  height: 30px;
+  font-size: 13px;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
   border-radius: 5px;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #zoomOut {
@@ -386,13 +388,19 @@ body,
   background-color: #eceeff;
   color: #3c4a3e;
   border: 1px solid #eceeff;
-  width: 100px;
-  height: 35px;
+  /* width: 100px;
+  height: 35px; */
+  width: 75px;
+  height: 30px;
+  font-size: 13px;
+ 
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 4px;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #zoomController {
