@@ -39,7 +39,7 @@ body,
 #plusIconHeader {
   width: 22px;
   height: 22px;
-  margin-top: 6px;
+  margin-top: 12px;
   /* fill: #299bc4; */
   cursor: pointer;
   z-index: 2;
