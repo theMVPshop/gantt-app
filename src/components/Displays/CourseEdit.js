@@ -413,7 +413,6 @@ const CourseEdit = (props) => {
                   });
                 }}
               />
-              <span className="slider round"></span>
             </div>
           </div>
         </div>
