@@ -8,6 +8,8 @@ body,
   max-height: 100%;
   color: #3c4a3e;
   border-color: #ebebeb;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #gantt-chart-container {
@@ -358,34 +360,45 @@ body,
 
 #zoomIn {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3c4a3e;
   border: 1px solid #eceeff;
-  width: 100px;
-  height: 35px;
+  /* width: 100px;
+  height: 35px; */
+  width: 75px;
+  height: 30px;
+  font-size: 13px;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
   border-radius: 5px;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #zoomOut {
   position: relative;
-  z-index: 101;
+  z-index: 100;
   display: flex;
   background-color: #eceeff;
   color: #3c4a3e;
   border: 1px solid #eceeff;
-  width: 100px;
-  height: 35px;
+  /* width: 100px;
+  height: 35px; */
+  width: 75px;
+  height: 30px;
+  font-size: 13px;
+ 
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 4px;
+  font-family: "Lexend Deca", sans-serif;
+ 
 }
 
 #zoomController {
