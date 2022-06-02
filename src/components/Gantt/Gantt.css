@@ -14,13 +14,11 @@ body,
   padding-top: 79px;
   box-sizing: border-box;
   position: relative;
-  overflow-y: hidden;
   box-sizing: border-box;
   max-height: 100%;
 }
 
-.gantt-layout-content {
-  overflow-y: scroll;
+.timeline_cell {
 }
 
 .nested_task #plusIconRow {

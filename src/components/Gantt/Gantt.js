@@ -439,6 +439,29 @@ const Gantt = () => {
       },
     ];
 
+    gantt.config.layout = {
+      rows: [
+        {
+          cols: [
+            {
+              view: "grid",
+              id: "grid",
+              scrollX: "scrollHor",
+              scrollY: "scrollVer",
+            },
+            {
+              view: "timeline",
+              id: "timeline",
+              scrollX: "scrollHor",
+              scrollY: "scrollVer",
+            },
+            { view: "scrollbar", id: "scrollVer" },
+          ],
+        },
+        { view: "scrollbar", id: "scrollHor" },
+      ],
+    };
+
     var zoomConfig = {
       levels: [
         {
