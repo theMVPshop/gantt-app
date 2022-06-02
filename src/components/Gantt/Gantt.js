@@ -574,9 +574,9 @@ const Gantt = () => {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
                 zIndex: "102",
+                position: "fixed"
               }
             : {
-                // height: "auto",
                 backgroundColor: "none",
                 zIndex: "101",
               }
