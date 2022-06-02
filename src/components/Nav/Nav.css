@@ -5,11 +5,27 @@
   width: 100%;
   background-color: #3c4a3e;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: space-between;
   align-items: center;
   color: white;
   position: absolute;
   z-index: 100;
+  padding-right: 20px;
+}
+
+.left-half-nav{
+  
+}
+
+.logo-name-cont{
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.logo{
+  margin-right: 10px;
 }
 
 .nav-link {
@@ -20,7 +36,7 @@
   width: 100px;
   height: 35px;
   cursor: pointer;
-  margin-right: -150px;
+  /* margin-right: -150px; */
   border-radius: 5px;
   border: 0px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
@@ -36,7 +52,7 @@
   z-index: 1000;
   height: auto;
   width: 50px;
-  margin-left: -150px;
+  /* margin-left: -150px; */
   margin-bottom: 5px;
 }
 
@@ -44,11 +60,11 @@
   font-family: "Podkova", serif;
   font-weight: 400;
   font-size: 25px;
-  margin-left: -300px;
-  margin-right: -200px;
+  /* margin-left: -300px; */
+  /* margin-right: -200px; */
 }
 .name-tag {
   align-self: center;
-  margin-right: 400px;
+  /* margin-right: px; */
   margin-top: 30px;
 }
