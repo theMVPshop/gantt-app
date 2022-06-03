@@ -41,7 +41,6 @@ body,
   width: 22px;
   height: 22px;
   margin-top: 12px;
-  /* fill: #299bc4; */
   cursor: pointer;
   z-index: 2;
   position: relative;
@@ -169,8 +168,6 @@ body,
   background-color: #eceeff;
   color: #0e0d12;
   border: 1px solid #eceeff;
-  /* width: 100px;
-  height: 35px; */
   width: 75px;
   height: 30px;
   font-size: 13px;
@@ -189,8 +186,6 @@ body,
   background-color: #eceeff;
   color: #0e0d12;
   border: 1px solid #eceeff;
-  /* width: 100px;
-  height: 35px; */
   width: 75px;
   height: 30px;
   font-size: 13px;
@@ -213,4 +208,8 @@ body,
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.gantt_task_content{
+  /* background-color: #727597; */
 }
