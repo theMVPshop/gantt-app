@@ -207,3 +207,7 @@ body,
   align-items: center;
   justify-content: flex-end;
 }
+
+.gantt_link_point, .gantt_task_progress_drag {
+  display: none !important;
+}
