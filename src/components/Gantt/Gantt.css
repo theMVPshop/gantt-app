@@ -155,6 +155,10 @@ body,
   background-color: #eceeff;
 }
 
+.nested_bar .gantt_task_content {
+  background-color: blue !important;
+}
+
 #zoomIn {
   position: relative;
   z-index: 100;

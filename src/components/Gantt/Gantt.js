@@ -376,6 +376,12 @@ const Gantt = () => {
       }
     };
 
+    gantt.templates.task_class = function (start, end, task) {
+      if (task.$level > 0) {
+        return "nested_bar";
+      }
+    };
+
     gantt.templates.task_text = function (start, end, task) {
       return task.title;
     };
