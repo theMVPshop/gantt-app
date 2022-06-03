@@ -6,7 +6,8 @@ body,
 #root div:only-child,
 .gantt-container {
   max-height: 100%;
-  color: #3c4a3e;
+  color: #0e0d12;
+  font-size: 14px;
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
 }
@@ -82,21 +83,22 @@ body,
 }
 
 .gantt_tree_content {
-  color: #3c4a3e;
+  color: #0e0d12;
+  font-size: 14px;
 }
 
 .gantt_tree_icon.gantt_file {
-  fill: #3c4a3e;
-  color: #3c4a3e;
+  fill: #0e0d12;
+  color: #0e0d12;
 }
 
 .gantt_tree_icon.gantt_folder_open {
-  fill: #3c4a3e;
+  fill: #0e0d12;
 }
 
 .gantt_scale_cell {
   background-color: #eceeff;
-  color: #3c4a3e !important;
+  color: #0e0d12 !important;
   border-left: 1px solid #cecece;
   border-right: 1px solid #cecece;
   border-bottom: 1px solid #cecece;
@@ -112,7 +114,7 @@ body,
 .gantt_grid_head_cell {
   background-color: #eceeff;
   border: 1px solid #cecece;
-  color: #3c4a3e !important;
+  color: #0e0d12 !important;
 }
 
 .gantt_task_cell {
@@ -121,9 +123,10 @@ body,
 }
 
 .gantt_task_content {
-  background-color: #079043;
+  background-color: #02520d;
   border-radius: 5px;
   border-color: transparent;
+  font-size: 16px;
 }
 
 .gantt_task_progress_wrapper {
@@ -156,7 +159,7 @@ body,
 }
 
 .nested_bar .gantt_task_content {
-  background-color: blue !important;
+  background-color: #079043;
 }
 
 #zoomIn {
@@ -164,7 +167,7 @@ body,
   z-index: 100;
   display: flex;
   background-color: #eceeff;
-  color: #3c4a3e;
+  color: #0e0d12;
   border: 1px solid #eceeff;
   /* width: 100px;
   height: 35px; */
@@ -184,7 +187,7 @@ body,
   z-index: 100;
   display: flex;
   background-color: #eceeff;
-  color: #3c4a3e;
+  color: #0e0d12;
   border: 1px solid #eceeff;
   /* width: 100px;
   height: 35px; */
