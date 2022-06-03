@@ -4,7 +4,7 @@
   height: 80px;
   width: 100%;
   background-color: #3c4a3e;
-  background-color: #727597;
+  /* background-color: #727597; */
   display: flex;
   justify-content: space-between;
   align-items: center;
