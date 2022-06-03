@@ -207,3 +207,7 @@ body,
   align-items: center;
   justify-content: flex-end;
 }
+
+.gantt_task_content{
+  /* background-color: #727597; */
+}
