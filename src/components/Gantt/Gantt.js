@@ -44,6 +44,7 @@ const Gantt = () => {
     currentTask: {
       title: "",
       course_link: "",
+      textbook: "",
       hubspot_ticket: "",
       rocketchat: "",
       instructor: "",
