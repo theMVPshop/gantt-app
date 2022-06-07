@@ -6,10 +6,10 @@ body,
 #root div:only-child,
 .gantt-container {
   max-height: 100%;
-  color: #3c4a3e;
+  color: #0e0d12;
+  font-size: 14px;
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #gantt-chart-container {
@@ -18,9 +18,6 @@ body,
   position: relative;
   box-sizing: border-box;
   max-height: 100%;
-}
-
-.timeline_cell {
 }
 
 .nested_task #plusIconRow {
@@ -43,8 +40,7 @@ body,
 #plusIconHeader {
   width: 22px;
   height: 22px;
-  margin-top: 6px;
-  /* fill: #299bc4; */
+  margin-top: 12px;
   cursor: pointer;
   z-index: 2;
   position: relative;
@@ -86,21 +82,22 @@ body,
 }
 
 .gantt_tree_content {
-  color: #3c4a3e;
+  color: #0e0d12;
+  font-size: 14px;
 }
 
 .gantt_tree_icon.gantt_file {
-  fill: #3c4a3e;
-  color: #3c4a3e;
+  fill: #0e0d12;
+  color: #0e0d12;
 }
 
 .gantt_tree_icon.gantt_folder_open {
-  fill: #3c4a3e;
+  fill: #0e0d12;
 }
 
 .gantt_scale_cell {
   background-color: #eceeff;
-  color: #3c4a3e !important;
+  color: #0e0d12 !important;
   border-left: 1px solid #cecece;
   border-right: 1px solid #cecece;
   border-bottom: 1px solid #cecece;
@@ -116,7 +113,7 @@ body,
 .gantt_grid_head_cell {
   background-color: #eceeff;
   border: 1px solid #cecece;
-  color: #3c4a3e !important;
+  color: #0e0d12 !important;
 }
 
 .gantt_task_cell {
@@ -125,9 +122,10 @@ body,
 }
 
 .gantt_task_content {
-  background-color: #079043;
+  background-color: #02520d;
   border-radius: 5px;
   border-color: transparent;
+  font-size: 16px;
 }
 
 .gantt_task_progress_wrapper {
@@ -159,15 +157,17 @@ body,
   background-color: #eceeff;
 }
 
+.nested_bar .gantt_task_content {
+  background-color: #079043;
+}
+
 #zoomIn {
   position: relative;
   z-index: 100;
   display: flex;
   background-color: #eceeff;
-  color: #3c4a3e;
+  color: #0e0d12;
   border: 1px solid #eceeff;
-  /* width: 100px;
-  height: 35px; */
   width: 75px;
   height: 30px;
   font-size: 13px;
@@ -177,7 +177,6 @@ body,
   cursor: pointer;
   border-radius: 5px;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #zoomOut {
@@ -185,21 +184,18 @@ body,
   z-index: 100;
   display: flex;
   background-color: #eceeff;
-  color: #3c4a3e;
+  color: #0e0d12;
   border: 1px solid #eceeff;
-  /* width: 100px;
-  height: 35px; */
   width: 75px;
   height: 30px;
   font-size: 13px;
- 
+
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Lexend Deca", sans-serif;
- 
 }
 
 #zoomController {
@@ -213,3 +209,10 @@ body,
   align-items: center;
   justify-content: flex-end;
 }
+
+.gantt_link_point, .gantt_task_progress_drag {
+  display: none !important;
+}
+
+
+

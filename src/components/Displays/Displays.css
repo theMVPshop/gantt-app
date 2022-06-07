@@ -380,4 +380,12 @@
   top: 0;
   left: 0;
   cursor: pointer;
-}
+  }
+
+  /* Overview */
+  .overview-cont{
+    color: green;
+    position: absolute;
+    left: 100px;
+    bottom: 150px;
+  }

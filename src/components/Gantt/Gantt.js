@@ -7,6 +7,7 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
+import OverviewDisplay from "../Displays/Overview.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -44,6 +45,7 @@ const Gantt = () => {
     currentTask: {
       title: "",
       course_link: "",
+      textbook: "",
       hubspot_ticket: "",
       rocketchat: "",
       instructor: "",
@@ -136,6 +138,7 @@ const Gantt = () => {
     axios
       .get("https://gantt-server.herokuapp.com/tasks/")
       .then((res) => {
+        console.log("tasks axios call, res.data: ", res.data)
         res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);
           obj.end_date = obj.end_date.slice(0, 10);
@@ -376,6 +379,12 @@ const Gantt = () => {
       }
     };
 
+    gantt.templates.task_class = function (start, end, task) {
+      if (task.$level > 0) {
+        return "nested_bar";
+      }
+    };
+
     gantt.templates.task_text = function (start, end, task) {
       return task.title;
     };
@@ -438,29 +447,6 @@ const Gantt = () => {
         width: 40,
       },
     ];
-
-    gantt.config.layout = {
-      rows: [
-        {
-          cols: [
-            {
-              view: "grid",
-              id: "grid",
-              scrollX: "scrollHor",
-              scrollY: "scrollVer",
-            },
-            {
-              view: "timeline",
-              id: "timeline",
-              scrollX: "scrollHor",
-              scrollY: "scrollVer",
-            },
-            { view: "scrollbar", id: "scrollVer" },
-          ],
-        },
-        { view: "scrollbar", id: "scrollHor" },
-      ],
-    };
 
     var zoomConfig = {
       levels: [
@@ -597,7 +583,7 @@ const Gantt = () => {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
                 zIndex: "102",
-                position: "fixed"
+                position: "fixed",
               }
             : {
                 backgroundColor: "none",
@@ -660,6 +646,7 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CourseEdit>
       </div>
+      
       <div
         ref={containerRef}
         style={{ width: "100%", height: "100%" }}
@@ -673,6 +660,11 @@ const Gantt = () => {
           Zoom Out
         </button>
       </div>
+      {/* Temporary display home for OverviewDisplay */}
+      <OverviewDisplay
+        data={data}
+      >
+      </OverviewDisplay>
     </div>
   );
 };
