@@ -45,10 +45,20 @@ const CourseDisplay = (props) => {
               </div>
             </div>
 
-            <div className="display-info">
+            {/* <div className="display-info">
               <label className="display-label">Course Link:</label>
               <div className="display-input">
                 {props.modalState.currentTask.course_link}
+              </div>
+            </div> */}
+
+            <div className="display-info">
+              <label className="display-label">Course Links:</label>
+              <div className="display-input">
+                {props.modalState.currentTask.course_link}
+              </div>
+              <div className="display-input">
+                {props.modalState.currentTask.textbook  }
               </div>
             </div>
 
