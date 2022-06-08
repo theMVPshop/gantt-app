@@ -14,6 +14,7 @@ const CourseForm = (props) => {
   const [formData, setFormData] = useState({
     title: "",
     course_link: "",
+    textbook: "",
     hubspot_ticket: "",
     rocketchat: "",
     instructor: "",
@@ -38,6 +39,7 @@ const CourseForm = (props) => {
     setFormData({
       title: "",
       course_link: "",
+      textbook: "",
       hubspot_ticket: "",
       rocketchat: "",
       instructor: "",
@@ -173,6 +175,23 @@ const CourseForm = (props) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
                     prev.course_link = e.target.value;
+                    return prev;
+                  });
+                }}
+              />
+            </div>
+
+            <div className="info">
+              <label className="label">Textbook</label>
+              <input
+                type="text"
+                name="textbook"
+                className="input"
+                value={formData.textbook}
+                onChange={(e) => {
+                  setFormData((prevState) => {
+                    let prev = { ...prevState };
+                    prev.textbook = e.target.value;
                     return prev;
                   });
                 }}

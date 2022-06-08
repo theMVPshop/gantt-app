@@ -142,6 +142,8 @@
 }
 
 .minor-title{
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 500;
   font-size: 35px;
   align-self: center;
   margin-top: 15px;

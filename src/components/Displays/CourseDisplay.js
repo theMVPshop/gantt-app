@@ -46,23 +46,26 @@ const CourseDisplay = (props) => {
             </div>
 
             <div className="display-info">
-              <label className="display-label">Course Link:</label>
+              <label className="display-label">Course Links:</label>
               <div className="display-input">
-                {props.modalState.currentTask.course_link}
+                {props.modalState.currentTask.course_link && <a target="blank" href={props.modalState.currentTask.course_link}>Zoom</a>}
+              </div>
+              <div className="display-input">
+                {props.modalState.currentTask.textbook && <a target="blank" href={props.modalState.currentTask.textbook}>Textbook</a>}
               </div>
             </div>
 
             <div className="display-info">
               <label className="display-label">Hubspot Ticket:</label>
               <div className="display-input">
-                {props.modalState.currentTask.hubspot_ticket}
+                {props.modalState.currentTask.hubspot_ticket && <a target="blank" href={props.modalState.currentTask.hubspot_ticket}>Hubspot</a>}
               </div>
             </div>
 
             <div className="display-info">
               <label className="display-label">Rocket Chat:</label>
               <div className="display-input">
-                {props.modalState.currentTask.rocketchat}
+                {props.modalState.currentTask.rocketchat && <a target="blank" href={props.modalState.currentTask.rocketchat}>Rocket Chat</a>}
               </div>
             </div>
 
