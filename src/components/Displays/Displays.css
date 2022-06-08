@@ -402,7 +402,5 @@ a{
   /* Overview */
   .overview-cont{
     color: green;
-    position: absolute;
-    left: 100px;
-    bottom: 150px;
+    background-color: white;
   }

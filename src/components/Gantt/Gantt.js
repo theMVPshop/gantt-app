@@ -138,8 +138,7 @@ const Gantt = () => {
     axios
       .get("https://gantt-server.herokuapp.com/tasks/")
       .then((res) => {
-        console.log("tasks axios call, res.data: ", res.data)
-        res.data.forEach((obj) => {
+          res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);
           obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
@@ -661,10 +660,10 @@ const Gantt = () => {
         </button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
-      <OverviewDisplay
+      {/* <OverviewDisplay
         data={data}
       >
-      </OverviewDisplay>
+      </OverviewDisplay> */}
     </div>
   );
 };
