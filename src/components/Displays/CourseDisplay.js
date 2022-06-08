@@ -45,13 +45,15 @@ const CourseDisplay = (props) => {
               </div>
             </div>
 
-            <div className="display-info">
+            <div className="display-info" id="special-inputs">
               <label className="display-label">Course Links:</label>
+              <div className="special-inputs">
               <div className="display-input">
                 {props.modalState.currentTask.course_link && <a target="blank" href={props.modalState.currentTask.course_link}>Zoom</a>}
               </div>
               <div className="display-input">
                 {props.modalState.currentTask.textbook && <a target="blank" href={props.modalState.currentTask.textbook}>Textbook</a>}
+              </div>
               </div>
             </div>
 

@@ -124,6 +124,23 @@
   fill:firebrick;
 }
 
+.special-inputs{
+  display: flex;
+  flex-direction: column;
+  width: 40% !important;
+  margin-bottom: 10px;
+}
+
+#special-inputs{
+  display: flex;
+  align-items: center;
+}
+
+a{
+  color: #079043;
+  text-decoration: none;
+}
+
 /* ***** Cohort Edit ***** */
 .cohortEdit {
   font-family: "Lexend Deca", sans-serif;
