@@ -21,6 +21,9 @@ align-items: center;
 
 .signUp-form{
 width: 500px;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .signIn-text{
@@ -43,6 +46,7 @@ margin-bottom:50px;
 }
 
 .names{
+  width: 500px;
   display: flex;
   flex-direction: row;
   margin-bottom: 25px;
@@ -58,5 +62,4 @@ margin-bottom:50px;
 
 .vector{
   width: 100%;
-  margin-top:88px;
 }
