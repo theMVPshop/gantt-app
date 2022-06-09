@@ -62,7 +62,6 @@ const Gantt = () => {
       parent: "cohort_0",
     },
   });
-
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
