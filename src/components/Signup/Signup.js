@@ -64,7 +64,7 @@ const Signup = () => {
               />
             </div>
             <small className="text-danger">
-              {errors?.email && errors.email.message}
+              {errors?.firstName && errors.firstName.message}
             </small>
             <br />
 
@@ -79,7 +79,7 @@ const Signup = () => {
               />
             </div>
             <small className="text-danger">
-              {errors?.email && errors.email.message}
+              {errors?.lastName && errors.lastName.message}
             </small>
             <br />
           </div>
@@ -118,11 +118,11 @@ const Signup = () => {
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
-              {...register("confirmPassword", loginOptions.consfirmPassword)}
+              {...register("confirmPassword", loginOptions.confirmPassword)}
             />
           </div>
           <small className="text-danger">
-            {errors?.password && errors.password.message}
+            {errors?.confirmPassword && errors.confirmPassword.message}
           </small>
           <br />
           <button className="login" type="submit">
