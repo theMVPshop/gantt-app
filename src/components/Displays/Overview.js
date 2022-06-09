@@ -5,17 +5,14 @@ import "./Displays.css";
 
 const OverviewDisplay = (props) => {
   let arr = props.data.data
-  
+  //local state necessary to save state related to the courses, 
+  //based on the currentTask, which is a cohort
   const [overviewDays, setOverviewDays] = useState("")
   const [overview501, setOverview501] = useState("")
   const [overview501StartDate, setOverview501StartDate] = useState("")
   const [overview501EndDate, setOverview501EndDate] = useState("")
   let coursesArray = []
-  const [overviewCourses, setOverviewCourses] = useState({
-    course: "",
-    start_date: "",
-    end_date: "",
-  })
+  const [overviewCourses, setOverviewCourses] = useState([])
   useEffect(() => {
     //loop over data.data
     for (let i = 0; i<arr.length; i++){
@@ -39,10 +36,13 @@ const OverviewDisplay = (props) => {
           console.log("arr[i].title is a course, not 501: ", arr[i].title)
           let courseObj = {
             title: arr[i].title,
-            start_date: arr[i].start_date
+            start_date: arr[i].start_date,
+            end_date: arr[i].end_date
           }
           console.log("courseObj: ", courseObj)
-          // setOverviewCourses(coursesArray)
+          coursesArray.push(courseObj)
+          console.log("coursesArray after push: ", coursesArray)
+          setOverviewCourses(coursesArray)
         } 
       }
     }
@@ -55,17 +55,16 @@ const OverviewDisplay = (props) => {
             ? <>{overviewDays}<br></br>
             <br></br></>
             : ""}
-     
-      {/* <span>{overviewCourses.map((course, index)=>
-        <>{course}</>
-      )}</span> */}
-     
-       
+      {overviewCourses.map((course, index)=>
+        <>
+        <span>{course.title}</span>
+        <span>{course.start_date.toString().slice(0, 15)}</span> - 
+        <span>{course.end_date.toString().slice(0, 15)}</span>
+
         <br></br>
-        JS211: Apr 1- May 30 2022
-        <br></br>
-        JS311: June 1 - July 30 2022
-        <br></br>
+        </>
+      )}
+  
         <br></br>
         Graduation Date: 
           {props.modalState.currentTask.end_date
