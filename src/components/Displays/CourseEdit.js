@@ -330,7 +330,7 @@ const CourseEdit = (props) => {
               >
                 <option>Mode</option>
                 <option value="Online">Online</option>
-                <option value="inPerson">In-Person</option>
+                <option value="In-Person">In-Person</option>
               </select>
             </div>
 
