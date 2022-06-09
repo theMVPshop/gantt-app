@@ -363,6 +363,27 @@ const Gantt = () => {
   });
   // task drag update END
 
+  // vertical line marker START
+  gantt.plugins({ 
+    marker: true 
+  }); 
+
+  var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+ 
+  var id = gantt.addMarker({ 
+      start_date: new Date(), 
+      css: "today", 
+      title:dateToStr(new Date())
+  });
+  
+  setInterval(function(){
+      var today = gantt.getMarker(id);
+      today.start_date = new Date();
+      today.title = dateToStr(today.start_date);
+      gantt.updateMarker(id);
+  }, 1000*60);
+  // vertical line marker END
+
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
