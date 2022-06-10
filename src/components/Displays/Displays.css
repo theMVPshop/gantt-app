@@ -399,8 +399,16 @@ a{
   cursor: pointer;
   }
 
-  /* Overview */
+  /* ---------Overview start--------- */
   .overview-cont{
-    color: green;
+    color: black;
     background-color: white;
+    padding: 10px;
   }
+
+  .overviewLeftItem{
+    /* border: 1px solid red; */
+    padding-right: 5px;
+  }
+
+  
