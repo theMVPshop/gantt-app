@@ -370,6 +370,17 @@ const Gantt = () => {
   }); 
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+
+  const addHolidayMarker = () => {
+    console.log("click! add holiday button")
+
+    // var holidayMarker = gantt.addMarker({ 
+    //   start_date: new Date(), 
+    //   css: "holiday",
+    //   text: "Holiday", 
+    //   title: dateToStr(new Date())
+    // });
+  }
  
   var todayMarker = gantt.addMarker({ 
       start_date: new Date(), 
@@ -680,6 +691,7 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
+        <button id="addHoliday" onClick={() => addHolidayMarker()}>Button</button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay

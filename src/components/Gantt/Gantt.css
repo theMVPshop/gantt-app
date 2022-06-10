@@ -199,7 +199,6 @@ body,
   width: 75px;
   height: 30px;
   font-size: 13px;
-
   align-items: center;
   justify-content: center;
   margin-right: 10px;
@@ -218,4 +217,8 @@ body,
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+#addHoliday {
+  z-index: 100;
 }
