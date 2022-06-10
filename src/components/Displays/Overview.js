@@ -36,15 +36,12 @@ const OverviewDisplay = (props) => {
           if(arr[i].day_of_week){
             setOverviewDays(arr[i].day_of_week)
           }
-          console.log("arr[i].title is a course, not 501: ", arr[i].title)
           let courseObj = {
             title: arr[i].title,
             start_date: arr[i].start_date,
             end_date: arr[i].end_date
           }
-          console.log("courseObj: ", courseObj)
           coursesArray.push(courseObj)
-          console.log("coursesArray after push: ", coursesArray)
           setOverviewCourses(coursesArray)
         } 
       }

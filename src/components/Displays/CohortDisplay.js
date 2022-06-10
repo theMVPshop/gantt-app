@@ -11,10 +11,6 @@ const CohortDisplay = (props) => {
     console.log(props.modalState.currentTask);
   }, [props.modalState.currentTask]);
 
-  const showOverview = (e) =>{
-    console.log("eeeeeeee! e: ", e.target)
-
-  }
   return (
     <div
     style={
@@ -79,6 +75,7 @@ const CohortDisplay = (props) => {
           <OverviewDisplay
             modalState = {props.modalState}
             data={props.data}
+            key="xyz"
           >
           </OverviewDisplay>
       </form>
