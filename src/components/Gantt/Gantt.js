@@ -371,17 +371,18 @@ const Gantt = () => {
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
  
-  var id = gantt.addMarker({ 
+  var todayMarker = gantt.addMarker({ 
       start_date: new Date(), 
-      css: "today", 
-      title:dateToStr(new Date())
+      css: "today",
+      text: "Today", 
+      title: dateToStr(new Date())
   });
   
   setInterval(function(){
-      var today = gantt.getMarker(id);
+      var today = gantt.getMarker(todayMarker);
       today.start_date = new Date();
       today.title = dateToStr(today.start_date);
-      gantt.updateMarker(id);
+      gantt.updateMarker(todayMarker);
   }, 1000*60);
   // vertical line marker END
 

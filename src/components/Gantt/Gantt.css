@@ -161,6 +161,16 @@ body,
   background-color: #079043;
 }
 
+.gantt_link_point, .gantt_task_progress_drag {
+  display: none !important;
+}
+
+.gantt_marker_content {
+  opacity: .5 !important;
+  color: #fff !important;
+  font-size: 12px !important;
+}
+
 #zoomIn {
   position: relative;
   z-index: 100;
@@ -209,10 +219,3 @@ body,
   align-items: center;
   justify-content: flex-end;
 }
-
-.gantt_link_point, .gantt_task_progress_drag {
-  display: none !important;
-}
-
-
-
