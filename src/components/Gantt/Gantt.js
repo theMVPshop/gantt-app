@@ -368,18 +368,30 @@ const Gantt = () => {
   }); 
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+
+  const addHolidayMarker = () => {
+    console.log("click! add holiday button")
+
+    // var holidayMarker = gantt.addMarker({ 
+    //   start_date: new Date(), 
+    //   css: "holiday",
+    //   text: "Holiday", 
+    //   title: dateToStr(new Date())
+    // });
+  }
  
-  var id = gantt.addMarker({ 
+  var todayMarker = gantt.addMarker({ 
       start_date: new Date(), 
-      css: "today", 
-      title:dateToStr(new Date())
+      css: "today",
+      text: "Today", 
+      title: dateToStr(new Date())
   });
   
   setInterval(function(){
-      var today = gantt.getMarker(id);
+      var today = gantt.getMarker(todayMarker);
       today.start_date = new Date();
       today.title = dateToStr(today.start_date);
-      gantt.updateMarker(id);
+      gantt.updateMarker(todayMarker);
   }, 1000*60);
   // vertical line marker END
 
@@ -677,6 +689,7 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
+        <button id="addHoliday" onClick={() => addHolidayMarker()}>Button</button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay

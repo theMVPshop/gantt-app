@@ -17,16 +17,13 @@ const Nav = () => {
           )}
           </div>
         </div>
-        
       </div>
       
-      {checkAuth() && (
-        <button className="nav-link" onClick={() => logoutUser()}>
-          <Link to="/" className="link">
-            Logout
-          </Link>
-        </button>
-      )}
+      <button className="nav-link" onClick={() => logoutUser()}>
+        <Link to="/" className="link">
+          Logout
+        </Link>
+      </button>
     </nav>
   );
 };
