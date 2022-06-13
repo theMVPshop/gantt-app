@@ -7,7 +7,6 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
-import OverviewDisplay from "../Displays/Overview.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
