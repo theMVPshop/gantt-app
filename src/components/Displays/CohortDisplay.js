@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 
+import OverviewDisplay from "./Overview.js"
+
 import "./Displays.css";
 
 const CohortDisplay = (props) => {
@@ -33,7 +35,8 @@ const CohortDisplay = (props) => {
             props.handleModalDisplayState("currentTask", {});
           }}
         ></Exit>
-        <h1 className="minor-title">Cohort Info</h1>
+        <h1 
+          className="minor-title">Cohort Info</h1>
         <div className="cohort-info">
         <div className="display-info">
           <label className="label display-label">Cohort Name:</label>
@@ -69,7 +72,14 @@ const CohortDisplay = (props) => {
         >
           Edit
         </section>
+          <OverviewDisplay
+            modalState = {props.modalState}
+            data={props.data}
+            key="xyz"
+          >
+          </OverviewDisplay>
       </form>
+      
     </div>
   );
 };

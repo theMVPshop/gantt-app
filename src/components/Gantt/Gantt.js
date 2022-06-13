@@ -44,6 +44,7 @@ const Gantt = () => {
     currentTask: {
       title: "",
       course_link: "",
+      textbook: "",
       hubspot_ticket: "",
       rocketchat: "",
       instructor: "",
@@ -454,6 +455,39 @@ const Gantt = () => {
   });
   // task drag update END
 
+  // vertical line marker START
+  gantt.plugins({
+    marker: true,
+  });
+
+  var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+
+  const addHolidayMarker = () => {
+    console.log("click! add holiday button");
+
+    // var holidayMarker = gantt.addMarker({
+    //   start_date: new Date(),
+    //   css: "holiday",
+    //   text: "Holiday",
+    //   title: dateToStr(new Date())
+    // });
+  };
+
+  var todayMarker = gantt.addMarker({
+    start_date: new Date(),
+    css: "today",
+    text: "Today",
+    title: dateToStr(new Date()),
+  });
+
+  setInterval(function () {
+    var today = gantt.getMarker(todayMarker);
+    today.start_date = new Date();
+    today.title = dateToStr(today.start_date);
+    gantt.updateMarker(todayMarker);
+  }, 1000 * 60);
+  // vertical line marker END
+
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
     gantt.config.date_format = "%Y-%m-%d %H:%i";
@@ -729,6 +763,7 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CourseEdit>
       </div>
+
       <div
         ref={containerRef}
         style={{ width: "100%", height: "100%" }}
@@ -741,7 +776,15 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
+        <button id="addHoliday" onClick={() => addHolidayMarker()}>
+          Button
+        </button>
       </div>
+      {/* Temporary display home for OverviewDisplay */}
+      {/* <OverviewDisplay
+        data={data}
+      >
+      </OverviewDisplay> */}
     </div>
   );
 };

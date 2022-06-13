@@ -124,6 +124,23 @@
   fill:firebrick;
 }
 
+.special-inputs{
+  display: flex;
+  flex-direction: column;
+  width: 40% !important;
+  margin-bottom: 10px;
+}
+
+#special-inputs{
+  display: flex;
+  align-items: center;
+}
+
+a{
+  color: #079043;
+  text-decoration: none;
+}
+
 /* ***** Cohort Edit ***** */
 .cohortEdit {
   font-family: "Lexend Deca", sans-serif;
@@ -142,6 +159,8 @@
 }
 
 .minor-title{
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 500;
   font-size: 35px;
   align-self: center;
   margin-top: 15px;
@@ -346,9 +365,15 @@
   z-index: 101;
   position: absolute;
   top: 0;
-
   text-align: center;
   box-shadow: 5px 5px 15px;
+}
+
+#delete-title{
+  /* padding-top: 10px;÷ */
+  padding: 5px 20px 0;
+  
+  margin-bottom: 0;
 }
 
 .deleteQuestionText {
@@ -378,4 +403,18 @@
   top: 0;
   left: 0;
   cursor: pointer;
-}
+  }
+
+  /* ---------Overview start--------- */
+  .overview-cont{
+    color: black;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .overviewLeftItem{
+    /* border: 1px solid red; */
+    padding-right: 5px;
+  }
+
+  

@@ -70,6 +70,7 @@ const CourseEdit = (props) => {
   const [formData, setFormData] = useState({
     title: "",
     course_link: "",
+    textbook: "",
     hubspot_ticket: "",
     rocketchat: "",
     instructor: "",
@@ -90,6 +91,7 @@ const CourseEdit = (props) => {
     setFormData({
       title: props.modalState.currentTask.title,
       course_link: props.modalState.currentTask.course_link,
+      textbook: props.modalState.currentTask.textbook,
       hubspot_ticket: props.modalState.currentTask.hubspot_ticket,
       rocketchat: props.modalState.currentTask.rocketchat,
       instructor: props.modalState.currentTask.instructor,
@@ -180,7 +182,24 @@ const CourseEdit = (props) => {
                     return prev;
                   });
                 }}
-              />
+              /> 
+            </div>
+
+            <div className="info">
+              <label className="label">Textbook</label>
+              <input
+                type="text"
+                name="textbook"
+                className="input"
+                value={formData.textbook}
+                onChange={(e) => {
+                  setFormData((prevState) => {
+                    let prev = { ...prevState };
+                    prev.textbook = e.target.value;
+                    return prev;
+                  });
+                }}
+              /> 
             </div>
 
             <div className="info">
@@ -311,7 +330,7 @@ const CourseEdit = (props) => {
               >
                 <option>Mode</option>
                 <option value="Online">Online</option>
-                <option value="inPerson">In-Person</option>
+                <option value="In-Person">In-Person</option>
               </select>
             </div>
 

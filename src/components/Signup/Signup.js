@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "./Signup.css";
-// import {ReactComponent as Vector} from "../../images/Vectors.svg"
 import vector from "../../images/Vectors.svg";
 import axios from "axios";
 
@@ -15,14 +14,10 @@ const Signup = () => {
   } = useForm();
 
   const handleSignup = (data) => {
-    console.log("hey, you entered this email: ", data.email);
+    const url = "https://gantt-server.herokuapp.com/users/";
 
-    //SAVE URL HERE:
-    //make a post call to our backend here:
-
-    //axios post call including email, password, confirmPassword
     axios
-      .post("https://gantt-server.herokuapp.com/users/", {
+      .post(url, {
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
@@ -30,25 +25,14 @@ const Signup = () => {
         confirm_password: data.confirmPassword,
       })
       .then((res) => {
-        console.log("res.data in signup post request: ", res);
-        //check return message
-        //if return message says passwords don't match
-        //render that message to the user
-        //else render login page? or message confirming registration, then login page?
-
-        //-------------from Pamela's capstone for reference:-----------
-        //set isSignedIn to true so components rendered on login will render
-        // setIsSignedIn(true)
-        // //set token so other axios calls can use it to access data
-        // setToken(res.data.accessToken)
-        // // set userId so correct data are gathered in axios calls
-        // setUserId(res.data.userId)
-        //-------------------------end sample for reference ------------
+        if (res.status === 200) {
+          alert("Success! Please sign in.");
+          window.location.replace("/");
+        };
       })
       .catch((error) => {
         console.log("Error Occurred:", error);
-
-        alert("Signup Failed");
+        alert("Signup Failed. Please try again.");
       });
   };
 
@@ -80,7 +64,7 @@ const Signup = () => {
               />
             </div>
             <small className="text-danger">
-              {errors?.email && errors.email.message}
+              {errors?.firstName && errors.firstName.message}
             </small>
             <br />
 
@@ -95,7 +79,7 @@ const Signup = () => {
               />
             </div>
             <small className="text-danger">
-              {errors?.email && errors.email.message}
+              {errors?.lastName && errors.lastName.message}
             </small>
             <br />
           </div>
@@ -134,11 +118,11 @@ const Signup = () => {
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
-              {...register("confirmPassword", loginOptions.consfirmPassword)}
+              {...register("confirmPassword", loginOptions.confirmPassword)}
             />
           </div>
           <small className="text-danger">
-            {errors?.password && errors.password.message}
+            {errors?.confirmPassword && errors.confirmPassword.message}
           </small>
           <br />
           <button className="login" type="submit">
