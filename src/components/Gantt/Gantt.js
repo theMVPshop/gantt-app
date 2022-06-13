@@ -61,6 +61,8 @@ const Gantt = () => {
     },
   });
 
+  const [tasksOrdered, setTasksOrdered] = useState({});
+
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
@@ -147,8 +149,98 @@ const Gantt = () => {
   }, []);
 
   useEffect(() => {
+    checkTaskOrder();
     gantt.parse(data);
   }, [data]);
+
+  const checkTaskOrder = () => {
+    var copy = { ...data };
+
+    let copyTree = [];
+
+    for (let i = 0; i < copy.data.length; i++) {
+      let splitID = copy.data[i].id.split("");
+      if (splitID[2] === "h") {
+        let joined = splitID.join("");
+        let objectTree = {
+          cohort: joined,
+          children: [],
+        };
+        let children = [];
+        for (let y = i + 1; y < copy.data.length; y++) {
+          if (copy.data[y].parent === joined) {
+            let informationArr = {
+              courseID: copy.data[y].id,
+              start_date: copy.data[y].start_date,
+              end_date: copy.data[y].end_date,
+              title: copy.data[y].title,
+            };
+            children.push(informationArr);
+          }
+        }
+        if (children.length > 0) {
+          objectTree.children = children;
+          copyTree.push(objectTree);
+        }
+      }
+    }
+
+    if (copyTree.length > 0) {
+      for (let i = 0; i < copyTree.length; i++) {
+        //iterate through each cohort
+        for (let a = 0; a < copyTree[i].children.length; a++) {
+          //pointer A for checking courses date
+          for (let b = a + 1; b < copyTree[i].children.length; b++) {
+            //pointer B for checking courses date
+            let d1 = new Date(copyTree[i].children[a].start_date);
+            let d2 = new Date(copyTree[i].children[b].start_date);
+
+            if (d1 > d2) {
+              copyTree[i].children.splice(a, 0, copyTree[i].children[b]);
+              copyTree[i].children.splice(b + 1, 1);
+            }
+          }
+        }
+      }
+    }
+    setTasksOrdered(copyTree);
+    // assignBarClasses(copyTree);
+  };
+
+  useEffect(() => {
+    assignBarClasses(tasksOrdered);
+  }, [tasksOrdered]);
+
+  const assignBarClasses = (orderedTasks) => {
+    gantt.templates.task_class = function (start, end, task) {
+      for (let i = 0; i < orderedTasks.length; i++) {
+        if (task.parent === orderedTasks[i].cohort) {
+          for (let y = 0; y < orderedTasks[i].children.length; y++) {
+            if (task.id === orderedTasks[i].children[y].courseID) {
+              console.log(y);
+              console.log(task.title);
+              switch (y) {
+                case 0:
+                  console.log("yes");
+                  return "first_course";
+                case 1:
+                  return "second_course";
+                case 2:
+                  return "third_course";
+                case 3:
+                  return "fourth_course";
+                case 4:
+                  return "fifth_course";
+                case 5:
+                  return "sixth_course";
+              }
+            }
+          }
+        }
+      }
+      // return "nested_bar";
+    };
+  };
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -373,12 +465,6 @@ const Gantt = () => {
     gantt.templates.grid_row_class = function (start, end, task) {
       if (task.$level > 0) {
         return "nested_task";
-      }
-    };
-
-    gantt.templates.task_class = function (start, end, task) {
-      if (task.$level > 0) {
-        return "nested_bar";
       }
     };
 

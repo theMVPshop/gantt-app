@@ -210,6 +210,26 @@ body,
   justify-content: flex-end;
 }
 
-.gantt_task_content{
+.gantt_task_content {
   /* background-color: #727597; */
+}
+
+.first_course .gantt_task_content {
+  background-color: blue;
+}
+
+.second_course .gantt_task_content {
+  background-color: red;
+}
+
+.third_course .gantt_task_content {
+  background-color: purple;
+}
+
+.fourth_course .gantt_task_content {
+  background-color: red;
+}
+
+.fifth_course .gantt_task_content {
+  background-color: pink;
 }
