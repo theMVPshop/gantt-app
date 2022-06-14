@@ -220,9 +220,10 @@ body,
   justify-content: flex-end;
 }
 
-.gantt_task_content {
+/* .gantt_task_content { */
   /* background-color: #727597; */
-}
+/* } */
+
 #addHoliday {
   z-index: 100;
 }

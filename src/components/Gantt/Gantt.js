@@ -7,11 +7,6 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
-<<<<<<< HEAD
-import OverviewDisplay from "../Displays/Overview.js";
-import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
-=======
->>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -66,13 +61,7 @@ const Gantt = () => {
       parent: "cohort_0",
     },
   });
-<<<<<<< HEAD
   const [holidayModalState, setHolidayModalState] = useState(false);
-=======
-
-  const [tasksOrdered, setTasksOrdered] = useState({});
-
->>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
@@ -472,12 +461,8 @@ const Gantt = () => {
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
 
   const addHolidayMarker = () => {
-<<<<<<< HEAD
     console.log("click! add holiday button")
     console.log("today's date", new Date())
-=======
-    console.log("click! add holiday button");
->>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
 
     // var holidayMarker = gantt.addMarker({
     //   start_date: new Date(),
@@ -485,15 +470,6 @@ const Gantt = () => {
     //   text: "Holiday",
     //   title: dateToStr(new Date())
     // });
-<<<<<<< HEAD
-  }
-  
-  var todayMarker = gantt.addMarker({ 
-      start_date: new Date(), 
-      css: "today",
-      text: "Today", 
-      title: dateToStr(new Date())
-=======
   };
 
   var todayMarker = gantt.addMarker({
@@ -501,7 +477,6 @@ const Gantt = () => {
     css: "today",
     text: "Today",
     title: dateToStr(new Date()),
->>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
   });
 
   setInterval(function () {
@@ -807,13 +782,7 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
-<<<<<<< HEAD
         {/* <button id="addHoliday" onClick={setHolidayModalState(true)}>Button</button> */}
-=======
-        <button id="addHoliday" onClick={() => addHolidayMarker()}>
-          Button
-        </button>
->>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay
