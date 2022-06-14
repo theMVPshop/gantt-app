@@ -161,12 +161,13 @@ body,
   background-color: #079043;
 }
 
-.gantt_link_point, .gantt_task_progress_drag {
+.gantt_link_point,
+.gantt_task_progress_drag {
   display: none !important;
 }
 
 .gantt_marker_content {
-  opacity: .5 !important;
+  opacity: 0.5 !important;
   color: #fff !important;
   font-size: 12px !important;
 }
@@ -219,6 +220,29 @@ body,
   justify-content: flex-end;
 }
 
+.gantt_task_content {
+  /* background-color: #727597; */
+}
 #addHoliday {
   z-index: 100;
+}
+
+.first_course .gantt_task_content {
+  background-color: blue;
+}
+
+.second_course .gantt_task_content {
+  background-color: red;
+}
+
+.third_course .gantt_task_content {
+  background-color: purple;
+}
+
+.fourth_course .gantt_task_content {
+  background-color: red;
+}
+
+.fifth_course .gantt_task_content {
+  background-color: pink;
 }

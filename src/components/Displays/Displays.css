@@ -365,9 +365,15 @@ a{
   z-index: 101;
   position: absolute;
   top: 0;
-
   text-align: center;
   box-shadow: 5px 5px 15px;
+}
+
+#delete-title{
+  /* padding-top: 10px;÷ */
+  padding: 5px 20px 0;
+  
+  margin-bottom: 0;
 }
 
 .deleteQuestionText {

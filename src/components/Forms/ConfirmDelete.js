@@ -41,9 +41,9 @@ const ConfirmDelete = (props) => {
             });
           }}
         ></Exit>
-        <h1 className="minor-title">
+        <h1 className="minor-title" id="delete-title">
           Are you sure you want to delete{" "}
-          {props.modalState.confirmDeleteModal.title}?
+          <b>{props.modalState.confirmDeleteModal.title}</b>?
         </h1>
         <div className="deleteButtonsCont" id="deleteButtonsCont">
           <button

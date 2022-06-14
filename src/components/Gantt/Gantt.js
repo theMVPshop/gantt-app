@@ -7,8 +7,11 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
+<<<<<<< HEAD
 import OverviewDisplay from "../Displays/Overview.js";
 import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
+=======
+>>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -63,7 +66,13 @@ const Gantt = () => {
       parent: "cohort_0",
     },
   });
+<<<<<<< HEAD
   const [holidayModalState, setHolidayModalState] = useState(false);
+=======
+
+  const [tasksOrdered, setTasksOrdered] = useState({});
+
+>>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
@@ -139,7 +148,7 @@ const Gantt = () => {
     axios
       .get("https://gantt-server.herokuapp.com/tasks/")
       .then((res) => {
-          res.data.forEach((obj) => {
+        res.data.forEach((obj) => {
           obj.start_date = obj.start_date.slice(0, 10);
           obj.end_date = obj.end_date.slice(0, 10);
           obj.open = true;
@@ -150,8 +159,98 @@ const Gantt = () => {
   }, []);
 
   useEffect(() => {
+    checkTaskOrder();
     gantt.parse(data);
   }, [data]);
+
+  const checkTaskOrder = () => {
+    var copy = { ...data };
+
+    let copyTree = [];
+
+    for (let i = 0; i < copy.data.length; i++) {
+      let splitID = copy.data[i].id.split("");
+      if (splitID[2] === "h") {
+        let joined = splitID.join("");
+        let objectTree = {
+          cohort: joined,
+          children: [],
+        };
+        let children = [];
+        for (let y = i + 1; y < copy.data.length; y++) {
+          if (copy.data[y].parent === joined) {
+            let informationArr = {
+              courseID: copy.data[y].id,
+              start_date: copy.data[y].start_date,
+              end_date: copy.data[y].end_date,
+              title: copy.data[y].title,
+            };
+            children.push(informationArr);
+          }
+        }
+        if (children.length > 0) {
+          objectTree.children = children;
+          copyTree.push(objectTree);
+        }
+      }
+    }
+
+    if (copyTree.length > 0) {
+      for (let i = 0; i < copyTree.length; i++) {
+        //iterate through each cohort
+        for (let a = 0; a < copyTree[i].children.length; a++) {
+          //pointer A for checking courses date
+          for (let b = a + 1; b < copyTree[i].children.length; b++) {
+            //pointer B for checking courses date
+            let d1 = new Date(copyTree[i].children[a].start_date);
+            let d2 = new Date(copyTree[i].children[b].start_date);
+
+            if (d1 > d2) {
+              copyTree[i].children.splice(a, 0, copyTree[i].children[b]);
+              copyTree[i].children.splice(b + 1, 1);
+            }
+          }
+        }
+      }
+    }
+    setTasksOrdered(copyTree);
+    // assignBarClasses(copyTree);
+  };
+
+  useEffect(() => {
+    assignBarClasses(tasksOrdered);
+  }, [tasksOrdered]);
+
+  const assignBarClasses = (orderedTasks) => {
+    gantt.templates.task_class = function (start, end, task) {
+      for (let i = 0; i < orderedTasks.length; i++) {
+        if (task.parent === orderedTasks[i].cohort) {
+          for (let y = 0; y < orderedTasks[i].children.length; y++) {
+            if (task.id === orderedTasks[i].children[y].courseID) {
+              console.log(y);
+              console.log(task.title);
+              switch (y) {
+                case 0:
+                  console.log("yes");
+                  return "first_course";
+                case 1:
+                  return "second_course";
+                case 2:
+                  return "third_course";
+                case 3:
+                  return "fourth_course";
+                case 4:
+                  return "fifth_course";
+                case 5:
+                  return "sixth_course";
+              }
+            }
+          }
+        }
+      }
+      // return "nested_bar";
+    };
+  };
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -366,22 +465,27 @@ const Gantt = () => {
   // task drag update END
 
   // vertical line marker START
-  gantt.plugins({ 
-    marker: true 
-  }); 
+  gantt.plugins({
+    marker: true,
+  });
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
 
   const addHolidayMarker = () => {
+<<<<<<< HEAD
     console.log("click! add holiday button")
     console.log("today's date", new Date())
+=======
+    console.log("click! add holiday button");
+>>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
 
-    // var holidayMarker = gantt.addMarker({ 
-    //   start_date: new Date(), 
+    // var holidayMarker = gantt.addMarker({
+    //   start_date: new Date(),
     //   css: "holiday",
-    //   text: "Holiday", 
+    //   text: "Holiday",
     //   title: dateToStr(new Date())
     // });
+<<<<<<< HEAD
   }
   
   var todayMarker = gantt.addMarker({ 
@@ -389,14 +493,23 @@ const Gantt = () => {
       css: "today",
       text: "Today", 
       title: dateToStr(new Date())
+=======
+  };
+
+  var todayMarker = gantt.addMarker({
+    start_date: new Date(),
+    css: "today",
+    text: "Today",
+    title: dateToStr(new Date()),
+>>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
   });
-  
-  setInterval(function(){
-      var today = gantt.getMarker(todayMarker);
-      today.start_date = new Date();
-      today.title = dateToStr(today.start_date);
-      gantt.updateMarker(todayMarker);
-  }, 1000*60);
+
+  setInterval(function () {
+    var today = gantt.getMarker(todayMarker);
+    today.start_date = new Date();
+    today.title = dateToStr(today.start_date);
+    gantt.updateMarker(todayMarker);
+  }, 1000 * 60);
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -410,12 +523,6 @@ const Gantt = () => {
     gantt.templates.grid_row_class = function (start, end, task) {
       if (task.$level > 0) {
         return "nested_task";
-      }
-    };
-
-    gantt.templates.task_class = function (start, end, task) {
-      if (task.$level > 0) {
-        return "nested_bar";
       }
     };
 
@@ -687,7 +794,7 @@ const Gantt = () => {
           addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm> */}
       </div>
-      
+
       <div
         ref={containerRef}
         style={{ width: "100%", height: "100%" }}
@@ -700,7 +807,13 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
+<<<<<<< HEAD
         {/* <button id="addHoliday" onClick={setHolidayModalState(true)}>Button</button> */}
+=======
+        <button id="addHoliday" onClick={() => addHolidayMarker()}>
+          Button
+        </button>
+>>>>>>> 9d151903424ce7771cbfe944b15d1e68d19c3d4c
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay
