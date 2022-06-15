@@ -8,7 +8,7 @@ import "./Displays.css";
 const CohortDisplay = (props) => {
 
   useEffect(() => {
-    console.log(props.modalState.currentTask);
+    
   }, [props.modalState.currentTask]);
 
   return (
