@@ -33,9 +33,7 @@ const HolidayMarkerForm = (props) => {
       start_date: "yyyy-mm-dd",
       end_date: "yyyy-mm-dd",
     });
-    props.handleModalDisplayState("holidayMarkerForm", {
-      display: false
-    });
+    props.setHolidayModalState(false);
   };
 
   const pushFormData = () => {
@@ -100,7 +98,7 @@ const HolidayMarkerForm = (props) => {
   return (
     <div
       style={
-        props.modalState.holidayMarkerForm.display
+        props.holidayModalState
           ? { display: "flex" }
           : { display: "none" }
       }

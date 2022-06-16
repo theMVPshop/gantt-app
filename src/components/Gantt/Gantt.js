@@ -7,6 +7,8 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
+import OverviewDisplay from "../Displays/Overview.js";
+import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -62,6 +64,9 @@ const Gantt = () => {
     },
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
+
+  const [tasksOrdered, setTasksOrdered] = useState({});
+
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
@@ -459,6 +464,22 @@ const Gantt = () => {
   });
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+  
+  var todayMarker = gantt.addMarker({ 
+      start_date: new Date(), 
+      css: "today",
+      text: "Today", 
+      title: dateToStr(new Date())
+  });
+
+  setInterval(function () {
+    var today = gantt.getMarker(todayMarker);
+    today.start_date = new Date();
+    today.title = dateToStr(today.start_date);
+    gantt.updateMarker(todayMarker);
+  }, 1000 * 60);
+
+  const showHolidayModal = () => setHolidayModalState(true);
 
   const addHolidayMarker = () => {
     console.log("click! add holiday button")
@@ -470,21 +491,7 @@ const Gantt = () => {
     //   text: "Holiday",
     //   title: dateToStr(new Date())
     // });
-  };
-
-  var todayMarker = gantt.addMarker({
-    start_date: new Date(),
-    css: "today",
-    text: "Today",
-    title: dateToStr(new Date()),
-  });
-
-  setInterval(function () {
-    var today = gantt.getMarker(todayMarker);
-    today.start_date = new Date();
-    today.title = dateToStr(today.start_date);
-    gantt.updateMarker(todayMarker);
-  }, 1000 * 60);
+  }
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -638,10 +645,12 @@ const Gantt = () => {
 
     gantt.init(containerRef.current);
 
-    gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
-      var new_position = gantt.posFromDate(left_date);
-      gantt.scrollTo(new_position, null);
-    });
+    // gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
+    //   var new_position = gantt.posFromDate(left_date);
+
+      
+    //   gantt.scrollTo(new_position, null);
+    // });
 
     // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
@@ -668,12 +677,12 @@ const Gantt = () => {
 
   var left_date;
   function zoom_in() {
-    var position = gantt.getScrollState().x;
+    //this code is good
+    var position = gantt.getScrollState().x; 
     left_date = gantt.dateFromPos(position);
-    console.log(position);
-    console.log(left_date);
     gantt.ext.zoom.zoomIn();
   }
+  
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
@@ -762,12 +771,12 @@ const Gantt = () => {
           setData={setData}
           customEditTask={customEditTask}
         ></CourseEdit>
-        {/* <HolidayMarkerForm
+        <HolidayMarkerForm
           data={data}
           holidayModalState={holidayModalState}
           setHolidayModalState={setHolidayModalState}
           addHolidayMarker={addHolidayMarker}
-        ></HolidayMarkerForm> */}
+        ></HolidayMarkerForm>
       </div>
 
       <div
@@ -782,7 +791,7 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
-        {/* <button id="addHoliday" onClick={setHolidayModalState(true)}>Button</button> */}
+        <button id="addHoliday" onClick={showHolidayModal}>Button</button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay
