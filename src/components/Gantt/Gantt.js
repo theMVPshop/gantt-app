@@ -397,7 +397,7 @@ const Gantt = () => {
 
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
-  // task drag update START
+  // update task date by dragging end of task bar START
   gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
     let newStart = new Date(task.start_date);
     let newEnd = new Date(task.end_date);
@@ -456,7 +456,7 @@ const Gantt = () => {
         .catch((err) => console.log("there was an error", err));
     }
   });
-  // task drag update END
+  // update task date by dragging end of task bar END
 
   // vertical line marker START
   gantt.plugins({
@@ -481,17 +481,16 @@ const Gantt = () => {
 
   const showHolidayModal = () => setHolidayModalState(true);
 
-  const addHolidayMarker = () => {
-    console.log("click! add holiday button")
-    console.log("today's date", new Date())
+  // const addHolidayMarker = () => {
+  //   console.log("click! add holiday button")
 
-    // var holidayMarker = gantt.addMarker({
-    //   start_date: new Date(),
-    //   css: "holiday",
-    //   text: "Holiday",
-    //   title: dateToStr(new Date())
-    // });
-  }
+  //   // var holidayMarker = gantt.addMarker({
+  //   //   start_date: new Date(),
+  //   //   css: "holiday",
+  //   //   text: "Holiday",
+  //   //   title: dateToStr(new Date())
+  //   // });
+  // }
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -770,10 +769,10 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CourseEdit>
         <HolidayMarkerForm
-          data={data}
+          // data={data}
           holidayModalState={holidayModalState}
           setHolidayModalState={setHolidayModalState}
-          addHolidayMarker={addHolidayMarker}
+          // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
       </div>
 
