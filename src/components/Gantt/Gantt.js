@@ -218,11 +218,8 @@ const Gantt = () => {
         if (task.parent === orderedTasks[i].cohort) {
           for (let y = 0; y < orderedTasks[i].children.length; y++) {
             if (task.id === orderedTasks[i].children[y].courseID) {
-              console.log(y);
-              console.log(task.title);
               switch (y) {
                 case 0:
-                  console.log("yes");
                   return "first_course";
                 case 1:
                   return "second_course";
@@ -568,6 +565,15 @@ const Gantt = () => {
     var zoomConfig = {
       levels: [
         {
+          name: "hour",
+          scale_height: 27,
+          min_column_width: 15,
+          scales: [
+            { unit: "day", format: "%d" },
+            { unit: "hour", format: "%H" },
+          ],
+        },
+        {
           name: "day",
           scale_height: 27,
           min_column_width: 80,
@@ -584,7 +590,15 @@ const Gantt = () => {
               format: function (date) {
                 var dateToStr = gantt.date.date_to_str("%d %M");
                 var endDate = gantt.date.add(date, -6, "day");
-                return dateToStr(date) + " - " + dateToStr(endDate);
+                var weekNum = gantt.date.date_to_str("%W")(date);
+                return (
+                  "#" +
+                  weekNum +
+                  ", " +
+                  dateToStr(date) +
+                  " - " +
+                  dateToStr(endDate)
+                );
               },
             },
             { unit: "day", step: 1, format: "%j %D" },
@@ -628,21 +642,16 @@ const Gantt = () => {
         },
       ],
       useKey: "ctrlKey",
-      // trigger: "wheel",
-      // element: function () {
-      //   return gantt.$root.querySelector(".gantt_data_area");
-      // },
+      trigger: "wheel",
+      element: function () {
+        return gantt.$root.querySelector(".gantt_task");
+      },
     };
 
     gantt.ext.zoom.init(zoomConfig);
     gantt.ext.zoom.setLevel("week");
 
     gantt.init(containerRef.current);
-
-    gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
-      var new_position = gantt.posFromDate(left_date);
-      gantt.scrollTo(new_position, null);
-    });
 
     // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
