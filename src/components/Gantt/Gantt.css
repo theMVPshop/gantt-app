@@ -167,7 +167,6 @@ body,
 }
 
 .gantt_marker_content {
-  opacity: 0.5 !important;
   color: #fff !important;
   font-size: 12px !important;
 }
