@@ -644,10 +644,12 @@ const Gantt = () => {
 
     gantt.init(containerRef.current);
 
-    gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
-      var new_position = gantt.posFromDate(left_date);
-      gantt.scrollTo(new_position, null);
-    });
+    // gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
+    //   var new_position = gantt.posFromDate(left_date);
+
+      
+    //   gantt.scrollTo(new_position, null);
+    // });
 
     // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
@@ -674,12 +676,12 @@ const Gantt = () => {
 
   var left_date;
   function zoom_in() {
-    var position = gantt.getScrollState().x;
+    //this code is good
+    var position = gantt.getScrollState().x; 
     left_date = gantt.dateFromPos(position);
-    console.log(position);
-    console.log(left_date);
     gantt.ext.zoom.zoomIn();
   }
+  
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
