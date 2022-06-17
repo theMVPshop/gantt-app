@@ -1,5 +1,5 @@
 import { gantt } from "dhtmlx-gantt";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import { useForm } from "react-hook-form";
 
@@ -11,12 +11,44 @@ const HolidayMarkerForm = (props) => {
   //something about this is keeping it from refreshing
   const { handleSubmit } = useForm();
 
+  const pullHolidays = () => {
+    axios
+      .get(url)
+      .then((res) => {
+        res.data.forEach((obj) => {
+
+          if (obj.end_date === null) {
+            gantt.addMarker({
+              start_date: new Date(obj.start_date),
+              css: "holiday",
+              text: obj.text,
+              title: obj.start_date.slice(0, 10)
+            });
+          } else if (obj.end_date != null) {
+            gantt.addMarker({
+              start_date: new Date(obj.start_date),
+              end_date: new Date(obj.end_date),
+              css: "holiday",
+              text: obj.text,
+              title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`
+            });
+
+          }
+        });
+      })
+      .catch((err) => console.log("error", err));
+  };
+
+  pullHolidays();
+
+  // useEffect(() => {
+  //   pullHolidays();
+  // })
+
   const requiredFields = {
     holidayName: "Holiday Name is required",
     startDate: "Start Date is required"
   };
-
-  const [holidays, setHolidays] = useState([])
 
   const [formData, setFormData] = useState({
     text: "",
@@ -25,8 +57,6 @@ const HolidayMarkerForm = (props) => {
     name_error: false,
     start_date_error: false
   });
-  
-  console.log("Form Data:", formData);
 
   const resetForm = () => {
     setFormData({
@@ -49,36 +79,7 @@ const HolidayMarkerForm = (props) => {
     });
   }
 
-  // const pullHolidays = () => {
-  //   axios
-  //     .get("https://gantt-server.herokuapp.com/tasks/")
-  //     .then((res) => {
-  //       res.data.forEach((obj) => {
-  //         obj.start_date = obj.start_date.slice(0, 10);
-  //         obj.end_date = obj.end_date.slice(0, 10);
-  //         obj.open = true;
-  //       });
-  //       setData({ data: res.data, links: [] });
-  //     })
-  //     .catch((err) => console.log("error", err));
-  // };
-
-  const pullHolidays = () => {
-    axios
-      .get(url)
-      .then((res) => {
-        res.data.forEach((obj) => {
-          obj.start_date = obj.start_date.slice(0, 10);
-          obj.end_date = obj.end_date.slice(0, 10);
-          obj.open = true;
-        });
-        setHolidays(res.data);
-      })
-      .catch((err) => console.log("error", err));
-  };
-
   const pushFormData = () => {
-    pullHolidays();
 
     if (formData.name === "") {
       setFormData((prevState) => {
@@ -114,13 +115,6 @@ const HolidayMarkerForm = (props) => {
         end_date: formData.end_date
       }
     }
-
-    // addHolidayMarker();
-    // resetForm();
-
-    console.log("****", formData)
-
-
 
     axios
       .post(url, payload)

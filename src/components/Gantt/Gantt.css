@@ -171,6 +171,10 @@ body,
   font-size: 12px !important;
 }
 
+.holiday .gantt_marker_content, .gantt_marker.holiday {
+  background-color: rgb(2, 76, 141) !important;
+}
+
 #zoomIn {
   position: relative;
   z-index: 100;
