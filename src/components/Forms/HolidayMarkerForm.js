@@ -11,39 +11,32 @@ const HolidayMarkerForm = (props) => {
   //something about this is keeping it from refreshing
   const { handleSubmit } = useForm();
 
-  const pullHolidays = () => {
+  useEffect(() => {
     axios
-      .get(url)
-      .then((res) => {
-        res.data.forEach((obj) => {
+    .get(url)
+    .then((res) => {
+      res.data.forEach((obj) => {
 
-          if (obj.end_date === null) {
-            gantt.addMarker({
-              start_date: new Date(obj.start_date),
-              css: "holiday",
-              text: obj.text,
-              title: obj.start_date.slice(0, 10)
-            });
-          } else if (obj.end_date != null) {
-            gantt.addMarker({
-              start_date: new Date(obj.start_date),
-              end_date: new Date(obj.end_date),
-              css: "holiday",
-              text: obj.text,
-              title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`
-            });
-
-          }
-        });
-      })
-      .catch((err) => console.log("error", err));
-  };
-
-  pullHolidays();
-
-  // useEffect(() => {
-  //   pullHolidays();
-  // })
+        if (obj.end_date === null) {
+          gantt.addMarker({
+            start_date: new Date(obj.start_date),
+            css: "holiday",
+            text: obj.text,
+            title: obj.start_date.slice(0, 10)
+          });
+        } else if (obj.end_date != null) {
+          gantt.addMarker({
+            start_date: new Date(obj.start_date),
+            end_date: new Date(obj.end_date),
+            css: "holiday",
+            text: obj.text,
+            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`
+          });
+        }
+      });
+    })
+    .catch((err) => console.log("error", err));
+  })
 
   const requiredFields = {
     holidayName: "Holiday Name is required",
