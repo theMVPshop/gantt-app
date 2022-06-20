@@ -167,9 +167,12 @@ body,
 }
 
 .gantt_marker_content {
-  opacity: 0.5 !important;
   color: #fff !important;
   font-size: 12px !important;
+}
+
+.holiday .gantt_marker_content, .gantt_marker.holiday {
+  background-color: rgb(2, 76, 141) !important;
 }
 
 #zoomIn {
@@ -220,9 +223,10 @@ body,
   justify-content: flex-end;
 }
 
-.gantt_task_content {
+/* .gantt_task_content { */
   /* background-color: #727597; */
-}
+/* } */
+
 #addHoliday {
   z-index: 100;
 }
