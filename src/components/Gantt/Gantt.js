@@ -12,8 +12,18 @@ import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
+import Loader from "../Loader/Loader.js"
 
 const Gantt = () => {
+
+  const [loading, setLoading] = useState( false );
+
+  const fetchData= () => {
+    console.log('here i am')
+    setLoading(true)
+  };
+
+
   const containerRef = useRef(null);
 
   const [modalState, setModalState] = useState({
@@ -231,11 +241,8 @@ const Gantt = () => {
         if (task.parent === orderedTasks[i].cohort) {
           for (let y = 0; y < orderedTasks[i].children.length; y++) {
             if (task.id === orderedTasks[i].children[y].courseID) {
-              console.log(y);
-              console.log(task.title);
               switch (y) {
                 case 0:
-                  console.log("yes");
                   return "first_course";
                 case 1:
                   return "second_course";
@@ -481,12 +488,12 @@ const Gantt = () => {
   });
 
   var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
-  
-  var todayMarker = gantt.addMarker({ 
-      start_date: new Date(), 
-      css: "today",
-      text: "Today", 
-      title: dateToStr(new Date())
+
+  var todayMarker = gantt.addMarker({
+    start_date: new Date(),
+    css: "today",
+    text: "Today",
+    title: dateToStr(new Date()),
   });
 
   setInterval(function () {
@@ -590,6 +597,15 @@ const Gantt = () => {
     var zoomConfig = {
       levels: [
         {
+          name: "hour",
+          scale_height: 27,
+          min_column_width: 15,
+          scales: [
+            { unit: "day", format: "%d" },
+            { unit: "hour", format: "%H" },
+          ],
+        },
+        {
           name: "day",
           scale_height: 27,
           min_column_width: 80,
@@ -606,7 +622,15 @@ const Gantt = () => {
               format: function (date) {
                 var dateToStr = gantt.date.date_to_str("%d %M");
                 var endDate = gantt.date.add(date, -6, "day");
-                return dateToStr(date) + " - " + dateToStr(endDate);
+                var weekNum = gantt.date.date_to_str("%W")(date);
+                return (
+                  "#" +
+                  weekNum +
+                  ", " +
+                  dateToStr(date) +
+                  " - " +
+                  dateToStr(endDate)
+                );
               },
             },
             { unit: "day", step: 1, format: "%j %D" },
@@ -650,10 +674,10 @@ const Gantt = () => {
         },
       ],
       useKey: "ctrlKey",
-      // trigger: "wheel",
-      // element: function () {
-      //   return gantt.$root.querySelector(".gantt_data_area");
-      // },
+      trigger: "wheel",
+      element: function () {
+        return gantt.$root.querySelector(".gantt_task");
+      },
     };
 
     gantt.ext.zoom.init(zoomConfig);
@@ -661,14 +685,6 @@ const Gantt = () => {
 
     gantt.init(containerRef.current);
 
-    // gantt.ext.zoom.attachEvent("onAfterZoom", function (level, config) {
-    //   var new_position = gantt.posFromDate(left_date);
-
-      
-    //   gantt.scrollTo(new_position, null);
-    // });
-
-    // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
     let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
 
@@ -694,11 +710,11 @@ const Gantt = () => {
   var left_date;
   function zoom_in() {
     //this code is good
-    var position = gantt.getScrollState().x; 
+    var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
     gantt.ext.zoom.zoomIn();
   }
-  
+
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
@@ -706,6 +722,8 @@ const Gantt = () => {
     console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
+
+
 
   return (
     <div>
@@ -781,6 +799,9 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CohortEdit>
         <CourseEdit
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           data={data}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -793,6 +814,10 @@ const Gantt = () => {
           setHolidayModalState={setHolidayModalState}
           // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
+        <Loader
+        fetchData={fetchData}
+        loading={loading}
+        ></Loader>
       </div>
 
       <div
@@ -807,14 +832,18 @@ const Gantt = () => {
         <button id="zoomOut" onClick={zoom_out}>
           Zoom Out
         </button>
-        <button id="addHoliday" onClick={showHolidayModal}>Button</button>
+        <button id="addHoliday" onClick={showHolidayModal}>
+          Button
+        </button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay
         data={data}
       >
       </OverviewDisplay> */}
+      
     </div>
+
   );
 };
 
