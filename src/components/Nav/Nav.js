@@ -4,6 +4,8 @@ import logo from "../../images/logo.png";
 import { checkAuth, logoutUser } from "../../Router";
 import "./Nav.css";
 
+import Loader from "../Loader/Loader.js"
+
 const Nav = () => {
   return (
     <nav className="nav-bar">
@@ -18,7 +20,7 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      
+              
       <button className="nav-link" onClick={() => logoutUser()}>
         <Link to="/" className="link">
           Logout

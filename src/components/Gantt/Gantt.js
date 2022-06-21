@@ -12,8 +12,18 @@ import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
+import Loader from "../Loader/Loader.js"
 
 const Gantt = () => {
+
+  const [loading, setLoading] = useState( false );
+
+  const fetchData= () => {
+    console.log('here i am')
+    setLoading(true)
+  };
+
+
   const containerRef = useRef(null);
 
   const [modalState, setModalState] = useState({
@@ -689,6 +699,8 @@ const Gantt = () => {
     gantt.ext.zoom.zoomOut();
   }
 
+
+
   return (
     <div>
       <div
@@ -763,6 +775,9 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CohortEdit>
         <CourseEdit
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           data={data}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -775,6 +790,10 @@ const Gantt = () => {
           setHolidayModalState={setHolidayModalState}
           addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
+        <Loader
+        fetchData={fetchData}
+        loading={loading}
+        ></Loader>
       </div>
 
       <div
@@ -796,7 +815,9 @@ const Gantt = () => {
         data={data}
       >
       </OverviewDisplay> */}
+      
     </div>
+
   );
 };
 

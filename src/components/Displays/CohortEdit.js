@@ -2,7 +2,10 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
+import Loader from "../Loader/Loader"
+
 const url = "https://gantt-server.herokuapp.com/tasks/";
+
 
 const CohortEdit = (props) => {
   const requiredFields = {
@@ -61,6 +64,7 @@ const CohortEdit = (props) => {
   };
 
   const validateInput = (e) => {
+    // (props.fetchData) ********************************************************** SPINNING LOADER PROGRESS *********************************
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -208,8 +212,9 @@ const CohortEdit = (props) => {
         <small className="text-danger edit-danger">
           {errorData.end_date_error && requiredFields.graduationDate}
         </small>
+      
         <button className="submit" onClick={validateInput}>
-          Confirm Changes
+           Confirm Changes
         </button>
       </form>
     </div>

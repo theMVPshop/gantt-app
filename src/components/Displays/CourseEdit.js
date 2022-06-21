@@ -438,6 +438,7 @@ const CourseEdit = (props) => {
         <button className="submit" onClick={validateInput}>
           Confirm Changes
         </button>
+        <button onClick={props.fetchData}> click me</button>
       </form>
     </div>
   );
