@@ -1,47 +1,83 @@
 import { gantt } from "dhtmlx-gantt";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import { useForm } from "react-hook-form";
 
 import axios from "axios";
 
-const url = "https://gantt-server.herokuapp.com/tasks/";
+const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayMarkerForm = (props) => {
   //something about this is keeping it from refreshing
   const { handleSubmit } = useForm();
 
+  useEffect(() => {
+    axios
+    .get(url)
+    .then((res) => {
+      res.data.forEach((obj) => {
+
+        if (obj.end_date === null) {
+          gantt.addMarker({
+            start_date: new Date(obj.start_date),
+            css: "holiday",
+            text: obj.text,
+            title: obj.start_date.slice(0, 10)
+          });
+        } else if (obj.end_date != null) {
+          gantt.addMarker({
+            start_date: new Date(obj.start_date),
+            end_date: new Date(obj.end_date),
+            css: "holiday",
+            text: obj.text,
+            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`
+          });
+        }
+      });
+    })
+    .catch((err) => console.log("error", err));
+  })
+
   const requiredFields = {
-    cohortName: "Cohort Name is required (this can be changed later)",
-    startDate: "Start Date is required (this can be changed later)",
-    graduationDate: "Graduation Date is required (this can be changed later)",
+    holidayName: "Holiday Name is required",
+    startDate: "Start Date is required"
   };
 
   const [formData, setFormData] = useState({
-    id: "cohort_0",
-    title: "",
+    text: "",
     start_date: "",
     end_date: "",
-    title_error: false,
-    start_date_error: false,
-    end_date_error: false,
+    name_error: false,
+    start_date_error: false
   });
 
   const resetForm = () => {
     setFormData({
-      title: "",
+      text: "",
       start_date: "yyyy-mm-dd",
       end_date: "yyyy-mm-dd",
     });
     props.setHolidayModalState(false);
   };
 
+  const addHolidayMarker = () => {
+    console.log("click! add holiday button")
+
+    gantt.addMarker({
+      start_date: new Date(formData.start_date),
+      end_date: new Date(formData.end_date),
+      css: "holiday",
+      text: formData.text,
+      title: formData.start_date
+    });
+  }
+
   const pushFormData = () => {
-    props.pullData();
-    if (formData.title === "") {
+
+    if (formData.name === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
-        prev.title_error = true;
+        prev.name_error = true;
         return prev;
       });
       return;
@@ -56,43 +92,32 @@ const HolidayMarkerForm = (props) => {
       return;
     }
 
-    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
-      console.log("no end date");
-      setFormData((prevState) => {
-        let prev = { ...prevState };
-        prev.end_date_error = true;
-        return prev;
-      });
-      return;
+    let payload;
+
+    if (formData.end_date === "yyyy-mm-dd" || formData.end_date === "") {
+      payload = {
+        text: formData.text,
+        start_date: formData.start_date
+      }
     }
 
-    var idArray = [];
-    for (let i = 0; i < props.data.data.length; i++) {
-      if (props.data.data[0].id) {
-        let cohortIDArray = props.data.data[i].id.split("_");
-        if (cohortIDArray[0] === "cohort") {
-          idArray.push(cohortIDArray[1]);
-        }
-      } else idArray.push("1");
-    }
-    if (idArray.length > 0) {
-      //protects against 'course_infinity" id being created
-      const newID = Math.max(...idArray) + 1;
-      formData.id = `cohort_${newID}`;
-    } else {
-      formData.id = "cohort_1";
+    else {
+      payload = {
+        text: formData.text,
+        start_date: formData.start_date,
+        end_date: formData.end_date
+      }
     }
 
     axios
-      .post(url, formData)
+      .post(url, payload)
       .then((res) => {
         if (res.status === 200) {
-          props.customAddTask(formData);
+          addHolidayMarker();
           resetForm();
         }
       })
       .catch((err) => console.log("there was an error", err));
-    gantt.open(props.modalState.holidayMarkerForm.id); //forces open the parent task
   };
 
   return (
@@ -111,28 +136,27 @@ const HolidayMarkerForm = (props) => {
               resetForm();
             }}
           ></Exit>
-          <h1 className="minor-title">Add Cohort</h1>
+          <h1 className="minor-title">Add Holiday</h1>
         </div>
         <div className="minor-info">
-          <label className="label">Cohort Name*</label>
+          <label className="label">Holiday Name*</label>
           <input
             type="title"
             placeholder="Name"
-            value={formData.title}
+            value={formData.text}
             onChange={(e) => {
               setFormData((prevState) => {
                 let prev = { ...prevState };
-                prev.title = e.target.value;
+                prev.text = e.target.value;
                 return prev;
               });
             }}
-            name="title"
+            name="name"
             className="input"
           />
         </div>
         <small className="text-danger">
-          {/* if titleErrors state is true display here */}
-          {formData.title_error && requiredFields.cohortName}
+          {formData.text_error && requiredFields.holidayName}
         </small>
 
         <div className="minor-info">
@@ -149,7 +173,6 @@ const HolidayMarkerForm = (props) => {
             }}
             name="start_date"
             className="input"
-            // {...register("startDate", requiredFields.startDate)}
           />
         </div>
         <small className="text-danger">
@@ -157,7 +180,7 @@ const HolidayMarkerForm = (props) => {
         </small>
 
         <div className="minor-info">
-          <label className="label">Graduation Date*</label>
+          <label className="label">End Date</label>
           <input
             type="date"
             value={formData.end_date}
@@ -170,12 +193,8 @@ const HolidayMarkerForm = (props) => {
             }}
             name="end_date"
             className="input"
-            // {...register("graduationDate", requiredFields.graduationDate)}
           />
         </div>
-        <small className="text-danger">
-          {formData.end_date_error && requiredFields.graduationDate}
-        </small>
         <h6 className="required">
           <em>*required</em>
         </h6>
