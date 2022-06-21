@@ -64,11 +64,12 @@ const Gantt = () => {
     },
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
-
   const [tasksOrdered, setTasksOrdered] = useState({});
-
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
+
+  // disables pop up error for invalid day index
+  gantt.config.show_errors = false;
 
   //function for updating display state provided to components
   const handleModalDisplayState = (value, obj) => {
@@ -217,6 +218,15 @@ const Gantt = () => {
 
   const assignBarClasses = (orderedTasks) => {
     gantt.templates.task_class = function (start, end, task) {
+    // console.log("Ordered tasks:", orderedTasks)
+
+      if (orderedTasks[0]) {
+        if (orderedTasks[0].cohort === task.id) {
+          console.log("It's a match")
+          return "first_cohort";
+        }
+      }
+
       for (let i = 0; i < orderedTasks.length; i++) {
         if (task.parent === orderedTasks[i].cohort) {
           for (let y = 0; y < orderedTasks[i].children.length; y++) {
@@ -244,6 +254,13 @@ const Gantt = () => {
       }
       // return "nested_bar";
     };
+
+    // gantt.templates.task_class = function(start, end, task) {
+    //   if (orderedTasks[0].cohort === task.id) {
+    //     return "first_cohort";
+    //   }
+    // }
+
   };
 
   gantt.attachEvent(
