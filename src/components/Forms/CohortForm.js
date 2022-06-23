@@ -96,14 +96,15 @@ const CohortForm = (props) => {
       .then((res) => {
         if (res.status === 200) {
           props.customAddTask(formData);
-          // //is resetForm redundant, because when gantt.serialize happens, the page refreshes, anyway, reseting state?
           resetForm();
+          props.setLoading(false)
   
         }
       })
       .catch((err) => console.log("there was an error", err));
         gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-        props.setLoading("false")// if there's an error response, shut off the spinner
+        props.setLoading(false)// if there's an error response, shut off the spinner
+        
   };
 
   return (
