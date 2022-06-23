@@ -12,17 +12,15 @@ import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
-import Loader from "../Loader/Loader.js"
+import Loader from "../Loader/Loader.js";
 
 const Gantt = () => {
+  const [loading, setLoading] = useState(false);
 
-  const [loading, setLoading] = useState( false );
-
-  const fetchData= () => {
-    console.log('here i am')
-    setLoading(true)
+  const fetchData = () => {
+    console.log("here i am");
+    setLoading(true);
   };
-
 
   const containerRef = useRef(null);
 
@@ -51,6 +49,9 @@ const Gantt = () => {
       display: false,
       id: "cohort_0",
       title: "",
+    },
+    deleteHolidayModal: {
+      display: false,
     },
 
     currentTask: {
@@ -228,11 +229,11 @@ const Gantt = () => {
 
   const assignBarClasses = (orderedTasks) => {
     gantt.templates.task_class = function (start, end, task) {
-    // console.log("Ordered tasks:", orderedTasks)
+      // console.log("Ordered tasks:", orderedTasks)
 
       if (orderedTasks[0]) {
         if (orderedTasks[0].cohort === task.id) {
-          console.log("It's a match")
+          console.log("It's a match");
           return "first_cohort";
         }
       }
@@ -267,8 +268,24 @@ const Gantt = () => {
     //     return "first_cohort";
     //   }
     // }
-
   };
+
+  const handleClick = (e) => {
+    let classes = e.target.classList;
+    if (classes.length > 0) {
+      for (let i = 0; i < classes.length; i++) {
+        if (classes[i] === "holiday") {
+          setModalState((prevState) => {
+            let prev = { ...prevState };
+            prev.deleteHolidayModal.display = true;
+            return prev;
+          });
+        }
+      }
+    }
+  };
+
+  window.addEventListener("click", handleClick);
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -723,8 +740,6 @@ const Gantt = () => {
     gantt.ext.zoom.zoomOut();
   }
 
-
-
   return (
     <div>
       <div
@@ -814,10 +829,7 @@ const Gantt = () => {
           setHolidayModalState={setHolidayModalState}
           // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
-        <Loader
-        fetchData={fetchData}
-        loading={loading}
-        ></Loader>
+        <Loader fetchData={fetchData} loading={loading}></Loader>
       </div>
 
       <div
@@ -841,9 +853,7 @@ const Gantt = () => {
         data={data}
       >
       </OverviewDisplay> */}
-      
     </div>
-
   );
 };
 
