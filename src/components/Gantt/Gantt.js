@@ -13,17 +13,15 @@ import HolidayDelete from "../Forms/HolidayDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
-import Loader from "../Loader/Loader.js"
+import Loader from "../Loader/Loader.js";
 
 const Gantt = () => {
+  const [loading, setLoading] = useState(false);
 
-  const [loading, setLoading] = useState( false );
-
-  const fetchData= () => {
-    console.log('here i am')
-    setLoading(true)
+  const fetchData = () => {
+    console.log("here i am");
+    setLoading(true);
   };
-
 
   const containerRef = useRef(null);
 
@@ -53,6 +51,10 @@ const Gantt = () => {
       id: "cohort_0",
       title: "",
     },
+    deleteHolidayModal: {
+      display: false,
+      id: 0
+    },
 
     currentTask: {
       title: "",
@@ -75,7 +77,6 @@ const Gantt = () => {
     },
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
-  const [holidayDeleteModalState, setHolidayDeleteModalState] = useState(false);
   const [tasksOrdered, setTasksOrdered] = useState({});
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
@@ -230,6 +231,7 @@ const Gantt = () => {
 
   const assignBarClasses = (orderedTasks) => {
     gantt.templates.task_class = function (start, end, task) {
+      // console.log("Ordered tasks:", orderedTasks)
 
       if (orderedTasks[0]) {
         if (orderedTasks[0].cohort === task.id) {
@@ -262,7 +264,30 @@ const Gantt = () => {
       // return "nested_bar";
     };
 
+    // gantt.templates.task_class = function(start, end, task) {
+    //   if (orderedTasks[0].cohort === task.id) {
+    //     return "first_cohort";
+    //   }
+    // }
   };
+
+  const handleClick = (e) => {
+    let classes = e.target.classList;
+    if (classes.length > 0) {
+      for (let i = 0; i < classes.length; i++) {
+        if (classes[i] === "holiday" || classes[i] === "gantt_marker_content") {
+          setModalState((prevState) => {
+            let prev = { ...prevState };
+            prev.deleteHolidayModal.display = true;
+            prev.deleteHolidayModal.id = e.target.getAttribute("data-marker-id");
+            return prev;
+          });
+        }
+      }
+    }
+  };
+
+  window.addEventListener("click", handleClick);
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -498,7 +523,6 @@ const Gantt = () => {
   }, 1000 * 60);
 
   const showHolidayModal = () => setHolidayModalState(true);
-  const showHolidayDeleteModal = () => setHolidayDeleteModalState(true);
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -707,8 +731,6 @@ const Gantt = () => {
     gantt.ext.zoom.zoomOut();
   }
 
-
-
   return (
     <div>
       <div
@@ -723,7 +745,7 @@ const Gantt = () => {
           modalState.courseEditForm.display ||
           modalState.confirmDeleteModal.display ||
           holidayModalState ||
-          holidayDeleteModalState
+          modalState.deleteHolidayModal.display
             ? {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
@@ -798,12 +820,12 @@ const Gantt = () => {
           setHolidayModalState={setHolidayModalState}
         ></HolidayMarkerForm>
         <HolidayDelete
-          holidayDeleteModalState={holidayDeleteModalState}
-          setHolidayDeleteModalState={setHolidayDeleteModalState}
+          modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
         ></HolidayDelete>
         <Loader
-        fetchData={fetchData}
-        loading={loading}
+          fetchData={fetchData}
+          loading={loading}
         ></Loader>
       </div>
 
@@ -822,18 +844,13 @@ const Gantt = () => {
         <button id="addHoliday" onClick={showHolidayModal}>
           Add Holiday
         </button>
-        <button id="deleteHoliday" onClick={showHolidayDeleteModal}>
-          Delete Holiday
-        </button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
       {/* <OverviewDisplay
         data={data}
       >
       </OverviewDisplay> */}
-      
     </div>
-
   );
 };
 

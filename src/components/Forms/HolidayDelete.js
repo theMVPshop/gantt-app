@@ -5,32 +5,15 @@ import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
-  // const deleteTask = () => {
-  //   let course = props.modalState.confirmDeleteModal.id;
-  //   props.deleteTask(course);
-  //   resetModal();
-  // };
-  // let id = props.modalState.confirmDeleteModal.id;
 
   console.log("new props", props);
 
-  useEffect(() => {
-    axios
-    .get(url)
-    .then((res) => {
-      res.data.forEach((obj) => {
-        let id = obj.id;
-        let holiday = obj.text;
-        console.log(holiday, "with ID", id)
-      });
-    })
-    .catch((err) => console.log("error", err));
-  })
+  console.log(props.modalState.deleteHolidayModal.id);
 
   return (
     <div
       style={
-        props.holidayDeleteModalState
+        props.modalState.deleteHolidayModal.display
           ? { display: "flex" }
           : { display: "none" }
       }
@@ -39,7 +22,10 @@ const HolidayDelete = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            props.setHolidayDeleteModalState(false)
+            props.handleModalDisplayState("deleteHolidayModal", {
+              display: false,
+              id: 0
+            })
           }}
         ></Exit>
         <h1 className="minor-title" id="delete-title">
@@ -50,7 +36,10 @@ const HolidayDelete = (props) => {
           <button
             className="submit deleteYesNoButtons"
             onClick={() => {
-              props.setHolidayDeleteModalState(false);
+              props.handleModalDisplayState("deleteHolidayModal", {
+                display: false,
+                id: 0
+              })
               axios
                 // .delete(`${url}/${id}`)
                 .then((res) => console.log(res))
@@ -62,7 +51,10 @@ const HolidayDelete = (props) => {
           <button
             className="submit deleteYesNoButtons"
             onClick={() => {
-              props.setHolidayDeleteModalState(false)
+              props.handleModalDisplayState("deleteHolidayModal", {
+                display: false,
+                id: 0
+              })
             }}
             type="button"
           >

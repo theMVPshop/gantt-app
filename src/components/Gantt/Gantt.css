@@ -5,11 +5,23 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
+  /* position: relative !important;
+  z-index: -1 !important; */
   max-height: 100%;
   color: #0e0d12;
   font-size: 14px;
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
+  background-color: #eceeff;
+}
+
+.gantt_layout_cell {
+  position: relative;
+  z-index: 1 !important;
+}
+
+.logo-name-cont {
+  background-color: transparent !important;
 }
 
 #gantt-chart-container {
@@ -73,6 +85,11 @@ body,
   display: flex;
   align-items: flex-start;
   justify-content: center;
+}
+
+.gantt_task {
+  position: absolute !important;
+  z-index: 10 !important;
 }
 
 .gantt_row,
@@ -190,7 +207,6 @@ body,
 }
 
 .gantt_marker_content {
-  margin-bottom: -20px;
   color: #fff !important;
   font-size: 12px !important;
   /* top: -20px; */
@@ -253,7 +269,7 @@ body,
 }
 
 /* .gantt_task_content { */
-  /* background-color: #727597; */
+/* background-color: #727597; */
 /* } */
 
 #addHoliday, #deleteHoliday {
