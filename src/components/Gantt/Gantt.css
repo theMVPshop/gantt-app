@@ -167,59 +167,41 @@ body,
   display: none !important;
 }
 
+.gantt_task {
+  /* position: relative !important; */
+  /* z-index: 135 !important; */
+  /* top: 100px !important; */
+}
+
 .gantt_task_scale, .gantt_grid_scale {
   background-color: palevioletred !important;
-  margin-bottom: 20px;
+  height: 70px !important;
+  /* position: absolute !important; */
+  /* position: relative !important; */
+  /* z-index: 120 !important; */
 }
 
-.gantt_task_bg {
-  margin-top: 20px !important;
+.gantt_marker_area {
+  background-color: fuchsia !important;
+  /* height: 150px !important; */
+  /* position: absolute !important; */
+  /* z-index: 130 !important; */
+  /* top: -50px; */
 }
-
-/* .gantt_task_bg:first-child {
-  padding-top: 20px !important;
-  color: white;
-} */
-
-.gantt_bars_area {
-  padding-top: 20px;
-}
-
-.gantt_bars_area:first-child {
-  padding-top: 20px;
-}
-
-.gantt_scale_line {
-  /* background-color: palevioletred; */
-  z-index: 40;
-}
-
-/* .first_cohort .gantt_task_content {
-  margin-top: 50px;
-  background-color: black !important;
-} */
 
 .gantt_marker_content {
   margin-bottom: -20px;
   color: #fff !important;
   font-size: 12px !important;
-  /* position: absolute; */
-  top: -20px;
-  /* z-index: 105; */
+  /* top: -20px; */
 }
 
-/* .holiday .gantt_marker_content, .gantt_marker.holiday {
+.holiday .gantt_marker_content {
   background-color: rgb(2, 76, 141) !important;
-} */
-
-/* .holiday .gantt_marker_content {
-  background-color: rgb(2, 76, 141) !important;
-} */
+}
 
 .gantt_marker.holiday {
   background-color: rgba(2, 76, 141, 0.479) !important;
-  position: absolute;
-  z-index: 105;
 }
 
 #zoomIn {
@@ -274,7 +256,7 @@ body,
   /* background-color: #727597; */
 /* } */
 
-#addHoliday {
+#addHoliday, #deleteHoliday {
   z-index: 100;
 }
 

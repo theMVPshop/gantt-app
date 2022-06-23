@@ -9,6 +9,7 @@ import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
 import OverviewDisplay from "../Displays/Overview.js";
 import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
+import HolidayDelete from "../Forms/HolidayDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -74,6 +75,7 @@ const Gantt = () => {
     },
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
+  const [holidayDeleteModalState, setHolidayDeleteModalState] = useState(false);
   const [tasksOrdered, setTasksOrdered] = useState({});
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
@@ -228,11 +230,9 @@ const Gantt = () => {
 
   const assignBarClasses = (orderedTasks) => {
     gantt.templates.task_class = function (start, end, task) {
-    // console.log("Ordered tasks:", orderedTasks)
 
       if (orderedTasks[0]) {
         if (orderedTasks[0].cohort === task.id) {
-          console.log("It's a match")
           return "first_cohort";
         }
       }
@@ -261,12 +261,6 @@ const Gantt = () => {
       }
       // return "nested_bar";
     };
-
-    // gantt.templates.task_class = function(start, end, task) {
-    //   if (orderedTasks[0].cohort === task.id) {
-    //     return "first_cohort";
-    //   }
-    // }
 
   };
 
@@ -504,17 +498,7 @@ const Gantt = () => {
   }, 1000 * 60);
 
   const showHolidayModal = () => setHolidayModalState(true);
-
-  // const addHolidayMarker = () => {
-  //   console.log("click! add holiday button")
-
-  //   // var holidayMarker = gantt.addMarker({
-  //   //   start_date: new Date(),
-  //   //   css: "holiday",
-  //   //   text: "Holiday",
-  //   //   title: dateToStr(new Date())
-  //   // });
-  // }
+  const showHolidayDeleteModal = () => setHolidayDeleteModalState(true);
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -738,7 +722,8 @@ const Gantt = () => {
           modalState.addCourseForm.display ||
           modalState.courseEditForm.display ||
           modalState.confirmDeleteModal.display ||
-          holidayModalState
+          holidayModalState ||
+          holidayDeleteModalState
             ? {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
@@ -809,11 +794,13 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CourseEdit>
         <HolidayMarkerForm
-          // data={data}
           holidayModalState={holidayModalState}
           setHolidayModalState={setHolidayModalState}
-          // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
+        <HolidayDelete
+          holidayDeleteModalState={holidayDeleteModalState}
+          setHolidayDeleteModalState={setHolidayDeleteModalState}
+        ></HolidayDelete>
         <Loader
         fetchData={fetchData}
         loading={loading}
@@ -833,7 +820,10 @@ const Gantt = () => {
           Zoom Out
         </button>
         <button id="addHoliday" onClick={showHolidayModal}>
-          Button
+          Add Holiday
+        </button>
+        <button id="deleteHoliday" onClick={showHolidayDeleteModal}>
+          Delete Holiday
         </button>
       </div>
       {/* Temporary display home for OverviewDisplay */}
