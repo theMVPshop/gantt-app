@@ -6,16 +6,17 @@ import "../Loader/Loader.css"
 
 const url = "https://gantt-server.herokuapp.com/tasks/";
 
- const Loader = (props) => {
-  
-  
+const Loader = (props) => {
 
+  
   useEffect(() => {
     console.log('this is loading', props.loading)
   }, [props.loading]);
 
+
+
     return (
-      <div id="button" onClick={props.fetchData}>
+      <div id="button" onClick={props.fetchData} disabled={props.loading}>
     <ClipLoader className="loader" loading={props.loading} size={50} />
      </div>
    );

@@ -18,6 +18,9 @@ const CourseEdit = (props) => {
   });
 
   const validateInput = (e) => {
+    // props.fetchData() starts the spinner
+    props.fetchData()
+    
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -124,7 +127,8 @@ const CourseEdit = (props) => {
         }
       })
       .catch((err) => console.log("there was an error", err));
-    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        props.setLoading("false")
   };
 
   return (
@@ -435,10 +439,10 @@ const CourseEdit = (props) => {
             </div>
           </div>
         </div>
-        <button className="submit" onClick={validateInput}>
+        <button className="submit"  onClick={validateInput}>
           Confirm Changes
         </button>
-        <button onClick={props.fetchData}> click me</button>
+        {/* <button className="button" onClick={props.fetchData} disabled={props.loading}> click me</button> */}
       </form>
     </div>
   );

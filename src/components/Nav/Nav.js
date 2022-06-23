@@ -4,15 +4,13 @@ import logo from "../../images/logo.png";
 import { checkAuth, logoutUser } from "../../Router";
 import "./Nav.css";
 
-import Loader from "../Loader/Loader.js"
-
 const Nav = () => {
   return (
     <nav className="nav-bar">
-      <div class="left-half-nav">
-        <div class="logo-name-cont">
+      <div className="left-half-nav">
+        <div className="logo-name-cont">
           <img src={logo} className="logo" alt="logo-img" />
-          <div class="names-cont">
+          <div className="names-cont">
             <h4 className="name">Course Tracker</h4>
             {checkAuth() && (
             <p className="name-tag">Welcome, {localStorage.getItem("user_name")}</p>

@@ -67,6 +67,7 @@ const CourseForm = (props) => {
   //This function first checks for required fields
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
+    props.fetchData()
     if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
