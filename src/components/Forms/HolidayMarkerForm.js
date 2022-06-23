@@ -73,7 +73,9 @@ const HolidayMarkerForm = (props) => {
   }
 
   const pushFormData = () => {
+    props.fetchData(
 
+    )
     if (formData.name === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -115,9 +117,11 @@ const HolidayMarkerForm = (props) => {
         if (res.status === 200) {
           addHolidayMarker();
           resetForm();
+          props.setLoading(false);
         }
       })
       .catch((err) => console.log("there was an error", err));
+      props.setLoading(false)
   };
 
   return (

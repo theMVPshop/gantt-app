@@ -50,12 +50,14 @@ const ConfirmDelete = (props) => {
           <button
             className="submit deleteYesNoButtons"
             onClick={() => {
+              props.fetchData()
               props.customDeleteTask(id);
               resetModal();
               axios
                 .delete(`${url}/${id}`)
                 .then((res) => console.log(res))
                 .catch((err) => console.log("there was an error", err));
+                props.setLoading(false)
               // put reset here and finish axios call
             }}
           >
