@@ -12,17 +12,15 @@ import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
-import Loader from "../Loader/Loader.js"
+import Loader from "../Loader/Loader.js";
 
 const Gantt = () => {
+  const [loading, setLoading] = useState(false);
 
-  const [loading, setLoading] = useState( false );
-
-  const fetchData= () => {
-    console.log('here i am')
-    setLoading(true)
+  const fetchData = () => {
+    console.log("here i am");
+    setLoading(true);
   };
-
 
   const containerRef = useRef(null);
 
@@ -52,6 +50,9 @@ const Gantt = () => {
       id: "cohort_0",
       title: "",
     },
+    deleteHolidayModal: {
+      display: false,
+    },
 
     currentTask: {
       title: "",
@@ -74,11 +75,12 @@ const Gantt = () => {
     },
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
-
   const [tasksOrdered, setTasksOrdered] = useState({});
-
   const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
   const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
+
+  // disables pop up error for invalid day index
+  gantt.config.show_errors = false;
 
   //function for updating display state provided to components
   const handleModalDisplayState = (value, obj) => {
@@ -227,6 +229,15 @@ const Gantt = () => {
 
   const assignBarClasses = (orderedTasks) => {
     gantt.templates.task_class = function (start, end, task) {
+      // console.log("Ordered tasks:", orderedTasks)
+
+      if (orderedTasks[0]) {
+        if (orderedTasks[0].cohort === task.id) {
+          console.log("It's a match");
+          return "first_cohort";
+        }
+      }
+
       for (let i = 0; i < orderedTasks.length; i++) {
         if (task.parent === orderedTasks[i].cohort) {
           for (let y = 0; y < orderedTasks[i].children.length; y++) {
@@ -251,7 +262,30 @@ const Gantt = () => {
       }
       // return "nested_bar";
     };
+
+    // gantt.templates.task_class = function(start, end, task) {
+    //   if (orderedTasks[0].cohort === task.id) {
+    //     return "first_cohort";
+    //   }
+    // }
   };
+
+  const handleClick = (e) => {
+    let classes = e.target.classList;
+    if (classes.length > 0) {
+      for (let i = 0; i < classes.length; i++) {
+        if (classes[i] === "holiday") {
+          setModalState((prevState) => {
+            let prev = { ...prevState };
+            prev.deleteHolidayModal.display = true;
+            return prev;
+          });
+        }
+      }
+    }
+  };
+
+  window.addEventListener("click", handleClick);
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -706,8 +740,6 @@ const Gantt = () => {
     gantt.ext.zoom.zoomOut();
   }
 
-
-
   return (
     <div>
       <div
@@ -839,9 +871,7 @@ const Gantt = () => {
         data={data}
       >
       </OverviewDisplay> */}
-      
     </div>
-
   );
 };
 

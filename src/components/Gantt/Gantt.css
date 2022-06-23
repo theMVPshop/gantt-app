@@ -5,11 +5,23 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
+  /* position: relative !important;
+  z-index: -1 !important; */
   max-height: 100%;
   color: #0e0d12;
   font-size: 14px;
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
+  background-color: #eceeff;
+}
+
+.gantt_layout_cell {
+  position: relative;
+  z-index: 1 !important;
+}
+
+.logo-name-cont {
+  background-color: transparent !important;
 }
 
 #gantt-chart-container {
@@ -75,6 +87,11 @@ body,
   justify-content: center;
 }
 
+.gantt_task {
+  position: absolute !important;
+  z-index: 10 !important;
+}
+
 .gantt_row,
 .gantt_row.odd {
   background: #eceeff;
@@ -126,6 +143,7 @@ body,
   border-radius: 5px;
   border-color: transparent;
   font-size: 16px;
+  z-index: 10;
 }
 
 .gantt_task_progress_wrapper {
@@ -166,14 +184,61 @@ body,
   display: none !important;
 }
 
+.gantt_task_scale,
+.gantt_grid_scale {
+  position: relative;
+  z-index: 0 !important;
+  height: 70px !important;
+  background-color: #eceeff;
+}
+
+.gantt_task_bg {
+  margin-top: 20px !important;
+}
+
+/* .gantt_task_bg:first-child {
+  padding-top: 20px !important;
+  color: white;
+} */
+
+.gantt_bars_area {
+  padding-top: 20px;
+}
+
+.gantt_bars_area:first-child {
+  padding-top: 20px;
+}
+
+.gantt_scale_line {
+  /* background-color: palevioletred; */
+  z-index: 40;
+}
+
+/* .first_cohort .gantt_task_content {
+  margin-top: 50px;
+  background-color: black !important;
+} */
+
+.holiday {
+  background-color: rgba(2, 76, 141, 0.479) !important;
+  position: absolute !important;
+  z-index: 105 !important;
+}
+
 .gantt_marker_content {
   color: #fff !important;
   font-size: 12px !important;
+  top: -20px;
+  z-index: 1000 !important;
 }
 
-.holiday .gantt_marker_content, .gantt_marker.holiday {
+/* .holiday .gantt_marker_content, .gantt_marker.holiday {
   background-color: rgb(2, 76, 141) !important;
-}
+} */
+
+/* .holiday .gantt_marker_content {
+  background-color: rgb(2, 76, 141) !important;
+} */
 
 #zoomIn {
   position: relative;
@@ -224,7 +289,7 @@ body,
 }
 
 /* .gantt_task_content { */
-  /* background-color: #727597; */
+/* background-color: #727597; */
 /* } */
 
 #addHoliday {
