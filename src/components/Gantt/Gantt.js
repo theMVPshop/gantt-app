@@ -735,6 +735,9 @@ const Gantt = () => {
         }
       >
         <CourseForm
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading} 
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setModalState={setModalState}
@@ -743,6 +746,9 @@ const Gantt = () => {
           customAddTask={customAddTask}
         ></CourseForm>
         <CohortForm
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setModalState={setModalState}
@@ -752,6 +758,9 @@ const Gantt = () => {
           pullData={pullData}
         ></CohortForm>
         <ConfirmDelete
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           modalState={modalState}
           setModalState={setModalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -775,6 +784,9 @@ const Gantt = () => {
           switchForms={switchForms}
         ></CourseDisplay>
         <CohortEdit
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           data={data}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
@@ -792,14 +804,17 @@ const Gantt = () => {
           customEditTask={customEditTask}
         ></CourseEdit>
         <HolidayMarkerForm
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           // data={data}
           holidayModalState={holidayModalState}
           setHolidayModalState={setHolidayModalState}
           // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
         <Loader
-        fetchData={fetchData}
-        loading={loading}
+          fetchData={fetchData}
+          loading={loading}
         ></Loader>
       </div>
 

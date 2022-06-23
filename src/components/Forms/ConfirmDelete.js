@@ -10,6 +10,7 @@ const ConfirmDelete = (props) => {
   //   props.deleteTask(course);
   //   resetModal();
   // };
+  // props.setLoading("false")
   let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {

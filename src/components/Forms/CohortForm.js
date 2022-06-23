@@ -28,6 +28,7 @@ const CohortForm = (props) => {
   });
 
   const resetForm = () => {
+    // props.setLoading("false")
     setFormData({
       title: "",
       start_date: "yyyy-mm-dd",
@@ -37,9 +38,13 @@ const CohortForm = (props) => {
       display: false,
       id: "cohort_0",
     });
+   
   };
 
   const pushFormData = () => {
+   //props.fetchData actually starts the spinner
+    props.fetchData()
+
     props.pullData();
     if (formData.title === "") {
       setFormData((prevState) => {
@@ -91,11 +96,14 @@ const CohortForm = (props) => {
       .then((res) => {
         if (res.status === 200) {
           props.customAddTask(formData);
+          // //is resetForm redundant, because when gantt.serialize happens, the page refreshes, anyway, reseting state?
           resetForm();
+  
         }
       })
       .catch((err) => console.log("there was an error", err));
-    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        props.setLoading("false")// if there's an error response, shut off the spinner
   };
 
   return (
