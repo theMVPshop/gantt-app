@@ -1,3 +1,4 @@
+import { gantt } from "dhtmlx-gantt";
 import React, { useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
@@ -6,9 +7,10 @@ const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
 
-  console.log("new props", props);
+  // console.log("new props", props);
 
-  console.log(props.modalState.deleteHolidayModal.id);
+  console.log("new props", props.modalState.deleteHolidayModal.id);
+  let deleteID = props.modalState.deleteHolidayModal.id;
 
   return (
     <div
@@ -33,7 +35,7 @@ const HolidayDelete = (props) => {
           {/* <b>{props.modalState.confirmDeleteModal.title}</b>? */}
         </h1>
         <div className="deleteButtonsCont" id="deleteButtonsCont">
-          <button
+          <div
             className="submit deleteYesNoButtons"
             onClick={() => {
               props.handleModalDisplayState("deleteHolidayModal", {
@@ -41,13 +43,18 @@ const HolidayDelete = (props) => {
                 id: 0
               })
               axios
-                // .delete(`${url}/${id}`)
-                .then((res) => console.log(res))
+                .delete(`${url}/${deleteID}`)
+                .then((res) => {
+                  console.log(res)
+                  if (res.status === 200) {
+                    gantt.deleteMarker(deleteID);
+                  }
+                })
                 .catch((err) => console.log("there was an error", err));
             }}
           >
             Yes
-          </button>
+          </div>
           <button
             className="submit deleteYesNoButtons"
             onClick={() => {

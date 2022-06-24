@@ -273,9 +273,11 @@ const Gantt = () => {
 
   const handleClick = (e) => {
     let classes = e.target.classList;
+    let parent = e.target.parentElement.classList;
+    
     if (classes.length > 0) {
-      for (let i = 0; i < classes.length; i++) {
-        if (classes[i] === "holiday" || classes[i] === "gantt_marker_content") {
+      for (let i = 0; i < 2; i++) {
+        if (classes[i] === "holiday") {
           setModalState((prevState) => {
             let prev = { ...prevState };
             prev.deleteHolidayModal.display = true;
@@ -283,11 +285,25 @@ const Gantt = () => {
             return prev;
           });
         }
+
+        if (parent[i] === "holiday") {
+          setModalState((prevState) => {
+            let prev = { ...prevState };
+            prev.deleteHolidayModal.display = true;
+            prev.deleteHolidayModal.id = e.target.parentElement.getAttribute("data-marker-id");
+            return prev;
+          });
+        }
       }
     }
   };
 
-  window.addEventListener("click", handleClick);
+  useEffect(() => {
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("click", handleClick);
+    }
+  }, [])
 
   gantt.attachEvent(
     "onGridHeaderClick",
