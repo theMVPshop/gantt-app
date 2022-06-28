@@ -7,7 +7,7 @@ const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
 
-  // console.log("new props", props);
+  // console.log("props.loading in HolidayDelete", props.loading);
 
   console.log("new props", props.modalState.deleteHolidayModal.id);
   let deleteID = props.modalState.deleteHolidayModal.id;
@@ -38,6 +38,7 @@ const HolidayDelete = (props) => {
           <div
             className="submit deleteYesNoButtons"
             onClick={() => {
+              props.fetchData()
               props.handleModalDisplayState("deleteHolidayModal", {
                 display: false,
                 id: 0
@@ -48,9 +49,13 @@ const HolidayDelete = (props) => {
                   console.log(res)
                   if (res.status === 200) {
                     gantt.deleteMarker(deleteID);
+                    props.setLoading(false)
                   }
                 })
-                .catch((err) => console.log("there was an error", err));
+                .catch((err) => {
+                  props.setLoading(false)
+                  console.log("there was an error", err)
+                });
             }}
           >
             Yes
