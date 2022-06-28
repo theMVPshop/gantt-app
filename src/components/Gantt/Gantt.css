@@ -162,7 +162,7 @@ body,
 #plusIconRow {
   fill: #079043;
 }
-ink 
+
 #plusIconHeader {
   fill: #079043;
 }
@@ -184,40 +184,9 @@ ink
   display: none !important;
 }
 
-.gantt_task {
-  position: absolute !important;
-  z-index: 100 !important;
-  /* top: 100px !important; */
-}
-
-.gantt_task_scale, .gantt_grid_scale {
-  background-color: palevioletred !important;
-  height: 70px !important;
-  position: absolute !important;
-  /* position: relative !important; */
-  z-index: 150 !important;
-}
-
-.gantt_marker_area {
-  background-color: fuchsia !important;
-  /* height: 150px !important; */
-  position: absolute !important;
-  z-index: 200 !important;
-}
-
-.gantt_data_area, .gantt_grid_data {
-  margin-top: ;
-  position: relative !important;
-  z-index: 175 !important;
-  top: 90px;
-}
-
 .gantt_marker_content {
   color: #fff !important;
   font-size: 12px !important;
-  position: absolute !important;
-  z-index: 250 !important;
-  top: -20px;
 }
 
 .holiday .gantt_marker_content {
