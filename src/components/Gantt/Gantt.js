@@ -856,6 +856,9 @@ const Gantt = () => {
           setHolidayModalState={setHolidayModalState}
         ></HolidayMarkerForm>
         <HolidayDelete
+          setLoading={setLoading}
+          fetchData={fetchData}
+          loading={loading}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
         ></HolidayDelete>
