@@ -68,6 +68,7 @@ const CourseForm = (props) => {
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
     props.fetchData()
+    
     if (formData.title === "") {
       setFormData((prevState) => {
         let prev = { ...prevState };
@@ -116,7 +117,9 @@ const CourseForm = (props) => {
       .then((res) => {
         if (res.status === 200) {
           props.customAddTask(formData);
+          props.setLoading(false)
           resetForm();
+
         }
       })
       .catch((err) => console.log("there was an error", err));
@@ -125,6 +128,7 @@ const CourseForm = (props) => {
       display: false,
       id: "course_0",
     }); //turning modal display to none and resetting the parent task id passed as a prop
+    props.setLoading(false)
   };
 
   return (
