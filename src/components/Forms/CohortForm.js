@@ -103,7 +103,9 @@ const CohortForm = (props) => {
   
         }
       })
-      .catch((err) => console.log("there was an error", err));
+      .catch((err) => {
+        props.setLoading(false)
+        console.log("there was an error", err)});
         gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
         // props.setLoading(false)// if there's an error response, shut off the spinner
         

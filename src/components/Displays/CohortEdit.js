@@ -110,13 +110,13 @@ const CohortEdit = (props) => {
           copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
           copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
           props.customEditTask(copy.id, copy);
-          // props.setLoading(false)
           // resetForm();
         }
       })
-      .catch((err) => console.log("there was an error", err));
+      .catch((err) => { 
+        props.setLoading(false)
+        console.log("there was an error", err)});
         gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-        // props.setLoading(false)
   };
 
   // useEffect(() => {

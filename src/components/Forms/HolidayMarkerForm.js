@@ -121,7 +121,9 @@ const HolidayMarkerForm = (props) => {
           props.setLoading(false);
         }
       })
-      .catch((err) => console.log("there was an error", err));
+      .catch((err) => {
+        props.setLoading(false)
+        console.log("there was an error", err)});
         // props.setLoading(false)
   };
 
