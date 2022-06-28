@@ -169,10 +169,13 @@ body,
 
 .gantt_data_area {
   background-color: #eceeff;
+  overflow: visible;
+  top: 22px;
 }
 
 .gantt_grid_data {
   background-color: #eceeff;
+  top: 22px;
 }
 
 .nested_bar .gantt_task_content {
@@ -187,6 +190,11 @@ body,
 .gantt_marker_content {
   color: #fff !important;
   font-size: 12px !important;
+  top: -22px;
+}
+
+.today .gantt_marker_content {
+  background-color: rgba(255,0,0,.4) !important;
 }
 
 .holiday .gantt_marker_content {
