@@ -64,7 +64,7 @@ const CohortEdit = (props) => {
   };
 
   const validateInput = (e) => {
-    // (props.fetchData) ********************************************************** SPINNING LOADER PROGRESS *********************************
+      props.fetchData()
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -110,11 +110,13 @@ const CohortEdit = (props) => {
           copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
           copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
           props.customEditTask(copy.id, copy);
+          // props.setLoading(false)
           // resetForm();
         }
       })
       .catch((err) => console.log("there was an error", err));
-    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+        // props.setLoading(false)
   };
 
   // useEffect(() => {

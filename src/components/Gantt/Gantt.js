@@ -22,6 +22,10 @@ const Gantt = () => {
     setLoading(true);
   };
 
+  useEffect(() => {
+    console.log('loading has changed to:', loading)
+  }, [loading]);
+
   const containerRef = useRef(null);
 
   const [modalState, setModalState] = useState({

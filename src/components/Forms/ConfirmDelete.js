@@ -49,15 +49,24 @@ const ConfirmDelete = (props) => {
         <div className="deleteButtonsCont" id="deleteButtonsCont">
           <button
             className="submit deleteYesNoButtons"
+            disabled={props.loading}
             onClick={() => {
+              console.log("in yes confirm delete")
               props.fetchData()
               props.customDeleteTask(id);
               resetModal();
               axios
                 .delete(`${url}/${id}`)
-                .then((res) => console.log(res))
-                .catch((err) => console.log("there was an error", err));
-                props.setLoading(false)
+                .then((res) => {
+                  props.setLoading(false)
+                  console.log("response in delete: ", res)
+                })
+                .catch((err) => {
+                  props.setLoading(false)
+                  console.log("there was an error", err)
+                })
+                
+              
               // put reset here and finish axios call
             }}
           >

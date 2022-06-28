@@ -128,7 +128,7 @@ const CourseEdit = (props) => {
       })
       .catch((err) => console.log("there was an error", err));
         gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-        props.setLoading("false")
+        // props.setLoading(false)
   };
 
   return (

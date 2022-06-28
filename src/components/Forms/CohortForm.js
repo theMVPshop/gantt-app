@@ -41,9 +41,11 @@ const CohortForm = (props) => {
    
   };
 
+  
   const pushFormData = () => {
    //props.fetchData actually starts the spinner
     props.fetchData()
+   
 
     props.pullData();
     if (formData.title === "") {
@@ -103,7 +105,7 @@ const CohortForm = (props) => {
       })
       .catch((err) => console.log("there was an error", err));
         gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-        props.setLoading(false)// if there's an error response, shut off the spinner
+        // props.setLoading(false)// if there's an error response, shut off the spinner
         
   };
 
