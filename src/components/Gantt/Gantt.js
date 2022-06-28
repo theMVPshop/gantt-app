@@ -9,6 +9,7 @@ import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
 import OverviewDisplay from "../Displays/Overview.js";
 import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
+import HolidayDelete from "../Forms/HolidayDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
@@ -56,6 +57,7 @@ const Gantt = () => {
     },
     deleteHolidayModal: {
       display: false,
+      id: 0
     },
 
     currentTask: {
@@ -237,7 +239,6 @@ const Gantt = () => {
 
       if (orderedTasks[0]) {
         if (orderedTasks[0].cohort === task.id) {
-          console.log("It's a match");
           return "first_cohort";
         }
       }
@@ -276,12 +277,24 @@ const Gantt = () => {
 
   const handleClick = (e) => {
     let classes = e.target.classList;
+    let parent = e.target.parentElement.classList;
+    
     if (classes.length > 0) {
-      for (let i = 0; i < classes.length; i++) {
+      for (let i = 0; i < 2; i++) {
         if (classes[i] === "holiday") {
           setModalState((prevState) => {
             let prev = { ...prevState };
             prev.deleteHolidayModal.display = true;
+            prev.deleteHolidayModal.id = e.target.getAttribute("data-marker-id");
+            return prev;
+          });
+        }
+
+        if (parent[i] === "holiday") {
+          setModalState((prevState) => {
+            let prev = { ...prevState };
+            prev.deleteHolidayModal.display = true;
+            prev.deleteHolidayModal.id = e.target.parentElement.getAttribute("data-marker-id");
             return prev;
           });
         }
@@ -289,7 +302,12 @@ const Gantt = () => {
     }
   };
 
-  window.addEventListener("click", handleClick);
+  useEffect(() => {
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("click", handleClick);
+    }
+  }, [])
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -525,17 +543,6 @@ const Gantt = () => {
   }, 1000 * 60);
 
   const showHolidayModal = () => setHolidayModalState(true);
-
-  // const addHolidayMarker = () => {
-  //   console.log("click! add holiday button")
-
-  //   // var holidayMarker = gantt.addMarker({
-  //   //   start_date: new Date(),
-  //   //   css: "holiday",
-  //   //   text: "Holiday",
-  //   //   title: dateToStr(new Date())
-  //   // });
-  // }
   // vertical line marker END
 
   //when DOM content is loaded, this sets our custom Gantt columns
@@ -757,7 +764,8 @@ const Gantt = () => {
           modalState.addCourseForm.display ||
           modalState.courseEditForm.display ||
           modalState.confirmDeleteModal.display ||
-          holidayModalState
+          holidayModalState ||
+          modalState.deleteHolidayModal.display
             ? {
                 height: "100%",
                 backgroundColor: "rgb(236, 238, 255, 0.6)",
@@ -846,8 +854,11 @@ const Gantt = () => {
           // data={data}
           holidayModalState={holidayModalState}
           setHolidayModalState={setHolidayModalState}
-          // addHolidayMarker={addHolidayMarker}
         ></HolidayMarkerForm>
+        <HolidayDelete
+          modalState={modalState}
+          handleModalDisplayState={handleModalDisplayState}
+        ></HolidayDelete>
         <Loader
           fetchData={fetchData}
           loading={loading}
@@ -867,7 +878,7 @@ const Gantt = () => {
           Zoom Out
         </button>
         <button id="addHoliday" onClick={showHolidayModal}>
-          Button
+          Add Holiday
         </button>
       </div>
       {/* Temporary display home for OverviewDisplay */}

@@ -22,7 +22,8 @@ const HolidayMarkerForm = (props) => {
             start_date: new Date(obj.start_date),
             css: "holiday",
             text: obj.text,
-            title: obj.start_date.slice(0, 10)
+            title: obj.start_date.slice(0, 10),
+            id: obj.id
           });
         } else if (obj.end_date != null) {
           gantt.addMarker({
@@ -30,7 +31,8 @@ const HolidayMarkerForm = (props) => {
             end_date: new Date(obj.end_date),
             css: "holiday",
             text: obj.text,
-            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`
+            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`,
+            id: obj.id
           });
         }
       });
