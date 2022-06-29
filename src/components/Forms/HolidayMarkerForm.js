@@ -11,6 +11,8 @@ const HolidayMarkerForm = (props) => {
   //something about this is keeping it from refreshing
   const { handleSubmit } = useForm();
 
+  var dateToStr = gantt.date.date_to_str(gantt.config.task_date);
+
   useEffect(() => {
     axios
     .get(url)
@@ -22,7 +24,7 @@ const HolidayMarkerForm = (props) => {
             start_date: new Date(obj.start_date),
             css: "holiday",
             text: obj.text,
-            title: obj.start_date.slice(0, 10),
+            title: dateToStr(new Date(obj.start_date)),
             id: obj.id
           });
         } else if (obj.end_date != null) {
@@ -31,7 +33,7 @@ const HolidayMarkerForm = (props) => {
             end_date: new Date(obj.end_date),
             css: "holiday",
             text: obj.text,
-            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`,
+            title: `${dateToStr(new Date(obj.start_date))} to ${dateToStr(new Date(obj.end_date))}`,
             id: obj.id
           });
         }
