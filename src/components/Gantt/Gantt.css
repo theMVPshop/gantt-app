@@ -178,6 +178,11 @@ body,
   top: 22px;
 }
 
+.gantt_task, .gantt_grid {
+  margin-bottom: 22px;
+  background-color: #ccc8db !important;
+}
+
 .nested_bar .gantt_task_content {
   background-color: #079043;
 }
