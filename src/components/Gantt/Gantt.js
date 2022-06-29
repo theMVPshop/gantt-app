@@ -288,7 +288,12 @@ const Gantt = () => {
             prev.deleteHolidayModal.display = true;
             prev.deleteHolidayModal.id =
               e.target.getAttribute("data-marker-id");
-            prev.deleteHolidayModal.title = e.target.getAttribute("title");
+
+            let id = e.target.getAttribute("data-marker-id");
+            let holidayObject = gantt.getMarker(id);
+            let title = holidayObject.text;
+            prev.deleteHolidayModal.title = title;
+            // prev.deleteHolidayModal.title = holidayTitle
             return prev;
           });
         }
@@ -299,8 +304,10 @@ const Gantt = () => {
             prev.deleteHolidayModal.display = true;
             prev.deleteHolidayModal.id =
               e.target.parentElement.getAttribute("data-marker-id");
-            prev.deleteHolidayModal.title =
-              e.target.parentElement.getAttribute("title");
+            let id = e.target.parentElement.getAttribute("data-marker-id");
+            let holidayObject = gantt.getMarker(id);
+            let title = holidayObject.text;
+            prev.deleteHolidayModal.title = title;
             return prev;
           });
         }
