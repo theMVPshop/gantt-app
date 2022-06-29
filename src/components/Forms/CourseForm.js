@@ -125,8 +125,8 @@ const CourseForm = (props) => {
       .catch((err) => {
         props.setLoading(false)
         console.log("there was an error", err)});
-    gantt.open(props.courseDisplay.id); //forces open the parent task
-    props.handleModalDisplayState("addCourseForm", {
+        gantt.open(props.courseDisplay.id); //forces open the parent task
+        props.handleModalDisplayState("addCourseForm", {
       display: false,
       id: "course_0",
     }); //turning modal display to none and resetting the parent task id passed as a prop
@@ -238,7 +238,7 @@ const CourseForm = (props) => {
                 }}
               />
             </div>
-
+            
             <div className="info">
               <label className="label">Instructor</label>
               <input

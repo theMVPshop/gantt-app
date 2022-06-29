@@ -7,7 +7,7 @@ import CohortDisplay from "../Displays/CohortDisplay";
 import ConfirmDelete from "../Forms/ConfirmDelete.js";
 import CohortEdit from "../Displays/CohortEdit.js";
 import CourseEdit from "../Displays/CourseEdit.js";
-import OverviewDisplay from "../Displays/Overview.js";
+// import OverviewDisplay from "../Displays/Overview.js";
 import HolidayMarkerForm from "../Forms/HolidayMarkerForm.js";
 import HolidayDelete from "../Forms/HolidayDelete.js";
 import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
@@ -18,6 +18,7 @@ import Loader from "../Loader/Loader.js";
 const Gantt = () => {
   const [loading, setLoading] = useState(false);
 
+  //turns modal on
   const fetchData = () => {
     console.log("here i am");
     setLoading(true);
@@ -176,6 +177,7 @@ const Gantt = () => {
     gantt.parse(data);
   }, [data]);
 
+  //orders tasks so that cohorts and classes are connected?
   const checkTaskOrder = () => {
     var copy = { ...data };
 
@@ -717,6 +719,8 @@ const Gantt = () => {
       useKey: "ctrlKey",
       trigger: "wheel",
       element: function () {
+        //this is where we're getting the query Selector error from
+        //comment out and check to see if functionality for horizontal scroll and zooms work
         return gantt.$root.querySelector(".gantt_task");
       },
     };
@@ -750,7 +754,6 @@ const Gantt = () => {
 
   var left_date;
   function zoom_in() {
-    //this code is good
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
     gantt.ext.zoom.zoomIn();
@@ -762,6 +765,10 @@ const Gantt = () => {
     console.log(position);
     console.log(left_date);
     gantt.ext.zoom.zoomOut();
+  }
+
+  function scroll_to_today() {
+    gantt.showDate(new Date())
   }
 
   return (
@@ -884,6 +891,10 @@ const Gantt = () => {
         id="gantt-chart-container"
       ></div>
       <div id="zoomController">
+        {/* maybe add class to style slightly differently from zoom buttons */}
+      <button id="zoomIn" onClick={scroll_to_today}>
+          Find Today
+        </button>
         <button id="zoomIn" onClick={zoom_in}>
           Zoom In
         </button>
