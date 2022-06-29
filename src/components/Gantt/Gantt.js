@@ -762,6 +762,7 @@ const Gantt = () => {
 
   function scroll_to_today() {
     gantt.showDate(new Date())
+    // gantt.refreshData()
   }
 
   return (
