@@ -178,6 +178,11 @@ body,
   top: 22px;
 }
 
+.gantt_task, .gantt_grid {
+  margin-bottom: 22px;
+  background-color: #ccc8db !important;
+}
+
 .nested_bar .gantt_task_content {
   background-color: #079043;
 }
@@ -194,7 +199,7 @@ body,
 }
 
 .today .gantt_marker_content {
-  background-color: rgba(255,0,0,.4) !important;
+  background-color: rgba(255, 0, 0, 0.4) !important;
 }
 
 .holiday .gantt_marker_content {
@@ -257,7 +262,8 @@ body,
 /* background-color: #727597; */
 /* } */
 
-#addHoliday, #deleteHoliday {
+#addHoliday,
+#deleteHoliday {
   z-index: 100;
 }
 
@@ -279,4 +285,49 @@ body,
 
 .fifth_course .gantt_task_content {
   background-color: pink;
+}
+
+#holidayDeleteCont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.HolidayDelete {
+  background-color: #eceeff;
+  position: relative;
+  border-radius: 10px;
+  font-family: "Lexend Deca", sans-serif;
+  width: 465px;
+  height: 226px;
+  margin-top: 150px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #eceeff;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 101;
+  top: 0;
+  text-align: center;
+  box-shadow: 5px 5px 15px;
+}
+
+.deleteButtonsCont div {
+  height: 43px;
+  width: 150px;
+}
+
+#deleteHolidayButtonsCont {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#exit-holiday-delete {
+  margin-left: 5px;
+  margin-top: 5px;
 }
