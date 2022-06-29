@@ -24,7 +24,7 @@ const Gantt = () => {
   };
 
   useEffect(() => {
-    console.log('loading has changed to:', loading)
+    console.log("loading has changed to:", loading);
   }, [loading]);
 
   const containerRef = useRef(null);
@@ -57,7 +57,8 @@ const Gantt = () => {
     },
     deleteHolidayModal: {
       display: false,
-      id: 0
+      id: 0,
+      title: "",
     },
 
     currentTask: {
@@ -278,14 +279,16 @@ const Gantt = () => {
   const handleClick = (e) => {
     let classes = e.target.classList;
     let parent = e.target.parentElement.classList;
-    
+
     if (classes.length > 0) {
       for (let i = 0; i < 2; i++) {
         if (classes[i] === "holiday") {
           setModalState((prevState) => {
             let prev = { ...prevState };
             prev.deleteHolidayModal.display = true;
-            prev.deleteHolidayModal.id = e.target.getAttribute("data-marker-id");
+            prev.deleteHolidayModal.id =
+              e.target.getAttribute("data-marker-id");
+            prev.deleteHolidayModal.title = e.target.getAttribute("title");
             return prev;
           });
         }
@@ -294,7 +297,10 @@ const Gantt = () => {
           setModalState((prevState) => {
             let prev = { ...prevState };
             prev.deleteHolidayModal.display = true;
-            prev.deleteHolidayModal.id = e.target.parentElement.getAttribute("data-marker-id");
+            prev.deleteHolidayModal.id =
+              e.target.parentElement.getAttribute("data-marker-id");
+            prev.deleteHolidayModal.title =
+              e.target.parentElement.getAttribute("title");
             return prev;
           });
         }
@@ -306,8 +312,8 @@ const Gantt = () => {
     window.addEventListener("click", handleClick);
     return () => {
       window.removeEventListener("click", handleClick);
-    }
-  }, [])
+    };
+  }, []);
 
   gantt.attachEvent(
     "onGridHeaderClick",
@@ -781,7 +787,7 @@ const Gantt = () => {
         <CourseForm
           setLoading={setLoading}
           fetchData={fetchData}
-          loading={loading} 
+          loading={loading}
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
           setModalState={setModalState}
@@ -862,10 +868,7 @@ const Gantt = () => {
           modalState={modalState}
           handleModalDisplayState={handleModalDisplayState}
         ></HolidayDelete>
-        <Loader
-          fetchData={fetchData}
-          loading={loading}
-        ></Loader>
+        <Loader fetchData={fetchData} loading={loading}></Loader>
       </div>
 
       <div
