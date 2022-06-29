@@ -6,11 +6,11 @@ import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
-
   // console.log("props.loading in HolidayDelete", props.loading);
 
   console.log("new props", props.modalState.deleteHolidayModal.id);
   let deleteID = props.modalState.deleteHolidayModal.id;
+  let title = props.modalState.deleteHolidayModal.title;
 
   return (
     <div
@@ -19,59 +19,61 @@ const HolidayDelete = (props) => {
           ? { display: "flex" }
           : { display: "none" }
       }
+      id="holidayDeleteCont"
     >
       <form className="HolidayDelete" id="HolidayDelete">
         <Exit
           className="exit-button"
+          id="exit-holiday-delete"
           onClick={() => {
             props.handleModalDisplayState("deleteHolidayModal", {
               display: false,
-              id: 0
-            })
+              id: 0,
+            });
           }}
         ></Exit>
         <h1 className="minor-title" id="delete-title">
-          Are you sure you want to delete{" "}
+          Are you sure you want to delete {title}?
           {/* <b>{props.modalState.confirmDeleteModal.title}</b>? */}
         </h1>
-        <div className="deleteButtonsCont" id="deleteButtonsCont">
+        <div className="deleteButtonsCont" id="deleteHolidayButtonsCont">
           <div
             className="submit deleteYesNoButtons"
             onClick={() => {
-              props.fetchData()
+              props.fetchData();
               props.handleModalDisplayState("deleteHolidayModal", {
                 display: false,
-                id: 0
-              })
+                id: 0,
+              });
               axios
                 .delete(`${url}/${deleteID}`)
                 .then((res) => {
-                  console.log(res)
+                  console.log(res);
                   if (res.status === 200) {
                     gantt.deleteMarker(deleteID);
-                    props.setLoading(false)
+                    props.setLoading(false);
                   }
                 })
                 .catch((err) => {
-                  props.setLoading(false)
-                  console.log("there was an error", err)
+                  props.setLoading(false);
+                  console.log("there was an error", err);
                 });
             }}
           >
             Yes
           </div>
-          <button
+          <div
             className="submit deleteYesNoButtons"
             onClick={() => {
               props.handleModalDisplayState("deleteHolidayModal", {
                 display: false,
-                id: 0
-              })
+                id: 0,
+              });
             }}
             type="button"
           >
             No
-          </button>
+          </div>
         </div>
       </form>
     </div>
