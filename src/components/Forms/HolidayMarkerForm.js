@@ -65,8 +65,6 @@ const HolidayMarkerForm = (props) => {
   };
 
   const addHolidayMarker = () => {
-    console.log("click! add holiday button")
-
     gantt.addMarker({
       start_date: new Date(formData.start_date),
       end_date: new Date(formData.end_date),

@@ -719,6 +719,7 @@ const Gantt = () => {
 
     gantt.init(containerRef.current);
 
+    // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
     let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
 
