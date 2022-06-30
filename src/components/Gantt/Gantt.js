@@ -900,11 +900,6 @@ const Gantt = () => {
           Add Holiday
         </button>
       </div>
-      {/* Temporary display home for OverviewDisplay */}
-      {/* <OverviewDisplay
-        data={data}
-      >
-      </OverviewDisplay> */}
     </div>
   );
 };
