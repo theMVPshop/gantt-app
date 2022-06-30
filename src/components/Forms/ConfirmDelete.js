@@ -28,10 +28,10 @@ const ConfirmDelete = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            console.log(
-              "Exit confirmDelete",
-              props.modalState.confirmDeleteModal
-            );
+            // console.log(
+            //   "Exit confirmDelete",
+            //   props.modalState.confirmDeleteModal
+            // );
             props.handleModalDisplayState("confirmDeleteModal", {
               display: false,
             });

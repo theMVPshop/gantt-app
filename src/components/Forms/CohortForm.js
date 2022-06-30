@@ -38,14 +38,11 @@ const CohortForm = (props) => {
       display: false,
       id: "cohort_0",
     });
-   
   };
 
   
   const pushFormData = () => {
-   //props.fetchData actually starts the spinner
-    props.fetchData()
-   
+  
 
     props.pullData();
     if (formData.title === "") {
@@ -75,6 +72,9 @@ const CohortForm = (props) => {
       });
       return;
     }
+
+    //props.fetchData starts the spinner
+    props.fetchData()
 
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
