@@ -5,8 +5,6 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
-  /* position: relative !important;
-  z-index: -1 !important; */
   max-height: 100%;
   color: #0e0d12;
   font-size: 14px;

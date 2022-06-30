@@ -6,7 +6,7 @@ import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
-  // console.log("props.loading in HolidayDelete", props.loading);
+ 
 
   console.log("new props", props.modalState.deleteHolidayModal.id);
   let deleteID = props.modalState.deleteHolidayModal.id;
@@ -34,7 +34,6 @@ const HolidayDelete = (props) => {
         ></Exit>
         <h1 className="minor-title" id="delete-title">
           Are you sure you want to delete {title}?
-          {/* <b>{props.modalState.confirmDeleteModal.title}</b>? */}
         </h1>
         <div className="deleteButtonsCont" id="deleteHolidayButtonsCont">
           <div

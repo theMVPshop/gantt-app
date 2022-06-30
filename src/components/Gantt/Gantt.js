@@ -268,14 +268,9 @@ const Gantt = () => {
           }
         }
       }
-      // return "nested_bar";
+  
     };
 
-    // gantt.templates.task_class = function(start, end, task) {
-    //   if (orderedTasks[0].cohort === task.id) {
-    //     return "first_cohort";
-    //   }
-    // }
   };
 
   const handleClick = (e) => {
@@ -770,6 +765,7 @@ const Gantt = () => {
 
   function scroll_to_today() {
     gantt.showDate(new Date())
+    // gantt.refreshData()
   }
 
   return (

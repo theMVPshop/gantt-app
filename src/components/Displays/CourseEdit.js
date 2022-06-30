@@ -18,8 +18,7 @@ const CourseEdit = (props) => {
   });
 
   const validateInput = (e) => {
-    // props.fetchData() starts the spinner
-    props.fetchData()
+    
     
     if (formData.title === "") {
       e.preventDefault();
@@ -50,6 +49,9 @@ const CourseEdit = (props) => {
       });
       return;
     }
+    // props.fetchData() starts the spinner
+    props.fetchData()
+    
     pushFormData();
   };
 
@@ -444,7 +446,6 @@ const CourseEdit = (props) => {
         <button className="submit"  onClick={validateInput}>
           Confirm Changes
         </button>
-        {/* <button className="button" onClick={props.fetchData} disabled={props.loading}> click me</button> */}
       </form>
     </div>
   );
