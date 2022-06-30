@@ -100,7 +100,6 @@ const CohortForm = (props) => {
           props.customAddTask(formData);
           resetForm();
           props.setLoading(false)
-  
         }
       })
       .catch((err) => {

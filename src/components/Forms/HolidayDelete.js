@@ -6,9 +6,6 @@ import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
- 
-
-  console.log("new props", props.modalState.deleteHolidayModal.id);
   let deleteID = props.modalState.deleteHolidayModal.id;
   let title = props.modalState.deleteHolidayModal.title;
 
@@ -39,6 +36,7 @@ const HolidayDelete = (props) => {
           <div
             className="submit deleteYesNoButtons"
             onClick={() => {
+              //props.fetchData starts the spinner
               props.fetchData();
               props.handleModalDisplayState("deleteHolidayModal", {
                 display: false,

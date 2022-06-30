@@ -25,6 +25,7 @@ const Gantt = () => {
   };
 
   useEffect(() => {
+    // gantt.refreshData()
     console.log("loading has changed to:", loading);
   }, [loading]);
 

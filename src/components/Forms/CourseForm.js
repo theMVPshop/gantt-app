@@ -98,6 +98,7 @@ const CourseForm = (props) => {
 
     //props.fetchData starts the spinner
     props.fetchData()
+    
 
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
@@ -120,7 +121,7 @@ const CourseForm = (props) => {
       .then((res) => {
         if (res.status === 200) {
           props.customAddTask(formData);
-          props.setLoading(false)
+          setTimeout(() => {props.setLoading(false)})
           resetForm();
 
         }

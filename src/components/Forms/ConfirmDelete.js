@@ -47,6 +47,7 @@ const ConfirmDelete = (props) => {
             disabled={props.loading}
             onClick={() => {
               console.log("in yes confirm delete")
+              //props.fetchData starts the spinner
               props.fetchData()
               props.customDeleteTask(id);
               resetModal();
