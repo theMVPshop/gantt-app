@@ -268,14 +268,9 @@ const Gantt = () => {
           }
         }
       }
-      // return "nested_bar";
+  
     };
 
-    // gantt.templates.task_class = function(start, end, task) {
-    //   if (orderedTasks[0].cohort === task.id) {
-    //     return "first_cohort";
-    //   }
-    // }
   };
 
   const handleClick = (e) => {
@@ -730,6 +725,7 @@ const Gantt = () => {
 
     gantt.init(containerRef.current);
 
+    // gantt chart horizontal scroll START
     let scroll_state, click, original_mouse_position;
     let timeline_area = document.getElementsByClassName("gantt_task_bg")[0];
 
@@ -769,6 +765,7 @@ const Gantt = () => {
 
   function scroll_to_today() {
     gantt.showDate(new Date())
+    // gantt.refreshData()
   }
 
   return (
@@ -905,11 +902,6 @@ const Gantt = () => {
           Add Holiday
         </button>
       </div>
-      {/* Temporary display home for OverviewDisplay */}
-      {/* <OverviewDisplay
-        data={data}
-      >
-      </OverviewDisplay> */}
     </div>
   );
 };

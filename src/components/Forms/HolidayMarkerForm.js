@@ -65,21 +65,18 @@ const HolidayMarkerForm = (props) => {
   };
 
   const addHolidayMarker = () => {
-    console.log("click! add holiday button");
-
     gantt.addMarker({
       start_date: new Date(formData.start_date),
       end_date: new Date(formData.end_date),
       css: "holiday",
       text: formData.text,
-      title: formData.start_date,
+      title: formData.start_date.slice(0, 10),
     });
   };
 
   const pushFormData = () => {
-    props.fetchData();
-
-    if (formData.name === "") {
+    if (formData.text === "") {
+      console.log("There's no holiday name!");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.name_error = true;
@@ -89,6 +86,7 @@ const HolidayMarkerForm = (props) => {
     }
 
     if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
+      console.log("there's no holiday start date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
@@ -96,6 +94,8 @@ const HolidayMarkerForm = (props) => {
       });
       return;
     }
+    //props.fetchData starts the spinner
+    props.fetchData();
 
     let payload;
 
@@ -125,7 +125,6 @@ const HolidayMarkerForm = (props) => {
         props.setLoading(false);
         console.log("there was an error", err);
       });
-    // props.setLoading(false)
   };
 
   return (
@@ -162,7 +161,7 @@ const HolidayMarkerForm = (props) => {
           />
         </div>
         <small className="text-danger">
-          {formData.text_error && requiredFields.holidayName}
+          {formData.name_error && requiredFields.holidayName}
         </small>
 
         <div className="minor-info">

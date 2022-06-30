@@ -64,7 +64,7 @@ const CohortEdit = (props) => {
   };
 
   const validateInput = (e) => {
-      props.fetchData()
+      
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -94,6 +94,8 @@ const CohortEdit = (props) => {
       });
       return;
     }
+    //props.fetchData starts the spinner
+    props.fetchData()
     pushFormData();
   };
 
@@ -110,7 +112,6 @@ const CohortEdit = (props) => {
           copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
           copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
           props.customEditTask(copy.id, copy);
-          // resetForm();
         }
       })
       .catch((err) => { 

@@ -5,20 +5,15 @@ import { ReactComponent as Exit } from "../../images/cancel.svg";
 const url = "https://gantt-server.herokuapp.com/tasks/";
 
 const ConfirmDelete = (props) => {
-  // const deleteTask = () => {
-  //   let course = props.modalState.confirmDeleteModal.id;
-  //   props.deleteTask(course);
-  //   resetModal();
-  // };
-  // props.setLoading("false")
+
   let id = props.modalState.confirmDeleteModal.id;
 
   const resetModal = () => {
-    props.handleModalDisplayState("confirmDeleteModal", {
+      props.handleModalDisplayState("confirmDeleteModal", {
       display: false,
       id: "cohort_0",
       title: "",
-    });
+      });
   };
 
   return (
@@ -33,10 +28,10 @@ const ConfirmDelete = (props) => {
         <Exit
           className="exit-button"
           onClick={() => {
-            console.log(
-              "Exit confirmDelete",
-              props.modalState.confirmDeleteModal
-            );
+            // console.log(
+            //   "Exit confirmDelete",
+            //   props.modalState.confirmDeleteModal
+            // );
             props.handleModalDisplayState("confirmDeleteModal", {
               display: false,
             });
@@ -65,9 +60,6 @@ const ConfirmDelete = (props) => {
                   props.setLoading(false)
                   console.log("there was an error", err)
                 })
-                
-              
-              // put reset here and finish axios call
             }}
           >
             Yes

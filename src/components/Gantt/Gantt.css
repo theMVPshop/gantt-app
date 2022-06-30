@@ -5,8 +5,6 @@ body,
 #root,
 #root div:only-child,
 .gantt-container {
-  /* position: relative !important;
-  z-index: -1 !important; */
   max-height: 100%;
   color: #0e0d12;
   font-size: 14px;
@@ -261,12 +259,16 @@ body,
   justify-content: flex-end;
 }
 
-/* .gantt_task_content { */
-/* background-color: #727597; */
-/* } */
-
-#addHoliday,
-#deleteHoliday {
+#addHoliday {
+  width: 85px;
+  height: 30px;
+  border: 1px solid #eceeff;
+  border-radius: 5px;
+  background-color: #eceeff;
+  color: #0e0d12;
+  font-size: 13px;
+  font-family: "Lexend Deca", sans-serif;
+  cursor: pointer;
   z-index: 100;
 }
 
