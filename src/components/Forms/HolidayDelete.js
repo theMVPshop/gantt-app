@@ -7,8 +7,6 @@ const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
  
-
-  console.log("new props", props.modalState.deleteHolidayModal.id);
   let deleteID = props.modalState.deleteHolidayModal.id;
   let title = props.modalState.deleteHolidayModal.title;
 

@@ -128,8 +128,6 @@ const HolidayMarkerForm = (props) => {
         console.log("there was an error", err)});
   };
 
-  console.log("form data", formData);
-
   return (
     <div
       style={
