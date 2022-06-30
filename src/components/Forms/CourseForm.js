@@ -67,7 +67,7 @@ const CourseForm = (props) => {
   //This function first checks for required fields
   //then, if required fields are filled in, pushes data to the db
   const pushFormData = () => {
-    props.fetchData()
+    
     
     if (formData.title === "") {
       setFormData((prevState) => {
@@ -95,6 +95,9 @@ const CourseForm = (props) => {
       });
       return;
     }
+
+    //props.fetchData starts the spinner
+    props.fetchData()
 
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {
