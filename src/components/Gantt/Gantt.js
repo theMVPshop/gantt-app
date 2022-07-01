@@ -758,7 +758,6 @@ const Gantt = () => {
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
-    console.log(position);
     console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
