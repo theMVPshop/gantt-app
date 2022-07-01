@@ -14,6 +14,10 @@ import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
 import Loader from "../Loader/Loader.js";
+import ZoomIn from "../../images/zoom-in.png";
+import ZoomOut from "../../images/zoom-out.png";
+import Today from "../../images/today.png";
+import AddHoliday from "../../images/add-holiday.png";
 
 const Gantt = () => {
   const [loading, setLoading] = useState(false);
@@ -268,9 +272,7 @@ const Gantt = () => {
           }
         }
       }
-  
     };
-
   };
 
   const handleClick = (e) => {
@@ -758,13 +760,12 @@ const Gantt = () => {
   function zoom_out() {
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
-    console.log(position);
     console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
 
   function scroll_to_today() {
-    gantt.showDate(new Date())
+    gantt.showDate(new Date());
     // gantt.refreshData()
   }
 
@@ -889,18 +890,18 @@ const Gantt = () => {
       ></div>
       <div id="zoomController">
         {/* maybe add class to style slightly differently from zoom buttons */}
-      <button id="zoomIn" onClick={scroll_to_today}>
-          Find Today
-        </button>
-        <button id="zoomIn" onClick={zoom_in}>
-          Zoom In
-        </button>
-        <button id="zoomOut" onClick={zoom_out}>
-          Zoom Out
-        </button>
-        <button id="addHoliday" onClick={showHolidayModal}>
-          Add Holiday
-        </button>
+        <div id="zoomIn" onClick={zoom_in}>
+          <img src={ZoomIn} alt="Zoom in"></img>
+        </div>
+        <div id="zoomOut" onClick={zoom_out}>
+          <img src={ZoomOut} alt="Zoom out"></img>
+        </div>
+        <div id="todayButton" onClick={scroll_to_today}>
+          <img src={Today} alt="Scroll to today"></img>
+        </div>
+        <div id="addHoliday" onClick={showHolidayModal}>
+          <img src={AddHoliday} alt="Add holiday"></img>
+        </div>
       </div>
     </div>
   );
