@@ -890,16 +890,16 @@ const Gantt = () => {
       ></div>
       <div id="zoomController">
         {/* maybe add class to style slightly differently from zoom buttons */}
-        <div id="zoomIn" onClick={zoom_in}>
+        <div id="zoomIn" onClick={zoom_in} title="Zoom In">
           <img src={ZoomIn} alt="Zoom in"></img>
         </div>
-        <div id="zoomOut" onClick={zoom_out}>
+        <div id="zoomOut" onClick={zoom_out} title="Zoom Out">
           <img src={ZoomOut} alt="Zoom out"></img>
         </div>
-        <div id="todayButton" onClick={scroll_to_today}>
+        <div id="todayButton" onClick={scroll_to_today} title="Scroll to today">
           <img src={Today} alt="Scroll to today"></img>
         </div>
-        <div id="addHoliday" onClick={showHolidayModal}>
+        <div id="addHoliday" onClick={showHolidayModal} title="Add holiday">
           <img src={AddHoliday} alt="Add holiday"></img>
         </div>
       </div>

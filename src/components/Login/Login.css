@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Podkova&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Podkova&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
   outline: 0;
   box-sizing: border-box;
 }
-#root{
-  height:100vh;
+#root {
+  height: 100vh;
 }
 
-.login-window-container{
-  background-color: #ECEEFF;
+.login-window-container {
+  background-color: #eceeff;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -22,50 +22,47 @@
   justify-content: space-between;
 }
 
-.login-form{
-  height:500px;
-  margin-top: 88px; 
+.login-form {
+  height: 500px;
+  margin-top: 88px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-h1{
-  font-family: 'Podkova', serif;
-  font-size:50px;
+h1 {
+  font-family: "Podkova", serif;
+  font-size: 50px;
   font-weight: 100;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 
-p{
-  font-family: 'Lexend Deca', sans-serif;
+p {
+  font-family: "Lexend Deca", sans-serif;
   font-size: 16px;
   margin-bottom: 30px;
 }
 
-
-
-.email{
-  font-family: 'Lexend Deca', sans-serif;
+.email {
+  font-family: "Lexend Deca", sans-serif;
   border-radius: 5px;
   border-color: transparent;
   background-color: #079043;
-  color: #ECEEFF;
+  color: #eceeff;
   opacity: 60%;
   padding: 15px;
   height: 50px;
-  width:100%;
-  margin:0;
-} 
+  width: 100%;
+  margin: 0;
+}
 
-
-.password{
-  font-family: 'Lexend Deca', sans-serif;
+.password {
+  font-family: "Lexend Deca", sans-serif;
   border-radius: 5px;
   border-color: transparent;
   background-color: rgb(7, 144, 67);
-  color: #ECEEFF;
+  color: #eceeff;
   opacity: 60%;
   margin-top: 10px;
   padding: 15px;
@@ -73,36 +70,35 @@ p{
   width: 500px !important;
 }
 
-input:-webkit-autofill{
+input:-webkit-autofill {
   border: 2px solid #079043 !important;
 }
 
-#inputID1::placeholder, #inputID2::placeholder {
+#inputID1::placeholder,
+#inputID2::placeholder {
   color: white;
   opacity: 100%;
 }
 
-.login{
-  font-family: 'Lexend Deca', sans-serif;
+.login {
+  font-family: "Lexend Deca", sans-serif;
   background-color: #079043;
   border-color: transparent;
   border-radius: 10px;
-  color:#ECEEFF;
+  color: #eceeff;
   width: 500px;
-  height:40px;
-  margin-top:50px;
+  height: 40px;
+  margin-top: 50px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.vector{
+.vector {
   width: 100%;
 }
 
-.input-group{
+.input-group {
   width: 500px;
   display: flex;
   justify-content: space-between;
 }
-
-
-
