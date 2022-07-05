@@ -14,6 +14,10 @@ import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
 import "./Gantt.css";
 import axios from "axios";
 import Loader from "../Loader/Loader.js";
+import ZoomIn from "../../images/zoom-in.png";
+import ZoomOut from "../../images/zoom-out.png";
+import Today from "../../images/today.png";
+import AddHoliday from "../../images/add-holiday.png";
 
 const Gantt = () => {
   // console.log("gantt.getScrollState: ", gantt.getScrollState())
@@ -33,7 +37,7 @@ const Gantt = () => {
     console.log("scrollPos has changed in CohortForm")
   
     }, [scrollPos])
- 
+
   //add here: every time the page refreshes, set zoom level to zoom level held in state
    //declare variable to hold current zoom level
   let currentZoomLevel = 2
@@ -346,9 +350,7 @@ const Gantt = () => {
           }
         }
       }
-  
     };
-
   };
 
   const handleClick = (e) => {
@@ -840,13 +842,12 @@ const Gantt = () => {
     console.log("zoom out gantt.getScrollState(): ", gantt.getScrollState())
     var position = gantt.getScrollState().x;
     left_date = gantt.dateFromPos(position);
-    // console.log(position);
-    // console.log(left_date);
+    console.log(left_date);
     gantt.ext.zoom.zoomOut();
   }
 
   function scroll_to_today() {
-    gantt.showDate(new Date())
+    gantt.showDate(new Date());
     // gantt.refreshData()
   }
 
@@ -974,18 +975,18 @@ const Gantt = () => {
       ></div>
       <div id="zoomController">
         {/* maybe add class to style slightly differently from zoom buttons */}
-      <button id="zoomIn" onClick={scroll_to_today}>
-          Find Today
-        </button>
-        <button id="zoomIn" onClick={zoom_in}>
-          Zoom In
-        </button>
-        <button id="zoomOut" onClick={zoom_out}>
-          Zoom Out
-        </button>
-        <button id="addHoliday" onClick={showHolidayModal}>
-          Add Holiday
-        </button>
+        <div id="zoomIn" onClick={zoom_in} title="Zoom In">
+          <img src={ZoomIn} alt="Zoom in"></img>
+        </div>
+        <div id="zoomOut" onClick={zoom_out} title="Zoom Out">
+          <img src={ZoomOut} alt="Zoom out"></img>
+        </div>
+        <div id="todayButton" onClick={scroll_to_today} title="Scroll to today">
+          <img src={Today} alt="Scroll to today"></img>
+        </div>
+        <div id="addHoliday" onClick={showHolidayModal} title="Add holiday">
+          <img src={AddHoliday} alt="Add holiday"></img>
+        </div>
       </div>
     </div>
   );

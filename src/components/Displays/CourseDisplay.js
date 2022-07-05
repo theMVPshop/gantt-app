@@ -152,7 +152,10 @@ const CourseDisplay = (props) => {
               <div className="display-input">
                 {props.modalState.currentTask.active_status
                   ? "Active"
-                  : "Inactive"}
+                  : <p style={{ fontSize: "14px", color: "red", margin: "0" }}>
+                      Inactive
+                    </p>
+                }
               </div>
             </div>
           </div>

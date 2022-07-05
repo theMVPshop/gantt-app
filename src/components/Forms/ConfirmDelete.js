@@ -33,7 +33,7 @@ const ConfirmDelete = (props) => {
             //   props.modalState.confirmDeleteModal
             // );
             props.handleModalDisplayState("confirmDeleteModal", {
-              display: false,
+              // display: false,
             });
           }}
         ></Exit>
@@ -50,11 +50,12 @@ const ConfirmDelete = (props) => {
               //props.fetchData starts the spinner
               props.fetchData()
               props.customDeleteTask(id);
-              resetModal();
+              
               axios
                 .delete(`${url}/${id}`)
                 .then((res) => {
                   props.setLoading(false)
+                  resetModal();
                   console.log("response in delete: ", res)
                 })
                 .catch((err) => {
