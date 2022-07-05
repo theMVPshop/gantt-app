@@ -13,36 +13,38 @@ const HolidayMarkerForm = (props) => {
 
   useEffect(() => {
     axios
-    .get(url)
-    .then((res) => {
-      res.data.forEach((obj) => {
-
-        if (obj.end_date === null) {
-          gantt.addMarker({
-            start_date: new Date(obj.start_date),
-            css: "holiday",
-            text: obj.text,
-            title: obj.start_date.slice(0, 10),
-            id: obj.id
-          });
-        } else if (obj.end_date != null) {
-          gantt.addMarker({
-            start_date: new Date(obj.start_date),
-            end_date: new Date(obj.end_date),
-            css: "holiday",
-            text: obj.text,
-            title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(0, 10)}`,
-            id: obj.id
-          });
-        }
-      });
-    })
-    .catch((err) => console.log("error", err));
-  })
+      .get(url)
+      .then((res) => {
+        res.data.forEach((obj) => {
+          if (obj.end_date === null) {
+            gantt.addMarker({
+              start_date: new Date(obj.start_date),
+              css: "holiday",
+              text: obj.text,
+              title: obj.start_date.slice(0, 10),
+              id: obj.id,
+            });
+          } else if (obj.end_date != null) {
+            gantt.addMarker({
+              start_date: new Date(obj.start_date),
+              end_date: new Date(obj.end_date),
+              css: "holiday",
+              text: obj.text,
+              title: `${obj.start_date.slice(0, 10)} to ${obj.end_date.slice(
+                0,
+                10
+              )}`,
+              id: obj.id,
+            });
+          }
+        });
+      })
+      .catch((err) => console.log("error", err));
+  });
 
   const requiredFields = {
     holidayName: "Holiday Name is required",
-    startDate: "Start Date is required"
+    startDate: "Start Date is required",
   };
 
   const [formData, setFormData] = useState({
@@ -50,7 +52,7 @@ const HolidayMarkerForm = (props) => {
     start_date: "",
     end_date: "",
     name_error: false,
-    start_date_error: false
+    start_date_error: false,
   });
 
   const resetForm = () => {
@@ -68,15 +70,13 @@ const HolidayMarkerForm = (props) => {
       end_date: new Date(formData.end_date),
       css: "holiday",
       text: formData.text,
-      title: formData.start_date.slice(0, 10)
+      title: formData.start_date.slice(0, 10),
     });
-  }
+  };
 
   const pushFormData = () => {
-    
-    
     if (formData.text === "") {
-      console.log("There's no holiday name!")
+      console.log("There's no holiday name!");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.name_error = true;
@@ -86,7 +86,7 @@ const HolidayMarkerForm = (props) => {
     }
 
     if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
-      console.log("there's no holiday start date")
+      console.log("there's no holiday start date");
       setFormData((prevState) => {
         let prev = { ...prevState };
         prev.start_date_error = true;
@@ -95,23 +95,21 @@ const HolidayMarkerForm = (props) => {
       return;
     }
     //props.fetchData starts the spinner
-    props.fetchData()
+    props.fetchData();
 
     let payload;
 
     if (formData.end_date === "yyyy-mm-dd" || formData.end_date === "") {
       payload = {
         text: formData.text,
-        start_date: formData.start_date
-      }
-    }
-
-    else {
+        start_date: formData.start_date,
+      };
+    } else {
       payload = {
         text: formData.text,
         start_date: formData.start_date,
-        end_date: formData.end_date
-      }
+        end_date: formData.end_date,
+      };
     }
 
     axios
@@ -124,18 +122,15 @@ const HolidayMarkerForm = (props) => {
         }
       })
       .catch((err) => {
-        props.setLoading(false)
-        console.log("there was an error", err)});
+        props.setLoading(false);
+        console.log("there was an error", err);
+      });
   };
-
-  console.log("form data", formData);
 
   return (
     <div
       style={
-        props.holidayModalState
-          ? { display: "flex" }
-          : { display: "none" }
+        props.holidayModalState ? { display: "flex" } : { display: "none" }
       }
     >
       <form className="cohortForm" onSubmit={handleSubmit()}>

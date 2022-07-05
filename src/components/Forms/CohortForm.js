@@ -1,5 +1,5 @@
 import { gantt } from "dhtmlx-gantt";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import { useForm } from "react-hook-form";
 
@@ -40,9 +40,15 @@ const CohortForm = (props) => {
     });
   };
 
+  useEffect(() => {
+    gantt.scrollTo(props.scrollPos, null)
+    console.log("scrollPos has changed in CohortForm")
   
+    }, [props.scrollPos])
+ 
   const pushFormData = () => {
   
+    props.keepCurrentPosition()
 
     props.pullData();
     if (formData.title === "") {

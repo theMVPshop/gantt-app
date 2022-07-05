@@ -176,7 +176,8 @@ body,
   top: 22px;
 }
 
-.gantt_task, .gantt_grid {
+.gantt_task,
+.gantt_grid {
   margin-bottom: 22px;
   background-color: #ccc8db !important;
 }
@@ -202,10 +203,12 @@ body,
 
 .holiday .gantt_marker_content {
   background-color: rgb(2, 76, 141) !important;
+  cursor: pointer;
 }
 
 .gantt_marker.holiday {
   background-color: rgba(2, 76, 141, 0.479) !important;
+  cursor: pointer;
 }
 
 #zoomIn {

@@ -98,7 +98,6 @@ const CourseForm = (props) => {
 
     //props.fetchData starts the spinner
     props.fetchData()
-    
 
     var idArray = [];
     for (let i = 0; i < props.data.data.length; i++) {

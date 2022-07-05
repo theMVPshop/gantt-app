@@ -6,6 +6,7 @@ import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/holidays/";
 
 const HolidayDelete = (props) => {
+ 
   let deleteID = props.modalState.deleteHolidayModal.id;
   let title = props.modalState.deleteHolidayModal.title;
 

@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
 
 /* ****** Cohort Display ***** */
-.cohort-info{
+.cohort-info {
   display: flex;
   flex-direction: column;
   margin-left: 125px;
@@ -47,7 +47,7 @@
 .courseForm-display {
   font-family: "Lexend Deca", sans-serif;
   width: 1000px;
-  height:600px;
+  height: 600px;
   background-color: #eceeff;
   position: absolute;
   z-index: 101;
@@ -61,14 +61,12 @@
   box-shadow: 5px 5px 20px;
 }
 
-
 .display-info {
   width: auto;
   display: flex;
   flex-direction: row;
   margin-bottom: 0px;
-  padding: 0;   
-
+  padding: 0;
 }
 
 .group {
@@ -95,7 +93,7 @@
   width: 40% !important;
   padding-left: 10px;
   padding: 5px;
-  align-self:center;
+  align-self: center;
 }
 
 .edit-button {
@@ -121,23 +119,23 @@
   height: auto;
   width: 35px;
   margin-left: 10px;
-  fill:firebrick;
+  fill: firebrick;
 }
 
-.special-inputs{
+.special-inputs {
   display: flex;
   flex-direction: column;
   width: 40% !important;
   margin-bottom: 10px;
 }
 
-#special-inputs{
+#special-inputs {
   display: flex;
   align-items: center;
 }
 
-a{
-  color: #079043;
+a {
+  color: blue;
   text-decoration: none;
 }
 
@@ -158,7 +156,7 @@ a{
   margin: 50px;
 }
 
-.minor-title{
+.minor-title {
   font-family: "Lexend Deca", sans-serif;
   font-weight: 500;
   font-size: 35px;
@@ -167,11 +165,11 @@ a{
   margin-bottom: 10px;
 }
 
-.edit-info{
+.edit-info {
   margin-top: 10px;
 }
 
-.edit-exit{
+.edit-exit {
   height: 35px;
   fill: firebrick;
   position: absolute;
@@ -185,7 +183,7 @@ a{
 
 /* ***** Course Edit ***** */
 
-.courseEdit{
+.courseEdit {
   font-family: "Lexend Deca", sans-serif;
   width: 1000px;
   height: 600px;
@@ -198,7 +196,7 @@ a{
   padding: 10px;
   padding-top: 20px;
   border-radius: 20px;
-  box-shadow: 5px 5px 20px ;
+  box-shadow: 5px 5px 20px;
   position: absolute;
   top: 0;
 }
@@ -369,10 +367,10 @@ a{
   box-shadow: 5px 5px 15px;
 }
 
-#delete-title{
+#delete-title {
   /* padding-top: 10px;÷ */
   padding: 5px 20px 0;
-  
+
   margin-bottom: 0;
 }
 
@@ -403,19 +401,16 @@ a{
   top: 0;
   left: 0;
   cursor: pointer;
-  }
+}
 
-  /* ---------Overview start--------- */
-  .overview-cont{
-    color: black;
-    background-color: white;
-    padding: 10px;
-  }
+/* ---------Overview start--------- */
+.overview-cont {
+  color: black;
+  background-color: white;
+  padding: 10px;
+}
 
-  .overviewLeftItem{
-    /* border: 1px solid red; */
-    padding-right: 5px;
-  }
-
-
-  
+.overviewLeftItem {
+  /* border: 1px solid red; */
+  padding-right: 5px;
+}
