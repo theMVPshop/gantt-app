@@ -9,9 +9,9 @@ const url = "https://gantt-server.herokuapp.com/tasks/";
 const Loader = (props) => {
 
   
-  useEffect(() => {
-    console.log('this is loading', props.loading)
-  }, [props.loading]);
+  // useEffect(() => {
+  //   console.log('this is loading', props.loading)
+  // }, [props.loading]);
 
   let [color] = useState("#353144");
 

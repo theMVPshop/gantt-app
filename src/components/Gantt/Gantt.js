@@ -22,34 +22,38 @@ import AddHoliday from "../../images/add-holiday.png";
 const Gantt = () => {
   // console.log("gantt.getScrollState: ", gantt.getScrollState())
  
-  const [loading, setLoading] = useState(false);
-
-  //add state for scrollstate here
-  //default is the beginning of the chart
-  //this will happen on initial load
+ 
+//   //add state for scrollstate here
+//   //default is the beginning of the chart
+//   //this will happen on initial load
   const [scrollPos, setScrollPos] = useState(0)
-  const [zoomLevel, setZoomLevel] = useState("week")
-  //every time the page refreshes, scroll to the position held in state
+  const [zoomLevel, setZoomLevel] = useState("quarter")
+//   //every time the page refreshes, scroll to the position held in state
   gantt.scrollTo(scrollPos, null)
   
   useEffect(() => {
     gantt.scrollTo(scrollPos, null)
-    console.log("scrollPos has changed in CohortForm")
+    console.log("scrollPos has changed: ", scrollPos)
   
     }, [scrollPos])
 
-  //add here: every time the page refreshes, set zoom level to zoom level held in state
-   //declare variable to hold current zoom level
-  let currentZoomLevel = 2
+    
+//   //add here: every time the page refreshes, set zoom level to zoom level held in state
+//    //declare variable to hold current zoom level
+  let currentZoomLevel;
 
-  //pass this function to all modals
-  //call it when click saving/ confirming
-  //for delete, it will also need to be called when we OPEN the modal
+//   //pass this function to all modals
+//   //call it when click saving/ confirming
+//   //for delete, it will also need to be called when we OPEN the modal
   const keepCurrentPosition = () =>{
-    //set the zoom
-    // gantt.ext.zoom.getCurrentLevel() gets a number 0-5, where 2 is "week"
+
+    
+    console.log("in keepCurrentPosition")
+    // -----START save zoom level
+//     //set the zoom
+//     // gantt.ext.zoom.getCurrentLevel() gets a number 0-5, where 2 is "week"
     console.log("gantt.ext.zoom.getCurrentLevel(): ", gantt.ext.zoom.getCurrentLevel())
-    //set currentZoomLevel to CurrentLevel
+//     //set currentZoomLevel to CurrentLevel
     currentZoomLevel = gantt.ext.zoom.getCurrentLevel()
 
     //for each level, set zoomLevel to corresponding name in zoom config
@@ -75,33 +79,41 @@ const Gantt = () => {
       default:
         console.log("currentZoomLevel isn't 0-5?")
     }
+    //-----------END save zoom level------------
+
+    //----------- START save horizontal ppsition ----
     //get the horizontal position
     let position  = gantt.getScrollState()
+    console.log("position: ", position)
+
     //get just the x
     let horizontal = position.x
     //set state scrollPos to x
-    setScrollPos(horizontal)
+
+    console.log("horizontal: ", horizontal )
+    // setScrollPos(horizontal)
   }
 
+//   //pass as props to: CohortForm, CourseForm, CohortEdit, CourseEdit, ConfirmDelte, HolidayDelete, HolidayMarker
+  
+//   //this is the EXAMPLE getScrollState for reference
+//   // var sPos = gantt.getScrollState(); // {x:58,y:180}
+//   // var posX = sPos.x;
+//   // var posY = sPos.y;
   
 
-  //pass as props to: CohortForm, CourseForm, CohortEdit, CourseEdit, ConfirmDelte, HolidayDelete, HolidayMarker
+//   //These are the EXAMPLEs of scrollTo from docs
+//   // gantt.scrollTo(30, 80); // scrolls container both horizontally and vertically 
+//   // gantt.scrollTo(30, null); // scrolls container only horizontally
+//   // gantt.scrollTo(null, 80); // scrolls container only vertically
+// //--------------------END keep position after save__--------------
   
+//---------- START spinner --------------
+const [loading, setLoading] = useState(false);
 
-  //this is the EXAMPLE getScrollState for reference
-  // var sPos = gantt.getScrollState(); // {x:58,y:180}
-  // var posX = sPos.x;
-  // var posY = sPos.y;
-  
-
-  //These are the EXAMPLEs of scrollTo from docs
-  // gantt.scrollTo(30, 80); // scrolls container both horizontally and vertically 
-  // gantt.scrollTo(30, null); // scrolls container only horizontally
-  // gantt.scrollTo(null, 80); // scrolls container only vertically
-
-  //turns modal on
+//turns modal on
   const fetchData = () => {
-    console.log("here i am");
+    // console.log("here i am");
     setLoading(true);
   };
 
@@ -113,6 +125,7 @@ const Gantt = () => {
   const containerRef = useRef(null);
 
   const [modalState, setModalState] = useState({
+    currentHorizontal: 0,
     addCourseForm: { display: false, id: "course_0" },
     addCohortForm: { display: false, id: "cohort_0" },
     cohortDisplay: {
@@ -402,8 +415,16 @@ const Gantt = () => {
   gantt.attachEvent(
     "onGridHeaderClick",
     function (name, e) {
-      keepCurrentPosition()
+      console.log("attacheEvent")
+      let position  = gantt.getScrollState()
+      console.log("position: ", position)
+      //get just the x
+      let horizontal = position.x
+      console.log("horizontal: ", horizontal )
+      setScrollPos(horizontal)
+      // keepCurrentPosition()
       var button = e.target.closest("[data-action]");
+  
       gantt.detachEvent("task-header-click");
       if (button) {
         console.log("you clicked add custom");
@@ -415,7 +436,7 @@ const Gantt = () => {
           return copy;
         });
       }
-      return true;
+      // return true;
     },
     { id: "task-header-click" }
   );
