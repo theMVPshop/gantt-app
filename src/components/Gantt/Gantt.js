@@ -754,13 +754,13 @@ const [loading, setLoading] = useState(false);
         // },
         {
           name: "day",
-          scale_height: 27,
+          scale_height: 50,
           min_column_width: 80,
           scales: [
             // { unit: "year", step: 1, format: "%Y" },
             { unit: "week", step: 1, format: "%Y" },
             // { unit: "month", step: 1, format: "%F %Y" },
-            { unit: "day", step: 1, format: "%M %d" }
+            { unit: "day", step: 1, format: "%M %j" }
             // { unit: "day", step: 1, format: "%d %M" }
           ],
         },
@@ -774,7 +774,7 @@ const [loading, setLoading] = useState(false);
               step: 1,
               format: function (date) {
                 var dateToStr = gantt.date.date_to_str("%M %d");
-                var endDate = gantt.date.add(date, -6, "day");
+                var endDate = gantt.date.add(date, +6, "day");
                 var weekNum = gantt.date.date_to_str("%W")(date);
                 var year = gantt.date.date_to_str("%Y")(date);
                 return (
