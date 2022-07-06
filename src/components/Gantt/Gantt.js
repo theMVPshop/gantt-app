@@ -494,6 +494,16 @@ const [loading, setLoading] = useState(false);
     // button functionality for view, edit, add, delete
     var button = e.target.closest("[data-action]");
     if (button) {
+      
+      //get the whole position of the chart at the current date
+      let position  = gantt.getScrollState()
+      console.log("position: ", position)
+      //get just the x of the position
+      let horizontal = position.x
+      console.log("horizontal: ", horizontal )
+      //set state so chart can stay at this horizontal position
+      setScrollPos(horizontal)
+
       var action = button.getAttribute("data-action");
       var copy = { ...modalState }; //getting copy of modalState on top level so it's accessible to all switch cases
       var dataCopy = data; //getting copy of gantt data on top level so it's accessible to all switch cases
