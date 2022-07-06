@@ -639,7 +639,11 @@ const Gantt = () => {
 
   //when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
+    // sets the date format that is used to parse data and send dates back to the server
     gantt.config.date_format = "%Y-%m-%d %H:%i";
+    // sets the format of dates in the "start date" and "finish" columns of the table
+    gantt.config.date_grid = "%n/%j/%y";
+    // gantt.config.date_grid = "%m/%d/%Y";
     gantt.config.wheel_scroll_sensitivity = 0.5;
     gantt.config.autosize = "y";
 
@@ -716,20 +720,26 @@ const Gantt = () => {
 
     var zoomConfig = {
       levels: [
-        {
-          name: "hour",
-          scale_height: 27,
-          min_column_width: 15,
-          scales: [
-            { unit: "day", format: "%d" },
-            { unit: "hour", format: "%H" },
-          ],
-        },
+        // {
+        //   name: "hour",
+        //   scale_height: 27,
+        //   min_column_width: 15,
+        //   scales: [
+        //     { unit: "day", format: "%d" },
+        //     { unit: "hour", format: "%H" },
+        //   ],
+        // },
         {
           name: "day",
           scale_height: 27,
           min_column_width: 80,
-          scales: [{ unit: "day", step: 1, format: "%d %M" }],
+          scales: [
+            // { unit: "year", step: 1, format: "%Y" },
+            { unit: "week", step: 1, format: "%Y" },
+            // { unit: "month", step: 1, format: "%F %Y" },
+            { unit: "day", step: 1, format: "%M %d" }
+            // { unit: "day", step: 1, format: "%d %M" }
+          ],
         },
         {
           name: "week",
@@ -740,16 +750,19 @@ const Gantt = () => {
               unit: "week",
               step: 1,
               format: function (date) {
-                var dateToStr = gantt.date.date_to_str("%d %M");
+                var dateToStr = gantt.date.date_to_str("%M %d");
                 var endDate = gantt.date.add(date, -6, "day");
                 var weekNum = gantt.date.date_to_str("%W")(date);
+                var year = gantt.date.date_to_str("%Y")(date);
                 return (
                   "#" +
                   weekNum +
                   ", " +
                   dateToStr(date) +
                   " - " +
-                  dateToStr(endDate)
+                  dateToStr(endDate) +
+                  " " +
+                  year
                 );
               },
             },
@@ -761,7 +774,7 @@ const Gantt = () => {
           scale_height: 50,
           min_column_width: 120,
           scales: [
-            { unit: "month", format: "%F, %Y" },
+            { unit: "month", format: "%F %Y" },
             { unit: "week", format: "Week #%W" },
           ],
         },
@@ -780,9 +793,12 @@ const Gantt = () => {
                   -1,
                   "day"
                 );
-                return dateToStr(date) + " - " + dateToStr(endDate);
+                var year = gantt.date.date_to_str("%Y")(date);
+                return dateToStr(date) + " - " + dateToStr(endDate) + " " + year;
               },
+              // format: "%Y"
             },
+            // { unit: "year", step: 1, format: "%Y" },
             { unit: "month", step: 1, format: "%M" },
           ],
         },
