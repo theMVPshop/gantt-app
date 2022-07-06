@@ -415,14 +415,16 @@ const [loading, setLoading] = useState(false);
   gantt.attachEvent(
     "onGridHeaderClick",
     function (name, e) {
-      console.log("attacheEvent")
+      
+      //get the whole position of the chart at the current date
       let position  = gantt.getScrollState()
       console.log("position: ", position)
-      //get just the x
+      //get just the x of the position
       let horizontal = position.x
       console.log("horizontal: ", horizontal )
+      //set state so chart can stay at this horizontal position
       setScrollPos(horizontal)
-      // keepCurrentPosition()
+   
       var button = e.target.closest("[data-action]");
   
       gantt.detachEvent("task-header-click");
