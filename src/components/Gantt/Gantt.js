@@ -666,7 +666,6 @@ const [loading, setLoading] = useState(false);
     gantt.config.date_format = "%Y-%m-%d %H:%i";
     // sets the format of dates in the "start date" and "finish" columns of the table
     gantt.config.date_grid = "%n/%j/%y";
-    // gantt.config.date_grid = "%m/%d/%Y";
     gantt.config.wheel_scroll_sensitivity = 0.5;
     gantt.config.autosize = "y";
 
@@ -743,25 +742,13 @@ const [loading, setLoading] = useState(false);
 
     var zoomConfig = {
       levels: [
-        // {
-        //   name: "hour",
-        //   scale_height: 27,
-        //   min_column_width: 15,
-        //   scales: [
-        //     { unit: "day", format: "%d" },
-        //     { unit: "hour", format: "%H" },
-        //   ],
-        // },
         {
           name: "day",
           scale_height: 50,
           min_column_width: 80,
           scales: [
-            // { unit: "year", step: 1, format: "%Y" },
             { unit: "week", step: 1, format: "%Y" },
-            // { unit: "month", step: 1, format: "%F %Y" },
             { unit: "day", step: 1, format: "%M %j" }
-            // { unit: "day", step: 1, format: "%d %M" }
           ],
         },
         {
@@ -818,10 +805,8 @@ const [loading, setLoading] = useState(false);
                 );
                 var year = gantt.date.date_to_str("%Y")(date);
                 return dateToStr(date) + " - " + dateToStr(endDate) + " " + year;
-              },
-              // format: "%Y"
+              }
             },
-            // { unit: "year", step: 1, format: "%Y" },
             { unit: "month", step: 1, format: "%M" },
           ],
         },
