@@ -3,7 +3,6 @@
 html,
 body,
 #root,
-#root div:only-child,
 .gantt-container {
   max-height: 100vh;
   color: #0e0d12;
@@ -11,6 +10,11 @@ body,
   border-color: #ebebeb;
   font-family: "Lexend Deca", sans-serif;
   background-color: #eceeff;
+}
+
+#root div:only-child {
+  background-color: #eceeff;
+  font-family: "Lexend Deca", sans-serif;
 }
 
 .gantt_layout_cell {
