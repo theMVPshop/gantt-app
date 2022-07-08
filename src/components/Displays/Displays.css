@@ -202,7 +202,7 @@ a {
 }
 
 /* ******CourseForm Styles***** */
-.courseForm {
+#courseForm {
   font-family: "Lexend Deca", sans-serif;
   width: 1000px;
   height: 600px;
