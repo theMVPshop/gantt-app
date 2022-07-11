@@ -442,34 +442,36 @@ const CourseEdit = (props) => {
               />
             </div> */}
 
-            <div className="info">
+            <div className="radio-info">
               <label className="label">Status</label>
-              <input
-                type="radio"
-                className="radio"
-                name="activeStatus"
-                checked={formData.active_status}
-                onChange={(e) => {
-                  setFormData((prevState) => {
-                    let prev = { ...prevState };
-                    prev.active_status = true;
-                    return prev;
-                  });
-                }}
-              /> Active
-              <input
-                type="radio"
-                className="radio"
-                name="activeStatus"
-                checked={!formData.active_status}
-                onChange={(e) => {
+              <div className="radio-group">
+                <input
+                  type="radio"
+                  className="radio"
+                  name="activeStatus"
+                  checked={formData.active_status}
+                  onChange={(e) => {
                     setFormData((prevState) => {
-                    let prev = { ...prevState };
-                    prev.active_status = false;
-                    return prev;
-                  });
-                }}
-              /> Inactive
+                      let prev = { ...prevState };
+                      prev.active_status = true;
+                      return prev;
+                    });
+                  }}
+                /> <span className="radio-placeHolder">Active</span>
+                <input
+                  type="radio"
+                  className="radio"
+                  name="activeStatus"
+                  checked={!formData.active_status}
+                  onChange={(e) => {
+                      setFormData((prevState) => {
+                      let prev = { ...prevState };
+                      prev.active_status = false;
+                      return prev;
+                    });
+                  }}
+                /> <span className="radio-placeHolder">Inactive</span>
+              </div>
             </div>
 
           </div>

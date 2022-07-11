@@ -446,6 +446,7 @@ const CourseForm = (props) => {
                 }}
               /> <span className="radio-placeHolder">Inactive</span>
             </div>
+            
             </div>
           </div>
         </div>
