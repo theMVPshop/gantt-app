@@ -416,8 +416,9 @@ const CourseForm = (props) => {
               />
             </div>
 
-            <div className="info">
+            <div className="radio-info">
               <label className="label">Status</label>
+              <div className="radio-group">
               <input
                 type="radio"
                 className="radio"
@@ -430,7 +431,7 @@ const CourseForm = (props) => {
                     return prev;
                   });
                 }}
-              /> Active
+              /> <span className="radio-placeHolder">Active</span>
               <input
                 type="radio"
                 className="radio"
@@ -443,9 +444,9 @@ const CourseForm = (props) => {
                     return prev;
                   });
                 }}
-              /> Inactive
+              /> <span className="radio-placeHolder">Inactive</span>
             </div>
-
+            </div>
           </div>
         </div>
         <h6>
