@@ -87,7 +87,7 @@ const CourseEdit = (props) => {
     end_date: formatDate(props.modalState.currentTask.end_date),
     student_number_start: 0,
     student_number_end: 0,
-    active_status: false,
+    active_status: true,
     id: "course_0",
     parent: "cohort_0",
   });
@@ -420,7 +420,7 @@ const CourseEdit = (props) => {
               />
             </div>
 
-            <div className="info">
+            {/* <div className="info">
               <label className="label">Active Status</label>
               <input
                 type="checkbox"
@@ -440,7 +440,38 @@ const CourseEdit = (props) => {
                   });
                 }}
               />
+            </div> */}
+
+            <div className="info">
+              <label className="label">Status</label>
+              <input
+                type="radio"
+                className="radio"
+                name="activeStatus"
+                checked={formData.active_status}
+                onChange={(e) => {
+                  setFormData((prevState) => {
+                    let prev = { ...prevState };
+                    prev.active_status = true;
+                    return prev;
+                  });
+                }}
+              /> Active
+              <input
+                type="radio"
+                className="radio"
+                name="activeStatus"
+                checked={!formData.active_status}
+                onChange={(e) => {
+                    setFormData((prevState) => {
+                    let prev = { ...prevState };
+                    prev.active_status = false;
+                    return prev;
+                  });
+                }}
+              /> Inactive
             </div>
+
           </div>
         </div>
         <button className="submit"  onClick={validateInput}>
