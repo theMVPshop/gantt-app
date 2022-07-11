@@ -344,6 +344,25 @@ a {
   color: #eceeff;
   cursor: pointer;
 }
+/* 
+.radio{
+  margin-left: 10px;
+} */
+
+.radio-placeHolder{
+  margin-left: -40px;
+  font-size: 15px;
+}
+
+.radio{
+  accent-color: #079043;
+}
+.radio-group{
+  display: flex;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 40% !important;
+}
 /* *****CohortForm Styles End***** */
 
 ::placeholder {
