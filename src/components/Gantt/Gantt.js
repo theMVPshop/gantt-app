@@ -597,64 +597,66 @@ const [loading, setLoading] = useState(false);
   gantt.attachEvent("onTaskClick", onTaskClick, { id: "task-click" });
 
   // update task date by dragging end of task bar START
-  gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
-    let newStart = new Date(task.start_date);
-    let newEnd = new Date(task.end_date);
+      // this section is commented out to avoid avoid user error when dragging a task bar
+      // to allow dragging, 'gantt.config.drag_mode = false' must be removed from the DOMContentLoaded event listener below 
+  // gantt.attachEvent("onTaskDrag", function (id, mode, task, original) {
+  //   let newStart = new Date(task.start_date);
+  //   let newEnd = new Date(task.end_date);
 
-    let startMonth = newStart.getMonth() + 1;
-    let startDay = newStart.getDate();
-    let startYear = newStart.getFullYear();
+  //   let startMonth = newStart.getMonth() + 1;
+  //   let startDay = newStart.getDate();
+  //   let startYear = newStart.getFullYear();
 
-    let endMonth = newEnd.getMonth() + 1;
-    let endDay = newEnd.getDate();
-    let endYear = newEnd.getFullYear();
+  //   let endMonth = newEnd.getMonth() + 1;
+  //   let endDay = newEnd.getDate();
+  //   let endYear = newEnd.getFullYear();
 
-    if (startMonth < 10) {
-      startMonth = "0" + startMonth;
-    }
+  //   if (startMonth < 10) {
+  //     startMonth = "0" + startMonth;
+  //   }
 
-    if (startDay < 10) {
-      startDay = "0" + startDay;
-    }
+  //   if (startDay < 10) {
+  //     startDay = "0" + startDay;
+  //   }
 
-    if (endMonth < 10) {
-      endMonth = "0" + endMonth;
-    }
+  //   if (endMonth < 10) {
+  //     endMonth = "0" + endMonth;
+  //   }
 
-    if (endDay < 10) {
-      endDay = "0" + endDay;
-    }
+  //   if (endDay < 10) {
+  //     endDay = "0" + endDay;
+  //   }
 
-    newStart = [startYear, startMonth, startDay].join("-");
-    newEnd = [endYear, endMonth, endDay].join("-");
+  //   newStart = [startYear, startMonth, startDay].join("-");
+  //   newEnd = [endYear, endMonth, endDay].join("-");
 
-    setTaskStartDateDrag(newStart);
-    setTaskEndDateDrag(newEnd);
-  });
+  //   setTaskStartDateDrag(newStart);
+  //   setTaskEndDateDrag(newEnd);
+  // });
 
-  gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
-    if (taskStartDateDrag) {
-      axios
-        .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
-          start_date: taskStartDateDrag,
-        })
-        .then((res) => {
-          setTaskStartDateDrag("");
-        })
-        .catch((err) => console.log("there was an error", err));
-    }
+  // gantt.attachEvent("onAfterTaskDrag", function (id, mode, e) {
+  //   if (taskStartDateDrag) {
+  //     axios
+  //       .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
+  //         start_date: taskStartDateDrag,
+  //       })
+  //       .then((res) => {
+  //         setTaskStartDateDrag("");
+  //       })
+  //       .catch((err) => console.log("there was an error", err));
+  //   }
 
-    if (taskEndDateDrag) {
-      axios
-        .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
-          end_date: taskEndDateDrag,
-        })
-        .then((res) => {
-          setTaskEndDateDrag("");
-        })
-        .catch((err) => console.log("there was an error", err));
-    }
-  });
+  //   if (taskEndDateDrag) {
+  //     axios
+  //       .put(`https://gantt-server.herokuapp.com/tasks/${id}`, {
+  //         end_date: taskEndDateDrag,
+  //       })
+  //       .then((res) => {
+  //         setTaskEndDateDrag("");
+  //       })
+  //       .catch((err) => console.log("there was an error", err));
+  //   }
+  // });
   // update task date by dragging end of task bar END
 
   // vertical line marker START
@@ -681,16 +683,13 @@ const [loading, setLoading] = useState(false);
   const showHolidayModal = () => setHolidayModalState(true);
   // vertical line marker END
 
-  //when DOM content is loaded, this sets our custom Gantt columns
+  // when DOM content is loaded, this sets our custom Gantt columns
   document.addEventListener("DOMContentLoaded", (event) => {
-    // sets the date format that is used to parse data and send dates back to the server
-    gantt.config.date_format = "%Y-%m-%d %H:%i";
-    // sets the format of dates in the "start date" and "finish" columns of the table
-    gantt.config.date_grid = "%n/%j/%y";
+    gantt.config.date_format = "%Y-%m-%d %H:%i"; // sets the date format that is used to parse data and send dates back to the server
+    gantt.config.date_grid = "%n/%j/%y"; // sets the format of dates in the "start date" and "finish" columns of the table
     gantt.config.wheel_scroll_sensitivity = 0.5;
     gantt.config.autosize = "y";
-
-    //gantt custom columns
+    gantt.config.drag_mode = false; // restricts task bars from being dragged, dropped, or resized
 
     gantt.templates.grid_row_class = function (start, end, task) {
       if (task.$level > 0) {
@@ -702,6 +701,7 @@ const [loading, setLoading] = useState(false);
       return task.title;
     };
 
+    // gantt custom columns
     gantt.config.columns = [
       {
         name: "title",
