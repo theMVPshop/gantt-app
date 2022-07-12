@@ -87,7 +87,7 @@ const CourseEdit = (props) => {
     end_date: formatDate(props.modalState.currentTask.end_date),
     student_number_start: 0,
     student_number_end: 0,
-    active_status: false,
+    active_status: true,
     id: "course_0",
     parent: "cohort_0",
   });
@@ -420,7 +420,7 @@ const CourseEdit = (props) => {
               />
             </div>
 
-            <div className="info">
+            {/* <div className="info">
               <label className="label">Active Status</label>
               <input
                 type="checkbox"
@@ -428,19 +428,52 @@ const CourseEdit = (props) => {
                 checked={formData.active_status}
                 onChange={(e) => {
                   setFormData((prevState) => {
-                    console.log(
-                      "formData.active_status: ",
-                      formData.active_status,
-                      "active checkbox e.target.checked: ",
-                      e.target.checked
-                    );
+                    // console.log(
+                    //   "formData.active_status: ",
+                    //   formData.active_status,
+                    //   "active checkbox e.target.checked: ",
+                    //   e.target.checked
+                    // );
                     let prev = { ...prevState };
                     prev.active_status = e.target.checked;
                     return prev;
                   });
                 }}
               />
+            </div> */}
+
+            <div className="radio-info">
+              <label className="label">Status</label>
+              <div className="radio-group">
+                <input
+                  type="radio"
+                  className="radio"
+                  name="activeStatus"
+                  checked={formData.active_status}
+                  onChange={(e) => {
+                    setFormData((prevState) => {
+                      let prev = { ...prevState };
+                      prev.active_status = true;
+                      return prev;
+                    });
+                  }}
+                /> <span className="radio-placeHolder">Active</span>
+                <input
+                  type="radio"
+                  className="radio"
+                  name="activeStatus"
+                  checked={!formData.active_status}
+                  onChange={(e) => {
+                      setFormData((prevState) => {
+                      let prev = { ...prevState };
+                      prev.active_status = false;
+                      return prev;
+                    });
+                  }}
+                /> <span className="radio-placeHolder">Inactive</span>
+              </div>
             </div>
+
           </div>
         </div>
         <button className="submit"  onClick={validateInput}>
