@@ -200,14 +200,22 @@ const [loading, setLoading] = useState(false);
   };
 
   const customAddTask = (task) => {
+    console.log("customAddTask: ", task)
     console.log(task);
     gantt.addTask(task);
     setData(gantt.serialize());
   };
 
   const customEditTask = (id, task) => {
+    console.log("in customEditTask: ", id, task)
+    
+    task.start_date = new Date(task.start_date)
+    task.end_date = new Date(task.end_date)
+    console.log("task now: ", task)
+
     gantt.updateTask(id, task);
-    setData(gantt.serialize());
+    console.log("gantt")
+    // setData(gantt.serialize());
   };
 
   const switchForms = (originalFormName, newFormName) => {
