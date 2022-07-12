@@ -420,28 +420,6 @@ const CourseEdit = (props) => {
               />
             </div>
 
-            {/* <div className="info">
-              <label className="label">Active Status</label>
-              <input
-                type="checkbox"
-                className="input"
-                checked={formData.active_status}
-                onChange={(e) => {
-                  setFormData((prevState) => {
-                    // console.log(
-                    //   "formData.active_status: ",
-                    //   formData.active_status,
-                    //   "active checkbox e.target.checked: ",
-                    //   e.target.checked
-                    // );
-                    let prev = { ...prevState };
-                    prev.active_status = e.target.checked;
-                    return prev;
-                  });
-                }}
-              />
-            </div> */}
-
             <div className="radio-info">
               <label className="label">Status</label>
               <div className="radio-group">

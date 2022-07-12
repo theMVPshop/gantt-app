@@ -18,7 +18,7 @@ const OverviewDisplay = (props) => {
     //loop over data.data
     for (let i = 0; i<arr.length; i++){
       //find all the courses where data parent is equal to currentTask id
-      if(arr[i].parent == props.modalState.currentTask.id && arr[i].id){
+      if(arr[i].parent === props.modalState.currentTask.id && arr[i].id){
         
         
         //if there's a 501 course, set local state 
@@ -56,13 +56,13 @@ const OverviewDisplay = (props) => {
             <br></br></>
             : ""}
       {overviewCourses.map((course, index)=>
-        <>
+        <span key={index}>
         <span className="overviewLeftItem">{course.title}:</span>
-        {course.start_date.toString().slice(12, 15) == course.end_date.toString().slice(12, 15) ? <span> {course.start_date.toString().slice(3, 11)}</span> : <span> {course.start_date.toString().slice(3, 15)}</span> } - 
+        {course.start_date.toString().slice(12, 15) === course.end_date.toString().slice(12, 15) ? <span> {course.start_date.toString().slice(3, 11)}</span> : <span> {course.start_date.toString().slice(3, 15)}</span> } - 
         <span>{course.end_date.toString().slice(3, 15)}</span>
 
         <br></br>
-        </>
+        </span>
       )}
   
         <br></br>

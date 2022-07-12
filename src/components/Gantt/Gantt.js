@@ -358,6 +358,9 @@ const [loading, setLoading] = useState(false);
                   return "fifth_course";
                 case 5:
                   return "sixth_course";
+                default:
+                  console.log("assignBarClasses default");
+                  break;
               }
             }
           }
