@@ -2,12 +2,15 @@ import { gantt } from "dhtmlx-gantt";
 import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
-import Loader from "../Loader/Loader"
+import { useForm } from "react-hook-form";
+import Loader from "../Loader/Loader";
 
 const url = "https://gantt-server.herokuapp.com/tasks/";
 
-
 const CohortEdit = (props) => {
+
+  const { handleSubmit } = useForm();
+
   const requiredFields = {
     cohortName: "Cohort Name is required (this can be changed later)",
     startDate: "Start Date is required (this can be changed later)",
@@ -31,6 +34,14 @@ const CohortEdit = (props) => {
     return translatedDate;
   };
 
+  const [ganttData, setGanttData] = useState ({
+    id: "cohort_0",
+    title: "",
+    //this needs to update with the formData date, formatted as this type of string:
+    start_date: "2022-07-04",
+    end_date: "2022-07-14"
+  })
+
   const [formData, setFormData] = useState({
     id: "cohort_0",
     title: "",
@@ -45,6 +56,7 @@ const CohortEdit = (props) => {
   });
 
   useEffect(() => {
+    console.log("current task was updated in CohortEdit")
     setFormData({
       id: props.modalState.currentTask.id,
       title: props.modalState.currentTask.title,
@@ -53,18 +65,29 @@ const CohortEdit = (props) => {
     });
   }, [props.modalState.currentTask]);
 
-  //Is this doing anything?
+  // useEffect(() => {
+  //   console.log("formData changed: ", formData.id)
+  // }, [formData]);
+
+  //if you x out of the modal, this clears validation errors
   const resetErrorData = () => {
     console.log("resetErrorData");
-    setFormData({
+    setErrorData({
       title_error: false,
       start_date_error: false,
       end_date_error: false,
     });
   };
 
+  useEffect(() => {
+    gantt.scrollTo(props.scrollPos, null)
+    console.log("scrollPos has changed in CohortForm")
+  
+    }, [props.scrollPos])
+
   const validateInput = (e) => {
-      
+    // props.keepCurrentPosition()
+    console.log("validateInput")
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -95,38 +118,63 @@ const CohortEdit = (props) => {
       return;
     }
     //props.fetchData starts the spinner
-    props.fetchData()
-    pushFormData();
+    props.fetchData();
+
+    pushFormData(e);
   };
 
-  const pushFormData = () => {
+  const pushFormData = (e) => {
+    // e.preventDefault()
+    // props.keepCurrentPosition()
     var copy = formData;
-    copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
-    copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
-    console.log("after formatDateUp: ", copy.end_date);
+    console.log("copyin pushFormData: ", copy)
+    // console.log("before formatDateUp:", copy.end_date)
+    // copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
+    // copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+    setGanttData(copy)
     axios
       .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
-          copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
-          props.customEditTask(copy.id, copy);
+          props.customEditTask(formData.id, formData);
         }
       })
-      .catch((err) => { 
-        props.setLoading(false)
-        console.log("there was an error", err)});
-        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+      .catch((err) => {
+        props.setLoading(false);
+        console.log("formData.start_date: ",formData.start_date )
+        console.log("there was an error in cohortEdit", err);
+      });
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
   };
 
+
+  useEffect(() => {
+    setFormData({
+      id: props.modalState.currentTask.id,
+      title: props.modalState.currentTask.title,
+      start_date: formatDate(props.modalState.currentTask.start_date),
+      end_date: formatDate(props.modalState.currentTask.end_date),
+    });
+  
+  }, [props.modalState.currentTask]);
+
   // useEffect(() => {
-  //   setFormData({
-  //     title: props.modalState.currentTask.title,
-  //     start_date: formatDate(props.modalState.currentTask.start_date),
-  //     end_date: formatDate(props.modalState.currentTask.end_date),
-  //   });
-  // }, [props.modalState.currentTask]);
+  //   console.log("ganttData.start_date, end_date: ", ganttData.start_date, ganttData.end_date)
+  //   props.customEditTask(ganttData.id, ganttData);
+
+  // }, [ganttData])
+
+  // useEffect(() => {
+
+  // setGanttData({
+  //   id: props.modalState.currentTask.id,
+  //   title: props.modalState.currentTask.title,
+  //   start_date: props.modalState.currentTask.start_date,
+  //   end_date: props.modalState.currentTask.end_date,
+  // })
+  // }, [formData]);
+
 
   return (
     <div
@@ -136,7 +184,10 @@ const CohortEdit = (props) => {
           : { display: "none" }
       }
     >
-      <form className="cohortEdit">
+      <form 
+        className="cohortEdit" 
+        onSubmit={handleSubmit()}
+      >
         <div className="title-div">
           <Exit
             className="edit-exit exit-button"
@@ -215,10 +266,20 @@ const CohortEdit = (props) => {
         <small className="text-danger edit-danger">
           {errorData.end_date_error && requiredFields.graduationDate}
         </small>
-      
-        <button className="submit" onClick={validateInput}>
-           Confirm Changes
+        <button 
+          // type="button"
+
+          className="submit" 
+          onClick={validateInput}
+        >
+          Confirm Changes
         </button>
+        {/* <input
+          type="submit"
+          className="submit"
+          value="Save"
+          onClick={validateInput}
+        /> */}
       </form>
     </div>
   );
