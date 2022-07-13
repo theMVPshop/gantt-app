@@ -179,8 +179,6 @@ const [loading, setLoading] = useState(false);
   });
   const [holidayModalState, setHolidayModalState] = useState(false);
   const [tasksOrdered, setTasksOrdered] = useState({});
-  const [taskStartDateDrag, setTaskStartDateDrag] = useState("");
-  const [taskEndDateDrag, setTaskEndDateDrag] = useState("");
 
   // disables pop up error for invalid day index
   gantt.config.show_errors = false;
