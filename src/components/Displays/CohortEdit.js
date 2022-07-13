@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import Loader from "../Loader/Loader";
 
 const url = "https://gantt-server.herokuapp.com/tasks/";
 
@@ -108,10 +107,10 @@ const CohortEdit = (props) => {
     //props.fetchData starts the spinner
     props.fetchData();
 
-    pushFormData(e);
+    pushFormData();
   };
 
-  const pushFormData = (e) => {
+  const pushFormData = () => {
     var copy = formData;
     // adds the data to the database
     axios
@@ -119,7 +118,7 @@ const CohortEdit = (props) => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          //adds the data to update Gantt
+          //adds the data to update Gantt without reload
           props.customEditTask(formData.id, formData);
 
           //closes the modal

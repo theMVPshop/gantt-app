@@ -1,10 +1,13 @@
 import { ReactComponent as Exit } from "../../images/cancel.svg";
 import React, { useEffect, useState } from "react";
 import { gantt } from "dhtmlx-gantt";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 const url = "https://gantt-server.herokuapp.com/tasks/";
 
 const CourseEdit = (props) => {
+  const { handleSubmit } = useForm();
+
   const requiredFields = {
     cohortName: "Cohort Name is required (this can be changed later)",
     startDate: "Start Date is required (this can be changed later)",
@@ -16,44 +19,6 @@ const CourseEdit = (props) => {
     start_date_error: false,
     end_date_error: false,
   });
-
-  const validateInput = (e) => {
-    
-    
-    if (formData.title === "") {
-      e.preventDefault();
-      setErrorData((prevState) => {
-        let prev = { ...prevState };
-        prev.title_error = true;
-        return prev;
-      });
-      return;
-    }
-    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
-      e.preventDefault();
-      setErrorData((prevState) => {
-        let prev = { ...prevState };
-        prev.start_date_error = true;
-        return prev;
-      });
-      return;
-    }
-
-    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
-      e.preventDefault();
-
-      setErrorData((prevState) => {
-        let prev = { ...prevState };
-        prev.end_date_error = true;
-        return prev;
-      });
-      return;
-    }
-    // props.fetchData() starts the spinner
-    props.fetchData()
-    
-    pushFormData();
-  };
 
   const formatDate = (date) => {
     var d = new Date(date),
@@ -114,25 +79,78 @@ const CourseEdit = (props) => {
     });
   }, [props.modalState.currentTask]);
 
+  useEffect(() => {
+    gantt.scrollTo(props.scrollPos, null);
+  }, [props.scrollPos]);
+
+  const validateInput = (e) => {
+    if (formData.title === "") {
+      e.preventDefault();
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.title_error = true;
+        return prev;
+      });
+      return;
+    }
+    if (formData.start_date === "yyyy-mm-dd" || formData.start_date === "") {
+      e.preventDefault();
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.start_date_error = true;
+        return prev;
+      });
+      return;
+    }
+
+    if (formData.end_date === "" || formData.end_date === "yyyy-mm-dd") {
+      e.preventDefault();
+
+      setErrorData((prevState) => {
+        let prev = { ...prevState };
+        prev.end_date_error = true;
+        return prev;
+      });
+      return;
+    }
+    // props.fetchData() starts the spinner
+    props.fetchData();
+
+    pushFormData();
+  };
   const pushFormData = () => {
     let copy = formData;
-    copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
-    copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+    // copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
+    // copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
+
+    //adds the data to the database
     axios
       .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
-          copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
-          props.customEditTask(copy.id, copy);
+          // copy.start_date = new Date().toISOString(formData.start_date); // translating date to the way gantt needs
+          // copy.end_date = new Date().toISOString(formData.end_date); // translating date to the way gantt needs
+          // props.customEditTask(copy.id, copy);
+
+          //adds the data to update Gantt without reload
+          props.customEditTask(formData.id, formData);
+
+          //closes the modal
+          const copy = props.modalState;
+          copy.courseEditForm.display = !copy.courseEditForm.display;
+          props.handleModalDisplayState(copy);
+
+          //turn off the spinner
+          props.setLoading(false);
         }
       })
       .catch((err) => {
-        props.setLoading(false)
-        console.log("there was an error", err)});
-        gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
-        // props.setLoading(false)
+        props.setLoading(false);
+        console.log("there was an error", err);
+      });
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+    // props.setLoading(false)
   };
 
   return (
@@ -143,7 +161,7 @@ const CourseEdit = (props) => {
           : { display: "none" }
       }
     >
-      <form className="courseEdit">
+      <form className="courseEdit" onSubmit={handleSubmit()}>
         <Exit
           className="exit-button"
           onClick={() => {
@@ -190,7 +208,7 @@ const CourseEdit = (props) => {
                     return prev;
                   });
                 }}
-              /> 
+              />
             </div>
 
             <div className="info">
@@ -207,7 +225,7 @@ const CourseEdit = (props) => {
                     return prev;
                   });
                 }}
-              /> 
+              />
             </div>
 
             <div className="info">
@@ -310,7 +328,10 @@ const CourseEdit = (props) => {
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    console.log("this is the prev .day_of_week state: ", prev.day_of_week)
+                    console.log(
+                      "this is the prev .day_of_week state: ",
+                      prev.day_of_week
+                    );
                     prev.day_of_week = e.target.value;
                     return prev;
                   });
@@ -435,26 +456,27 @@ const CourseEdit = (props) => {
                       return prev;
                     });
                   }}
-                /> <span className="radio-placeHolder">Active</span>
+                />{" "}
+                <span className="radio-placeHolder">Active</span>
                 <input
                   type="radio"
                   className="radio"
                   name="activeStatus"
                   checked={!formData.active_status}
                   onChange={(e) => {
-                      setFormData((prevState) => {
+                    setFormData((prevState) => {
                       let prev = { ...prevState };
                       prev.active_status = false;
                       return prev;
                     });
                   }}
-                /> <span className="radio-placeHolder">Inactive</span>
+                />{" "}
+                <span className="radio-placeHolder">Inactive</span>
               </div>
             </div>
-
           </div>
         </div>
-        <button className="submit"  onClick={validateInput}>
+        <button className="submit" onClick={validateInput}>
           Confirm Changes
         </button>
       </form>
