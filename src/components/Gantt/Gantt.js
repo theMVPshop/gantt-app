@@ -159,7 +159,7 @@ const [loading, setLoading] = useState(false);
 
     currentTask: {
       title: "",
-      course_link: "",
+      zoom_link: "",
       textbook: "",
       hubspot_ticket: "",
       rocketchat: "",

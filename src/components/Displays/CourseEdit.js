@@ -74,7 +74,7 @@ const CourseEdit = (props) => {
 
   const [formData, setFormData] = useState({
     title: "",
-    course_link: "",
+    zoom_link: "",
     textbook: "",
     hubspot_ticket: "",
     rocketchat: "",
@@ -95,7 +95,7 @@ const CourseEdit = (props) => {
   useEffect(() => {
     setFormData({
       title: props.modalState.currentTask.title,
-      course_link: props.modalState.currentTask.course_link,
+      zoom_link: props.modalState.currentTask.zoom_link,
       textbook: props.modalState.currentTask.textbook,
       hubspot_ticket: props.modalState.currentTask.hubspot_ticket,
       rocketchat: props.modalState.currentTask.rocketchat,
@@ -177,16 +177,16 @@ const CourseEdit = (props) => {
             </small>
 
             <div className="info">
-              <label className="label">Course Link</label>
+              <label className="label">Zoom Link</label>
               <input
                 type="text"
-                name="courseLink"
+                name="zoomLink"
                 className="input"
-                value={formData.course_link}
+                value={formData.zoom_link}
                 onChange={(e) => {
                   setFormData((prevState) => {
                     let prev = { ...prevState };
-                    prev.course_link = e.target.value;
+                    prev.zoom_link = e.target.value;
                     return prev;
                   });
                 }}
