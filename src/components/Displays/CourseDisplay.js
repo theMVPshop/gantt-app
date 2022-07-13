@@ -148,7 +148,7 @@ const CourseDisplay = (props) => {
             </div>
 
             <div className="display-info">
-              <label className="display-label">Active Status:</label>
+              <label className="display-label">Status:</label>
               <div className="display-input">
                 {props.modalState.currentTask.active_status
                   ? "Active"
