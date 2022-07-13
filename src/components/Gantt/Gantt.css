@@ -12,7 +12,7 @@ body,
   background-color: #eceeff;
 }
 
-#root div:only-child {
+div:not(.gantt_tree_content):only-child {
   background-color: #eceeff;
   font-family: "Lexend Deca", sans-serif;
 }
@@ -98,6 +98,10 @@ body,
   background: #eceeff;
   color: #f5f5f5;
 }
+
+/* .gantt_cell {
+  background-color: #808000 !important;
+} */
 
 .gantt_tree_content {
   color: #0e0d12;
