@@ -34,13 +34,6 @@ const CohortEdit = (props) => {
     return translatedDate;
   };
 
-  const [ganttData, setGanttData] = useState ({
-    id: "cohort_0",
-    title: "",
-    //this needs to update with the formData date, formatted as this type of string:
-    start_date: "2022-07-04",
-    end_date: "2022-07-14"
-  })
 
   const [formData, setFormData] = useState({
     id: "cohort_0",
@@ -56,7 +49,6 @@ const CohortEdit = (props) => {
   });
 
   useEffect(() => {
-    console.log("current task was updated in CohortEdit")
     setFormData({
       id: props.modalState.currentTask.id,
       title: props.modalState.currentTask.title,
@@ -81,13 +73,9 @@ const CohortEdit = (props) => {
 
   useEffect(() => {
     gantt.scrollTo(props.scrollPos, null)
-    console.log("scrollPos has changed in CohortForm")
-  
     }, [props.scrollPos])
 
   const validateInput = (e) => {
-    // props.keepCurrentPosition()
-    console.log("validateInput")
     if (formData.title === "") {
       e.preventDefault();
       setErrorData((prevState) => {
@@ -124,20 +112,24 @@ const CohortEdit = (props) => {
   };
 
   const pushFormData = (e) => {
-    // e.preventDefault()
-    // props.keepCurrentPosition()
     var copy = formData;
-    console.log("copyin pushFormData: ", copy)
-    // console.log("before formatDateUp:", copy.end_date)
-    // copy.start_date = formatDateUp(formData.start_date); //translating date to the way the server needs
-    // copy.end_date = formatDateUp(formData.end_date); //translating date to the way the server needs
-    setGanttData(copy)
+    // adds the data to the database
     axios
       .put(`${url}/${props.modalState.currentTask.id}`, copy)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
+          //adds the data to update Gantt
           props.customEditTask(formData.id, formData);
+
+          //closes the modal
+          const copy = props.modalState;
+          copy.cohortEditForm.display = !copy.cohortEditForm.display;
+          props.handleModalDisplayState(copy);
+
+          //turn off the spinner
+          props.setLoading(false);
+
         }
       })
       .catch((err) => {
@@ -145,7 +137,7 @@ const CohortEdit = (props) => {
         console.log("formData.start_date: ",formData.start_date )
         console.log("there was an error in cohortEdit", err);
       });
-    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task
+    gantt.open(props.modalState.addCohortForm.id); //forces open the parent task //I don't think this does that. 
   };
 
 
@@ -158,23 +150,6 @@ const CohortEdit = (props) => {
     });
   
   }, [props.modalState.currentTask]);
-
-  // useEffect(() => {
-  //   console.log("ganttData.start_date, end_date: ", ganttData.start_date, ganttData.end_date)
-  //   props.customEditTask(ganttData.id, ganttData);
-
-  // }, [ganttData])
-
-  // useEffect(() => {
-
-  // setGanttData({
-  //   id: props.modalState.currentTask.id,
-  //   title: props.modalState.currentTask.title,
-  //   start_date: props.modalState.currentTask.start_date,
-  //   end_date: props.modalState.currentTask.end_date,
-  // })
-  // }, [formData]);
-
 
   return (
     <div

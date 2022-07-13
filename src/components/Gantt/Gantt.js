@@ -207,15 +207,25 @@ const [loading, setLoading] = useState(false);
   };
 
   const customEditTask = (id, task) => {
-    console.log("in customEditTask: ", id, task)
-    
-    task.start_date = new Date(task.start_date)
-    task.end_date = new Date(task.end_date)
-    console.log("task now: ", task)
+    //dates were displaying a day prior to task.start_date and task.end_date
+    //increases the day by one to display start_date correctly
+    let databaseDate = new Date(task.start_date)
+    let ganttDate = new Date(task.start_date)
+    ganttDate.setDate(databaseDate.getDate()+1)
+    task.start_date = ganttDate
 
+    //increases the day by one to display end_date correctly
+    let databaseDateEnd = new Date(task.end_date)
+    let ganttDateEnd = new Date(task.end_date)
+    ganttDateEnd.setDate(databaseDateEnd.getDate()+1)
+    console.log("ganttDateEnd: ", ganttDateEnd)
+    task.end_date = ganttDateEnd
+
+    console.log("task now: ", task)
     gantt.updateTask(id, task);
-    console.log("gantt")
-    // setData(gantt.serialize());
+    setData(gantt.serialize());
+
+
   };
 
   const switchForms = (originalFormName, newFormName) => {
