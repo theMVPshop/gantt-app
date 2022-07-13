@@ -33,8 +33,6 @@
 }
 
 .display-info {
-  display: flex;
-  flex-direction: row;
   margin-top: 15px;
 }
 
@@ -59,14 +57,6 @@
   border-radius: 20px;
   top: 0;
   box-shadow: 5px 5px 20px;
-}
-
-.display-info {
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0px;
-  padding: 0;
 }
 
 .group {
